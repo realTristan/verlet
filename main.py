@@ -1,5 +1,5 @@
 import pygame, time
-from circle import Circle
+from ball import Ball
 from constraint import Constraint
 from config import SCREEN, BACKGROUND_COLOR, GRAVITY, CLOCK
 from events import close_event, on_click
@@ -12,8 +12,8 @@ pygame.display.set_caption("pyverlet")
 
 # Draw objects
 constraint: Constraint = Constraint([400.0, 300.0])
-circles: list[Circle] = [Circle([500.0, 300.0]), 
-                         Circle([300.0, 300.0])]
+circles: list[Ball] = [Ball([500.0, 300.0]), 
+                         Ball([300.0, 300.0])]
 
 # Loop
 while 1:

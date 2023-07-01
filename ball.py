@@ -1,8 +1,8 @@
 import pygame, time
 
 
-# Circle class
-class Circle:
+# Ball class
+class Ball:
     def __init__(self, pos_cur: list[float]) -> None:
         self.pos_cur: list[float] = pos_cur
         self.pos_old: list[float] = pos_cur
@@ -44,7 +44,7 @@ class Circle:
 
     # Apply the constraint
     def apply_constraint(self, constraint):
-        # Calculate the distance between the circle and the constraint
+        # Calculate the distance between the ball and the constraint
         to_obj: list[float] = [self.pos_cur[0] - constraint.position[0], 
                                self.pos_cur[1] - constraint.position[1]]
 
@@ -54,29 +54,29 @@ class Circle:
             self.pos_cur[0] = constraint.position[0] + n[0] * (dist - self.radius)
             self.pos_cur[1] = constraint.position[1] + n[1] * (dist - self.radius)
     
-    # Check if the circle is colliding with other circles
-    def check_collision(self, circles: list['Circle']) -> None:
-        for circle in circles:
-            if circle == self:
+    # Check if the ball is colliding with other balls
+    def check_collision(self, balls: list['Ball']) -> None:
+        for ball in balls:
+            if ball == self:
                 continue
             
-            # Calculate the distance between the circles
-            to_obj: list[float] = [self.pos_cur[0] - circle.pos_cur[0],
-                                   self.pos_cur[1] - circle.pos_cur[1]]
+            # Calculate the distance between the balls
+            to_obj: list[float] = [self.pos_cur[0] - ball.pos_cur[0],
+                                   self.pos_cur[1] - ball.pos_cur[1]]
             
             dist: float = (to_obj[0] ** 2 + to_obj[1] ** 2) ** 0.5
-            if dist < self.radius + circle.radius:
+            if dist < self.radius + ball.radius:
                 n: list[float] = [to_obj[0] / dist, to_obj[1] / dist]
                 
-                # Calculate the circle overlap (the amount the circles have overlapped)
-                overlap: float = (dist - self.radius - circle.radius) / 2
+                # Calculate the ball overlap (the amount the balls have overlapped)
+                overlap: float = (dist - self.radius - ball.radius) / 2
                 
-                # Update this circles position (move it to the side)
+                # Update this balls position (move it to the side)
                 self.pos_cur[0] -= overlap * n[0]
                 self.pos_cur[1] -= overlap * n[1]
                 
-                # Update the other circle's position (move it to the opposite side)
-                circle.pos_cur[0] += overlap * n[0]
-                circle.pos_cur[1] += overlap * n[1]
+                # Update the other ball's position (move it to the opposite side)
+                ball.pos_cur[0] += overlap * n[0]
+                ball.pos_cur[1] += overlap * n[1]
             
             

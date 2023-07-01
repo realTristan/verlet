@@ -1,5 +1,5 @@
 import pygame
-from circle import Circle
+from ball import Ball
 
 
 # Check if a close event has occurred
@@ -10,23 +10,23 @@ def close_event():
             quit()
 
 
-# On click add a new circle at the mouse position
-def on_click(circles: list[Circle]) -> list[Circle]:
-    def add_circle(circles: list[Circle]) -> list[Circle]:
+# On click add a new ball at the mouse position
+def on_click(balls: list[Ball]) -> list[Ball]:
+    def add_ball(balls: list[Ball]) -> list[Ball]:
         # Get the mouse position
         mouse_pos: tuple[int, int] = pygame.mouse.get_pos()
         
-        # Add a new circle
-        circle = Circle([mouse_pos[0], mouse_pos[1]])
-        circles.append(circle)
+        # Add a new ball
+        ball = Ball([mouse_pos[0], mouse_pos[1]])
+        balls.append(ball)
         
-        # Return the updated circles
-        return circles
+        # Return the updated balls
+        return balls
     
     # Iterate over the events
     for event in pygame.event.get():
         if event.type == pygame.MOUSEBUTTONDOWN:
-            return add_circle(circles)
+            return add_ball(balls)
     
-    # Return the circles
-    return circles
+    # Return the balls
+    return balls
