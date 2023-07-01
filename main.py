@@ -1,15 +1,10 @@
 import pygame, time
 from circle import Circle
 from constraint import Constraint
+from config import SCREEN, BACKGROUND_COLOR, GRAVITY
 
+# Initialize pygame
 pygame.init()
-
-# Create the screen
-SCREEN: pygame.Surface = pygame.display.set_mode((800, 600))
-BACKGROUND_COLOR: tuple[int, int, int] = (0, 0, 0)
-
-# Constants
-GRAVITY: list[float] = [0.0, 9.81]
 
 # Title and Icon
 pygame.display.set_caption("Physics Engine")
