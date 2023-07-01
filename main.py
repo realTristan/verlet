@@ -1,42 +1,43 @@
 import pygame, time
 from circle import Circle
 from constraint import Constraint
-from config import SCREEN, BACKGROUND_COLOR, GRAVITY
+from config import SCREEN, BACKGROUND_COLOR, GRAVITY, CLOCK
+from events import close_event, on_click
 
 # Initialize pygame
 pygame.init()
 
 # Title and Icon
-pygame.display.set_caption("Physics Engine")
+pygame.display.set_caption("pyverlet")
 
-# Draw an object
-circle: Circle = Circle([500.0, 300.0])
+# Draw objects
 constraint: Constraint = Constraint([400.0, 300.0])
+circles: list[Circle] = [Circle([500.0, 300.0]), 
+                         Circle([300.0, 300.0])]
 
-# Start time in nanoseconds
-start_time: float = time.time()
-    
 # Loop
-clock: pygame.time.Clock = pygame.time.Clock()
 while 1:
-    # set the background
+    # Set the background
     SCREEN.fill(BACKGROUND_COLOR)
     
-    # Update the circle
-    circle.accelerate(GRAVITY)
-    circle.update_position(time.time() - start_time)
-    circle.apply_constraint(constraint)
+    # On click
+    circles = on_click(circles)
     
-    # Draw the objects
-    circle.draw(SCREEN)
+    # Update the circle
+    for circle in circles:
+        circle.accelerate(GRAVITY)
+        circle.update_position(time.time() - circle.start_time)
+        circle.apply_constraint(constraint)
+        
+        # Draw the objects
+        circle.draw(SCREEN)
+    
+    # Draw the constraint
     constraint.draw(SCREEN)
     
-    # Check for events
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            pygame.quit()
-            quit()
+    # Check for a close event
+    close_event()
     
     # Frames and update the display
-    clock.tick(60)
+    CLOCK.tick(60)
     pygame.display.flip()

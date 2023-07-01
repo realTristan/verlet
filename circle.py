@@ -1,4 +1,4 @@
-import pygame
+import pygame, time
 
 
 # Circle class
@@ -8,6 +8,7 @@ class Circle:
         self.pos_old: list[float] = pos_cur
         self.accel: list[float] = [0.0, 0.0]
         self.radius: float = 10.0
+        self.start_time: float = time.time()
 
     # Draw the object
     def draw(self, screen: pygame.Surface) -> None:
@@ -32,7 +33,6 @@ class Circle:
 
         # Perform the Verlet integration
         self.pos_cur = self.calculate_verlet(velocity, dt)
-        print(self.pos_cur)
 
         # Reset the acceleration
         self.accel = [0.0, 0.0]
