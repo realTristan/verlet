@@ -28,6 +28,7 @@ while 1:
         circle.accelerate(GRAVITY)
         circle.update_position(time.time() - circle.start_time)
         circle.apply_constraint(constraint)
+        circle.check_collision(circles)
         
         # Draw the objects
         circle.draw(SCREEN)

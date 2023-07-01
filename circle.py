@@ -16,8 +16,8 @@ class Circle:
 
     # Calculate the objects velocity
     def calculate_velocity(self) -> list[float]:
-        return [self.pos_cur[0] - self.pos_old[0],
-                self.pos_cur[1] - self.pos_old[1]]
+        return [(self.pos_cur[0] - self.pos_old[0]) / 2,
+                (self.pos_cur[1] - self.pos_old[1]) / 2]
 
     # Calculate the verlet integration
     def calculate_verlet(self, velocity: list[float], dt: float) -> list[float]:
@@ -53,3 +53,30 @@ class Circle:
             n: list[float] = [to_obj[0] / dist, to_obj[1] / dist]
             self.pos_cur[0] = constraint.position[0] + n[0] * (dist - self.radius)
             self.pos_cur[1] = constraint.position[1] + n[1] * (dist - self.radius)
+    
+    # Check if the circle is colliding with other circles
+    def check_collision(self, circles: list['Circle']) -> None:
+        for circle in circles:
+            if circle == self:
+                continue
+            
+            # Calculate the distance between the circles
+            to_obj: list[float] = [self.pos_cur[0] - circle.pos_cur[0],
+                                   self.pos_cur[1] - circle.pos_cur[1]]
+            
+            dist: float = (to_obj[0] ** 2 + to_obj[1] ** 2) ** 0.5
+            if dist < self.radius + circle.radius:
+                n: list[float] = [to_obj[0] / dist, to_obj[1] / dist]
+                
+                # Calculate the circle overlap (the amount the circles have overlapped)
+                overlap: float = (dist - self.radius - circle.radius) / 2
+                
+                # Update this circles position (move it to the side)
+                self.pos_cur[0] -= overlap * n[0]
+                self.pos_cur[1] -= overlap * n[1]
+                
+                # Update the other circle's position (move it to the opposite side)
+                circle.pos_cur[0] += overlap * n[0]
+                circle.pos_cur[1] += overlap * n[1]
+            
+            
