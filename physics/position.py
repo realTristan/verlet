@@ -20,7 +20,7 @@ class Position:
         return (self.x, self.y)
 
     # Create a copy
-    def copy(self):
+    def copy(self)-> 'Position':
         return Position((self.x, self.y))
     
     # When two Position variables are substracted
