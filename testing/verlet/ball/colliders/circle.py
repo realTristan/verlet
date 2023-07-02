@@ -1,8 +1,7 @@
-import pygame
-import time
-from verlet import VerletBall, VerletBallLineConstraint
+import pygame, time
 from testing.verlet.ball.config import SCREEN, BACKGROUND_COLOR, CLOCK, SUB_STEPS
 from testing.verlet.ball.events import close_event, on_click
+from verlet import VerletBall, VerletBallCircleCollider
 from physics import GRAVITY
 
 # Initialize pygame
@@ -12,8 +11,8 @@ pygame.init()
 pygame.display.set_caption("pyverlet")
 
 # Objects
-vconst = VerletBallLineConstraint((200.0, 400.0), (500.0, 100.0))
-vballs = [VerletBall((400.0, 300.0), radius=10.0),
+vconst = VerletBallCircleCollider((400.0, 300.0))
+vballs = [VerletBall((500.0, 300.0), radius=10.0),
           VerletBall((300.0, 300.0), radius=10.0)]
 
 # Game Loop
@@ -24,7 +23,7 @@ while 1:
     # On click
     for _ in range(SUB_STEPS):
         # Add another ball
-        vballs = on_click(vballs)
+        vballs = on_click(vballs, ball_radius=10.0)
         while len(vballs) > 10:
             vballs.pop(0)
 
@@ -42,7 +41,7 @@ while 1:
             # Draw the objects
             vball.draw(SCREEN)
 
-        # Draw the constraint
+        # Draw the Collider
         vconst.draw(SCREEN)
 
     # Check for a close event

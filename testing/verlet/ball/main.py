@@ -1,5 +1,5 @@
 import pygame, time
-from verlet import VerletBall, VerletBallCircleConstraint
+from verlet import VerletBall, VerletBallCircleCollider
 from testing.verlet.ball.config import SCREEN, BACKGROUND_COLOR, CLOCK, SUB_STEPS
 from testing.verlet.ball.events import close_event, on_click
 from physics import GRAVITY

@@ -1,17 +1,17 @@
 import pygame, time
 from testing.verlet.ball.config import SCREEN, BACKGROUND_COLOR, CLOCK, SUB_STEPS
 from testing.verlet.ball.events import close_event, on_click
-from verlet import VerletBallCircleConstraint, VerletBall
+from verlet import VerletBallCircleCollider, VerletBall
 from physics import Vector2D, GRAVITY
 
-# Create a new constraint class to override the apply function
-class NuclearCoreCircleConstraint(VerletBallCircleConstraint):
+# Create a new Collider class to override the apply function
+class NuclearCoreCircleCollider(VerletBallCircleCollider):
     def __init__(self, position: tuple[float, float]):
-        super(NuclearCoreCircleConstraint, self).__init__(position)
+        super(NuclearCoreCircleCollider, self).__init__(position)
 
     # Overriden apply function
     def apply(self, vball: VerletBall):
-        # Calculate the distance between the ball and the constraint
+        # Calculate the distance between the ball and the Collider
         dist: Vector2D = self.position - vball.current_position
 
         # The vector magnitude of the ball
@@ -19,8 +19,8 @@ class NuclearCoreCircleConstraint(VerletBallCircleConstraint):
         delta: float = self.radius - vball.radius
         if magnitude > delta:
             vball.current_position.set(
-                self.position.x - dist.x / (magnitude * delta),  # Previously: dist.x / magnitude * delta
-                self.position.y - dist.y / (magnitude * delta)   # Previously: dist.y / magnitude * delta
+                self.position.x - self.width - dist.x / (magnitude * delta),
+                self.position.y - self.width - dist.y / (magnitude * delta)
             )
 
 # Initialize pygame
@@ -30,7 +30,7 @@ pygame.init()
 pygame.display.set_caption("pyverlet")
 
 # Objects
-vconst = NuclearCoreCircleConstraint((400.0, 300.0))
+vconst = NuclearCoreCircleCollider((400.0, 300.0))
 vballs = [VerletBall((500.0, 300.0), radius=10.0, color=(255, 255, 255)),
           VerletBall((400.0, 300.0), radius=10.0, color=(255, 255, 255)),
           VerletBall((300.0, 300.0), radius=10.0, color=(0, 255, 255))]
@@ -61,7 +61,7 @@ while 1:
             # Draw the objects
             vball.draw(SCREEN)
 
-        # Draw the constraint
+        # Draw the Collider
         vconst.draw(SCREEN)
 
     # Check for a close event
