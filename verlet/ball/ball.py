@@ -77,7 +77,7 @@ class VerletBall(object):
                     overlap: Vector2D = dist / magnitude
 
                     # Update this balls position (move it to the side)
-                    ball_1.current_position += overlap.scale(0.5 * (rad_sum - magnitude))
+                    ball_1.current_position += overlap * 0.5 * (rad_sum - magnitude)
 
                     # Update the other ball's position (move it to the opposite side)
-                    ball_2.current_position -= overlap.scale(0.5 * (rad_sum - magnitude))
+                    ball_2.current_position -= overlap * 0.5 * (rad_sum - magnitude)

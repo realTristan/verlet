@@ -12,12 +12,12 @@ class Vector2D:
         return Vector2D(self.x + other.x, self.y + other.y)
     
     # When two Vector2D variables are multiplied
-    def __mul__(self, other: float) -> 'Vector2D':
-        return Vector2D(self.x * other, self.y * other)
+    def __mul__(self, scalar: float) -> 'Vector2D':
+        return Vector2D(self.x * scalar, self.y * scalar)
     
     # When two Vector2D variables are divided
-    def __truediv__(self, other: float) -> 'Vector2D':
-        return Vector2D(self.x / other, self.y / other)
+    def __truediv__(self, scalar: float) -> 'Vector2D':
+        return Vector2D(self.x / scalar, self.y / scalar)
     
     # Reset the position
     def zero(self) -> 'Vector2D':
@@ -32,7 +32,7 @@ class Vector2D:
         elif index == 1:
             self.y *= -1.0
         else:
-            self.scale(-1.0)
+            self *= -1.0
         return self
         
     # Set the position
@@ -69,11 +69,11 @@ class Vector2D:
         self.x /= mag
         self.y /= mag
         return self
-        
+    
     # Scale all values
-    def scale(self, scalar: float) -> 'Vector2D':
-        self.x *= scalar
-        self.y *= scalar
+    def mult(self, other: 'Vector2D') -> 'Vector2D':
+        self.x *= other.x
+        self.y *= other.y
         return self
     
     # Add to all values
@@ -86,5 +86,11 @@ class Vector2D:
     def sub(self, scalar: float) -> 'Vector2D':
         self.x -= scalar
         self.y -= scalar
+        return self
+
+    # Divide from all values
+    def div(self, other: 'Vector2D') -> 'Vector2D':
+        self.x /= other.x
+        self.y /= other.y
         return self
     
