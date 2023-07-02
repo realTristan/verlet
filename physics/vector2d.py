@@ -20,7 +20,7 @@ class Vector2D:
         return Vector2D(self.x / other, self.y / other)
     
     # Reset the position
-    def reset(self) -> None:
+    def zero(self) -> None:
         self.x = 0.0
         self.y = 0.0
     

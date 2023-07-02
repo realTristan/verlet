@@ -29,8 +29,3 @@ class VerletBallCircleConstraint(object):
                 self.position.x - dist.x / magnitude * delta,
                 self.position.y - dist.y / magnitude * delta
             )
-
-            # Update the verlet ball velocity to account for friction
-            # if vball.friction is not None:
-            #     vball.velocity.x -= vball.friction() * \
-            #         dist.x / mag * delta

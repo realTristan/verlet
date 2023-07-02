@@ -1,6 +1,6 @@
 import pygame
 import time
-from physics import Friction, Vector2D
+from physics import Vector2D
 
 
 # Ball class
@@ -28,48 +28,35 @@ class VerletBall(object):
     def set_color(self, color: tuple[int, int, int]) -> None:
         self.color = color
 
-    # Set the ball friction
-    def set_friction(self, friction: Friction) -> None:
-        self.friction = friction
-
     # Draw the object
     def draw(self, screen: pygame.Surface) -> None:
         pygame.draw.circle(screen, self.color, 
                            self.current_position.get(), self.radius)
 
     # Calculate the objects velocity
-    def calculate_velocity(self) -> None:
-        x: float = (self.current_position.x - self.prev_position.x) * 0.96
-        y: float = (self.current_position.y - self.prev_position.y) * 0.96
-        
-        # Update the velocity
-        self.velocity.set(x, y)
+    def calculate_velocity(self) -> Vector2D:
+        return (self.current_position - self.prev_position) * 0.96
 
     # Perform the verlet integration to calcualte the displacement
     def calculate_displacement(self, dt: float):
-        x: float = self.current_position.x + self.velocity.x + self.acceleration.x * dt * dt
-        y: float = self.current_position.y + self.velocity.y + self.acceleration.y * dt * dt
-        
-        # Update the current position
-        self.current_position.set(x, y)
+        return self.current_position + self.velocity + self.acceleration * dt * dt
 
     # Update the objects position
     def update_position(self, dt: float) -> None:
-        self.calculate_velocity()
+        self.velocity = self.calculate_velocity()
 
         # Save the current position (use a copy)
         self.prev_position = self.current_position.copy()
 
         # Perform the Verlet integration
-        self.calculate_displacement(dt)
+        self.current_position = self.calculate_displacement(dt)
 
         # Reset the acceleration
-        self.acceleration.reset()
+        self.acceleration.zero()
 
     # Accelerate the object
-    def accelerate(self, acceleration: tuple[float, float]) -> None:
-        self.acceleration.x += acceleration[0]
-        self.acceleration.y += acceleration[1]
+    def accelerate(self, acceleration: Vector2D) -> None:
+        self.acceleration += acceleration
 
     # Check if the ball is colliding with other balls
     @staticmethod

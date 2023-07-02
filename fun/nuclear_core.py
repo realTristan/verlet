@@ -1,8 +1,8 @@
 import pygame, time
-from testing.verlet.ball.config import SCREEN, BACKGROUND_COLOR, GRAVITY, CLOCK, SUB_STEPS
+from testing.verlet.ball.config import SCREEN, BACKGROUND_COLOR, CLOCK, SUB_STEPS
 from testing.verlet.ball.events import close_event, on_click
 from verlet import VerletBallCircleConstraint, VerletBall
-from physics import Vector2D
+from physics import Vector2D, GRAVITY
 
 # Create a new constraint class to override the apply function
 class NuclearCoreCircleConstraint(VerletBallCircleConstraint):

@@ -1,5 +1,6 @@
 import pygame, random
-from verlet import VerletBall, BALL_COLORS
+from verlet import VerletBall
+from testing.verlet.ball.config import BALL_COLORS
 
 # Check if a close event has occurred
 def close_event() -> None:
