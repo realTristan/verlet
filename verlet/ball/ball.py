@@ -10,6 +10,7 @@ class VerletBall:
         self.radius: float = 10.0
         self.start_time: float = time.time()
         self.color: tuple[int, int, int] = (255, 255, 255)
+        self.velocity: list[float] = [0.0, 0.0]
 
     # Update the ball's color
     def set_color(self, color: tuple[int, int, int]) -> None:
@@ -31,13 +32,13 @@ class VerletBall:
 
     # Update the objects position
     def update_position(self, dt: float) -> None:
-        velocity: list[float] = self.calculate_velocity()
+        self.velocity = self.calculate_velocity()
         
         # Save the current position
         self.pos_old = self.pos_cur
 
         # Perform the Verlet integration
-        self.pos_cur = self.calculate_verlet(velocity, dt)
+        self.pos_cur = self.calculate_verlet(self.velocity, dt)
 
         # Reset the acceleration
         self.accel = [0.0, 0.0]
@@ -56,8 +57,8 @@ class VerletBall:
                     continue
                 
                 # Calculate the distance between the balls
-                dist: list[float] = [ball_1.pos_cur[0] - ball_2.pos_cur[0],
-                                    ball_1.pos_cur[1] - ball_2.pos_cur[1]]
+                dist: list[float] = [ball_2.pos_cur[0] - ball_1.pos_cur[0],
+                                     ball_2.pos_cur[1] - ball_1.pos_cur[1]]
                 
                 mag: float = (dist[0] ** 2 + dist[1] ** 2) ** 0.5 # the vector magnitude of the ball
                 delta: float = ball_1.radius + ball_2.radius
@@ -66,10 +67,10 @@ class VerletBall:
                     overlap: float = (delta - mag) / 2
                     
                     # Update this balls position (move it to the side)
-                    ball_1.pos_cur[0] += overlap * dist[0] / mag
-                    ball_1.pos_cur[1] += overlap * dist[1] / mag
+                    ball_1.pos_cur[0] -= overlap * dist[0] / mag
+                    ball_1.pos_cur[1] -= overlap * dist[1] / mag
                     
                     # Update the other ball's position (move it to the opposite side)
-                    ball_2.pos_cur[0] -= overlap * dist[0] / mag
-                    ball_2.pos_cur[1] -= overlap * dist[1] / mag
+                    ball_2.pos_cur[0] += overlap * dist[0] / mag
+                    ball_2.pos_cur[1] += overlap * dist[1] / mag
 
