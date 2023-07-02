@@ -3,7 +3,7 @@ from ball import Ball
 from config import BALL_COLORS
 
 # Check if a close event has occurred
-def close_event():
+def close_event() -> None:
   for event in pygame.event.get():
         if event.type == pygame.QUIT:
             pygame.quit()
@@ -12,7 +12,7 @@ def close_event():
 
 # On click add a new ball at the mouse position
 def on_click(balls: list[Ball]) -> list[Ball]:
-    def random_color():
+    def random_color() -> tuple[int, int, int]:
         return random.choice(BALL_COLORS)
     
     def add_ball(balls: list[Ball]) -> list[Ball]:

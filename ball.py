@@ -13,7 +13,7 @@ class Ball:
         self.color: tuple[int, int, int] = (255, 255, 255)
 
     # Update the ball's color
-    def set_color(self, color: tuple[int, int, int]):
+    def set_color(self, color: tuple[int, int, int]) -> None:
         self.color = color
         
     # Draw the object
@@ -56,7 +56,7 @@ class Ball:
 
         mag: float = (dist[0] ** 2 + dist[1] ** 2) ** 0.5 # the vector magnitude of the ball
         delta: float = c.radius - self.radius
-        if mag >= delta:
+        if mag > delta:
             self.pos_cur[0] = c.position[0] + dist[0] / mag * delta
             self.pos_cur[1] = c.position[1] + dist[1] / mag * delta
     
@@ -74,15 +74,15 @@ class Ball:
                 
                 mag: float = (dist[0] ** 2 + dist[1] ** 2) ** 0.5 # the vector magnitude of the ball
                 delta: float = ball_1.radius + ball_2.radius
-                if mag <= delta:
+                if mag < delta:
                     # Calculate the ball overlap (the amount the balls have overlapped)
-                    overlap: float = (mag - delta) / 2
+                    overlap: float = (delta - mag) / 2
                     
                     # Update this balls position (move it to the side)
-                    ball_1.pos_cur[0] -= overlap * dist[0] / mag
-                    ball_1.pos_cur[1] -= overlap * dist[1] / mag
+                    ball_1.pos_cur[0] += overlap * dist[0] / mag
+                    ball_1.pos_cur[1] += overlap * dist[1] / mag
                     
                     # Update the other ball's position (move it to the opposite side)
-                    ball_2.pos_cur[0] += overlap * dist[0] / mag
-                    ball_2.pos_cur[1] += overlap * dist[1] / mag
+                    ball_2.pos_cur[0] -= overlap * dist[0] / mag
+                    ball_2.pos_cur[1] -= overlap * dist[1] / mag
 
