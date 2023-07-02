@@ -12,6 +12,7 @@ class VerletConstraint:
 
     # Draw the constraint
     def draw(self, screen: pygame.Surface) -> None:
-        pygame.draw.circle(screen, self.color, self.position, 
-                           self.radius, self.width)
+        if type == "sphere":
+            pygame.draw.circle(screen, self.color, self.position, 
+                               self.radius, self.width)
 
