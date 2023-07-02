@@ -9,11 +9,13 @@ class VerletBallLineCollider(object):
         position: tuple[float, float], 
         to: tuple[float, float], 
         width: int = 5,
+        slope_multiplier: float = 0.06
     ) -> None:
         self.position: Vector2D = Vector2D(position[0], position[1])
         self.to: Vector2D = Vector2D(to[0], to[1])
         self.width: int = width
         self.color: tuple[int, int, int] = (255, 255, 255)
+        self.slope_multiplier: float = slope_multiplier
 
     # Draw the Collider
     def draw(self, screen: pygame.Surface) -> None:
@@ -44,8 +46,7 @@ class VerletBallLineCollider(object):
         
         # Check to make sure the ball is within the y_above and y_below bounds
         if y_above > y and vball.current_position.y < y_below:
-            vball.prev_position = vball.current_position
             vball.current_position.y = y - vball.radius - self.width
-            vball.current_position.x += m
+            vball.current_position.x += m * self.slope_multiplier
 
         

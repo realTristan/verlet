@@ -49,8 +49,7 @@ while 1:
             # Apply updates to the ball
             vball.accelerate(GRAVITY)
             vball.update_position(dt)
-            for line in lines:
-                line.apply(vball)
+            [line.apply(vball) for line in lines]
             VerletBall.check_collisions(vballs)
 
             # Draw the objects
