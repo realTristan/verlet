@@ -5,9 +5,9 @@ from physics.friction import Friction
 
 # Ball class
 class VerletBall:
-    def __init__(self, pos_cur: list[float]) -> None:
-        self.pos_cur: list[float] = pos_cur
-        self.pos_old: list[float] = pos_cur
+    def __init__(self, position: list[float]) -> None:
+        self.pos_cur: list[float] = position
+        self.pos_old: list[float] = position
         self.accel: list[float] = [0.0, 0.0]
         self.radius: float = 10.0
         self.start_time: float = time.time()
@@ -33,23 +33,21 @@ class VerletBall:
         y_velocity: float = (self.pos_cur[1] - self.pos_old[1]) * 0.96
         return [x_velocity, y_velocity]
 
-    # Calculate the verlet integration
-    def calculate_verlet(self, velocity: list[float], dt: float) -> list[float]:
-        verlet_x: float = self.pos_cur[0] + \
-            velocity[0] + self.accel[0] * dt * dt
-        verlet_y: float = self.pos_cur[1] + \
-            velocity[1] + self.accel[1] * dt * dt
-        return [verlet_x, verlet_y]
+    # Perform the verlet integration to calcualte the displacement
+    def calculate_displacement(self, dt: float) -> list[float]:
+        x: float = self.pos_cur[0] + self.velocity[0] + self.accel[0] * dt * dt
+        y: float = self.pos_cur[1] + self.velocity[1] + self.accel[1] * dt * dt
+        return [x, y]
 
     # Update the objects position
     def update_position(self, dt: float) -> None:
-        self.velocity = self.calculate_velocity()
+        self.velocity: list[float] = self.calculate_velocity()
 
         # Save the current position
         self.pos_old = self.pos_cur
 
         # Perform the Verlet integration
-        self.pos_cur = self.calculate_verlet(self.velocity, dt)
+        self.pos_cur = self.calculate_displacement(dt)
 
         # Reset the acceleration
         self.accel = [0.0, 0.0]
