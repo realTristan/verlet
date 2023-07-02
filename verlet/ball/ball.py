@@ -77,9 +77,7 @@ class VerletBall(object):
                     overlap: float = (delta - magnitude) / 2
 
                     # Update this balls position (move it to the side)
-                    ball_1.current_position.y -= overlap * dist.x / magnitude
-                    ball_1.current_position.y -= overlap * dist.x / magnitude
+                    ball_1.current_position.add(overlap * dist.x / magnitude)
 
                     # Update the other ball's position (move it to the opposite side)
-                    ball_2.current_position.x += overlap * dist.x / magnitude
-                    ball_2.current_position.x += overlap * dist.x / magnitude
+                    ball_2.current_position.sub(overlap * dist.x / magnitude)
