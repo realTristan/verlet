@@ -1,18 +1,21 @@
 import pygame
 import time
-from physics.friction import Friction
+from physics import Friction, Position, Velocity, Acceleration
 
 
 # Ball class
 class VerletBall:
-    def __init__(self, position: list[float], radius: float = 10.0) -> None:
-        self.pos_cur: list[float] = position
-        self.pos_old: list[float] = position
-        self.accel: list[float] = [0.0, 0.0]
+    def __init__(self, position: tuple[float, float], radius: float = 10.0) -> None:
+        # Physics variables
+        self.current_position: Position = Position(position)
+        self.prev_position: Position = Position(position)
+        self.acceleration: Acceleration = Acceleration((0.0, 0.0))
+        self.velocity: Velocity = Velocity((0.0, 0.0))
+        
+        # Self variables
         self.radius: float = radius
         self.start_time: float = time.time()
         self.color: tuple[int, int, int] = (255, 255, 255)
-        self.velocity: list[float] = [0.0, 0.0]
         self.friction: Friction = None  # type: ignore
 
     # Update the ball's color
@@ -25,37 +28,40 @@ class VerletBall:
 
     # Draw the object
     def draw(self, screen: pygame.Surface) -> None:
-        pygame.draw.circle(screen, self.color, self.pos_cur, self.radius)
+        pygame.draw.circle(screen, self.color, 
+                           self.current_position.get(), self.radius)
 
     # Calculate the objects velocity
-    def calculate_velocity(self) -> list[float]:
-        x_velocity: float = (self.pos_cur[0] - self.pos_old[0]) * 0.96
-        y_velocity: float = (self.pos_cur[1] - self.pos_old[1]) * 0.96
-        return [x_velocity, y_velocity]
+    def calculate_velocity(self) -> None:
+        x: float = (self.current_position.x - self.prev_position.x) * 0.96
+        y: float = (self.current_position.y - self.prev_position.y) * 0.96
+        self.velocity.set(x, y)
 
     # Perform the verlet integration to calcualte the displacement
-    def calculate_displacement(self, dt: float) -> list[float]:
-        x: float = self.pos_cur[0] + self.velocity[0] + self.accel[0] * dt * dt
-        y: float = self.pos_cur[1] + self.velocity[1] + self.accel[1] * dt * dt
-        return [x, y]
+    def calculate_displacement(self, dt: float):
+        x: float = self.current_position.x + self.velocity.x + self.acceleration.x * dt * dt
+        y: float = self.current_position.y + self.velocity.y + self.acceleration.y * dt * dt
+        
+        # Update the current position
+        self.current_position.set(x, y)
 
     # Update the objects position
     def update_position(self, dt: float) -> None:
-        self.velocity: list[float] = self.calculate_velocity()
+        self.calculate_velocity()
 
-        # Save the current position
-        self.pos_old = self.pos_cur
+        # Save the current position (use a copy)
+        self.prev_position = self.current_position.copy()
 
         # Perform the Verlet integration
-        self.pos_cur = self.calculate_displacement(dt)
+        self.calculate_displacement(dt)
 
         # Reset the acceleration
-        self.accel = [0.0, 0.0]
+        self.acceleration.reset()
 
     # Accelerate the object
-    def accelerate(self, acceleration: list[float]) -> None:
-        self.accel[0] += acceleration[0]
-        self.accel[1] += acceleration[1]
+    def accelerate(self, acceleration: tuple[float, float]) -> None:
+        self.acceleration.x += acceleration[0]
+        self.acceleration.y += acceleration[1]
 
     # Check if the ball is colliding with other balls
     @staticmethod
@@ -66,20 +72,19 @@ class VerletBall:
                     continue
 
                 # Calculate the distance between the balls
-                dist: list[float] = [ball_2.pos_cur[0] - ball_1.pos_cur[0],
-                                     ball_2.pos_cur[1] - ball_1.pos_cur[1]]
-
+                dist: Position = ball_2.current_position - ball_1.current_position
+                
                 # the vector magnitude of the ball
-                mag: float = (dist[0] ** 2 + dist[1] ** 2) ** 0.5
+                mag: float = (dist.x ** 2 + dist.y ** 2) ** 0.5
                 delta: float = ball_1.radius + ball_2.radius
                 if mag < delta:
                     # Calculate the ball overlap (the amount the balls have overlapped)
                     overlap: float = (delta - mag) / 2
 
                     # Update this balls position (move it to the side)
-                    ball_1.pos_cur[0] -= overlap * dist[0] / mag
-                    ball_1.pos_cur[1] -= overlap * dist[1] / mag
+                    ball_1.current_position.y -= overlap * dist.x / mag
+                    ball_1.current_position.y -= overlap * dist.x / mag
 
                     # Update the other ball's position (move it to the opposite side)
-                    ball_2.pos_cur[0] += overlap * dist[0] / mag
-                    ball_2.pos_cur[1] += overlap * dist[1] / mag
+                    ball_2.current_position.x += overlap * dist.x / mag
+                    ball_2.current_position.x += overlap * dist.x / mag

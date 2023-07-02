@@ -1,6 +1,6 @@
 # Friction class
 class Friction:
-    def __init__(self, mu: float, mass: float):
+    def __init__(self, mu: float, mass: float) -> None:
         self.mu: float = mu
         self.mass: float = mass
         self.gravity: float = 9.81

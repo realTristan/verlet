@@ -10,7 +10,7 @@ pygame.init()
 pygame.display.set_caption("pyverlet")
 
 # Objects
-vballs = [VerletBall([500.0, 300.0]), VerletBall([300.0, 300.0])]
+vballs = [VerletBall((500.0, 300.0)), VerletBall((300.0, 300.0))]
 
 # Game Loop
 while 1:

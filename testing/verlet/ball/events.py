@@ -19,7 +19,7 @@ def on_click(vballs: list[VerletBall], ball_radius: float = 20.0) -> list[Verlet
         mouse_pos: tuple[int, int] = pygame.mouse.get_pos()
         
         # Add a new ball
-        vball = VerletBall([mouse_pos[0], mouse_pos[1]], radius=radius)
+        vball = VerletBall((mouse_pos[0], mouse_pos[1]), radius=radius)
         vball.set_color(random_color())
         vballs.append(vball)
         

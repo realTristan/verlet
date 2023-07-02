@@ -10,9 +10,9 @@ pygame.init()
 pygame.display.set_caption("pyverlet")
 
 # Objects
-vconst = VerletBallCircleConstraint([400.0, 300.0])
-vballs = [VerletBall([500.0, 300.0], radius=10.0),
-          VerletBall([300.0, 300.0], radius=10.0)]
+vconst = VerletBallCircleConstraint((400.0, 300.0))
+vballs = [VerletBall((500.0, 300.0), radius=10.0),
+          VerletBall((300.0, 300.0), radius=10.0)]
 
 # Game Loop
 while 1:
