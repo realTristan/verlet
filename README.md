@@ -1,5 +1,5 @@
 # pyverlet ![Stars](https://img.shields.io/github/stars/realTristan/pyverlet?color=brightgreen) ![Watchers](https://img.shields.io/github/watchers/realTristan/pyverlet?label=Watchers)
-<img width="480" height="430" alt="Screenshot 2023-07-02 at 6 16 56 PM" src="https://github.com/realTristan/pyverlet/assets/75189508/1b873a68-162c-46ef-967f-6f6d1c39c3c1">
+<img width="300" height="230" alt="Screenshot 2023-07-02 at 6 16 56 PM" src="https://github.com/realTristan/pyverlet/assets/75189508/1b873a68-162c-46ef-967f-6f6d1c39c3c1">
 <img width="500" height="380" alt="Screenshot 2023-07-01 at 8 13 59 PM" src="https://github.com/realTristan/pyverlet/assets/75189508/692cd07b-5900-4296-ba5d-9f71fff5aeec">
 
 # Previews
