@@ -32,5 +32,4 @@ class VerletBallCircleCollider(object):
         if magnitude > delta:
             vball.current_position.set(
                 self.position.x - dist.x / magnitude * delta,
-                self.position.y - dist.y / magnitude * delta
-            )
+                self.position.y - dist.y / magnitude * delta)

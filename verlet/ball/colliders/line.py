@@ -46,7 +46,7 @@ class VerletBallLineCollider(object):
         
         # Check to make sure the ball is within the y_above and y_below bounds
         if y_above > y and vball.current_position.y < y_below:
-            vball.current_position.set(y = y - vball.radius - self.width)
+            vball.current_position.y = y - vball.radius - self.width
             vball.current_position.x += m * self.slope_velocity_multiplier
 
         
