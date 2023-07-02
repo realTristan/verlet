@@ -15,6 +15,7 @@ constraint: Constraint = Constraint([400.0, 300.0])
 balls: list[Ball] = [Ball([500.0, 300.0]), 
                          Ball([300.0, 300.0])]
 
+
 # Loop
 while 1:
     # Set the background
@@ -23,11 +24,16 @@ while 1:
     # On click
     for _ in range(SUB_STEPS):
         balls = on_click(balls)
-    
+        while len(balls) > 10:
+            balls.pop(0)
+        
         # Update the ball
         for ball in balls:
+            dt: float = (time.time() - ball.start_time) / SUB_STEPS
+            
+            # Apply updates to the ball
             ball.accelerate(GRAVITY)
-            ball.update_position(time.time() - ball.start_time)
+            ball.update_position(dt)
             ball.apply_constraint(constraint)
             Ball.check_collision(balls)
             

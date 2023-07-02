@@ -22,8 +22,8 @@ class Ball:
 
     # Calculate the objects velocity
     def calculate_velocity(self) -> list[float]:
-        return [(self.pos_cur[0] - self.pos_old[0]) / 2,
-                (self.pos_cur[1] - self.pos_old[1]) / 2]
+        return [(self.pos_cur[0] - self.pos_old[0]) * 0.96,
+                (self.pos_cur[1] - self.pos_old[1]) * 0.96]
 
     # Calculate the verlet integration
     def calculate_verlet(self, velocity: list[float], dt: float) -> list[float]:
