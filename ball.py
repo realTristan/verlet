@@ -55,7 +55,7 @@ class Ball:
                                self.pos_cur[1] - c.position[1]]
 
         mag: float = (dist[0] ** 2 + dist[1] ** 2) ** 0.5 # the vector magnitude of the ball
-        delta: float = c.radius - self.radius
+        delta: float = c.radius - self.radius # if the constraint is a circle
         if mag > delta:
             self.pos_cur[0] = c.position[0] + dist[0] / mag * delta
             self.pos_cur[1] = c.position[1] + dist[1] / mag * delta
