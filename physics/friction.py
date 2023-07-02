@@ -1,5 +1,3 @@
-from typing import Any
-
 # Friction class
 class Friction:
     def __init__(self, mu: float, mass: float):
