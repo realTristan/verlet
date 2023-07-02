@@ -2,10 +2,10 @@ import pygame
 
 
 # Contraint class
-class Constraint:
-    def __init__(self, position: list[float]) -> None:
+class VerletConstraint:
+    def __init__(self, position: list[float], type: str = "sphere") -> None:
         self.position: list[float] = position
-        self.radius: float = 200.0
+        self.radius: float = 200.0 if type == "sphere" else 0.0
         self.width: int = 1
         self.color: tuple[int, int, int] = (255, 255, 255)
 

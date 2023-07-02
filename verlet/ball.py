@@ -1,9 +1,9 @@
 import pygame, time
-from constraint import Constraint
+from .constraint import VerletConstraint
 
 
 # Ball class
-class Ball:
+class VerletBall:
     def __init__(self, pos_cur: list[float]) -> None:
         self.pos_cur: list[float] = pos_cur
         self.pos_old: list[float] = pos_cur
@@ -49,7 +49,7 @@ class Ball:
         self.accel[1] += acceleration[1]
 
     # Apply the constraint
-    def apply_constraint(self, c: Constraint):
+    def apply_constraint(self, c: VerletConstraint):
         # Calculate the distance between the ball and the constraint
         dist: list[float] = [self.pos_cur[0] - c.position[0], 
                                self.pos_cur[1] - c.position[1]]
@@ -62,7 +62,7 @@ class Ball:
     
     # Check if the ball is colliding with other balls
     @staticmethod
-    def check_collision(balls: list['Ball']) -> None:
+    def check_collision(balls: list['VerletBall']) -> None:
         for ball_1 in balls:
             for ball_2 in balls:
                 if ball_1 == ball_2:

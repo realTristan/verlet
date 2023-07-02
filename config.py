@@ -10,9 +10,3 @@ CLOCK: pygame.time.Clock = pygame.time.Clock()
 GRAVITY: list[float] = [0.0, 9.81]
 SUB_STEPS: int = 8
 
-# Ball Colors
-BALL_COLORS: list[tuple[int, int, int]] = [
-    (255, 0, 0), (0, 255, 0), (0, 0, 255),
-    (255, 255, 0), (255, 0, 255), (0, 255, 255),
-]
-

@@ -1,6 +1,5 @@
 import pygame, time
-from ball import Ball
-from constraint import Constraint
+from verlet import VerletBall, VerletConstraint
 from config import SCREEN, BACKGROUND_COLOR, GRAVITY, CLOCK, SUB_STEPS
 from events import close_event, on_click
 
@@ -11,9 +10,9 @@ pygame.init()
 pygame.display.set_caption("pyverlet")
 
 # Draw objects
-constraint: Constraint = Constraint([400.0, 300.0])
-balls: list[Ball] = [Ball([500.0, 300.0]), 
-                         Ball([300.0, 300.0])]
+verlet_constraint: VerletConstraint = VerletConstraint([400.0, 300.0], type="sphere")
+verlet_balls: list[VerletBall] = [VerletBall([500.0, 300.0]), 
+                         VerletBall([300.0, 300.0])]
 
 # Loop
 while 1:
@@ -21,28 +20,28 @@ while 1:
     SCREEN.fill(BACKGROUND_COLOR)
     
     # Draw the constraint
-    constraint.draw(SCREEN)
+    verlet_constraint.draw(SCREEN)
     
     # On click
     for _ in range(SUB_STEPS):
         # Add another ball
-        balls = on_click(balls)
-        while len(balls) > 10:
-            balls.pop(0)
+        verlet_balls = on_click(verlet_balls)
+        while len(verlet_balls) > 10:
+            verlet_balls.pop(0)
         
         # Update the ball
-        for ball in balls:
+        for verlet_ball in verlet_balls:
             # Calculate the delta time
-            dt: float = (time.time() - ball.start_time) / SUB_STEPS
+            dt: float = (time.time() - verlet_ball.start_time) / SUB_STEPS
             
             # Apply updates to the ball
-            ball.accelerate(GRAVITY)
-            ball.update_position(dt)
-            ball.apply_constraint(constraint)
-            Ball.check_collision(balls)
+            verlet_ball.accelerate(GRAVITY)
+            verlet_ball.update_position(dt)
+            verlet_ball.apply_constraint(verlet_constraint)
+            VerletBall.check_collision(verlet_balls)
             
             # Draw the objects
-            ball.draw(SCREEN)
+            verlet_ball.draw(SCREEN)
     
     # Check for a close event
     close_event()
