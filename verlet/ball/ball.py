@@ -71,10 +71,10 @@ class VerletBall(object):
                 
                 # the vector magnitude of the ball
                 magnitude: float = dist.magnitude()
-                delta: float = ball_1.radius + ball_2.radius
-                if magnitude < delta:
+                rad_sum: float = ball_1.radius + ball_2.radius
+                if magnitude < rad_sum:
                     # Calculate the ball overlap (the amount the balls have overlapped)
-                    overlap: float = (delta - magnitude) / 2
+                    overlap: float = (rad_sum - magnitude) * 0.5
 
                     # Update this balls position (move it to the side)
                     ball_1.current_position.add(overlap * dist.x / magnitude)
