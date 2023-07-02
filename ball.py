@@ -83,5 +83,4 @@ class Ball:
                 # Update the other ball's position (move it to the opposite side)
                 ball.pos_cur[0] += overlap * n[0]
                 ball.pos_cur[1] += overlap * n[1]
-            
-            
+
