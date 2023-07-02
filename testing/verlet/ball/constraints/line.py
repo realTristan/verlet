@@ -1,4 +1,5 @@
-import pygame, time
+import pygame
+import time
 from verlet import VerletBall, VerletBallLineConstraint
 from testing.verlet.ball.config import SCREEN, BACKGROUND_COLOR, CLOCK, SUB_STEPS
 from testing.verlet.ball.events import close_event, on_click
@@ -12,7 +13,8 @@ pygame.display.set_caption("pyverlet")
 
 # Objects
 vconst = VerletBallLineConstraint((200.0, 400.0), (500.0, 100.0))
-vballs = [VerletBall((400.0, 300.0)), VerletBall((300.0, 300.0))]
+vballs = [VerletBall((400.0, 300.0), radius=10.0),
+          VerletBall((300.0, 300.0), radius=10.0)]
 
 # Game Loop
 while 1:
@@ -39,7 +41,7 @@ while 1:
 
             # Draw the objects
             vball.draw(SCREEN)
-        
+
         # Draw the constraint
         vconst.draw(SCREEN)
 

@@ -20,25 +20,28 @@ class Vector2D:
         return Vector2D(self.x / other, self.y / other)
     
     # Reset the position
-    def zero(self) -> None:
+    def zero(self) -> 'Vector2D':
         self.x = 0.0
         self.y = 0.0
+        return self
 
     # Negate the entire vector
-    def negate(self, index: int = -1):
+    def negate(self, index: int = -1) -> 'Vector2D':
         if index == 0:
-            self.x *= -1
+            self.x *= -1.0
         elif index == 1:
-            self.y *= -1
+            self.y *= -1.0
         else:
-            self.scale(-1)
+            self.scale(-1.0)
+        return self
         
     # Set the position
-    def set(self, x: float = None, y: float = None) -> None: # type: ignore
+    def set(self, x: float = None, y: float = None) -> 'Vector2D': # type: ignore
         if x is not None:
             self.x = x
         if y is not None:
             self.y = y
+        return self
     
     # Get the position
     def get(self) -> tuple[float, float]:
@@ -61,23 +64,27 @@ class Vector2D:
         return (self.x * self.x + self.y * self.y) ** 0.5
     
     # Normalize
-    def normalize(self) -> None:
+    def normalize(self) -> 'Vector2D':
         mag: float = self.magnitude()
         self.x /= mag
         self.y /= mag
+        return self
         
     # Scale all values
-    def scale(self, scalar: float) -> None:
+    def scale(self, scalar: float) -> 'Vector2D':
         self.x *= scalar
         self.y *= scalar
+        return self
     
     # Add to all values
-    def add(self, scalar: float) -> None:
+    def add(self, scalar: float) -> 'Vector2D':
         self.x += scalar
         self.y += scalar
+        return self
         
     # Substract from all values
-    def sub(self, scalar: float) -> None:
+    def sub(self, scalar: float) -> 'Vector2D':
         self.x -= scalar
         self.y -= scalar
+        return self
     

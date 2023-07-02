@@ -11,7 +11,7 @@ def close_event() -> None:
 
 
 # On click add a new ball at the mouse position
-def on_click(vballs: list[VerletBall], ball_radius: float = 20.0) -> list[VerletBall]:
+def on_click(vballs: list[VerletBall], ball_radius: float = 10.0) -> list[VerletBall]:
     def random_color() -> tuple[int, int, int]:
         return random.choice(BALL_COLORS)
     
