@@ -1,5 +1,4 @@
-import pygame
-import time
+import pygame, time, threading
 from verlet import VerletBall, VerletBallLineCollider
 from testing.verlet.ball.config import SCREEN, BACKGROUND_COLOR, CLOCK, SUB_STEPS
 from testing.verlet.ball.events import close_event, on_click
@@ -12,9 +11,23 @@ pygame.init()
 pygame.display.set_caption("pyverlet")
 
 # Objects
-vconst = VerletBallLineCollider((200.0, 400.0), (500.0, 100.0))
-vballs = [VerletBall((400.0, 300.0), radius=10.0),
-          VerletBall((300.0, 300.0), radius=10.0)]
+lines: list[VerletBallLineCollider] = [
+    VerletBallLineCollider((200.0, 100.0), (400.0, 200.0)),
+    VerletBallLineCollider((300.0, 400.0), (500.0, 300.0)),
+    VerletBallLineCollider((200.0, 500.0), (400.0, 580.0))
+]
+vballs = [VerletBall((200.0, 100.0), radius=10.0),
+          VerletBall((300.0, 100.0), radius=10.0)]
+
+# Automatically add the balls
+def auto_add_balls():
+    while 1:
+        time.sleep(0.5)
+        vballs.append(
+            VerletBall((250.0, 50.0), radius=10.0))
+        
+# Start threading
+threading.Thread(target=auto_add_balls).start()
 
 # Game Loop
 while 1:
@@ -36,14 +49,16 @@ while 1:
             # Apply updates to the ball
             vball.accelerate(GRAVITY)
             vball.update_position(dt)
-            vconst.apply(vball)
+            for line in lines:
+                line.apply(vball)
             VerletBall.check_collisions(vballs)
 
             # Draw the objects
             vball.draw(SCREEN)
 
         # Draw the Collider
-        vconst.draw(SCREEN)
+        for line in lines:
+            line.draw(SCREEN)
 
     # Check for a close event
     close_event()
