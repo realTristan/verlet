@@ -8,6 +8,7 @@ CLOCK: pygame.time.Clock = pygame.time.Clock()
 
 # Physics Constants
 GRAVITY: list[float] = [0.0, 9.81]
+SUB_STEPS: int = 8
 
 # Ball Colors
 BALL_COLORS: list[tuple[int, int, int]] = [

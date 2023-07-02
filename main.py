@@ -1,7 +1,7 @@
 import pygame, time
 from ball import Ball
 from constraint import Constraint
-from config import SCREEN, BACKGROUND_COLOR, GRAVITY, CLOCK
+from config import SCREEN, BACKGROUND_COLOR, GRAVITY, CLOCK, SUB_STEPS
 from events import close_event, on_click
 
 # Initialize pygame
@@ -12,7 +12,7 @@ pygame.display.set_caption("pyverlet")
 
 # Draw objects
 constraint: Constraint = Constraint([400.0, 300.0])
-circles: list[Ball] = [Ball([500.0, 300.0]), 
+balls: list[Ball] = [Ball([500.0, 300.0]), 
                          Ball([300.0, 300.0])]
 
 # Loop
@@ -21,20 +21,21 @@ while 1:
     SCREEN.fill(BACKGROUND_COLOR)
     
     # On click
-    circles = on_click(circles)
+    for _ in range(SUB_STEPS):
+        balls = on_click(balls)
     
-    # Update the circle
-    for circle in circles:
-        circle.accelerate(GRAVITY)
-        circle.update_position(time.time() - circle.start_time)
-        circle.apply_constraint(constraint)
-        circle.check_collision(circles)
+        # Update the ball
+        for ball in balls:
+            ball.accelerate(GRAVITY)
+            ball.update_position(time.time() - ball.start_time)
+            ball.apply_constraint(constraint)
+            Ball.check_collision(balls)
+            
+            # Draw the objects
+            ball.draw(SCREEN)
         
-        # Draw the objects
-        circle.draw(SCREEN)
-    
-    # Draw the constraint
-    constraint.draw(SCREEN)
+        # Draw the constraint
+        constraint.draw(SCREEN)
     
     # Check for a close event
     close_event()

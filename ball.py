@@ -1,4 +1,5 @@
 import pygame, time
+from constraint import Constraint
 
 
 # Ball class
@@ -32,7 +33,7 @@ class Ball:
     # Update the objects position
     def update_position(self, dt: float) -> None:
         velocity: list[float] = self.calculate_velocity()
-
+        
         # Save the current position
         self.pos_old = self.pos_cur
 
@@ -48,39 +49,45 @@ class Ball:
         self.accel[1] += acceleration[1]
 
     # Apply the constraint
-    def apply_constraint(self, constraint):
+    def apply_constraint(self, c: Constraint):
         # Calculate the distance between the ball and the constraint
-        to_obj: list[float] = [self.pos_cur[0] - constraint.position[0], 
-                               self.pos_cur[1] - constraint.position[1]]
+        dist: list[float] = [self.pos_cur[0] - c.position[0], 
+                               self.pos_cur[1] - c.position[1]]
 
-        dist: float = (to_obj[0] ** 2 + to_obj[1] ** 2) ** 0.5
-        if dist > constraint.radius - self.radius:
-            n: list[float] = [to_obj[0] / dist, to_obj[1] / dist]
-            self.pos_cur[0] = constraint.position[0] + n[0] * (dist - self.radius)
-            self.pos_cur[1] = constraint.position[1] + n[1] * (dist - self.radius)
+        mag: float = (dist[0] ** 2 + dist[1] ** 2) ** 0.5 # the vector magnitude of the ball
+        if mag > c.radius - self.radius:
+            self.pos_cur[0] = c.position[0] + dist[0] / mag * (c.radius - self.radius)
+            self.pos_cur[1] = c.position[1] + dist[1] / mag * (c.radius - self.radius)
     
     # Check if the ball is colliding with other balls
-    def check_collision(self, balls: list['Ball']) -> None:
-        for ball in balls:
-            if ball == self:
-                continue
-            
-            # Calculate the distance between the balls
-            to_obj: list[float] = [self.pos_cur[0] - ball.pos_cur[0],
-                                   self.pos_cur[1] - ball.pos_cur[1]]
-            
-            dist: float = (to_obj[0] ** 2 + to_obj[1] ** 2) ** 0.5
-            if dist < self.radius + ball.radius:
-                n: list[float] = [to_obj[0] / dist, to_obj[1] / dist]
+    @staticmethod
+    def check_collision(balls: list['Ball']) -> None:
+        for ball_1 in balls:
+            for ball_2 in balls:
+                if ball_1 == ball_2:
+                    continue
                 
-                # Calculate the ball overlap (the amount the balls have overlapped)
-                overlap: float = (dist - self.radius - ball.radius) / 2
+                # Calculate the distance between the balls
+                dist: list[float] = [ball_1.pos_cur[0] - ball_2.pos_cur[0],
+                                    ball_1.pos_cur[1] - ball_2.pos_cur[1]]
                 
-                # Update this balls position (move it to the side)
-                self.pos_cur[0] -= overlap * n[0]
-                self.pos_cur[1] -= overlap * n[1]
-                
-                # Update the other ball's position (move it to the opposite side)
-                ball.pos_cur[0] += overlap * n[0]
-                ball.pos_cur[1] += overlap * n[1]
+                mag: float = (dist[0] ** 2 + dist[1] ** 2) ** 0.5 # the vector magnitude of the ball
+                delta: float = ball_1.radius + ball_2.radius
+                if mag < delta:
+                    ball_1.pos_cur[0] += (delta - mag) * dist[0] / mag / 2
+                    ball_1.pos_cur[1] += (delta - mag) * dist[1] / mag / 2
+                    
+                    ball_2.pos_cur[0] -= (delta - mag) * dist[0] / mag / 2
+                    ball_2.pos_cur[1] -= (delta - mag) * dist[1] / mag / 2
+                    
+                    # Calculate the ball overlap (the amount the balls have overlapped)
+                    # overlap: float = (mag - self.radius - ball.radius) / 2
+                    
+                    # Update this balls position (move it to the side)
+                    # self.pos_cur[0] -= overlap * dist[0] / mag
+                    # self.pos_cur[1] -= overlap * dist[1] / mag
+                    
+                    # Update the other ball's position (move it to the opposite side)
+                    # ball.pos_cur[0] += overlap * dist[0] / mag
+                    # ball.pos_cur[1] += overlap * dist[1] / mag
 
