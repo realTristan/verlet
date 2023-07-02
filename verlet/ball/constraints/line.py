@@ -3,7 +3,7 @@ from ..ball import VerletBall
 from physics import Vector2D
 
 
-class VerletBallLineConstraint:
+class VerletBallLineConstraint(object):
     def __init__(self, position: tuple[float, float], to: tuple[float, float], width: int = 1) -> None:
         self.position: Vector2D = Vector2D(position[0], position[1])
         self.to: Vector2D = Vector2D(to[0], to[1])

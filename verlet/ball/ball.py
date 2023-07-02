@@ -4,8 +4,14 @@ from physics import Friction, Vector2D
 
 
 # Ball class
-class VerletBall:
-    def __init__(self, position: tuple[float, float], radius: float = 10.0) -> None:
+class VerletBall(object):
+    def __init__(
+        self, 
+        position: tuple[float, float], 
+        radius: float = 10.0, 
+        color: tuple[int, int, int] = (255, 255, 255)
+    ) -> None:
+        
         # Physics variables
         self.current_position: Vector2D = Vector2D(position[0], position[1])
         self.prev_position: Vector2D = Vector2D(position[0], position[1])
@@ -15,7 +21,7 @@ class VerletBall:
         # Self variables
         self.radius: float = radius
         self.start_time: float = time.time()
-        self.color: tuple[int, int, int] = (255, 255, 255)
+        self.color: tuple[int, int, int] = color
         self.friction: Friction = None  # type: ignore
 
     # Update the ball's color
@@ -77,16 +83,16 @@ class VerletBall:
                 dist: Vector2D = ball_2.current_position - ball_1.current_position
                 
                 # the vector magnitude of the ball
-                mag: float = (dist.x ** 2 + dist.y ** 2) ** 0.5
+                magnitude: float = dist.magnitude()
                 delta: float = ball_1.radius + ball_2.radius
-                if mag < delta:
+                if magnitude < delta:
                     # Calculate the ball overlap (the amount the balls have overlapped)
-                    overlap: float = (delta - mag) / 2
+                    overlap: float = (delta - magnitude) / 2
 
                     # Update this balls position (move it to the side)
-                    ball_1.current_position.y -= overlap * dist.x / mag
-                    ball_1.current_position.y -= overlap * dist.x / mag
+                    ball_1.current_position.y -= overlap * dist.x / magnitude
+                    ball_1.current_position.y -= overlap * dist.x / magnitude
 
                     # Update the other ball's position (move it to the opposite side)
-                    ball_2.current_position.x += overlap * dist.x / mag
-                    ball_2.current_position.x += overlap * dist.x / mag
+                    ball_2.current_position.x += overlap * dist.x / magnitude
+                    ball_2.current_position.x += overlap * dist.x / magnitude
