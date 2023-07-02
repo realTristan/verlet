@@ -1,5 +1,4 @@
 import pygame, time
-from .constraint import VerletConstraint
 
 
 # Ball class
@@ -48,18 +47,6 @@ class VerletBall:
         self.accel[0] += acceleration[0]
         self.accel[1] += acceleration[1]
 
-    # Apply the constraint
-    def apply_constraint(self, c: VerletConstraint):
-        # Calculate the distance between the ball and the constraint
-        dist: list[float] = [self.pos_cur[0] - c.position[0], 
-                               self.pos_cur[1] - c.position[1]]
-
-        mag: float = (dist[0] ** 2 + dist[1] ** 2) ** 0.5 # the vector magnitude of the ball
-        delta: float = c.radius - self.radius # if the constraint is a circle
-        if mag > delta:
-            self.pos_cur[0] = c.position[0] + dist[0] / mag * delta
-            self.pos_cur[1] = c.position[1] + dist[1] / mag * delta
-    
     # Check if the ball is colliding with other balls
     @staticmethod
     def check_collision(balls: list['VerletBall']) -> None:
