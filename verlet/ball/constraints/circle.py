@@ -3,7 +3,7 @@ from ..ball import VerletBall
 
 
 # Contraint class
-class VerletCircleConstraint:
+class VerletBallCircleConstraint:
     def __init__(self, position: list[float], type: str = "circle", radius: float = 200.0) -> None:
         self.position: list[float] = position
         self.radius: float = radius

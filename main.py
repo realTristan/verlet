@@ -1,5 +1,5 @@
 import pygame, time
-from verlet import VerletBall, VerletCircleConstraint
+from verlet import VerletBall, VerletBallCircleConstraint
 from config import SCREEN, BACKGROUND_COLOR, GRAVITY, CLOCK, SUB_STEPS
 from events import close_event, on_click
 
@@ -10,9 +10,8 @@ pygame.init()
 pygame.display.set_caption("pyverlet")
 
 # Objects
-verlet_constraint: VerletCircleConstraint = VerletCircleConstraint([400.0, 300.0])
-verlet_balls: list[VerletBall] = [VerletBall([500.0, 300.0]),
-                                  VerletBall([300.0, 300.0])]
+verlet_constraint = VerletBallCircleConstraint([400.0, 300.0])
+verlet_balls = [VerletBall([500.0, 300.0]), VerletBall([300.0, 300.0])]
 
 # Game Loop
 while 1:
