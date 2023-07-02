@@ -1,16 +1,16 @@
 import pygame
 import time
-from physics import Friction, Position, Velocity, Acceleration
+from physics import Friction, Vector2D
 
 
 # Ball class
 class VerletBall:
     def __init__(self, position: tuple[float, float], radius: float = 10.0) -> None:
         # Physics variables
-        self.current_position: Position = Position(position)
-        self.prev_position: Position = Position(position)
-        self.acceleration: Acceleration = Acceleration((0.0, 0.0))
-        self.velocity: Velocity = Velocity((0.0, 0.0))
+        self.current_position: Vector2D = Vector2D(position[0], position[1])
+        self.prev_position: Vector2D = Vector2D(position[0], position[1])
+        self.acceleration: Vector2D = Vector2D(0.0, 0.0)
+        self.velocity: Vector2D = Vector2D(0.0, 0.0)
         
         # Self variables
         self.radius: float = radius
@@ -35,6 +35,8 @@ class VerletBall:
     def calculate_velocity(self) -> None:
         x: float = (self.current_position.x - self.prev_position.x) * 0.96
         y: float = (self.current_position.y - self.prev_position.y) * 0.96
+        
+        # Update the velocity
         self.velocity.set(x, y)
 
     # Perform the verlet integration to calcualte the displacement
@@ -72,7 +74,7 @@ class VerletBall:
                     continue
 
                 # Calculate the distance between the balls
-                dist: Position = ball_2.current_position - ball_1.current_position
+                dist: Vector2D = ball_2.current_position - ball_1.current_position
                 
                 # the vector magnitude of the ball
                 mag: float = (dist.x ** 2 + dist.y ** 2) ** 0.5

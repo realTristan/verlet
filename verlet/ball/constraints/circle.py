@@ -1,12 +1,12 @@
 import pygame
 from ..ball import VerletBall
-from physics import Position
+from physics import Vector2D
 
 
 # Contraint class
 class VerletBallCircleConstraint:
     def __init__(self, position: tuple[float, float], radius: float = 200.0) -> None:
-        self.position: Position = Position(position)
+        self.position: Vector2D = Vector2D(position[0], position[1])
         self.radius: float = radius
         self.width: int = 1
         self.color: tuple[int, int, int] = (255, 255, 255)
@@ -19,7 +19,7 @@ class VerletBallCircleConstraint:
     # Apply the constraint
     def apply(self, vball: VerletBall):
         # Calculate the distance between the ball and the constraint
-        dist: Position = self.position - vball.current_position
+        dist: Vector2D = self.position - vball.current_position
 
         # The vector magnitude of the ball
         mag: float = (dist.x ** 2 + dist.y ** 2) ** 0.5
