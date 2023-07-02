@@ -79,4 +79,9 @@ class Vector2D:
     def add(self, scalar: float) -> None:
         self.x += scalar
         self.y += scalar
+        
+    # Substract from all values
+    def sub(self, scalar: float) -> None:
+        self.x -= scalar
+        self.y -= scalar
     
