@@ -40,7 +40,6 @@ class VerletBallLineConstraint(object):
         # Check to make sure the ball is within the y_above and y_below bounds
         if y_above > y and vball.current_position.y < y_below:
             vball.current_position.y = y - vball.radius
-            # Check which way the line is slanted and negate the y_velocity
-            vball.velocity.negate(y)
+            # update the velocity and negate it
 
         
