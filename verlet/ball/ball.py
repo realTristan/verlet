@@ -67,7 +67,7 @@ class VerletBall(object):
                     continue
 
                 # Calculate the distance between the balls
-                dist: Vector2D = ball_2.current_position - ball_1.current_position
+                dist: Vector2D = ball_1.current_position - ball_2.current_position
                 
                 # the vector magnitude of the ball
                 magnitude: float = dist.magnitude()
