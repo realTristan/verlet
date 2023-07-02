@@ -94,3 +94,10 @@ class Vector3D:
         self.z -= scalar
         return self
     
+    # Divide from all values
+    def div(self, other: 'Vector3D') -> 'Vector3D':
+        self.x /= other.x
+        self.y /= other.y
+        self.z /= other.z
+        return self
+    
