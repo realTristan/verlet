@@ -5,11 +5,11 @@ from physics.friction import Friction
 
 # Ball class
 class VerletBall:
-    def __init__(self, position: list[float]) -> None:
+    def __init__(self, position: list[float], radius: float = 10.0) -> None:
         self.pos_cur: list[float] = position
         self.pos_old: list[float] = position
         self.accel: list[float] = [0.0, 0.0]
-        self.radius: float = 10.0
+        self.radius: float = radius
         self.start_time: float = time.time()
         self.color: tuple[int, int, int] = (255, 255, 255)
         self.velocity: list[float] = [0.0, 0.0]
@@ -59,7 +59,7 @@ class VerletBall:
 
     # Check if the ball is colliding with other balls
     @staticmethod
-    def check_collision(balls: list['VerletBall']) -> None:
+    def check_collisions(balls: list['VerletBall']) -> None:
         for ball_1 in balls:
             for ball_2 in balls:
                 if ball_1 == ball_2:
