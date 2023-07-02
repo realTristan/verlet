@@ -1,3 +1,4 @@
 /__pycache__
 /verlet/__pycache__
-/verlet/constraints/__pycache__
+/verlet/ball/__pycache__
+/verlet/ball/constraints/__pycache__
