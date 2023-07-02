@@ -1,5 +1,5 @@
 import pygame
-from .ball import VerletBall
+from ..ball import VerletBall
 
 
 # Contraint class

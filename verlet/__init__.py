@@ -1,3 +1,3 @@
 from .ball import *
-from .constraint import *
+from .constraints.circle import *
 from .config import *
