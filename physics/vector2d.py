@@ -23,19 +23,15 @@ class Vector2D:
     def zero(self) -> None:
         self.x = 0.0
         self.y = 0.0
-    
-    # Negate the x vector
-    def negate_x(self):
-        self.x *= -1
-    
-    # Negate the y vector
-    def negate_y(self):
-        self.y *= -1
-    
+
     # Negate the entire vector
-    def negate(self):
-        self.negate_x()
-        self.negate_y()
+    def negate(self, index: int = -1):
+        if index == 0:
+            self.x *= -1
+        elif index == 1:
+            self.y *= -1
+        else:
+            self.scale(-1)
         
     # Set the position
     def set(self, x: float = None, y: float = None) -> None: # type: ignore
