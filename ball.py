@@ -9,10 +9,15 @@ class Ball:
         self.accel: list[float] = [0.0, 0.0]
         self.radius: float = 10.0
         self.start_time: float = time.time()
+        self.color: tuple[int, int, int] = (255, 255, 255)
 
+    # Update the ball's color
+    def set_color(self, color: tuple[int, int, int]):
+        self.color = color
+        
     # Draw the object
     def draw(self, screen: pygame.Surface) -> None:
-        pygame.draw.circle(screen, (255, 255, 255), self.pos_cur, self.radius)
+        pygame.draw.circle(screen, self.color, self.pos_cur, self.radius)
 
     # Calculate the objects velocity
     def calculate_velocity(self) -> list[float]:
