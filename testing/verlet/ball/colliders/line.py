@@ -1,6 +1,6 @@
 import pygame, time, threading, random
 from verlet import VerletBall, VerletBallLineCollider
-from testing.config import SCREEN, BACKGROUND_COLOR, CLOCK, SUB_STEPS, BALL_COLORS
+from testing.config import SCREEN, draw_background, CLOCK, SUB_STEPS, BALL_COLORS
 from testing.events import close_event, on_click
 
 # Initialize pygame
@@ -30,8 +30,12 @@ threading.Thread(target=auto_add_balls).start()
 
 # Game Loop
 while 1:
-    # Set the background
-    SCREEN.fill(BACKGROUND_COLOR)
+    # Draw the background
+    draw_background()
+
+    # Cap the amount of balls present
+    while len(verlet_balls) > 200:
+        verlet_balls.pop(0)
 
     # On click
     for _ in range(SUB_STEPS):

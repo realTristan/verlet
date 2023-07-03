@@ -1,5 +1,5 @@
 import pygame
-from testing.config import SCREEN, BACKGROUND_COLOR, CLOCK, SUB_STEPS
+from testing.config import SCREEN, draw_background, CLOCK, SUB_STEPS
 from testing.events import close_event, on_click
 from verlet import VerletBall, VerletBallCircleCollider
 
@@ -16,8 +16,12 @@ verlet_balls = [VerletBall((500.0, 300.0), radius=10.0),
 
 # Game Loop
 while 1:
-    # Set the background
-    SCREEN.fill(BACKGROUND_COLOR)
+    # Draw the background
+    draw_background()
+
+    # Cap the amount of balls present
+    while len(verlet_balls) > 200:
+        verlet_balls.pop(0)
 
     # Steps
     for _ in range(SUB_STEPS):

@@ -3,9 +3,8 @@ from verlet.ball.colliders.line import VerletBallLineCollider
 from verlet.ball.colliders.circle import VerletBallCircleCollider
 from verlet.ball.ball import VerletBall
 from components.list import ButtonList
-from physics import GRAVITY
 import pygame, time, threading, random
-from testing.config import BALL_COLORS
+from testing.config import BALL_COLORS, draw_background
 
 # Initialize pygame
 pygame.init()
@@ -41,10 +40,14 @@ threading.Thread(target=auto_add_balls).start()
 
 # Game Loop
 while 1:
-    screen.fill((0, 0, 0))
+    # Draw the background
+    draw_background()
+
+    # Draw the menu and items
     menu.draw_buttons(screen)
     items.draw(screen, colliders)
-    
+
+    # Cap the amount of balls present
     while len(verlet_balls) > 200:
         verlet_balls.pop(0)
     

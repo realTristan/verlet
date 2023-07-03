@@ -1,6 +1,6 @@
 import pygame
 from verlet import VerletBall
-from testing.config import SCREEN, BACKGROUND_COLOR, CLOCK, SUB_STEPS
+from testing.config import SCREEN, draw_background, CLOCK, SUB_STEPS
 from testing.events import close_event, on_click
 # Initialize pygame
 pygame.init()
@@ -14,8 +14,12 @@ verlet_balls: list[VerletBall] = [
 
 # Game Loop
 while 1:
-    # Set the background
-    SCREEN.fill(BACKGROUND_COLOR)
+    # Draw the background
+    draw_background()
+
+    # Cap the amount of balls present
+    while len(verlet_balls) > 10:
+        verlet_balls.pop(0)
     
     # On click, Add another ball
     verlet_balls = on_click(verlet_balls)

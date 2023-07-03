@@ -5,7 +5,6 @@ import pygame
 WIDTH: int = 800
 HEIGHT: int = 600
 SCREEN: pygame.Surface = pygame.display.set_mode((WIDTH, HEIGHT))
-BACKGROUND_COLOR: tuple[int, int, int] = (0, 0, 0)
 CLOCK: pygame.time.Clock = pygame.time.Clock()
 
 # Other Constants
@@ -14,3 +13,11 @@ BALL_COLORS: list[tuple[int, int, int]] = [
     (255, 0, 0), (0, 255, 0), (0, 0, 255),
     (255, 255, 0), (255, 0, 255), (0, 255, 255),
 ]
+
+# Background
+BACKGROUND_COLOR: tuple[int, int, int] = (0, 0, 0)
+def draw_background():
+    SCREEN.fill(BACKGROUND_COLOR)
+    for x in range(0, WIDTH, 50):
+        for y in range(0, HEIGHT, 50):
+            pygame.draw.rect(SCREEN, (50, 50, 50), (x, y, 50, 50), 1)
