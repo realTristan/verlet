@@ -19,6 +19,10 @@ class Vector2D:
     def __truediv__(self, scalar: float) -> 'Vector2D':
         return Vector2D(self.x / scalar, self.y / scalar)
     
+    # When to the power
+    def __pow__(self, scalar: float) -> 'Vector2D':
+        return Vector2D(self.x ** scalar, self.y ** scalar)
+    
     # Reset the position
     def zero(self) -> 'Vector2D':
         self.x = 0.0
