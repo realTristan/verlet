@@ -27,8 +27,8 @@ while 1:
             verlet_balls.pop(0)
     
         # Update the ball
-        [ball.update(SCREEN, [verlet_collider], verlet_balls) for ball in verlet_balls]
-        # [verlet_collider.apply(ball) for ball in verlet_balls]
+        [ball.update(SCREEN, verlet_balls) for ball in verlet_balls]
+        [verlet_collider.apply(ball) for ball in verlet_balls]
     
         # Draw the Collider
         verlet_collider.draw(SCREEN)

@@ -46,18 +46,13 @@ class VerletBall(VerletObject):
 
     # Update the ball
     def update(
-        self, 
-        screen: pygame.Surface, 
-        colliders: list[Any] = [], 
+        self,
+        screen: pygame.Surface,
         balls: list['VerletBall'] = []
     ):
-        # Calculate the delta time
-        dt: float = (time.time() - self.start_time)
-
         # Apply updates to the ball
         self.accelerate(GRAVITY)
-        self.update_position(dt)
-        [collider.apply(self) for collider in colliders]
+        self.update_position()
         self.collisions(balls)
 
         # Draw the objects

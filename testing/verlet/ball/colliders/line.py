@@ -41,8 +41,8 @@ while 1:
             verlet_balls.pop(0)
 
         # Update the ball
-        [ball.update(SCREEN, lines, verlet_balls) for ball in verlet_balls]
-        # [[line.apply(ball) for line in lines] for ball in verlet_balls]
+        [ball.update(SCREEN, verlet_balls) for ball in verlet_balls]
+        [[line.apply(ball) for line in lines] for ball in verlet_balls]
 
         # Draw the Collider
         for line in lines:

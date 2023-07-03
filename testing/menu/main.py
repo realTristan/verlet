@@ -77,8 +77,8 @@ while 1:
             ))
     
     # Update the verlet_balls
-    [ball.update(screen, colliders, verlet_balls) for ball in verlet_balls]
-    # [[collider.apply(ball) for collider in colliders] for ball in verlet_balls]
+    [ball.update(screen, verlet_balls) for ball in verlet_balls]
+    [[collider.apply(ball) for collider in colliders] for ball in verlet_balls]
     
     # Draw the Collider
     for collider in colliders:
