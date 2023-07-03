@@ -72,7 +72,7 @@ while 1:
         # Check if the event is a click event
         elif menu.circle_collider_button.clicked(event):
             colliders.append(VerletBallCircleCollider(
-                position=(500.0, 300.0),
+                position=(400.0, 300.0),
                 radius=300,
                 width=5,
             ))
