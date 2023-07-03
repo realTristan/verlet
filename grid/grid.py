@@ -5,8 +5,8 @@ from .cell import Cell
 
 # Grid class
 class Grid:
-    def __init__(self):
-        self.cell_size: int = 100
+    def __init__(self, cell_size: int = 100):
+        self.cell_size: int = cell_size
         self.width: int = round(WIDTH / self.cell_size)
         self.height: int = round(HEIGHT / self.cell_size)
         self.grid: list[list[Cell]] = [
@@ -35,21 +35,20 @@ class Grid:
     # Find all the collisions for each cell in the grid
     def find_collisions(self):
         # Iterate over all cells
-        for i in range(self.width):
-            for j in range(self.height):
+        for i in range(0, self.width - 1, 1):
+            for j in range(0, self.height - 1, 1):
                 # Get the current cell
                 current_cell: Cell = self.get(i, j)
                 
-                # Iterate over all surrounding cells, including the current one
-                for x in range(-1, 2):
-                    for y in range(-1, 2):
-                        # Skip the current cell
-                        if x == 0 and y == 0:
-                            continue
-                        
-                        # Get the other cell
-                        other_cell: Cell = self.get(i + x, j + y)
-                        
-                        # Check if the surrounding cell is different
-                        if other_cell != current_cell:
-                            current_cell.check_collision(other_cell)
+                # Get the cell infront
+                front_cell: Cell = self.get(i, j+1)
+                self = front_cell.check_collision(self, current_cell)
+                
+                # Check if at bottom grid row
+                if j+1 > self.height:
+                    continue
+                
+                # Iterate over the two cells below
+                for k in range(0, 2, 1):
+                    below_cell: Cell = self.get(i, j+k)
+                    self = below_cell.check_collision(self, current_cell)
