@@ -9,7 +9,7 @@ class VerletBallLineCollider(object):
         start: tuple[float, float], 
         end: tuple[float, float], 
         width: int = 5,
-        slope_multiplier: float = 0.06
+        slope_multiplier: float = 1.0
     ) -> None:
         self.start: Vector2D = Vector2D(start[0], start[1])
         self.end: Vector2D = Vector2D(end[0], end[1])

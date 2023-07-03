@@ -29,8 +29,12 @@ class VerletObject(object):
 
     # Perform the verlet integration to calcualte the displacement
     def calculate_displacement(self, dt: float):
-        return self.current_position + self.velocity + self.acceleration * dt * dt
+        return self.current_position + self.velocity + self.acceleration * dt
 
+    # Accelerate the object
+    def accelerate(self, acceleration: Vector2D) -> None:
+        self.acceleration += acceleration
+        
     # Update the objects position
     def update_position(self) -> None:
         # Calculate the delta time
@@ -50,8 +54,4 @@ class VerletObject(object):
         
         # Reset the start time
         self.start_time = time.time()
-
-    # Accelerate the object
-    def accelerate(self, acceleration: Vector2D) -> None:
-        self.acceleration += acceleration
 
