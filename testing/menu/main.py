@@ -31,7 +31,7 @@ def auto_add_balls():
     while 1:
         time.sleep(0.1)
         verlet_balls.append(VerletBall(
-            (250.0, 50.0), random.randint(5, 10), random.choice(BALL_COLORS)))
+            (270.0, 60.0), random.randint(5, 10), random.choice(BALL_COLORS)))
 
 # Start threading
 threading.Thread(target=auto_add_balls).start()
@@ -72,7 +72,7 @@ while 1:
         # Check if the event is a click event
         elif menu.circle_collider_button.clicked(event):
             colliders.append(VerletBallCircleCollider(
-                position=(400.0, 300.0),
+                position=(500.0, 300.0),
                 radius=300,
                 width=5,
             ))
