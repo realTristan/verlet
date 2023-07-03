@@ -1,11 +1,10 @@
 import pygame
 from ..ball import VerletBall
 from physics import Vector2D
-from verlet.collider import VerletCollider
 
 
 # Contraint class
-class VerletBallCircleCollider(VerletCollider):
+class VerletBallCircleCollider(object):
     def __init__(
         self, 
         position: tuple[float, float], 
@@ -13,9 +12,11 @@ class VerletBallCircleCollider(VerletCollider):
         width: int = 5,
         color: tuple[int, int, int] = (255, 255, 255)
     ) -> None:
-        super(VerletBallCircleCollider, self).__init__(position, width, color)
         
-        # Self variables
+        # Variables
+        self.position: Vector2D = Vector2D(position[0], position[1])
+        self.width: int = width
+        self.color: tuple[int, int, int] = color
         self.radius: float = radius
 
     # Draw the Collider
