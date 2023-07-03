@@ -2,7 +2,7 @@ from components import Menu
 from objects import VerletBallLineCollider, VerletBall, VerletBallCircleCollider
 from components.list import ButtonList
 import pygame, time, threading, random
-from testing.config import BALL_COLORS, draw_background
+from testing.config import BALL_COLORS, draw_background, CLOCK
 
 # Initialize pygame
 pygame.init()
@@ -12,9 +12,6 @@ pygame.display.set_caption("pyverlet")
 
 # Set the screen
 screen: pygame.Surface = pygame.display.set_mode((800, 600))
-
-# Set the background
-screen.fill((0, 0, 0))
 
 # Create a menu
 menu: Menu = Menu(screen)
@@ -86,5 +83,6 @@ while 1:
         collider.draw(screen)
     
     # Frames and update the display
+    CLOCK.tick(60)
     pygame.display.flip()
 

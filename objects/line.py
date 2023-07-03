@@ -8,7 +8,7 @@ class Line:
         position: Vector2D, 
         length: float, 
         angle: float,
-        width: int,
+        width: int = 1,
         color: tuple[int, int, int] = (255, 255, 255)
     ) -> None:
         self.start: Vector2D = position
@@ -28,8 +28,8 @@ class Line:
     # Draw the line
     def draw(self, screen: pygame.Surface) -> None:
         # Determine the end position of the line
-        end_x: float = self.start.x + self.length # * math.sin(self.angle)
-        end_y: float = self.start.y + self.length * math.sin(self.angle)
+        end_x: float = self.start.x + self.length
+        end_y: float = self.start.y - self.length * math.sin(self.angle)
         
         # Draw the line
         pygame.draw.line(screen, self.color, 
