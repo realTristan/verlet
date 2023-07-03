@@ -40,13 +40,10 @@ class Menu:
     def add_line_collider(
         self, 
         colliders: list[VerletBallLineCollider],
+        **kwargs: dict,
     ) -> list[VerletBallLineCollider]:
         # Add the collider to the list of colliders
-        colliders.append(VerletBallLineCollider(
-            start=(200.0, 100.0), 
-            end=(400.0, 200.0),
-            width=5,
-        ))
+        colliders.append(VerletBallLineCollider(**kwargs)) # type: ignore
         
         # Return the list of colliders
         return colliders
@@ -55,14 +52,11 @@ class Menu:
     # Add a circle collider
     def add_circle_collider(
         self, 
-        colliders: list[VerletBallCircleCollider]
+        colliders: list[VerletBallCircleCollider],
+        **kwargs: dict,
     ) -> list[VerletBallCircleCollider]:
         # Create a new collider
-        collider: VerletBallCircleCollider = VerletBallCircleCollider(
-            position=(400.0, 300.0),
-            radius=5,
-            width=5,
-        )
+        collider: VerletBallCircleCollider = VerletBallCircleCollider(**kwargs) # type: ignore
         
         # Add the collider to the list of colliders
         colliders.append(collider)

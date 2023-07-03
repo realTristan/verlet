@@ -3,7 +3,8 @@ from verlet.ball.colliders.line import VerletBallLineCollider
 from verlet.ball.colliders.circle import VerletBallCircleCollider
 from verlet.ball.ball import VerletBall
 from physics import GRAVITY
-import pygame, time, threading
+import pygame, time, threading, random
+from testing.verlet.ball.config import BALL_COLORS
 
 # Initialize pygame
 pygame.init()
@@ -28,9 +29,9 @@ vballs: list[VerletBall] = []
 def auto_add_balls():
     while 1:
         time.sleep(0.5)
-        vballs.append(
-            VerletBall((250.0, 50.0), radius=10.0))
-        
+        vballs.append(VerletBall(
+            (250.0, 50.0), 10.0, random.choice(BALL_COLORS)))
+
 # Start threading
 threading.Thread(target=auto_add_balls).start()
 
@@ -55,11 +56,19 @@ while 1:
         
         # Check if the event is a click event
         if menu.line_collider_button.clicked(event.pos):
-            colliders = menu.line_collider_button.on_click(colliders)
+            colliders = menu.line_collider_button.on_click(colliders,                                         
+                start=(200.0, 100.0), 
+                end=(400.0, 200.0),
+                width=5,
+            )
 
         # Check if the event is a click event
         elif menu.circle_collider_button.clicked(event.pos):
-            colliders = menu.circle_collider_button.on_click(colliders)
+            colliders = menu.circle_collider_button.on_click(colliders, 
+                position=(400.0, 300.0),
+                radius=300,
+                width=5,
+            )
     
     # Draw the colliders
     for vball in vballs:
@@ -74,7 +83,7 @@ while 1:
 
         # Draw the objects
         vball.draw(screen)
-            
+    
     # Draw the Collider
     for collider in colliders:
         collider.draw(screen)
