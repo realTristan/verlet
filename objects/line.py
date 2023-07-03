@@ -28,7 +28,7 @@ class Line:
     # Draw the line
     def draw(self, screen: pygame.Surface) -> None:
         # Determine the end position of the line
-        end_x: float = self.start.x + self.length * math.sin(self.angle)
+        end_x: float = self.start.x + self.length # * math.sin(self.angle)
         end_y: float = self.start.y + self.length * math.sin(self.angle)
         
         # Draw the line
