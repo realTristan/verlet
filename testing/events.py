@@ -1,5 +1,5 @@
 import pygame, random
-from verlet import VerletBall
+from objects import VerletBall
 from testing.config import BALL_COLORS
 
 # Check if a close event has occurred

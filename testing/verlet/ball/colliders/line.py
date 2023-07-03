@@ -1,5 +1,5 @@
 import pygame, time, threading, random
-from verlet import VerletBall, VerletBallLineCollider
+from objects import VerletBall, VerletBallLineCollider
 from testing.config import SCREEN, draw_background, CLOCK, SUB_STEPS, BALL_COLORS
 from testing.events import close_event, on_click
 

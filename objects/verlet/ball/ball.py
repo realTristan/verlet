@@ -1,6 +1,6 @@
 import pygame, time
 from physics import Vector2D, GRAVITY
-from verlet.object import VerletObject
+from objects.verlet.object import VerletObject
 from typing import Any
 
 

@@ -1,7 +1,5 @@
 from components import Menu
-from verlet.ball.colliders.line import VerletBallLineCollider
-from verlet.ball.colliders.circle import VerletBallCircleCollider
-from verlet.ball.ball import VerletBall
+from objects import VerletBallLineCollider, VerletBall, VerletBallCircleCollider
 from components.list import ButtonList
 import pygame, time, threading, random
 from testing.config import BALL_COLORS, draw_background

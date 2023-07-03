@@ -1,5 +1,5 @@
 import pygame
-from verlet import VerletBall
+from objects import VerletBall
 from testing.config import SCREEN, draw_background, CLOCK, SUB_STEPS
 from testing.events import close_event, on_click
 # Initialize pygame
