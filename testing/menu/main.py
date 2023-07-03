@@ -45,7 +45,7 @@ while 1:
     menu.draw_buttons(screen)
     items.draw(screen, colliders)
     
-    while len(verlet_balls) > 100:
+    while len(verlet_balls) > 200:
         verlet_balls.pop(0)
     
     # Check for a close event
