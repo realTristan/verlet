@@ -1,6 +1,7 @@
-import pygame
-from physics import Vector2D
+import pygame, time
+from physics import Vector2D, GRAVITY
 from verlet.object import VerletObject
+from typing import Any
 
 
 # Ball class
@@ -22,25 +23,42 @@ class VerletBall(VerletObject):
                            self.current_position.get(), self.radius)
 
     # Check if the ball is colliding with other balls
-    @staticmethod
-    def check_collisions(balls: list['VerletBall']) -> None:
-        for ball_1 in balls:
-            for ball_2 in balls:
-                if ball_1 == ball_2:
-                    continue
+    def collisions(self, balls: list['VerletBall']) -> None:
+        for other_ball in balls:
+            if self == other_ball:
+                continue
 
-                # Calculate the distance between the balls
-                dist: Vector2D = ball_1.current_position - ball_2.current_position
-                
-                # the vector magnitude of the ball
-                magnitude: float = dist.magnitude() + 1.0e-9
-                rad_sum: float = ball_1.radius + ball_2.radius
-                if magnitude < rad_sum:
-                    # Calculate the ball overlap (the amount the balls have overlapped)
-                    overlap: Vector2D = dist / magnitude
+            # Calculate the distance between the balls
+            dist: Vector2D = self.current_position - other_ball.current_position
+            
+            # the vector magnitude of the ball
+            magnitude: float = dist.magnitude() + 1.0e-9
+            rad_sum: float = self.radius + other_ball.radius
+            if magnitude < rad_sum:
+                # Calculate the ball overlap (the amount the balls have overlapped)
+                overlap: Vector2D = dist / magnitude
 
-                    # Update this balls position (move it to the side)
-                    ball_1.current_position += overlap * 0.5 * (rad_sum - magnitude)
+                # Update this balls position (move it to the side)
+                self.current_position += overlap * 0.5 * (rad_sum - magnitude)
 
-                    # Update the other ball's position (move it to the opposite side)
-                    ball_2.current_position -= overlap * 0.5 * (rad_sum - magnitude)
+                # Update the other ball's position (move it to the opposite side)
+                other_ball.current_position -= overlap * 0.5 * (rad_sum - magnitude)
+
+    # Update the ball
+    def update(
+        self, 
+        screen: pygame.Surface, 
+        colliders: list[Any] = [], 
+        balls: list['VerletBall'] = []
+    ):
+        # Calculate the delta time
+        dt: float = (time.time() - self.start_time)
+
+        # Apply updates to the ball
+        self.accelerate(GRAVITY)
+        self.update_position(dt)
+        [collider.apply(self) for collider in colliders]
+        self.collisions(balls)
+
+        # Draw the objects
+        self.draw(screen)

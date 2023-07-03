@@ -23,12 +23,12 @@ class VerletBallLineCollider(object):
                          self.end.get(), self.width)
 
     # Apply the Collider
-    def apply(self, vball: VerletBall) -> None:
-        l_bound: float = self.start.x - vball.radius
-        r_bound: float = self.end.x + vball.radius
+    def apply(self, ball: VerletBall) -> None:
+        l_bound: float = self.start.x - ball.radius
+        r_bound: float = self.end.x + ball.radius
         
         # If the circle is past the lines bounds
-        if vball.current_position.x < l_bound or vball.current_position.x > r_bound:
+        if ball.current_position.x < l_bound or ball.current_position.x > r_bound:
             return
         
         # Calculate the slope of the line
@@ -38,15 +38,15 @@ class VerletBallLineCollider(object):
         y_int: float = self.start.y - m * self.start.x
 
         # Calculate the y position of the ball
-        y: float = m * vball.current_position.x + y_int
+        y: float = m * ball.current_position.x + y_int
         
         # If the ball is above/below the line
-        y_above: float = vball.current_position.y + vball.radius + self.width
-        y_below = y + self.width + vball.radius
+        y_above: float = ball.current_position.y + ball.radius + self.width
+        y_below = y + self.width + ball.radius
         
         # Check to make sure the ball is within the y_above and y_below bounds
-        if y_above > y and vball.current_position.y < y_below:
-            vball.current_position.y = y - vball.radius - self.width
-            vball.current_position.x += m * self.slope_multiplier
+        if y_above > y and ball.current_position.y < y_below:
+            ball.current_position.y = y - ball.radius - self.width
+            ball.current_position.x += m * self.slope_multiplier
 
         

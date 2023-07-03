@@ -1,7 +1,8 @@
-from menu import Menu
+from components import Menu
 from verlet.ball.colliders.line import VerletBallLineCollider
 from verlet.ball.colliders.circle import VerletBallCircleCollider
 from verlet.ball.ball import VerletBall
+from components.list import ButtonList
 from physics import GRAVITY
 import pygame, time, threading, random
 from testing.verlet.ball.config import BALL_COLORS
@@ -23,13 +24,16 @@ menu: Menu = Menu(screen)
 
 # Colliders and Verlet Balls
 colliders: list[VerletBallCircleCollider | VerletBallLineCollider] = []
-vballs: list[VerletBall] = []
+verlet_balls: list[VerletBall] = []
+
+# Create a list of colliders
+items: ButtonList = ButtonList()
 
 # Automatically add the balls
 def auto_add_balls():
     while 1:
         time.sleep(0.5)
-        vballs.append(VerletBall(
+        verlet_balls.append(VerletBall(
             (250.0, 50.0), 10.0, random.choice(BALL_COLORS)))
 
 # Start threading
@@ -39,9 +43,10 @@ threading.Thread(target=auto_add_balls).start()
 while 1:
     screen.fill((0, 0, 0))
     menu.draw_buttons(screen)
+    items.draw(screen, colliders)
     
-    while len(vballs) > 10:
-        vballs.pop(0)
+    while len(verlet_balls) > 10:
+        verlet_balls.pop(0)
     
     # Check for a close event
     for event in pygame.event.get():
@@ -49,40 +54,31 @@ while 1:
         if event.type == pygame.QUIT:
             pygame.quit()
             exit()
-            
-        # Check if the event is a valid event
-        if not menu.is_valid_event(event):
-            continue
         
         # Check if the event is a click event
-        if menu.line_collider_button.clicked(event.pos):
-            colliders = menu.line_collider_button.on_click(colliders,                                         
+        for item in items.clicked(event):
+            colliders.remove(item.item)
+            items.remove(item)
+        
+        # Check if the event is a click event
+        if menu.line_collider_button.clicked(event):
+            colliders.append(VerletBallLineCollider(
                 start=(200.0, 100.0), 
                 end=(400.0, 200.0),
                 width=5,
-            )
+            ))
 
         # Check if the event is a click event
-        elif menu.circle_collider_button.clicked(event.pos):
-            colliders = menu.circle_collider_button.on_click(colliders, 
+        elif menu.circle_collider_button.clicked(event):
+            colliders.append(VerletBallCircleCollider(
                 position=(400.0, 300.0),
                 radius=300,
                 width=5,
-            )
+            ))
     
-    # Draw the colliders
-    for vball in vballs:
-        # Calculate the delta time
-        dt: float = (time.time() - vball.start_time)
-
-        # Apply updates to the ball
-        vball.accelerate(GRAVITY)
-        vball.update_position(dt)
-        [collider.apply(vball) for collider in colliders]
-        VerletBall.check_collisions(vballs)
-
-        # Draw the objects
-        vball.draw(screen)
+    # Update the verlet_balls
+    [ball.update(screen, colliders, verlet_balls) for ball in verlet_balls]
+    # [[collider.apply(ball) for collider in colliders] for ball in verlet_balls]
     
     # Draw the Collider
     for collider in colliders:

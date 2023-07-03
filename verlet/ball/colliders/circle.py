@@ -25,16 +25,16 @@ class VerletBallCircleCollider(object):
                            self.radius, self.width)
 
     # Apply the Collider
-    def apply(self, vball: VerletBall):
+    def apply(self, ball: VerletBall):
         # Calculate the distance between the ball and the Collider
-        dist: Vector2D = self.position - vball.current_position
+        dist: Vector2D = self.position - ball.current_position
 
         # The vector magnitude of the ball
         magnitude: float = dist.magnitude()
         
         # Check if the ball is inside the Collider
-        delta: float = self.radius - vball.radius - self.width
+        delta: float = self.radius - ball.radius - self.width
         if magnitude > delta:
-            vball.current_position.set(
+            ball.current_position.set(
                 self.position.x - dist.x / magnitude * delta,
                 self.position.y - dist.y / magnitude * delta)
