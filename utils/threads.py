@@ -9,9 +9,12 @@ class Threads:
     
     # Run the thread
     def run(self, target, args: tuple):
-        self.lock.acquire()
-        t = threading.Thread(target=target, args=args, daemon=True)
+        def thread():
+            self.lock.acquire()
+            target(*args)
+            self.lock.release()
+        
+        t = threading.Thread(target=thread, args=args, daemon=True)
         t.start()
         t.join()
-        self.lock.release()
 

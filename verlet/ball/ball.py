@@ -1,5 +1,4 @@
 import pygame
-import time
 from physics import Vector2D
 from verlet.object import VerletObject
 
