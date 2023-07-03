@@ -5,7 +5,7 @@ from verlet.ball.ball import VerletBall
 from components.list import ButtonList
 from physics import GRAVITY
 import pygame, time, threading, random
-from testing.verlet.ball.config import BALL_COLORS
+from testing.config import BALL_COLORS
 
 # Initialize pygame
 pygame.init()
@@ -32,9 +32,9 @@ items: ButtonList = ButtonList()
 # Automatically add the balls
 def auto_add_balls():
     while 1:
-        time.sleep(0.5)
+        time.sleep(0.1)
         verlet_balls.append(VerletBall(
-            (250.0, 50.0), 10.0, random.choice(BALL_COLORS)))
+            (250.0, 50.0), random.randint(5, 10), random.choice(BALL_COLORS)))
 
 # Start threading
 threading.Thread(target=auto_add_balls).start()
@@ -45,7 +45,7 @@ while 1:
     menu.draw_buttons(screen)
     items.draw(screen, colliders)
     
-    while len(verlet_balls) > 10:
+    while len(verlet_balls) > 100:
         verlet_balls.pop(0)
     
     # Check for a close event

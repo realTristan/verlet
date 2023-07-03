@@ -1,7 +1,7 @@
 import pygame
 from verlet import VerletBall
-from testing.verlet.ball.config import SCREEN, BACKGROUND_COLOR, CLOCK, SUB_STEPS
-from testing.verlet.ball.events import close_event, on_click
+from testing.config import SCREEN, BACKGROUND_COLOR, CLOCK, SUB_STEPS
+from testing.events import close_event, on_click
 # Initialize pygame
 pygame.init()
 

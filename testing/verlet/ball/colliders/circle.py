@@ -1,6 +1,6 @@
 import pygame
-from testing.verlet.ball.config import SCREEN, BACKGROUND_COLOR, CLOCK, SUB_STEPS
-from testing.verlet.ball.events import close_event, on_click
+from testing.config import SCREEN, BACKGROUND_COLOR, CLOCK, SUB_STEPS
+from testing.events import close_event, on_click
 from verlet import VerletBall, VerletBallCircleCollider
 
 # Initialize pygame
@@ -22,7 +22,7 @@ while 1:
     # Steps
     for _ in range(SUB_STEPS):
         # On click, Add another ball
-        verlet_balls = on_click(verlet_balls, ball_radius=10.0)
+        verlet_balls = on_click(verlet_balls)
         while len(verlet_balls) > 10:
             verlet_balls.pop(0)
     

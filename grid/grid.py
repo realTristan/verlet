@@ -1,4 +1,4 @@
-from ..testing.verlet.ball.config import WIDTH, HEIGHT
+from ..testing.config import WIDTH, HEIGHT
 from ..physics import Vector2D
 from typing import Any
 from .cell import Cell

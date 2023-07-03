@@ -1,7 +1,7 @@
-import pygame, time, threading
+import pygame, time, threading, random
 from verlet import VerletBall, VerletBallLineCollider
-from testing.verlet.ball.config import SCREEN, BACKGROUND_COLOR, CLOCK, SUB_STEPS
-from testing.verlet.ball.events import close_event, on_click
+from testing.config import SCREEN, BACKGROUND_COLOR, CLOCK, SUB_STEPS, BALL_COLORS
+from testing.events import close_event, on_click
 
 # Initialize pygame
 pygame.init()
@@ -23,7 +23,7 @@ def auto_add_balls():
     while 1:
         time.sleep(0.5)
         verlet_balls.append(
-            VerletBall((250.0, 50.0), radius=10.0))
+            VerletBall((250.0, 50.0), random.randint(5, 10), random.choice(BALL_COLORS)))
         
 # Start threading
 threading.Thread(target=auto_add_balls).start()
