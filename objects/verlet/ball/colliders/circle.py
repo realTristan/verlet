@@ -29,6 +29,8 @@ class VerletBallCircleCollider(object):
         # Calculate the distance between the ball and the circle
         dist: Vector2D = ball.current_position - self.position
         magnitude = dist.magnitude() + 1.0e-9
+        
+        # Check if the ball is outside the collider
         rad_sum: float = ball.radius + self.radius
         if magnitude < rad_sum and magnitude > self.radius:
             # Calculate the ball overlap (the amount the balls have overlapped)
