@@ -17,14 +17,14 @@ class Grid(object):
     # Reset the grid
     def reset(self) -> None:
         self.grid = [
-            [Cell() for _ in range(self.height)] for _ in range(self.width)
+            [Cell() for _ in range(self.width)] for _ in range(self.height)
         ]  # If cell index, pass (i, j)
 
     # Get a cell from the grid
     def get(self, x: int, y: int) -> Cell | None:
-        if x > len(self.grid) - 1 or y > len(self.grid[0]) - 1:
+        if x > self.width or y > self.height:
             return None
-        return self.grid[x][y]
+        return self.grid[y][x]
 
     # Get the cell index from a position
     def calculate_cell_index(self, position: Vector2D) -> tuple[int, int]:
@@ -41,10 +41,10 @@ class Grid(object):
         [self.put(obj) for obj in objects]
 
     # Find all the collisions for each cell in the grid
-    def find_collisions(self) -> None:
+    def find_collisions(self, threaded: bool = False) -> None:
         # Iterate over all cells
-        for i in range(0, self.width - 1):
-            for j in range(0, self.height - 1):
+        for i in range(0, self.width):
+            for j in range(0, self.height):
                 # Get the current cell
                 current_cell: Cell | None = self.get(i, j)
                 if current_cell is None:
