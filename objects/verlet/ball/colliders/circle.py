@@ -45,7 +45,7 @@ class VerletBallCircleCollider(object):
         
         # Check if the ball is inside the collider
         delta: float = self.radius - ball.radius - self.width
-        if magnitude > delta and magnitude < self.radius:
+        if magnitude > delta and (not self.allow_outside_collision or magnitude < self.radius):
             ball.current_position.set(
                 self.position.x + dist.x / magnitude * delta,
                 self.position.y + dist.y / magnitude * delta)

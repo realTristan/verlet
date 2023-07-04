@@ -75,6 +75,7 @@ while 1:
                 position=(400.0, 300.0),
                 radius=300,
                 width=5,
+                allow_outside_collision=False
             ))
     
     # Update the verlet_balls
