@@ -1,19 +1,17 @@
 from objects import LineCollider, VerletBall, OpenCircleCollider
 import pygame, time, threading, random
-from testing.config import draw_background, CLOCK
+from testing.config import draw_background, CLOCK, SCREEN
 from grid import Grid
 from physics import Vector2D
 from testing.events import on_click, close_event
 from utils import Colors
+
 
 # Initialize pygame
 pygame.init()
 
 # Window Title
 pygame.display.set_caption("pyverlet")
-
-# Set the screen
-screen: pygame.Surface = pygame.display.set_mode((800, 600))
 
 # Create a new grid
 grid: Grid = Grid()
@@ -54,9 +52,9 @@ while 1:
         ball: VerletBall = verlet_balls.pop(0)
 
     # Update the verlet_balls
-    [ball.update_grid(screen, grid, threads=-1) for ball in verlet_balls]
+    [ball.update_grid(SCREEN, grid, threads=-1) for ball in verlet_balls]
     [[collider.apply(ball) for collider in colliders] for ball in verlet_balls]
-    [collider.draw(screen) for collider in colliders]
+    [collider.draw(SCREEN) for collider in colliders]
 
     # Frames and update the display
     CLOCK.tick(60)

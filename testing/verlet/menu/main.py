@@ -2,21 +2,15 @@ from components import Menu
 from objects import LineCollider, VerletBall, OpenCircleCollider
 from components.list import ButtonList
 import pygame, time, threading, random
-from physics import Vector2D
-from testing.config import draw_background, CLOCK
+from testing.config import draw_background, CLOCK, SCREEN
 from utils import Colors
+
 
 # Initialize pygame
 pygame.init()
 
 # Window Title
 pygame.display.set_caption("pyverlet")
-
-# Set the screen
-screen: pygame.Surface = pygame.display.set_mode((800, 600))
-
-# Create a menu
-menu: Menu = Menu(screen)
 
 # Colliders and Verlet Balls
 colliders: list[OpenCircleCollider | LineCollider] = []
@@ -25,6 +19,8 @@ verlet_balls: list[VerletBall] = []
 # Create a list of colliders
 items: ButtonList = ButtonList()
 
+# Create a menu
+menu: Menu = Menu(SCREEN)
 
 # Automatically add the balls
 def auto_add_balls():
@@ -45,8 +41,8 @@ while 1:
     draw_background()
 
     # Draw the menu and items
-    menu.draw_buttons(screen)
-    items.draw(screen, colliders)
+    menu.draw_buttons(SCREEN)
+    items.draw(SCREEN, colliders)
 
     # Cap the amount of balls present
     while len(verlet_balls) > 200:
@@ -80,9 +76,9 @@ while 1:
             )
 
     # Update the verlet_balls
-    [ball.update(screen, verlet_balls) for ball in verlet_balls]
+    [ball.update(SCREEN, verlet_balls) for ball in verlet_balls]
     [[collider.apply(ball) for collider in colliders] for ball in verlet_balls]
-    [collider.draw(screen) for collider in colliders]
+    [collider.draw(SCREEN) for collider in colliders]
 
     # Frames and update the display
     # CLOCK.tick(60)
