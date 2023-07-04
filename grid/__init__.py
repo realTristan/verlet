@@ -1,2 +1,2 @@
-from .cell import Cell
-from .grid import Grid
+from .cell import *
+from .grid import *

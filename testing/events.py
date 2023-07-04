@@ -1,6 +1,6 @@
-import pygame, random
-from objects import VerletBall
+from objects.verlet.ball import VerletBall
 from utils import Colors
+import pygame, random
 
 
 # Check if a close event has occurred

@@ -6,10 +6,10 @@ from .text import Text
 class Button:
     def __init__(
         self,
+        text: str,
+        position: tuple[float, float] = (0, 0),
         width: int = 100,
         height: int = 50,
-        position: tuple[float, float] = (0, 0),
-        text: str = "Button",
         color: tuple[int, int, int] = (255, 255, 255),
     ) -> None:
         self.width: int = width
@@ -19,14 +19,14 @@ class Button:
         self.text: str = text
 
     # Draw the button
-    def draw(self, screen: pygame.Surface) -> "Button":
+    def draw(self, screen: pygame.Surface) -> 'Button':
         pygame.draw.rect(
             screen,
             self.color,
             pygame.Rect(self.position.get(), (self.width, self.height)),
         )
         text: Text = Text(
-            self.text, (self.position.x + 10, self.position.y + 10), 20, (0, 0, 0)
+            self.text, (self.position.x + 10.0, self.position.y + 10.0), 20, (0, 0, 0)
         )
         text.draw(screen)
         return self

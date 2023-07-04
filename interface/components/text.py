@@ -5,16 +5,16 @@ class Text:
     def __init__(
         self,
         text: str,
-        position: tuple[int, int],
+        position: tuple[float, float],
         size: int,
         color: tuple[int, int, int],
         font: str = "Arial",
     ):
-        self.text = text
-        self.position = position
-        self.size = size
-        self.color = color
-        self.font = font
+        self.text: str = text
+        self.position: tuple[float, float] = position
+        self.size: int = size
+        self.color: tuple[int, int, int] = color
+        self.font: str = font
 
     def draw(self, screen: pygame.Surface) -> None:
         pygame.font.init()

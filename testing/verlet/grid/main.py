@@ -1,10 +1,10 @@
-from objects import LineCollider, VerletBall, OpenCircleCollider
-import pygame, time, threading, random
+from objects.verlet.ball.colliders import OpenCircleCollider, LineCollider
 from testing.config import draw_background, CLOCK, SCREEN
-from grid import Grid
-from physics import Vector2D
 from testing.events import on_click, close_event
+from objects.verlet.ball import VerletBall
 from utils import Colors
+from grid import Grid
+import pygame, time, threading, random
 
 
 # Initialize pygame
@@ -18,7 +18,7 @@ grid: Grid = Grid()
 
 # Colliders and Verlet Balls
 colliders: list[OpenCircleCollider | LineCollider] = [
-    LineCollider(Vector2D(200.0, 100.0), 150.0, 35.0, 2),
+    LineCollider((200.0, 100.0), 150.0, 35.0, 2),
     OpenCircleCollider((400.0, 300.0), 300, 5, outside_collision=False),
 ]
 verlet_balls: list[VerletBall] = [

@@ -1,7 +1,8 @@
 import pygame
 from testing.config import SCREEN, BACKGROUND_COLOR, CLOCK, SUB_STEPS
 from testing.events import close_event, on_click
-from objects import OpenCircleCollider, VerletBall
+from objects.verlet.ball.colliders import OpenCircleCollider
+from objects.verlet.ball.ball import VerletBall
 from physics import Vector2D
 
 # Create a new Collider class to override the apply function

@@ -1,7 +1,9 @@
-import pygame
 from testing.config import SCREEN, draw_background, CLOCK, SUB_STEPS
 from testing.events import close_event, on_click
-from objects import OpenCircleCollider, VerletBall
+from objects.verlet.ball.colliders import OpenCircleCollider
+from objects.verlet.ball import VerletBall
+import pygame
+
 
 # Initialize pygame
 pygame.init()

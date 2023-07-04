@@ -6,7 +6,7 @@ from typing import Any
 # ButtonListItem class
 class ButtonListItem(object):
     def __init__(self, item: Any, button: Button) -> None:
-        self.item = item
+        self.item: Any = item
         self.button: Button = button
 
 

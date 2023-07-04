@@ -1,5 +1,5 @@
-from objects import Line
 from testing.config import draw_background, SCREEN
+from objects.line import Line
 import pygame
 
 # Initialize pygame

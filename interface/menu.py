@@ -8,7 +8,7 @@ class Menu:
         self.line_collider_button: Button = Button(
             width=105,
             height=35,
-            position=Vector2D(10, 10),
+            position=(10, 10),
             text="Add Line Collider",
             color=(255, 255, 255),
         ).draw(screen)
@@ -17,7 +17,7 @@ class Menu:
         self.circle_collider_button: Button = Button(
             width=105,
             height=35,
-            position=Vector2D(10, 60),
+            position=(10, 60),
             text="Add Circle Collider",
             color=(255, 255, 255),
         ).draw(screen)
