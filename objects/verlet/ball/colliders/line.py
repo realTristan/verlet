@@ -1,26 +1,23 @@
 import pygame
 from ..ball import VerletBall
 from physics import Vector2D
+from objects.line import Line
 
 
-class VerletBallLineCollider(object):
+class VerletBallLineCollider(Line):
     def __init__(
-        self, 
-        start: tuple[float, float], 
-        end: tuple[float, float], 
-        width: int = 5,
+        self,
+        start: Vector2D, 
+        length: float, 
+        angle: float,
+        width: int = 1,
+        color: tuple[int, int, int] = (255, 255, 255),
         slope_multiplier: float = 1.0
     ) -> None:
-        self.start: Vector2D = Vector2D(start[0], start[1])
-        self.end: Vector2D = Vector2D(end[0], end[1])
-        self.width: int = width
-        self.color: tuple[int, int, int] = (255, 255, 255)
+        super(VerletBallLineCollider, self).__init__(
+            start, length, angle, width, color)
+        self.color: tuple[int, int, int] = color
         self.slope_multiplier: float = slope_multiplier
-
-    # Draw the Collider
-    def draw(self, screen: pygame.Surface) -> None:
-        pygame.draw.line(screen, self.color, self.start.get(), 
-                         self.end.get(), self.width)
 
     # Apply the Collider
     def apply(self, ball: VerletBall) -> None:
@@ -30,7 +27,7 @@ class VerletBallLineCollider(object):
         # If the circle is past the lines bounds
         if ball.current_position.x < l_bound or ball.current_position.x > r_bound:
             return
-        
+
         # Calculate the slope of the line
         m: float = (self.start.y - self.end.y) / (self.start.x - self.end.x)
 

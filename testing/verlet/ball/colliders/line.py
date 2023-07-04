@@ -2,6 +2,8 @@ import pygame, time, threading, random
 from objects import VerletBall, VerletBallLineCollider
 from testing.config import SCREEN, draw_background, CLOCK, SUB_STEPS, BALL_COLORS
 from testing.events import close_event, on_click
+from physics import Vector2D
+
 
 # Initialize pygame
 pygame.init()
@@ -11,9 +13,9 @@ pygame.display.set_caption("pyverlet")
 
 # Objects
 lines: list[VerletBallLineCollider] = [
-    VerletBallLineCollider((200.0, 100.0), (400.0, 200.0)),
-    VerletBallLineCollider((300.0, 400.0), (500.0, 300.0)),
-    VerletBallLineCollider((200.0, 500.0), (400.0, 580.0))
+    VerletBallLineCollider(Vector2D(200.0, 50.0), 120.0, 40.0, 2),
+    VerletBallLineCollider(Vector2D(400.0, 300.0), 120.0, -60.0, 2),
+    VerletBallLineCollider(Vector2D(200.0, 400.0), 150.0, 30.0, 2),
 ]
 verlet_balls = [VerletBall((200.0, 100.0), radius=10.0),
           VerletBall((300.0, 100.0), radius=10.0)]

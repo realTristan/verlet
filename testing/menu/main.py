@@ -2,6 +2,7 @@ from components import Menu
 from objects import VerletBallLineCollider, VerletBall, VerletBallCircleCollider
 from components.list import ButtonList
 import pygame, time, threading, random
+from physics import Vector2D
 from testing.config import BALL_COLORS, draw_background, CLOCK
 
 # Initialize pygame
@@ -61,9 +62,8 @@ while 1:
         # Check if the event is a click event
         if menu.line_collider_button.clicked(event):
             colliders.append(VerletBallLineCollider(
-                start=(200.0, 100.0), 
-                end=(400.0, 200.0),
-                width=5,
+                Vector2D(200.0, 100.0),
+                150.0, 35.0, 2
             ))
 
         # Check if the event is a click event
