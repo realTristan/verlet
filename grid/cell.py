@@ -21,7 +21,7 @@ class Cell(list[Any]):
     #        grid.put(other_obj)
 
     # Check for collisions
-    def check_collisions(self, other_cell: "Cell") -> None:
+    def check_collisions(self, other_cell: "Cell") -> None: # grid
         # Iterate over all the objects in the current cell and the other cell
         for obj_1 in self:
             for obj_2 in other_cell:
