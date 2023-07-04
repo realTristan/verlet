@@ -1,9 +1,10 @@
 from objects import LineCollider, VerletBall, OpenCircleCollider
 import pygame, time, threading, random
-from testing.config import BALL_COLORS, draw_background, CLOCK
+from testing.config import draw_background, CLOCK
 from grid import Grid
 from physics import Vector2D
 from testing.events import on_click, close_event
+from utils import Colors
 
 # Initialize pygame
 pygame.init()
@@ -23,7 +24,7 @@ colliders: list[OpenCircleCollider | LineCollider] = [
     OpenCircleCollider((400.0, 300.0), 300, 5, allow_outside_collision=False)
 ]
 verlet_balls: list[VerletBall] = [
-    VerletBall((270.0, 60.0), 10, random.choice(BALL_COLORS)) for _ in range(10)]
+    VerletBall((270.0, 60.0), 10, Colors.random()) for _ in range(10)]
 grid.fill(verlet_balls)
 
 # Automatically add the balls
@@ -31,7 +32,7 @@ def auto_add_balls():
     while 1:
         time.sleep(0.1)
         ball: VerletBall = VerletBall(
-            (270.0, 60.0), random.randint(5, 10), random.choice(BALL_COLORS))
+            (270.0, 60.0), random.randint(5, 10), Colors.random())
         verlet_balls.append(ball)
         grid.put(ball)
 

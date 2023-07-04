@@ -1,6 +1,6 @@
 import pygame, random
 from objects import VerletBall
-from testing.config import BALL_COLORS
+from utils import Colors
 
 # Check if a close event has occurred
 def close_event() -> None:
@@ -12,9 +12,6 @@ def close_event() -> None:
 
 # On click add a new ball at the mouse position
 def on_click(verlet_balls: list[VerletBall]) -> list[VerletBall]:
-    def random_color() -> tuple[int, int, int]:
-        return random.choice(BALL_COLORS)
-    
     def random_radius() -> int:
         return random.randint(5, 20)
     
@@ -24,7 +21,7 @@ def on_click(verlet_balls: list[VerletBall]) -> list[VerletBall]:
         
         # Add a new ball
         verlet_ball = VerletBall((mouse_pos[0], mouse_pos[1]), radius=radius)
-        verlet_ball.set_color(random_color())
+        verlet_ball.set_color(Colors.random())
         verlet_balls.append(verlet_ball)
         
         # Return the updated balls

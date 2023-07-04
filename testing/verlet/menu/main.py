@@ -3,7 +3,8 @@ from objects import LineCollider, VerletBall, OpenCircleCollider
 from components.list import ButtonList
 import pygame, time, threading, random
 from physics import Vector2D
-from testing.config import BALL_COLORS, draw_background, CLOCK
+from testing.config import draw_background, CLOCK
+from utils import Colors
 
 # Initialize pygame
 pygame.init()
@@ -29,7 +30,7 @@ def auto_add_balls():
     while 1:
         time.sleep(0.1)
         ball: VerletBall = VerletBall(
-            (270.0, 60.0), random.randint(5, 10), random.choice(BALL_COLORS))
+            (270.0, 60.0), random.randint(5, 10), Colors.random())
         verlet_balls.append(ball)
 
 # Start threading
