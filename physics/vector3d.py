@@ -20,6 +20,10 @@ class Vector3D:
     def __truediv__(self, scalar: float) -> 'Vector3D':
         return Vector3D(self.x / scalar, self.y / scalar, self.z / scalar)
     
+    # When to the power
+    def __pow__(self, scalar: float) -> 'Vector3D':
+        return Vector3D(self.x ** scalar, self.y ** scalar, self.z ** scalar)
+    
     # Reset the position
     def zero(self) -> 'Vector3D':
         self.x = 0.0

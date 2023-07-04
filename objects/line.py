@@ -5,13 +5,13 @@ import math, pygame
 class Line(object):
     def __init__(
         self, 
-        position: Vector2D, 
+        start: Vector2D, 
         length: float, 
         angle: float,
         width: int = 1,
         color: tuple[int, int, int] = (255, 255, 255)
     ) -> None:
-        self.start: Vector2D = position
+        self.start: Vector2D = start
         self.length: float = length
         self.angle: float = angle
         self.width: int = width
@@ -35,10 +35,5 @@ class Line(object):
     
     # Draw the line
     def draw(self, screen: pygame.Surface) -> None:
-        # Determine the end position of the line
-        end_x: float = self.start.x + self.length
-        end_y: float = self.start.y - self.length * math.sin(self.angle)
-        
-        # Draw the line
         pygame.draw.line(screen, self.color, self.start.get(), 
                          self.end.get(), self.width)

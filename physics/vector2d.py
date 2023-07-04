@@ -59,10 +59,6 @@ class Vector2D:
     def dot(self, other: 'Vector2D') -> float:
         return self.x * other.x + self.y * other.y
     
-    # Cross product
-    def cross(self, other: 'Vector2D') -> float:
-        return self.x * other.y - self.y * other.x
-    
     # Magnitude
     def magnitude(self) -> float:
         return (self.x * self.x + self.y * self.y) ** 0.5

@@ -45,5 +45,3 @@ class VerletBallLineCollider(Line):
         if y_above > y and ball.current_position.y < y_below:
             ball.current_position.y = y - ball.radius - self.width
             ball.current_position.x += m * self.slope_multiplier
-
-        
