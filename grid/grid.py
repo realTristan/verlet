@@ -41,22 +41,30 @@ class Grid(object):
         [self.put(obj) for obj in objects]
 
     # Find all the collisions for each cell in the grid
-    def find_collisions(self, threaded: bool = False) -> None:
-        # Iterate over all cells
-        for i in range(0, self.width):
-            for j in range(0, self.height):
-                # Get the current cell
-                current_cell: Cell | None = self.get(i, j)
-                if current_cell is None:
-                    continue
+    def find_collisions(self, threads: Threads = None) -> None:
+        def run():
+            # Iterate over all cells
+            for i in range(0, self.width):
+                for j in range(0, self.height):
+                    # Get the current cell
+                    current_cell: Cell | None = self.get(i, j)
+                    if current_cell is None:
+                        continue
 
-                # Check all the cells around the current cell
-                for x in range(i - 1, i + 2):
-                    for y in range(j - 1, j + 2):
-                        # Get the cell
-                        other_cell: Cell | None = self.get(x, y)
-                        if other_cell is None:
-                            continue
+                    # Check all the cells around the current cell
+                    for x in range(i - 1, i + 2):
+                        for y in range(j - 1, j + 2):
+                            # Get the cell
+                            other_cell: Cell | None = self.get(x, y)
+                            if other_cell is None:
+                                continue
 
-                        # Check for collisions
-                        current_cell.check_collisions(other_cell)
+                            # Check for collisions
+                            current_cell.check_collisions(other_cell)
+        
+        # Start the threads
+        if threads is not None:
+            threads.start_all()
+            threads.wait()
+        else:
+            run()
