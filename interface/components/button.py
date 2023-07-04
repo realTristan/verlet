@@ -1,5 +1,6 @@
 import pygame
 from physics import Vector2D
+from .text import Text
 
 
 class Button:
@@ -7,25 +8,29 @@ class Button:
         self,
         width: int = 100,
         height: int = 50,
-        position: Vector2D = Vector2D(0, 0),
+        position: tuple[float, float] = (0, 0),
         text: str = "Button",
         color: tuple[int, int, int] = (255, 255, 255),
     ) -> None:
         self.width: int = width
         self.height: int = height
-        self.position: Vector2D = position
+        self.position: Vector2D = Vector2D(position[0], position[1])
         self.color: tuple[int, int, int] = color
         self.text: str = text
 
     # Draw the button
-    def draw(self, screen: pygame.Surface) -> 'Button':
-        pygame.draw.rect(screen, self.color, pygame.Rect(
-            self.position.get(), (self.width, self.height)))
-        font = pygame.font.SysFont("Arial", 10)
-        text = font.render(self.text, True, (0, 0, 0))
-        screen.blit(text, (self.position.x + 10, self.position.y + 10))
+    def draw(self, screen: pygame.Surface) -> "Button":
+        pygame.draw.rect(
+            screen,
+            self.color,
+            pygame.Rect(self.position.get(), (self.width, self.height)),
+        )
+        text: Text = Text(
+            self.text, (self.position.x + 10, self.position.y + 10), 20, (0, 0, 0)
+        )
+        text.draw(screen)
         return self
-    
+
     # Check if the event is a valid event
     def is_valid_event(self, event: pygame.event.Event) -> bool:
         if event.type != pygame.MOUSEBUTTONDOWN:

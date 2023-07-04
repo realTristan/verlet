@@ -1,4 +1,4 @@
-from components.button import Button
+from interface.components.button import Button
 from physics import Vector2D
 import pygame
 

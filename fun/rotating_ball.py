@@ -1,7 +1,8 @@
 from objects import LineCollider, VerletBall, OpenCircleCollider
 from testing.config import draw_background, CLOCK, SCREEN
 from testing.events import close_event
-from utils import Colors, Text
+from interface import Text
+from utils import Colors
 import pygame
 
 # Initialize pygame

@@ -1,10 +1,8 @@
-from components import Menu
-from objects import LineCollider, VerletBall, OpenCircleCollider
-from components.list import ButtonList
-import pygame, time, threading, random
 from testing.config import draw_background, CLOCK, SCREEN
+from objects import LineCollider, VerletBall, OpenCircleCollider
+from interface import Menu, ButtonList
 from utils import Colors
-
+import pygame, time, threading, random
 
 # Initialize pygame
 pygame.init()
