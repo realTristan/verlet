@@ -1,5 +1,4 @@
 from objects import Line
-from physics import Vector2D
 from testing.config import draw_background
 import pygame
 
@@ -13,7 +12,7 @@ pygame.display.set_caption("pyverlet")
 screen: pygame.Surface = pygame.display.set_mode((800, 600))
 
 # Create a new line
-line = Line(Vector2D(100, 100), 100, 30, 4)
+line = Line((100, 100), 100, 30, 4)
 
 # Game Loop
 while 1:

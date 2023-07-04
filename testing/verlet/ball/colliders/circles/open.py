@@ -11,8 +11,10 @@ pygame.display.set_caption("pyverlet")
 
 # Objects
 verlet_collider = OpenCircleCollider((400.0, 300.0))
-verlet_balls = [VerletBall((500.0, 300.0), radius=10.0),
-          VerletBall((300.0, 300.0), radius=10.0)]
+verlet_balls = [
+    VerletBall((500.0, 300.0), radius=10.0),
+    VerletBall((300.0, 300.0), radius=10.0),
+]
 
 # Game Loop
 while 1:
@@ -29,14 +31,14 @@ while 1:
         verlet_balls = on_click(verlet_balls)
         while len(verlet_balls) > 10:
             verlet_balls.pop(0)
-    
+
         # Update the ball
         [ball.update(SCREEN, verlet_balls) for ball in verlet_balls]
         [verlet_collider.apply(ball) for ball in verlet_balls]
-    
+
         # Draw the Collider
         verlet_collider.draw(SCREEN)
-    
+
     # Check for a close event
     close_event()
 

@@ -1,5 +1,4 @@
 from utils import Threads
-from threading import Thread
 
 
 # Main function

@@ -21,20 +21,24 @@ grid: Grid = Grid()
 # Colliders and Verlet Balls
 colliders: list[OpenCircleCollider | LineCollider] = [
     LineCollider(Vector2D(200.0, 100.0), 150.0, 35.0, 2),
-    OpenCircleCollider((400.0, 300.0), 300, 5, allow_outside_collision=False)
+    OpenCircleCollider((400.0, 300.0), 300, 5, outside_collision=False),
 ]
 verlet_balls: list[VerletBall] = [
-    VerletBall((270.0, 60.0), 10, Colors.random()) for _ in range(10)]
+    VerletBall((270.0, 60.0), 10, Colors.random()) for _ in range(10)
+]
 grid.fill(verlet_balls)
+
 
 # Automatically add the balls
 def auto_add_balls():
     while 1:
         time.sleep(0.1)
         ball: VerletBall = VerletBall(
-            (270.0, 60.0), random.randint(5, 10), Colors.random())
+            (270.0, 60.0), random.randint(5, 10), Colors.random()
+        )
         verlet_balls.append(ball)
         grid.put(ball)
+
 
 # Start threading
 # threading.Thread(target=auto_add_balls).start()
@@ -48,13 +52,12 @@ while 1:
     # Cap the amount of balls present
     while len(verlet_balls) > 10:
         ball: VerletBall = verlet_balls.pop(0)
-        
+
     # Update the verlet_balls
     [ball.update_grid(screen, grid, threads=-1) for ball in verlet_balls]
     [[collider.apply(ball) for collider in colliders] for ball in verlet_balls]
     [collider.draw(screen) for collider in colliders]
-    
+
     # Frames and update the display
     CLOCK.tick(60)
     pygame.display.flip()
-

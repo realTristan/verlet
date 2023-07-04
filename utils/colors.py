@@ -17,34 +17,37 @@ class Colors:
 
     @staticmethod
     def to_hex(color: tuple[int, int, int]) -> str:
-        return '#%02x%02x%02x' % color
-    
+        return "#%02x%02x%02x" % color
+
     @staticmethod
     def to_rgb(color: str) -> tuple[int, int, int]:
-        return tuple(int(color[i:i+2], 16) for i in (0, 2, 4))
+        return tuple(int(color[i : i + 2], 16) for i in (0, 2, 4))
 
     @staticmethod
     def random_rgb() -> tuple[int, int, int]:
         import random
+
         return (random.randint(0, 255), random.randint(0, 255), random.randint(0, 255))
-    
+
     @staticmethod
     def random_hex() -> str:
         return Colors.to_hex(Colors.random())
-    
+
     @staticmethod
     def random() -> tuple[int, int, int]:
         import random
-        return random.choice([
-            Colors.RED,
-            Colors.GREEN,
-            Colors.BLUE,
-            Colors.WHITE,
-            Colors.YELLOW,
-            Colors.CYAN,
-            Colors.MAGENTA,
-            Colors.ORANGE,
-            Colors.PURPLE,
-            Colors.PINK
-        ])
-            
+
+        return random.choice(
+            [
+                Colors.RED,
+                Colors.GREEN,
+                Colors.BLUE,
+                Colors.WHITE,
+                Colors.YELLOW,
+                Colors.CYAN,
+                Colors.MAGENTA,
+                Colors.ORANGE,
+                Colors.PURPLE,
+                Colors.PINK,
+            ]
+        )

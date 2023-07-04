@@ -22,11 +22,7 @@ class Threads(object):
 
     # Start a thread
     def start(
-        self, 
-        target: Callable, 
-        args: tuple = (), 
-        kwargs: dict = {}, 
-        timeout: int = 60
+        self, target: Callable, args: tuple = (), kwargs: dict = {}, timeout: int = 60
     ) -> None:
         start_time: float = time.time()
         while self.active >= self.threads:

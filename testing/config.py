@@ -12,6 +12,8 @@ SUB_STEPS: int = 8
 
 # Background
 BACKGROUND_COLOR: tuple[int, int, int] = (0, 0, 0)
+
+# Draw the background
 def draw_background():
     SCREEN.fill(BACKGROUND_COLOR)
     for x in range(0, WIDTH, 50):

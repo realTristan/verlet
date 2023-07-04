@@ -12,8 +12,10 @@ pygame.display.set_caption("pyverlet")
 
 # Objects
 verlet_collider = ClosedCircleCollider((400.0, 300.0))
-verlet_balls = [VerletBall((500.0, 50.0), radius=10.0, color=Colors.random()),
-                VerletBall((400.0, 50.0), radius=10.0, color=Colors.random())]
+verlet_balls = [
+    VerletBall((500.0, 50.0), radius=10.0, color=Colors.random()),
+    VerletBall((400.0, 50.0), radius=10.0, color=Colors.random()),
+]
 
 # Game Loop
 while 1:

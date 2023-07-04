@@ -11,8 +11,10 @@ class ClosedCircleCollider(CircleCollider):
         position: tuple[float, float], 
         radius: float = 200.0,
         color: tuple[int, int, int] = (255, 255, 255),
+        outside_collision: bool = True,
     ) -> None:
         super(ClosedCircleCollider, self).__init__(position, radius, color)
+        self.outside_collision: bool = outside_collision
 
     # Draw the filled circle collider
     def draw(self, screen: pygame.Surface) -> None:
@@ -21,6 +23,9 @@ class ClosedCircleCollider(CircleCollider):
 
     # Apply the Collider
     def apply(self, ball: VerletBall) -> None:
+        if not self.outside_collision:
+            return
+        
         # Calculate the distance between the ball and the circle
         dist: Vector2D = ball.current_position - self.position
         magnitude = dist.magnitude() + 1.0e-9

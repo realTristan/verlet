@@ -4,8 +4,8 @@ if __name__ == "__main__":
     # # # # # # # # # # # #
     
     #import testing.verlet.ball.main
-    import testing.verlet.ball.colliders.circles.closed
-    #import testing.verlet.ball.colliders.circle.open
+    #import testing.verlet.ball.colliders.circles.closed
+    import testing.verlet.ball.colliders.circles.open
     #import testing.verlet.ball.colliders.line
     #import testing.verlet.menu.main
     #import testing.verlet.grid.main
