@@ -2,6 +2,7 @@ from testing.config import WIDTH, HEIGHT
 from physics import Vector2D
 from typing import Any
 from .cell import Cell
+from utils import Threads
 
 
 # Grid class
@@ -41,15 +42,18 @@ class Grid(object):
         [self.put(obj) for obj in objects]
 
     # Find all the collisions for each cell in the grid
-    def find_collisions(self, threads: Threads = None) -> None:
-        def run():
-            # Iterate over all cells
-            for i in range(0, self.width):
-                for j in range(0, self.height):
+    def find_collisions(self, threads: int = -1) -> None:
+        # Initialize the threads
+        threads: Threads | None = Threads(threads) if threads != -1 else None
+
+        # Iterate over all cells
+        def run() -> None:
+            for i in range(0, self.width - 1):
+                for j in range(0, self.height - 1):
                     # Get the current cell
                     current_cell: Cell | None = self.get(i, j)
                     if current_cell is None:
-                        continue
+                        return
 
                     # Check all the cells around the current cell
                     for x in range(i - 1, i + 2):
@@ -61,10 +65,6 @@ class Grid(object):
 
                             # Check for collisions
                             current_cell.check_collisions(other_cell)
-        
-        # Start the threads
-        if threads is not None:
-            threads.start_all()
-            threads.wait()
-        else:
-            run()
+
+        # Start the threads if they exist, otherwise just run the function
+        threads.start(target=run, timeout=1) if threads is not None else run()

@@ -2,49 +2,31 @@ from threading import Thread
 from typing import Callable
 import time, threading
 
+
 # Threads class
 class Threads(object):
-    def __init__(self, thread_count: int, target: Callable):
-        self.thread_count: int = thread_count
-        self.target: Callable = target
-        self.threads: list[Thread] = [Thread(target=self.run) for _ in range(self.thread_count)]
+    def __init__(self, threads: int):
+        self.threads: int = threads
+        self.active: int = 0
         self.lock: threading.Lock = threading.Lock()
 
-    # Run threads
-    def run(self) -> None:
-        # Acquire the lock
-        self.lock.acquire()
-
+    # Run a thread
+    def run(self, target: Callable, args: tuple, kwargs: dict) -> None:
         # Run the target
-        self.target()
+        self.lock.acquire()  # Acquire the lock
+        target(*args, **kwargs)  # Run the target
 
-        # Remove from inactive and append to threads
-        thread: Thread = Thread(target=self.run)
-        self.threads.append(thread)
+        # Once finished...
+        self.active -= 1  # Decrement the active count
+        self.lock.release()  # Release the lock
 
-        # Release the lock
-        self.lock.release()
-    
-    # Start threads
-    def start_all(self):
-        for _ in range(self.thread_count):
-            # Pop thread
-            t: Thread = self.threads.pop()
-
-            # Start thread
-            t.start()
-            t.join()
-    
-    # Get inactive threads
-    def get_inactives(self) -> list[Thread]:
-        return [t for t in self.threads if not t.is_alive()]
-
-    # Get thread
-    def get(self, timeout: int = 60) -> Thread | None:
+    # Start a thread
+    def start(self, target: Callable, args: tuple = (), kwargs: dict = {}, timeout: int = 60) -> Thread | None:
         start_time: float = time.time()
-        while len(self.threads) == 0:
+        while self.active >= self.threads:
             if start_time + timeout > time.time():
                 return None
-        
+
         # Get the thread
-        return self.threads.pop()
+        self.active += 1
+        Thread(target=self.run, args=(target, args, kwargs)).start()

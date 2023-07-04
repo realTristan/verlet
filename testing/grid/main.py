@@ -45,11 +45,11 @@ while 1:
     on_click(verlet_balls)
 
     # Cap the amount of balls present
-    while len(verlet_balls) > 200:
+    while len(verlet_balls) > 20:
         verlet_balls.pop(0)
         
     # Update the verlet_balls
-    [ball.update_grid(screen, grid, verlet_balls) for ball in verlet_balls]
+    [ball.update_grid(screen, grid, threads=2) for ball in verlet_balls]
     [[collider.apply(ball) for collider in colliders] for ball in verlet_balls]
     [collider.draw(screen) for collider in colliders]
     
