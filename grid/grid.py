@@ -11,7 +11,7 @@ class Grid(object):
         self.width: int = WIDTH // self.cell_size
         self.height: int = HEIGHT // self.cell_size
         self.grid: list[list[Cell]] = [
-            [Cell() for _ in range(self.height)] for _ in range(self.width)
+            [Cell() for _ in range(self.width)] for _ in range(self.height)
         ]  # If cell index, pass (i, j)
 
     # Reset the grid
