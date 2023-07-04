@@ -14,8 +14,8 @@ verlet_balls: list[VerletBall] = [
 
 # Game Loop
 while 1:
-    # Draw the background
     draw_background()
+    close_event()
 
     # Cap the amount of balls present
     while len(verlet_balls) > 10:
@@ -29,9 +29,6 @@ while 1:
     # Run
     for _ in range(SUB_STEPS):
         [ball.update(SCREEN) for ball in verlet_balls]
-    
-    # Check for a close event
-    close_event()
 
     # Frames and update the display
     CLOCK.tick(60)

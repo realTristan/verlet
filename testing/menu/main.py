@@ -80,10 +80,7 @@ while 1:
     # Update the verlet_balls
     [ball.update(screen, verlet_balls) for ball in verlet_balls]
     [[collider.apply(ball) for collider in colliders] for ball in verlet_balls]
-    
-    # Draw the Collider
-    for collider in colliders:
-        collider.draw(screen)
+    [collider.draw(screen) for collider in colliders]
     
     # Frames and update the display
     # CLOCK.tick(60)

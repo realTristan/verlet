@@ -32,8 +32,8 @@ threading.Thread(target=auto_add_balls).start()
 
 # Game Loop
 while 1:
-    # Draw the background
     draw_background()
+    close_event()
 
     # Cap the amount of balls present
     while len(verlet_balls) > 200:
@@ -49,13 +49,7 @@ while 1:
         # Update the ball
         [ball.update(SCREEN, verlet_balls) for ball in verlet_balls]
         [[line.apply(ball) for line in lines] for ball in verlet_balls]
-
-        # Draw the Collider
-        for line in lines:
-            line.draw(SCREEN)
-
-    # Check for a close event
-    close_event()
+        [line.draw(SCREEN) for line in lines]
 
     # Frames and update the display
     CLOCK.tick(60)

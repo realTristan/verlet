@@ -10,7 +10,8 @@ class VerletBallCircleCollider(object):
         position: tuple[float, float], 
         radius: float = 200.0, 
         width: int = 5,
-        color: tuple[int, int, int] = (255, 255, 255)
+        color: tuple[int, int, int] = (255, 255, 255),
+        allow_outside_collision: bool = True
     ) -> None:
         
         # Variables
@@ -18,6 +19,7 @@ class VerletBallCircleCollider(object):
         self.width: int = width
         self.color: tuple[int, int, int] = color
         self.radius: float = radius
+        self.allow_outside_collision: bool = allow_outside_collision
 
     # Draw the Collider
     def draw(self, screen: pygame.Surface) -> None:
@@ -25,20 +27,21 @@ class VerletBallCircleCollider(object):
                            self.radius, self.width)
 
     # Apply the Collider
-    def apply(self, ball: VerletBall):
+    def apply(self, ball: VerletBall) -> None:
         # Calculate the distance between the ball and the circle
         dist: Vector2D = ball.current_position - self.position
         magnitude = dist.magnitude() + 1.0e-9
         
         # Check if the ball is outside the collider
-        rad_sum: float = ball.radius + self.radius
-        if magnitude < rad_sum and magnitude > self.radius:
-            # Calculate the ball overlap (the amount the balls have overlapped)
-            overlap: Vector2D = dist / magnitude
+        if self.allow_outside_collision:
+            rad_sum: float = ball.radius + self.radius
+            if magnitude < rad_sum and magnitude > self.radius:
+                # Calculate the ball overlap (the amount the balls have overlapped)
+                overlap: Vector2D = dist / magnitude
 
-            # Update this balls position (move it to the side)
-            ball.current_position += overlap * 0.5 * (rad_sum - magnitude)
-            return
+                # Update this balls position (move it to the side)
+                ball.current_position += overlap * 0.5 * (rad_sum - magnitude)
+                return
         
         # Check if the ball is inside the collider
         delta: float = self.radius - ball.radius - self.width

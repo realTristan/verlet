@@ -3,6 +3,7 @@ import pygame, time, threading, random
 from testing.config import BALL_COLORS, draw_background, CLOCK
 from grid import Grid
 from physics import Vector2D
+from testing.events import on_click, close_event
 
 # Initialize pygame
 pygame.init()
@@ -13,15 +14,17 @@ pygame.display.set_caption("pyverlet")
 # Set the screen
 screen: pygame.Surface = pygame.display.set_mode((800, 600))
 
+# Create a new grid
+grid: Grid = Grid()
+
 # Colliders and Verlet Balls
 colliders: list[VerletBallCircleCollider | VerletBallLineCollider] = [
     VerletBallLineCollider(Vector2D(200.0, 100.0), 150.0, 35.0, 2),
-    VerletBallCircleCollider((400.0, 300.0), 300, 5)
+    VerletBallCircleCollider((400.0, 300.0), 300, 5, allow_outside_collision=False)
 ]
-verlet_balls: list[VerletBall] = []
-
-# Create a new grid
-grid: Grid = Grid()
+verlet_balls: list[VerletBall] = [
+    VerletBall((270.0, 60.0), 10, random.choice(BALL_COLORS)) for _ in range(10)]
+grid.fill(verlet_balls)
 
 # Automatically add the balls
 def auto_add_balls():
@@ -30,35 +33,27 @@ def auto_add_balls():
         ball: VerletBall = VerletBall(
             (270.0, 60.0), random.randint(5, 10), random.choice(BALL_COLORS))
         verlet_balls.append(ball)
-        grid.put(ball, ball.current_position)
+        grid.put(ball)
 
 # Start threading
 threading.Thread(target=auto_add_balls).start()
 
 # Game Loop
 while 1:
-    # Draw the background
     draw_background()
+    close_event()
+    on_click(verlet_balls)
 
     # Cap the amount of balls present
     while len(verlet_balls) > 200:
         verlet_balls.pop(0)
-    
-    # Check for a close event
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            pygame.quit()
-            exit()
         
     # Update the verlet_balls
     [ball.update_grid(screen, grid, verlet_balls) for ball in verlet_balls]
     [[collider.apply(ball) for collider in colliders] for ball in verlet_balls]
-    
-    # Draw the Collider
-    for collider in colliders:
-        collider.draw(screen)
+    [collider.draw(screen) for collider in colliders]
     
     # Frames and update the display
-    # CLOCK.tick(60)
+    CLOCK.tick(60)
     pygame.display.flip()
 

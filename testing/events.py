@@ -4,7 +4,7 @@ from testing.config import BALL_COLORS
 
 # Check if a close event has occurred
 def close_event() -> None:
-  for event in pygame.event.get():
+    for event in pygame.event.get():
         if event.type == pygame.QUIT:
             pygame.quit()
             quit()

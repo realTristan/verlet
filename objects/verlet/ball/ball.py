@@ -50,11 +50,7 @@ class VerletBall(VerletObject):
             self.handle_collision(other_ball)
 
     # Update the ball
-    def update(
-        self,
-        screen: pygame.Surface,
-        balls: list['VerletBall'] = []
-    ):
+    def update(self, screen: pygame.Surface, balls: list['VerletBall'] = []):
         # Apply updates to the ball
         self.accelerate(GRAVITY)
         self.update_position()
@@ -64,12 +60,7 @@ class VerletBall(VerletObject):
         self.draw(screen)
     
     # Update the ball using a grid
-    def update_grid(
-        self,
-        screen: pygame.Surface,
-        grid: Grid,
-        balls: list['VerletBall'] = []
-    ):
+    def update_grid(self, screen: pygame.Surface, grid: Grid, balls: list['VerletBall'] = []):
         # Apply updates to the ball
         self.accelerate(GRAVITY)
         self.update_position()

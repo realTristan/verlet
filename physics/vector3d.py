@@ -31,6 +31,10 @@ class Vector3D:
         self.z = 0.0
         return self
     
+    # Copy the vector
+    def copy(self) -> 'Vector3D':
+        return Vector3D(self.x, self.y, self.z)
+    
     # Negate the entire vector
     def negate(self, index: int = -1) -> 'Vector3D':
         if index == 0:

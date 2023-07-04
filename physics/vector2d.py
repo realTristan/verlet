@@ -63,6 +63,10 @@ class Vector2D:
     def magnitude(self) -> float:
         return (self.x * self.x + self.y * self.y) ** 0.5
     
+    # Copy the vector
+    def copy(self) -> 'Vector2D':
+        return Vector2D(self.x, self.y)
+    
     # Normalize
     def normalize(self) -> 'Vector2D':
         mag: float = self.magnitude()
