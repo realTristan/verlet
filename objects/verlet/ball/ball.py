@@ -1,7 +1,7 @@
-import pygame, time
+import pygame
 from physics import Vector2D, GRAVITY
 from objects.verlet.object import VerletObject
-from typing import Any
+from grid import Grid
 
 
 # Ball class
@@ -56,12 +56,14 @@ class VerletBall(VerletObject):
     def update(
         self,
         screen: pygame.Surface,
+        #grid: Grid,
         balls: list['VerletBall'] = []
     ):
         # Apply updates to the ball
         self.accelerate(GRAVITY)
         self.update_position()
         self.collisions(balls)
+        #grid.find_collisions()
 
         # Draw the objects
         self.draw(screen)
