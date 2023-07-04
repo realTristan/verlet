@@ -51,10 +51,6 @@ class Vector2D:
     def get(self) -> tuple[float, float]:
         return (self.x, self.y)
 
-    # Create a copy
-    def copy(self)-> 'Vector2D':
-        return Vector2D(self.x, self.y)
-    
     # Dot product
     def dot(self, other: 'Vector2D') -> float:
         return self.x * other.x + self.y * other.y

@@ -2,7 +2,6 @@ import pygame
 from physics import Vector2D, GRAVITY
 from objects.verlet.object import VerletObject
 from grid import Grid
-from utils import Threads
 
 
 # Ball class
@@ -17,7 +16,7 @@ class VerletBall(VerletObject):
         
         # Self variables
         self.radius: float = radius
-
+    
     # Draw the object
     def draw(self, screen: pygame.Surface) -> None:
         pygame.draw.circle(screen, self.color, 
@@ -52,22 +51,14 @@ class VerletBall(VerletObject):
 
     # Update the ball
     def update(self, screen: pygame.Surface, balls: list['VerletBall'] = []):
-        # Apply updates to the ball
         self.accelerate(GRAVITY)
         self.update_position()
         self.collisions(balls)
-
-        # Draw the objects
         self.draw(screen)
     
     # Update the ball using a grid
     def update_grid(self, screen: pygame.Surface, grid: Grid, threads: int = -1):
-        # Apply updates to the ball
         self.accelerate(GRAVITY)
         self.update_position()
-
-        # Find collisions
         grid.find_collisions(threads)
-
-        # Draw the objects
         self.draw(screen)

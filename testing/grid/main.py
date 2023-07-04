@@ -36,7 +36,7 @@ def auto_add_balls():
         grid.put(ball)
 
 # Start threading
-threading.Thread(target=auto_add_balls).start()
+# threading.Thread(target=auto_add_balls).start()
 
 # Game Loop
 while 1:
@@ -45,11 +45,11 @@ while 1:
     on_click(verlet_balls)
 
     # Cap the amount of balls present
-    while len(verlet_balls) > 20:
-        verlet_balls.pop(0)
+    while len(verlet_balls) > 10:
+        ball: VerletBall = verlet_balls.pop(0)
         
     # Update the verlet_balls
-    [ball.update_grid(screen, grid, threads=2) for ball in verlet_balls]
+    [ball.update_grid(screen, grid, threads=-1) for ball in verlet_balls]
     [[collider.apply(ball) for collider in colliders] for ball in verlet_balls]
     [collider.draw(screen) for collider in colliders]
     
