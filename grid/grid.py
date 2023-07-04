@@ -8,8 +8,8 @@ from .cell import Cell
 class Grid:
     def __init__(self, cell_size: int = 100):
         self.cell_size: int = cell_size
-        self.width: int = round(WIDTH / self.cell_size) + 2
-        self.height: int = round(HEIGHT / self.cell_size) + 2
+        self.width: int = round(WIDTH / self.cell_size)
+        self.height: int = round(HEIGHT / self.cell_size)
         self.grid: list[list[Cell]] = [
             [Cell() for _ in range(self.height)] for _ in range(self.width)]
 
