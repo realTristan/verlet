@@ -2,27 +2,31 @@ from testing.config import WIDTH, HEIGHT
 from physics import Vector2D
 from typing import Any
 from .cell import Cell
-
+import math
 
 # Grid class
 class Grid:
     def __init__(self, cell_size: int = 50):
         self.cell_size: int = cell_size
-        self.width: int = round(WIDTH / self.cell_size)
-        self.height: int = round(HEIGHT / self.cell_size)
+        self.width: int = WIDTH // self.cell_size
+        self.height: int = HEIGHT // self.cell_size
         self.grid: list[list[Cell]] = [
             [Cell() for _ in range(self.height)] for _ in range(self.width)]
 
     # Get a cell from the grid
     def get(self, x: int, y: int) -> Cell | None:
         return self.grid[x][y] if x >= 0 and y >= 0 and \
-            x < self.width and y < self.height else None
+            x < WIDTH and y < HEIGHT else None
 
     # Put an object into the grid
     def put(self, obj: Any, position: Vector2D) -> None:
         # Get the cell
-        x: int = round(position.x / self.cell_size)
-        y: int = round(position.y / self.cell_size)
+        x: int = int((math.floor(position.x / self.cell_size) + 
+                      math.floor(position.y / self.cell_size)) * self.cell_size)
+        y: int = int((math.floor(position.x / self.cell_size) -
+                      math.floor(position.y / self.cell_size)) * self.cell_size)
+
+        # Get the cell
         cell: Cell | None = self.get(x, y)
         
         # Add the object to the cell
