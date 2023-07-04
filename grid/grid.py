@@ -5,7 +5,7 @@ from .cell import Cell
 import math
 
 # Grid class
-class Grid:
+class Grid(object):
     def __init__(self, cell_size: int = 50):
         self.cell_size: int = cell_size
         self.width: int = WIDTH // self.cell_size
