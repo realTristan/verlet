@@ -1,5 +1,5 @@
 from components import Menu
-from objects import VerletBallLineCollider, VerletBall, VerletBallCircleCollider
+from objects import LineCollider, VerletBall, OpenCircleCollider
 from components.list import ButtonList
 import pygame, time, threading, random
 from physics import Vector2D
@@ -18,7 +18,7 @@ screen: pygame.Surface = pygame.display.set_mode((800, 600))
 menu: Menu = Menu(screen)
 
 # Colliders and Verlet Balls
-colliders: list[VerletBallCircleCollider | VerletBallLineCollider] = []
+colliders: list[OpenCircleCollider | LineCollider] = []
 verlet_balls: list[VerletBall] = []
 
 # Create a list of colliders
@@ -62,7 +62,7 @@ while 1:
         
         # Check if the event is a click event
         if menu.line_collider_button.clicked(event):
-            colliders.append(VerletBallLineCollider(
+            colliders.append(LineCollider(
                 start=Vector2D(200.0, 100.0),
                 length=150.0, 
                 angle=35.0, 
@@ -71,7 +71,7 @@ while 1:
 
         # Check if the event is a click event
         elif menu.circle_collider_button.clicked(event):
-            colliders.append(VerletBallCircleCollider(
+            colliders.append(OpenCircleCollider(
                 position=(400.0, 300.0),
                 radius=300,
                 width=5,

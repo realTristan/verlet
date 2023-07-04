@@ -1,10 +1,9 @@
-import pygame
 from ..ball import VerletBall
 from physics import Vector2D
 from objects.line import Line
 
 
-class VerletBallLineCollider(Line):
+class LineCollider(Line):
     def __init__(
         self,
         start: Vector2D, 
@@ -14,7 +13,7 @@ class VerletBallLineCollider(Line):
         color: tuple[int, int, int] = (255, 255, 255),
         slope_multiplier: float = 1.0
     ) -> None:
-        super(VerletBallLineCollider, self).__init__(
+        super(LineCollider, self).__init__(
             start, length, angle, width, color)
         self.color: tuple[int, int, int] = color
         self.slope_multiplier: float = slope_multiplier

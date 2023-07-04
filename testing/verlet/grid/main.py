@@ -1,4 +1,4 @@
-from objects import VerletBallLineCollider, VerletBall, VerletBallCircleCollider
+from objects import LineCollider, VerletBall, OpenCircleCollider
 import pygame, time, threading, random
 from testing.config import BALL_COLORS, draw_background, CLOCK
 from grid import Grid
@@ -18,9 +18,9 @@ screen: pygame.Surface = pygame.display.set_mode((800, 600))
 grid: Grid = Grid()
 
 # Colliders and Verlet Balls
-colliders: list[VerletBallCircleCollider | VerletBallLineCollider] = [
-    VerletBallLineCollider(Vector2D(200.0, 100.0), 150.0, 35.0, 2),
-    VerletBallCircleCollider((400.0, 300.0), 300, 5, allow_outside_collision=False)
+colliders: list[OpenCircleCollider | LineCollider] = [
+    LineCollider(Vector2D(200.0, 100.0), 150.0, 35.0, 2),
+    OpenCircleCollider((400.0, 300.0), 300, 5, allow_outside_collision=False)
 ]
 verlet_balls: list[VerletBall] = [
     VerletBall((270.0, 60.0), 10, random.choice(BALL_COLORS)) for _ in range(10)]

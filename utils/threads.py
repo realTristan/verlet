@@ -21,7 +21,13 @@ class Threads(object):
         self.lock.release()  # Release the lock
 
     # Start a thread
-    def start(self, target: Callable, args: tuple = (), kwargs: dict = {}, timeout: int = 60) -> Thread | None:
+    def start(
+        self, 
+        target: Callable, 
+        args: tuple = (), 
+        kwargs: dict = {}, 
+        timeout: int = 60
+    ) -> None:
         start_time: float = time.time()
         while self.active >= self.threads:
             if start_time + timeout > time.time():

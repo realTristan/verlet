@@ -1,7 +1,7 @@
 import pygame
 from testing.config import SCREEN, draw_background, CLOCK, SUB_STEPS
 from testing.events import close_event, on_click
-from objects import VerletBall, VerletBallCircleCollider
+from objects import ClosedCircleCollider, VerletBall
 
 # Initialize pygame
 pygame.init()
@@ -10,7 +10,7 @@ pygame.init()
 pygame.display.set_caption("pyverlet")
 
 # Objects
-verlet_collider = VerletBallCircleCollider((400.0, 300.0))
+verlet_collider = ClosedCircleCollider((400.0, 300.0))
 verlet_balls = [VerletBall((500.0, 300.0), radius=10.0),
           VerletBall((300.0, 300.0), radius=10.0)]
 
