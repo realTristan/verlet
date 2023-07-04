@@ -1,15 +1,33 @@
 from threading import Thread
 from typing import Callable
-import time
-
+import time, threading
 
 # Threads class
 class Threads(object):
     def __init__(self, thread_count: int, target: Callable):
         self.thread_count: int = thread_count
         self.target: Callable = target
-        self.threads: list[Thread] = [Thread(target=self.target) for _ in range(self.thread_count)]
+        self.threads: list[Thread] = [Thread(target=self.run) for _ in range(self.thread_count)]
         self.inactive: list[Thread] = []
+        self.lock: threading.Lock = threading.Lock()
+
+    # Run threads
+    def run(self) -> None:
+        # Acquire the lock
+        self.lock.acquire()
+
+        # Run the target
+        self.target()
+
+        # Get the working thread
+        thread: Thread = threading.current_thread()
+
+        # Remove from inactive and append to threads
+        self.threads.append(thread)
+        self.inactive.remove(thread)
+
+        # Release the lock
+        self.lock.release()
     
     # Start threads
     def start(self):
@@ -34,4 +52,6 @@ class Threads(object):
         while len(self.threads) == 0:
             if start_time + timeout > time.time():
                 return None
+        
+        # Get the thread
         return self.threads.pop()
