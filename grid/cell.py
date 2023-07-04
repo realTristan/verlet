@@ -1,31 +1,20 @@
 from typing import Any
 
-class Cell:
+class Cell(list[Any]):
     def __init__(self):
-        self.objects: list[Any] = []
-
-    # Check if the objects in the cell are colliding
-    def check_collision(self, grid, other_cell: 'Cell'):
-        for obj_1 in self.objects:
-            for obj_2 in other_cell.objects:
-                # Skip if they're the same objects
-                if obj_1 == obj_2:
+        super(Cell, self).__init__()
+    
+    # Check for collisions
+    def check_collisions(self, other_cell: 'Cell') -> None:
+        # Iterate over all the objects in the current cell
+        for obj in self:
+            # Iterate over all the objects in the other cell
+            for other_obj in other_cell:
+                # Check if the objects are the same
+                if obj == other_obj:
                     continue
                 
-                # Get the new positions of the objects
-                p1, p2 = obj_1.handle_collision(obj_2)
-                
-                # Remove the objects from the cell then readd them to their
-                # new appropriate cells
-                if obj_1 in self.objects:
-                    grid.put(obj_1, p1)
-                    self.objects.remove(obj_1)
-                    
-                if obj_2 in other_cell.objects:
-                    grid.put(obj_2, p2)
-                    other_cell.objects.remove(obj_2)
-        
-        # Return the updated grid
-        return grid
+                # Check if the objects are colliding
+                obj.handle_collision(other_obj)
                 
                 

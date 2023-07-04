@@ -4,7 +4,7 @@ from components.list import ButtonList
 import pygame, time, threading, random
 from physics import Vector2D
 from testing.config import BALL_COLORS, draw_background, CLOCK
-# from grid import Grid
+from grid import Grid
 
 # Initialize pygame
 pygame.init()
@@ -23,7 +23,7 @@ colliders: list[VerletBallCircleCollider | VerletBallLineCollider] = []
 verlet_balls: list[VerletBall] = []
 
 # Create a new grid
-# grid: Grid = Grid(100)
+grid: Grid = Grid()
 
 # Create a list of colliders
 items: ButtonList = ButtonList()
@@ -35,7 +35,7 @@ def auto_add_balls():
         ball: VerletBall = VerletBall(
             (270.0, 60.0), random.randint(5, 10), random.choice(BALL_COLORS))
         verlet_balls.append(ball)
-        #grid.put(ball, ball.current_position)
+        grid.put(ball, ball.current_position)
 
 # Start threading
 threading.Thread(target=auto_add_balls).start()
@@ -81,7 +81,7 @@ while 1:
             ))
     
     # Update the verlet_balls
-    [ball.update(screen, verlet_balls) for ball in verlet_balls]
+    [ball.update(screen, grid, verlet_balls) for ball in verlet_balls]
     [[collider.apply(ball) for collider in colliders] for ball in verlet_balls]
     
     # Draw the Collider

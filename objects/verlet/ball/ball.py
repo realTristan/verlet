@@ -1,7 +1,7 @@
 import pygame
 from physics import Vector2D, GRAVITY
 from objects.verlet.object import VerletObject
-#from grid import Grid
+from grid import Grid
 
 
 # Ball class
@@ -23,7 +23,7 @@ class VerletBall(VerletObject):
                            self.current_position.get(), self.radius)
     
     # Check if the ball is colliding with another ball
-    def handle_collision(self, other_ball: 'VerletBall') -> tuple[Vector2D, Vector2D]:
+    def handle_collision(self, other_ball: 'VerletBall') -> None:
         # Calculate the distance between the balls
         dist: Vector2D = self.current_position - other_ball.current_position
         
@@ -39,9 +39,6 @@ class VerletBall(VerletObject):
 
             # Update the other ball's position (move it to the opposite side)
             other_ball.current_position -= overlap * 0.5 * (rad_sum - magnitude)
-        
-        # Return the new positions
-        return self.current_position, other_ball.current_position
 
     # Check if the ball is colliding with other balls
     def collisions(self, balls: list['VerletBall']) -> None:
@@ -56,14 +53,14 @@ class VerletBall(VerletObject):
     def update(
         self,
         screen: pygame.Surface,
-        #grid: Grid,
+        grid: Grid,
         balls: list['VerletBall'] = []
     ):
         # Apply updates to the ball
         self.accelerate(GRAVITY)
         self.update_position()
-        self.collisions(balls)
-        #grid.find_collisions()
+        #self.collisions(balls)
+        grid.find_collisions()
 
         # Draw the objects
         self.draw(screen)

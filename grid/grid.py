@@ -6,7 +6,7 @@ from .cell import Cell
 
 # Grid class
 class Grid:
-    def __init__(self, cell_size: int = 100):
+    def __init__(self, cell_size: int = 50):
         self.cell_size: int = cell_size
         self.width: int = round(WIDTH / self.cell_size)
         self.height: int = round(HEIGHT / self.cell_size)
@@ -24,17 +24,15 @@ class Grid:
         x: int = round(position.x / self.cell_size)
         y: int = round(position.y / self.cell_size)
         cell: Cell | None = self.get(x, y)
-        if cell is None:
-            return
-
+        
         # Add the object to the cell
-        cell.objects.append(obj)
+        cell.append(obj) if cell is not None else None
 
     # Find all the collisions for each cell in the grid
     def find_collisions(self) -> None:
         # Iterate over all cells
-        for i in range(0, self.width - 2, 1):
-            for j in range(0, self.height - 2, 1):
+        for i in range(1, self.width - 2, 1):
+            for j in range(1, self.height - 2, 1):
                 # Get the current cell
                 current_cell: Cell | None = self.get(i, j)
                 if current_cell is None:
@@ -49,4 +47,4 @@ class Grid:
                             continue
 
                         # Check the collision
-                        current_cell.check_collision(self, other_cell)
+                        current_cell.check_collisions(other_cell)
