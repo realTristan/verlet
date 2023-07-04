@@ -7,6 +7,7 @@ if __name__ == "__main__":
     #import testing.verlet.ball.colliders.circle
     #import testing.verlet.ball.colliders.line
     import testing.menu.main
+    #import testing.grid.main
     #import testing.line.main
     
     # # # # # # # # # # # #
