@@ -26,7 +26,7 @@ class Button:
             pygame.Rect(self.position.get(), (self.width, self.height)),
         )
         text: Text = Text(
-            self.text, (self.position.x + 10.0, self.position.y + 10.0), 20, (0, 0, 0)
+            self.text, (self.position.x + 10.0, self.position.y + 10.0), 10, (0, 0, 0)
         )
         text.draw(screen)
         return self

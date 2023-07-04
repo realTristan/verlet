@@ -17,20 +17,19 @@ verlet_balls: list[VerletBall] = [
 # Game Loop
 while 1:
     draw_background()
-    close_event()
 
-    # Cap the amount of balls present
-    while len(verlet_balls) > 10:
-        verlet_balls.pop(0)
-    
-    # On click, Add another ball
-    verlet_balls = on_click(verlet_balls)
-    while len(verlet_balls) > 10:
-        verlet_balls.pop(0)
-
-    # Run
+    # Substeps for collision improvement
     for _ in range(SUB_STEPS):
+        # On click, Add another ball
+        verlet_balls = on_click(verlet_balls)
+        while len(verlet_balls) > 10:
+            verlet_balls.pop(0)
+        
+        # Update the balls
         [ball.update(SCREEN) for ball in verlet_balls]
+
+    # Check for a close event
+    close_event()
 
     # Frames and update the display
     CLOCK.tick(60)

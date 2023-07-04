@@ -6,19 +6,19 @@ class Menu:
     def __init__(self, screen: pygame.Surface) -> None:
         # Add line collider button
         self.line_collider_button: Button = Button(
+            text="Add Line Collider",
+            position=(10, 10),
             width=105,
             height=35,
-            position=(10, 10),
-            text="Add Line Collider",
             color=(255, 255, 255),
         ).draw(screen)
         
         # Add circle collider button
         self.circle_collider_button: Button = Button(
+            text="Add Circle Collider",
+            position=(10, 60),
             width=105,
             height=35,
-            position=(10, 60),
-            text="Add Circle Collider",
             color=(255, 255, 255),
         ).draw(screen)
     

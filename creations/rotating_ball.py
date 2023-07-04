@@ -1,9 +1,11 @@
-from objects import LineCollider, VerletBall, OpenCircleCollider
+from objects.verlet.ball.colliders import LineCollider, OpenCircleCollider
 from testing.config import draw_background, CLOCK, SCREEN
+from objects.verlet.ball import VerletBall
 from testing.events import close_event
-from interface import Text
+from interface.components import Text
 from utils import Colors
 import pygame
+
 
 # Initialize pygame
 pygame.init()

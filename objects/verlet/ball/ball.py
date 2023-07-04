@@ -1,7 +1,7 @@
-import pygame
 from physics import Vector2D, GRAVITY
 from objects.verlet.object import VerletObject
 from grid import Grid
+import pygame
 
 
 # Ball class

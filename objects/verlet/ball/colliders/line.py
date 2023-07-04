@@ -2,6 +2,7 @@ from ..ball import VerletBall
 from objects.line import Line
 
 
+# Line Collider class
 class LineCollider(Line):
     def __init__(
         self,

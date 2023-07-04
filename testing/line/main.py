@@ -1,4 +1,5 @@
 from testing.config import draw_background, SCREEN
+from testing.events import close_event
 from objects.line import Line
 import pygame
 
@@ -14,6 +15,7 @@ line = Line((100, 100), 100, 30, 4)
 # Game Loop
 while 1:
     draw_background()
+    close_event()
     line.draw(SCREEN)
     pygame.display.flip()
 
