@@ -22,7 +22,7 @@ colliders: list[OpenCircleCollider | LineCollider] = [
     OpenCircleCollider((400.0, 300.0), 300, 5, outside_collision=False),
 ]
 verlet_balls: list[VerletBall] = [
-    VerletBall((270.0, 60.0), 10, Colors.random()) for _ in range(5)
+    VerletBall((270.0, 60.0), 10, Colors.random()) for _ in range(10)
 ]
 grid.fill(verlet_balls)
 
