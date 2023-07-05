@@ -11,9 +11,10 @@ if __name__ == "__main__":
     #import testing.verlet.grid.main
     #import testing.line.main
     #import testing.threads.main
+    import testing.verlet.fluid.main
     
     # # # # # # # # # # # #
     #      Creations      #
     # # # # # # # # # # # #
     
-    import creations.rotating_ball
+    #import creations.rotating_ball

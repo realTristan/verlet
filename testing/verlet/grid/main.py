@@ -22,7 +22,7 @@ colliders: list[OpenCircleCollider | LineCollider] = [
     OpenCircleCollider((400.0, 300.0), 300, 5, outside_collision=False),
 ]
 verlet_balls: list[VerletBall] = [
-    VerletBall((270.0, 60.0), 10, Colors.random()) for _ in range(10)
+    VerletBall((270.0, 60.0), 10, Colors.random()) for _ in range(5)
 ]
 grid.fill(verlet_balls)
 
@@ -30,7 +30,7 @@ grid.fill(verlet_balls)
 # Automatically add the balls
 def auto_add_balls():
     while 1:
-        time.sleep(0.1)
+        time.sleep(0.5)
         ball: VerletBall = VerletBall(
             (270.0, 60.0), random.randint(5, 10), Colors.random()
         )
