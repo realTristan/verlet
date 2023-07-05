@@ -1,5 +1,5 @@
 from objects.verlet.ball import VerletBall
-from .collider import CircleCollider
+from .circle_collider import CircleCollider
 from physics import Vector2D
 import pygame
 

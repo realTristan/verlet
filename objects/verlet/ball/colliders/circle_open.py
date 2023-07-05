@@ -1,7 +1,7 @@
 import pygame
 from objects.verlet.ball.ball import VerletBall
 from physics import Vector2D
-from .collider import CircleCollider
+from .circle_collider import CircleCollider
 
 
 # Open Circle Collider class
