@@ -14,11 +14,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Admin\\Desktop\\pyverlet\\csharp\\csharp.csproj",
+      "projectUniqueName": "c:\\Users\\Admin\\Desktop\\pyverlet\\verletsharp\\csharp.csproj",
       "projectName": "csharp",
-      "projectPath": "C:\\Users\\Admin\\Desktop\\pyverlet\\csharp\\csharp.csproj",
+      "projectPath": "c:\\Users\\Admin\\Desktop\\pyverlet\\verletsharp\\csharp.csproj",
       "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Admin\\Desktop\\pyverlet\\csharp\\obj\\",
+      "outputPath": "c:\\Users\\Admin\\Desktop\\pyverlet\\verletsharp\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

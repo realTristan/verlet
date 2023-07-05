@@ -1,7 +1,9 @@
 using System;
 
-namespace verletsharp {
-    class Grid {
-        
+namespace grid
+{
+    class Grid
+    {
+
     }
 }
