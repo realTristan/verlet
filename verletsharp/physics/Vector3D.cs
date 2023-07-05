@@ -12,72 +12,49 @@ namespace physics
         // When two vectors are added
         public Vector3D operator +(Vector3D vec)
         {
-            this.x += vec.x;
-            this.y += vec.y;
-            this.z += vec.z;
-            return this;
+            return new Vector3D(this.x + vec.x, this.y + vec.y, this.z + vec.z);
         }
 
         // When two vectors are subtracted
         public Vector3D operator -(Vector3D vec)
         {
-            this.x -= vec.x;
-            this.y -= vec.y;
-            this.z -= vec.z;
-            return this;
+            return new Vector3D(this.x - vec.x, this.y - vec.y, this.z - vec.z);
         }
 
         // When a vector is multiplied by a scalar
-        public Vector3D operator *(double scalar)
+        public Vector3D Mult(double scalar)
         {
-            this.x *= scalar;
-            this.y *= scalar;
-            this.z *= scalar;
-            return this;
+            return new Vector3D(this.x * scalar, this.y * scalar, this.z * scalar);
         }
 
         // When a vector is divided by a scalar
-        public Vector3D operator /(double scalar)
+        public Vector3D Div(double scalar)
         {
-            this.x /= scalar;
-            this.y /= scalar;
-            this.z /= scalar;
-            return this;
+            return new Vector3D(this.x / scalar, this.y / scalar, this.z / scalar);
         }
+
         // When a vector is held to the power of a scalar
-        public Vector3D operator ^(double scalar)
+        public Vector3D Pow(double scalar)
         {
-            this.x **= scalar;
-            this.y **= scalar;
-            this.z **= scalar;
-            return this;
+            return new Vector3D(Math.Pow(this.x, scalar), Math.Pow(this.y, scalar), Math.Pow(this.z, scalar));
         }
 
         // Add a scalar
         public Vector3D AddScalar(double b)
         {
-            this.x += b;
-            this.y += b;
-            this.z += b;
-            return this;
+            return new Vector3D(this.x + b, this.y + b, this.z + b);
         }
 
         // Subtract a scalar
         public Vector3D SubScalar(double b)
         {
-            this.x -= b;
-            this.y -= b;
-            this.z -= b;
-            return this;
+            return new Vector3D(this.x - b, this.y - b, this.z - b);
         }
 
         // Multiply by a vector
         public Vector3D MultVector(Vector3D vec)
         {
-            this.x *= vec.x;
-            this.y *= vec.y;
-            this.z *= vec.z;
-            return this;
+            return new Vector3D(this.x * vec.x, this.y * vec.y, this.z * vec.z);
         }
 
         // Copy the vector

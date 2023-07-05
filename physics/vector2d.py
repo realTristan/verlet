@@ -29,16 +29,6 @@ class Vector2D:
         self.y = 0.0
         return self
 
-    # Negate the entire vector
-    def negate(self, index: int = -1) -> 'Vector2D':
-        if index == 0:
-            self.x *= -1.0
-        elif index == 1:
-            self.y *= -1.0
-        else:
-            self *= -1.0
-        return self
-        
     # Set the position
     def set(self, x: float = None, y: float = None) -> 'Vector2D': # type: ignore
         if x is not None:
@@ -52,8 +42,8 @@ class Vector2D:
         return (self.x, self.y)
 
     # Dot product
-    def dot(self, other: 'Vector2D') -> float:
-        return self.x * other.x + self.y * other.y
+    def dot(self, vec: 'Vector2D') -> float:
+        return self.x * vec.x + self.y * vec.y
     
     # Magnitude
     def magnitude(self) -> float:
@@ -66,9 +56,7 @@ class Vector2D:
     # Normalize
     def normalize(self) -> 'Vector2D':
         mag: float = self.magnitude()
-        self.x /= mag
-        self.y /= mag
-        return self
+        return Vector2D(self.x / mag, self.y / mag)
     
     # Scale all values
     def mult(self, other: 'Vector2D') -> 'Vector2D':

@@ -11,44 +11,39 @@ namespace physics
         // When two vectors are added
         public Vector2D operator +(Vector2D vec)
         {
-            this.x += vec.x;
-            this.y += vec.y;
-            return this;
+            return new Vector2D(this.x + vec.x, this.y + vec.y);
         }
 
         // When two vectors are subtracted
         public Vector2D operator -(Vector2D vec)
         {
-            this.x -= vec.x;
-            this.y -= vec.y;
-            return this;
+            return new Vector2D(this.x - vec.x, this.y - vec.y);
         }
 
         // When a vector is multiplied by a scalar
-        public Vector2D operator *(double scalar)
+        public Vector2D operator Mult(double scalar)
         {
             this.x *= scalar;
             this.y *= scalar;
-            return this;
         }
 
         // When a vector is divided by a scalar
-        public Vector2D operator /(double scalar)
+        public Vector2D Div(double scalar)
         {
             this.x /= scalar;
             this.y /= scalar;
             return this;
         }
         // When a vector is held to the power of a scalar
-        public Vector2D operator ^(double scalar)
+        public Vector2D Pow(double scalar)
         {
-            this.x **= scalar;
-            this.y **= scalar;
+            this.x = Math.Pow(this.x, scalar);
+            this.y = Math.Pow(this.y, scalar);
             return this;
         }
 
         // Add a scalar
-        public Vector2D AddScalar(double b)
+        public Vector2D Add(double b)
         {
             this.x += b;
             this.y += b;
@@ -56,7 +51,7 @@ namespace physics
         }
 
         // Subtract a scalar
-        public Vector2D SubScalar(double b)
+        public Vector2D Sub(double b)
         {
             this.x -= b;
             this.y -= b;

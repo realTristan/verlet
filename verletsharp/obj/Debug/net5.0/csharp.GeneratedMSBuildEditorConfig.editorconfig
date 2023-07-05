@@ -7,4 +7,4 @@ build_property.PublishSingleFile =
 build_property.IncludeAllContentForSelfExtract = 
 build_property._SupportedPlatformList = Android,iOS,Linux,macOS,Windows
 build_property.RootNamespace = csharp
-build_property.ProjectDir = C:\Users\Admin\Desktop\pyverlet\csharp\
+build_property.ProjectDir = C:\Users\Admin\Desktop\pyverlet\verletsharp\

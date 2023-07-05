@@ -35,18 +35,6 @@ class Vector3D:
     def copy(self) -> 'Vector3D':
         return Vector3D(self.x, self.y, self.z)
     
-    # Negate the entire vector
-    def negate(self, index: int = -1) -> 'Vector3D':
-        if index == 0:
-            self.x *= -1.0
-        elif index == 1:
-            self.y *= -1.0
-        elif index == 2:
-            self.z *= -1.0
-        else:
-            self *= -1.0
-        return self
-    
     # Set the position
     def set(self, x: float = None, y: float = None, z: float = None) -> 'Vector3D': # type: ignore
         if x is not None:
