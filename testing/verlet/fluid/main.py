@@ -1,10 +1,9 @@
 from objects.verlet.ball.colliders import OpenCircleCollider, LineCollider
 from testing.config import draw_background, CLOCK, SCREEN
-from testing.events import on_click, close_event
 from objects.verlet.ball import VerletBall
+from testing.events import close_event
 from utils import Colors
-from grid import Grid
-import pygame, time, threading, random
+import pygame, time, threading
 
 
 # Initialize pygame
@@ -25,7 +24,7 @@ verlet_balls: list[VerletBall] = []
 # Automatically add the balls
 def auto_add_balls():
     while 1:
-        time.sleep(0.2)
+        time.sleep(0.05)
         ball: VerletBall = VerletBall(
             (300.0, 60.0), 5.0, Colors.CYAN
         )
@@ -33,7 +32,8 @@ def auto_add_balls():
 
 
 # Start threading
-threading.Thread(target=auto_add_balls).start()
+t: threading.Thread = threading.Thread(target=auto_add_balls)
+t.start()
 
 # Game Loop
 while 1:
@@ -41,7 +41,7 @@ while 1:
     close_event()
 
     # Cap the amount of balls present
-    while len(verlet_balls) > 250:
+    while len(verlet_balls) > 200:
         ball: VerletBall = verlet_balls.pop(0)
 
     # Update the verlet_balls
