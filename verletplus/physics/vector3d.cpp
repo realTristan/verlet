@@ -1,6 +1,6 @@
 #include <iostream>
 
-class Vector2D
+class Vector3D
 {
     public:
         float x;
@@ -8,64 +8,64 @@ class Vector2D
         float z;
 
         // Constructors
-        Vector2D() {
+        Vector3D() {
             this->x = 0.0f;
             this->y = 0.0f;
             this->z = 0.0f;
         }
-        Vector2D(float x, float y, float z) {
+        Vector3D(float x, float y, float z) {
             this->x = x;
             this->y = y;
             this->z = z;
         }
-        Vector2D(const Vector2D& v) {
+        Vector3D(const Vector3D& v) {
             this->x = v.x;
             this->y = v.y;
             this->z = v.z;
         }
 
         // Operations
-        Vector2D& operator=(const Vector2D& v) {
+        Vector3D& operator=(const Vector3D& v) {
             this->x = v.x;
             this->y = v.y;
             this->z = v.z;
             return *this;
         }
-        Vector2D& operator+=(const Vector2D& v) {
+        Vector3D& operator+=(const Vector3D& v) {
             this->x += v.x;
             this->y += v.y;
             this->z += v.z;
             return *this;
         }
-        Vector2D& operator-=(const Vector2D& v) {
+        Vector3D& operator-=(const Vector3D& v) {
             this->x -= v.x;
             this->y -= v.y;
             this->z -= v.z;
             return *this;
         }
-        Vector2D& operator*=(float f) {
+        Vector3D& operator*=(float f) {
             this->x *= f;
             this->y *= f;
             this->z *= f;
             return *this;
         }
-        Vector2D& operator/=(float f) {
+        Vector3D& operator/=(float f) {
             this->x /= f;
             this->y /= f;
             this->z /= f;
             return *this;
         }
-        Vector2D operator+(const Vector2D& v) const {
-            return Vector2D(*this) += v;
+        Vector3D operator+(const Vector3D& v) const {
+            return Vector3D(*this) += v;
         }
-        Vector2D operator-(const Vector2D& v) const {
-            return Vector2D(*this) -= v;
+        Vector3D operator-(const Vector3D& v) const {
+            return Vector3D(*this) -= v;
         }
-        Vector2D operator*(float f) const {
-            return Vector2D(*this) *= f;
+        Vector3D operator*(float f) const {
+            return Vector3D(*this) *= f;
         }
-        Vector2D operator/(float f) const {
-            return Vector2D(*this) /= f;
+        Vector3D operator/(float f) const {
+            return Vector3D(*this) /= f;
         }
 
         // Get the magnitude of the vector
@@ -83,5 +83,37 @@ class Vector2D
             this->x = 0.0f;
             this->y = 0.0f;
             this->z = 0.0f;
+        }
+
+        // Multiply by another vector
+        Vector3D multiply(const Vector3D& v) {
+            this->x *= v.x;
+            this->y *= v.y;
+            this->z *= v.z;
+            return *this;
+        }
+
+        // Divide by another vector
+        Vector3D divide(const Vector3D& v) {
+            this->x /= v.x;
+            this->y /= v.y;
+            this->z /= v.z;
+            return *this;
+        }
+
+        // Add a scalar
+        Vector3D add(float f) {
+            this->x += f;
+            this->y += f;
+            this->z += f;
+            return *this;
+        }
+
+        // Subtract a scalar
+        Vector3D subtract(float f) {
+            this->x -= f;
+            this->y -= f;
+            this->z -= f;
+            return *this;
         }
 };

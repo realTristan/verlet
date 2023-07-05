@@ -74,4 +74,32 @@ class Vector2D
             this->x = 0.0f;
             this->y = 0.0f;
         }
+
+        // Multiply by another vector
+        Vector2D multiply(const Vector2D& v) {
+            this->x *= v.x;
+            this->y *= v.y;
+            return *this;
+        }
+
+        // Divide by another vector
+        Vector2D divide(const Vector2D& v) {
+            this->x /= v.x;
+            this->y /= v.y;
+            return *this;
+        }
+
+        // Add a scalar
+        Vector2D add(float f) {
+            this->x += f;
+            this->y += f;
+            return *this;
+        }
+
+        // Subtract a scalar
+        Vector2D subtract(float f) {
+            this->x -= f;
+            this->y -= f;
+            return *this;
+        }
 };
