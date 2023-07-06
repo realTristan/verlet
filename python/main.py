@@ -8,10 +8,10 @@ if __name__ == "__main__":
     #import testing.verlet.ball.colliders.circle_open
     #import testing.verlet.ball.colliders.line
     #import testing.verlet.menu
-    #import testing.verlet.grid
+    import testing.verlet.grid
     #import testing.line.main
     #import testing.threads.main
-    import testing.verlet.fluid
+    #import testing.verlet.fluid
     
     # # # # # # # # # # # #
     #      Creations      #

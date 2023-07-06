@@ -30,7 +30,7 @@ grid.fill(verlet_balls)
 # Automatically add the balls
 def auto_add_balls():
     while 1:
-        time.sleep(0.5)
+        time.sleep(0.1)
         ball: VerletBall = VerletBall(
             (270.0, 60.0), random.randint(5, 10), Colors.random()
         )
@@ -39,20 +39,22 @@ def auto_add_balls():
 
 
 # Start threading
-# threading.Thread(target=auto_add_balls).start()
+threading.Thread(target=auto_add_balls).start()
 
 # Game Loop
 while 1:
     draw_background()
     close_event()
     on_click(verlet_balls)
-
+    
     # Cap the amount of balls present
-    while len(verlet_balls) > 10:
+    while len(verlet_balls) > 300:
         ball: VerletBall = verlet_balls.pop(0)
+        grid.deprecate(ball)
 
     # Update the verlet_balls
-    [ball.update_grid(SCREEN, grid, threads=-1) for ball in verlet_balls]
+    grid.find_collisions(-1)
+    [ball.update_no_collisions(SCREEN) for ball in verlet_balls]
     [[collider.apply(ball) for collider in colliders] for ball in verlet_balls]
     [collider.draw(SCREEN) for collider in colliders]
 

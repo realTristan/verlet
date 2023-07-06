@@ -14,11 +14,19 @@ class Grid():
         self.height: int = HEIGHT // self.cell_size
         self.grid: np.ndarray = np.array(
             [np.array([Cell([]) for _ in range(0, self.width)]) for _ in range(0, self.height)])
-    
+
     # Reset the grid
     def reset(self) -> None:
         self.grid = np.array(
             [np.array([Cell([]) for _ in range(0, self.width)]) for _ in range(0, self.height)])
+
+    # Deprecate an object from the grid
+    def deprecate(self, obj: Any) -> None:
+        x, y = self.calculate_cell_index(obj.current_position)
+        cell: Cell | None = self.get(x, y)
+        if cell is None:
+            return
+        cell.objects = np.delete(cell.objects, np.where(cell.objects == obj))
 
     # Get a cell from the grid
     def get(self, x: int, y: int) -> Cell | None:
@@ -46,7 +54,7 @@ class Grid():
     def find_collisions(self, threads: int = -1) -> None:  # type: ignore
         # Initialize the threads
         threads: Threads | None = Threads(threads) if threads != -1 else None
-        
+
         # Iterate over all cells
         def run() -> None:
             for x in range(0, self.width):
@@ -63,8 +71,7 @@ class Grid():
                             other_cell: Cell | None = self.get(dx, dy)
                             if other_cell is None:
                                 continue
-                            
-                            
+
                             # Check for collisions
                             if len(current_cell.objects) > 0 or len(other_cell.objects) > 0:
                                 current_cell.check_collisions(self, other_cell)

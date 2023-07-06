@@ -2,6 +2,7 @@
 
 #ifndef TESTING_CONFIG_HPP
 #define TESTING_CONFIG_HPP
+
 #define SUBSTEPS 1
 #define FPS 60
 #define WINDOW_WIDTH 800

@@ -1,25 +1,51 @@
 from typing import Any
 import numpy as np
-
+import time
 
 # Cell class
 class Cell():
     def __init__(self, objects: list[Any] = []):
         super(Cell, self).__init__()
         self.objects = np.array(objects, dtype=object)
-
+        
+        
     # Update the cell objects
     def update(self, grid, other_cell: 'Cell') -> None:
-        for obj_1 in self.objects:
-            i = np.where(self.objects == obj_1)
-            self.objects = np.delete(self.objects, i)
-            grid.put(obj_1)
-
-        for obj_2 in other_cell.objects:
-            i = np.where(other_cell.objects == obj_2)
-            other_cell.objects = np.delete(other_cell.objects, i)
-            grid.put(obj_2)
-
+        # Iterate over all the objects in the current cell
+        tot_popped: int = 0
+        for i in range(len(self.objects)):
+            index: int = i + tot_popped
+            if index >= len(self.objects):
+                break
+            
+            # Get the object
+            obj: Any = self.objects[index]
+            
+            # Update the cell and grid
+            prev_len: int = len(self.objects)
+            self.objects = np.delete(self.objects, index)
+            if len(self.objects) != prev_len:
+                tot_popped += 1
+                grid.put(obj)
+        
+        # Iterate over all the objects in the other cell
+        tot_popped = 0     
+        for i in range(len(other_cell.objects)):
+            index: int = i + tot_popped
+            if index >= len(other_cell.objects):
+                break
+            
+            # Get the object
+            obj: Any = other_cell.objects[index]
+            
+            # Update the cell and grid
+            prev_len: int = len(other_cell.objects)
+            other_cell.objects = np.delete(other_cell.objects, index)
+            if len(other_cell.objects) != prev_len:
+                tot_popped += 1
+                grid.put(obj)
+                
+    
     # Check for collisions
     def check_collisions(self, grid, other_cell: 'Cell') -> None:
         # Iterate over all the objects in the current cell and the other cell
