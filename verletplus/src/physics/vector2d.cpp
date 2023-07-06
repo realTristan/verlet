@@ -1,4 +1,5 @@
 #include <iostream>
+#include <math.h>
 
 class Vector2D
 {
@@ -73,6 +74,18 @@ class Vector2D
         void zero() {
             this->x = 0.0f;
             this->y = 0.0f;
+        }
+
+        // Copy the vector
+        Vector2D copy() {
+            return Vector2D(*this);
+        }
+
+        // Set the vector
+        Vector2D set(float x, float y) {
+            this->x = x;
+            this->y = y;
+            return *this;
         }
 
         // Multiply by another vector

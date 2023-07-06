@@ -1,7 +1,4 @@
 #include <iostream>
 
-class constants
-{
-    public:
-        float gravity = 9.81f;
-};
+// Physics constants
+#define GRAVITY Vector2D(0, 9.8)

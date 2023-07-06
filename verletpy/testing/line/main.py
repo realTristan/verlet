@@ -7,7 +7,7 @@ import pygame
 pygame.init()
 
 # Window Title
-pygame.display.set_caption("pyverlet")
+pygame.display.set_caption("verletpy")
 
 # Create a new line
 line = Line((100, 100), 100, 30, 4)

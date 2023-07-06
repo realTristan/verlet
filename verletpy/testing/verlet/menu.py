@@ -11,7 +11,7 @@ import pygame, time, threading, random
 pygame.init()
 
 # Window Title
-pygame.display.set_caption("pyverlet")
+pygame.display.set_caption("verletpy")
 
 # Colliders and Verlet Balls
 colliders: list[OpenCircleCollider | LineCollider] = []

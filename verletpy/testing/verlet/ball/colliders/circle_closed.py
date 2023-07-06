@@ -10,7 +10,7 @@ import pygame
 pygame.init()
 
 # Window Title
-pygame.display.set_caption("pyverlet")
+pygame.display.set_caption("verletpy")
 
 # Objects
 verlet_collider = ClosedCircleCollider((400.0, 300.0))

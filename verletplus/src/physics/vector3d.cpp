@@ -1,4 +1,5 @@
 #include <iostream>
+#include <math.h>
 
 class Vector3D
 {
@@ -66,6 +67,19 @@ class Vector3D
         }
         Vector3D operator/(float f) const {
             return Vector3D(*this) /= f;
+        }
+
+        // Copy the vector
+        Vector3D copy() const {
+            return Vector3D(*this);
+        }
+
+        // Set the vector
+        Vector3D set(float x, float y, float z) {
+            this->x = x;
+            this->y = y;
+            this->z = z;
+            return *this;
         }
 
         // Get the magnitude of the vector

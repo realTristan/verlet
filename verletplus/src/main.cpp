@@ -1,11 +1,14 @@
 #include <SFML/Graphics.hpp>
+#include "objects/line.cpp"
 
 int main()
 {
-    sf::RenderWindow window(sf::VideoMode(200, 200), "SFML works!");
-    sf::CircleShape shape(100.f);
-    shape.setFillColor(sf::Color::Green);
+    // Initialize a new window
+    sf::RenderWindow window(sf::VideoMode(800, 600), "verlet");
 
+    // Create a new line
+    Line line = Line(Vector2D(50, 50), 100, 90, Colors().WHITE);
+    
     while (window.isOpen())
     {
         sf::Event event;
@@ -16,7 +19,7 @@ int main()
         }
 
         window.clear();
-        window.draw(shape);
+        line.draw(&window);
         window.display();
     }
 

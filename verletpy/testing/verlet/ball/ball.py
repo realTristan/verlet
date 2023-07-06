@@ -8,7 +8,7 @@ import pygame
 pygame.init()
 
 # Window Title
-pygame.display.set_caption("pyverlet")
+pygame.display.set_caption("verletpy")
 
 # Verlet Balls
 verlet_balls: list[VerletBall] = [

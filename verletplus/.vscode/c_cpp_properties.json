@@ -5,7 +5,8 @@
             "includePath": [
                 "${workspaceFolder}/**",
                 "${vcpkgRoot}/x64-windows/include",
-                "C:/Users/Admin/Desktop/verlet/verletplus/SFML/include"
+                "${workspaceFolder}/SFML/include",
+                "${workspaceFolder}/src"
             ],
             "defines": [
                 "_DEBUG",
