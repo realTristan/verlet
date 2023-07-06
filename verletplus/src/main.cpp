@@ -14,10 +14,7 @@ int main()
     LineCollider line_collider = LineCollider(Vector2D(200, 250), 150, 15, Colors().WHITE, 0.1);
 
     // Create a new list of balls
-    std::vector<VerletBall*> balls = std::vector<VerletBall*> {
-        
-    };
-    // add balls every 0.1 seconds in a thread
+    std::vector<VerletBall*> balls = std::vector<VerletBall*> {};
     std::thread t([&](){
         for (int i = 0; i < 600; i++) {
             std::this_thread::sleep_for(std::chrono::milliseconds(10));
