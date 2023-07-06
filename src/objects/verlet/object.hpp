@@ -13,7 +13,7 @@ public:
     Vector2D prev_position;
     Vector2D acceleration;
     Vector2D velocity;
-    Color color = Colors().WHITE;
+    Color color = WHITE;
     float start_time;
 
     VerletObject(Vector2D position, Color color) {

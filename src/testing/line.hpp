@@ -13,7 +13,7 @@
 #define LINE_START_VECTOR Vector2D(200, 250)
 #define LINE_LENGTH 150.0f
 #define LINE_ANGLE 15.0f
-#define LINE_WIDTH 10.0
+#define LINE_WIDTH 5
 #define LINE_COLOR WHITE
 
 class LineTesting
