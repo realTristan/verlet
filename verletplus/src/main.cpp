@@ -1,6 +1,8 @@
 #include <SFML/Graphics.hpp>
 #include "objects/verlet/ball/ball.hpp"
-#include "objects/verlet/ball/colliders/circle_closed.hpp"
+#include "objects/verlet/ball/colliders/circle_open.hpp"
+#include "objects/verlet/ball/colliders/line.hpp"
+#include <thread>
 
 int main()
 {
@@ -8,14 +10,20 @@ int main()
     sf::RenderWindow window(sf::VideoMode(800, 600), "verlet");
 
     // Create a new list of colliders
-    std::vector<ClosedCircle> colliders = std::vector<ClosedCircle> {
-        ClosedCircle(Vector2D(200, 300), 100, 10, Colors().WHITE, true, true)
-    };
+    OpenCircleCollider circle_collider = OpenCircleCollider(Vector2D(400, 300), 300, 2, Colors().WHITE, false, true);
+    LineCollider line_collider = LineCollider(Vector2D(200, 250), 150, 15, Colors().WHITE, 0.1);
 
     // Create a new list of balls
     std::vector<VerletBall*> balls = std::vector<VerletBall*> {
-        new VerletBall(Vector2D(275, 50), 10, Colors().WHITE)
+        
     };
+    // add balls every 0.1 seconds in a thread
+    std::thread t([&](){
+        for (int i = 0; i < 600; i++) {
+            std::this_thread::sleep_for(std::chrono::milliseconds(10));
+            balls.push_back(new VerletBall(Vector2D(200, 200), 4, Colors().CYAN));
+        }
+    });
 
     // Window Loop
     while (window.isOpen())
@@ -34,12 +42,16 @@ int main()
             ball->update(&window, balls);
         }
 
-        // Draw the colliders
-        for (auto &collider : colliders) {
-            collider.draw(&window);
-            for (auto &ball : balls) {
-                collider.apply(ball);
-            }
+        // Draw the circle collider
+        circle_collider.draw(&window);
+        for (auto &ball : balls) {
+            circle_collider.apply(ball);
+        }
+
+        // Draw the line collider
+        line_collider.draw(&window);
+        for (auto &ball : balls) {
+            line_collider.apply(ball);
         }
 
         // Update the window

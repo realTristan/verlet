@@ -8,18 +8,16 @@
 #ifndef CLOSED_CIRCLE_HPP
 #define CLOSED_CIRCLE_HPP
 
-class ClosedCircle : public CircleCollider
+class ClosedCircleCollider : public CircleCollider
 {
 public:
     int width;
     bool outside_collision = true;
-    bool inside_collision = true;
 
-    ClosedCircle(Vector2D position, float radius, int width, Color color, bool outside_collision, bool inside_collision) : CircleCollider(position, radius, color)
+    ClosedCircleCollider(Vector2D position, float radius, int width, Color color, bool outside_collision) : CircleCollider(position, radius, color)
     {
         this->width = width;
         this->outside_collision = outside_collision;
-        this->inside_collision = inside_collision;
     }
 
     // Draw the Collider
@@ -34,7 +32,7 @@ public:
     // Apply the collider
     void apply(VerletBall *ball)
     {
-        if (!this->outside_collision && !this->inside_collision)
+        if (!this->outside_collision)
         {
             return;
         }
@@ -44,30 +42,14 @@ public:
         float magnitude = dist.magnitude() + 1.0e-9;
 
         // Check if the ball is outside the collider
-        if (this->outside_collision)
+        float rad_sum = ball->radius + this->radius;
+        if (magnitude < rad_sum && magnitude > this->radius)
         {
-            float rad_sum = ball->radius + this->radius;
-            if (magnitude < rad_sum && (!this->inside_collision || magnitude > this->radius))
-            {
-                // Calculate the ball overlap (the amount the balls have overlapped)
-                Vector2D overlap = dist / magnitude;
+            // Calculate the ball overlap (the amount the balls have overlapped)
+            Vector2D overlap = dist / magnitude;
 
-                // Update this balls position (move it to the side)
-                ball->current_position += overlap * 0.5 * (rad_sum - magnitude);
-                return;
-            }
-        }
-
-        // Check if the ball is inside the collider
-        if (this->inside_collision)
-        {
-            float delta = this->radius - ball->radius - this->width;
-            if (magnitude > delta && (!this->outside_collision || magnitude < this->radius))
-            {
-                ball->current_position.set(
-                    this->position.x + dist.x / magnitude * delta,
-                    this->position.y + dist.y / magnitude * delta);
-            }
+            // Update this balls position (move it to the side)
+            ball->current_position += overlap * 0.5 * (rad_sum - magnitude);
         }
     }
 };
