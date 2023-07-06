@@ -39,7 +39,7 @@ def auto_add_balls():
 
 
 # Start threading
-# threading.Thread(target=auto_add_balls).start()
+threading.Thread(target=auto_add_balls).start()
 
 # Game Loop
 while 1:
