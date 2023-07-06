@@ -3,7 +3,7 @@ using System;
 
 namespace testing.verlet
 {
-    class Menu
+    class MenuTesting
     {
 
     }

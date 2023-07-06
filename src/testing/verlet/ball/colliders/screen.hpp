@@ -1,5 +1,5 @@
 #include<iostream>
 
-class Screen
+class ScreenColliderTesting
 {
 };

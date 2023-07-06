@@ -3,7 +3,7 @@ using System;
 
 namespace testing.verlet
 {
-    class Grid
+    class GridTesting
     {
 
     }

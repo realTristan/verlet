@@ -1,5 +1,5 @@
 #include<iostream>
 
-class RectClosed
+class ClosedRectColliderTesting
 {
 };

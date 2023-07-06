@@ -1,7 +1,7 @@
 #include <iostream>
 #include <SFML/Graphics.hpp>
-#include "../../../line.hpp"
-#include "../ball.hpp"
+#include <objects/line.hpp>
+#include <objects/verlet/ball/ball.hpp>
 
 #ifndef LINECOLLIDER_HPP
 #define LINECOLLIDER_HPP

@@ -1,14 +1,14 @@
 #include <iostream>
 #include <SFML/Graphics.hpp>
-#include "objects/verlet/ball/ball.hpp"
-#include "objects/verlet/ball/colliders/circle_closed.hpp"
-#include "../../../events.hpp"
+#include <objects/verlet/ball/ball.hpp>
+#include <objects/verlet/ball/colliders/circle_closed.hpp>
+#include <testing/events.hpp>
 #include <thread>
 
-class CircleClosed
+class ClosedCircleColliderTesting
 {
 public:
-    int start()
+    static int start()
     {
         // Initialize a new window
         sf::RenderWindow window(sf::VideoMode(800, 600), "verlet");
@@ -27,7 +27,7 @@ public:
         // Window Loop
         while (window.isOpen())
         {
-            Events().check_close(&window);
+            Events::check_close(&window);
             window.clear();
 
             // Draw and update the balls

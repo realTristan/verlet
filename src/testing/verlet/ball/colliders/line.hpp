@@ -1,13 +1,14 @@
 #include <SFML/Graphics.hpp>
-#include "objects/verlet/ball/ball.hpp"
-#include "objects/verlet/ball/colliders/circle_open.hpp"
-#include "objects/verlet/ball/colliders/line.hpp"
-#include "../../../events.hpp"
+#include <objects/verlet/ball/ball.hpp>
+#include <objects/verlet/ball/colliders/circle_open.hpp>
+#include <objects/verlet/ball/colliders/line.hpp>
+#include <testing/events.hpp>
 #include <thread>
 
-class Line
+class LineColliderTesting
 {
-    int start()
+public:
+    static int start()
     {
         // Initialize a new window
         sf::RenderWindow window(sf::VideoMode(800, 600), "verlet");
@@ -26,7 +27,7 @@ class Line
         // Window Loop
         while (window.isOpen())
         {
-            Events().check_close(&window);
+            Events::check_close(&window);
             window.clear();
 
             // Draw and update the balls

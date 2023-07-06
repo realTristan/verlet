@@ -1,7 +1,7 @@
 #include <iostream>
 #include <SFML/Graphics.hpp>
-#include "../physics/vector2d.hpp"
-#include "../utils/colors.hpp"
+#include <physics/vector2d.hpp>
+#include <utils/colors.hpp>
 #include <math.h>
 
 #ifndef LINE_HPP

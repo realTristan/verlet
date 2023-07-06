@@ -1,14 +1,15 @@
 #include <iostream>
 #include <SFML/Graphics.hpp>
-#include "objects/verlet/ball/ball.hpp"
-#include "objects/verlet/ball/colliders/circle_open.hpp"
-#include "objects/verlet/ball/colliders/line.hpp"
-#include "../events.hpp"
+#include <objects/verlet/ball/ball.hpp>
+#include <objects/verlet/ball/colliders/circle_open.hpp>
+#include <objects/verlet/ball/colliders/line.hpp>
+#include <testing/events.hpp>
 #include <thread>
 
 class Fluid
 {
-    int start()
+public:
+    static int start()
     {
         // Initialize a new window
         sf::RenderWindow window(sf::VideoMode(800, 600), "verlet");
@@ -19,8 +20,7 @@ class Fluid
 
         // Create a new list of balls
         std::vector<VerletBall *> balls = std::vector<VerletBall *>{};
-        std::thread t([&]()
-                      {
+        std::thread t([&]() {
         for (int i = 0; i < 600; i++) {
             std::this_thread::sleep_for(std::chrono::milliseconds(10));
             balls.push_back(new VerletBall(Vector2D(200, 200), 4, Colors().CYAN));
@@ -29,7 +29,7 @@ class Fluid
         // Window Loop
         while (window.isOpen())
         {
-            Events().check_close(&window);
+            Events::check_close(&window);
             window.clear();
 
             // Draw and update the balls

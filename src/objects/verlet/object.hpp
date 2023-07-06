@@ -1,7 +1,7 @@
 #include <iostream>
-#include "../../physics/vector2d.hpp"
-#include "../../utils/colors.hpp"
-#include "../../utils/time.hpp"
+#include <physics/vector2d.hpp>
+#include <utils/colors.hpp>
+#include <utils/time.hpp>
 
 #ifndef VERLET_OBJECT_HPP
 #define VERLET_OBJECT_HPP

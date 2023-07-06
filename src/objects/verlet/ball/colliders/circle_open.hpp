@@ -1,7 +1,7 @@
 #include <iostream>
 #include <SFML/Graphics.hpp>
-#include "circle_collider.hpp"
-#include "../ball.hpp"
+#include <objects/verlet/ball/colliders/circle_collider.hpp>
+#include <objects/verlet/ball/ball.hpp>
 
 #ifndef OPEN_CIRCLE_HPP
 #define OPEN_CIRCLE_HPP

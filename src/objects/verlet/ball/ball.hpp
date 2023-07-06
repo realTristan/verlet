@@ -1,9 +1,9 @@
 #include <iostream>
 #include <SFML/Graphics.hpp>
-#include "../../../physics/vector2d.hpp"
-#include "../../../physics/constants.hpp"
-#include "../../../utils/colors.hpp"
-#include "../object.hpp"
+#include <physics/vector2d.hpp>
+#include <physics/constants.hpp>
+#include <utils/colors.hpp>
+#include <objects/verlet/object.hpp>
 
 #ifndef VERLET_BALL_HPP
 #define VERLET_BALL_HPP

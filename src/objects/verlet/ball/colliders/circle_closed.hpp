@@ -1,9 +1,9 @@
 #include <iostream>
 #include <SFML/Graphics.hpp>
-#include "../../../../physics/vector2d.hpp"
-#include "../../../../utils/colors.hpp"
-#include "circle_collider.hpp"
-#include "../ball.hpp"
+#include <physics/vector2d.hpp>
+#include <utils/colors.hpp>
+#include <objects/verlet/ball/colliders/circle_collider.hpp>
+#include <objects/verlet/ball/ball.hpp>
 
 #ifndef CLOSED_CIRCLE_HPP
 #define CLOSED_CIRCLE_HPP
