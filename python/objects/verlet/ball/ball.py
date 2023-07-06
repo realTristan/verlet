@@ -1,21 +1,34 @@
 from physics import Vector2D, GRAVITY
 from objects.verlet.object import VerletObject
-from grid import Grid
+#from grid import Grid, Cell
 import pygame
 
 
 # Ball class
 class VerletBall(VerletObject):
     def __init__(
-        self, 
-        position: tuple[float, float], 
+        self,
+        #grid: Grid,
+        position: tuple[float, float],
         radius: float = 10.0, 
-        color: tuple[int, int, int] = (255, 255, 255)
+        color: tuple[int, int, int] = (255, 255, 255),
     ) -> None:
         super(VerletBall, self).__init__(position, color)
         
         # Self variables
         self.radius: float = radius
+    #    cell_index: tuple[int, int] = grid.calculate_cell_index(self.current_position)
+    #    self.cell: Cell = grid.get(*cell_index)
+        
+    #def check_collisions_grid(self, grid: Grid) -> None:
+    #    for ball in self.cell.objects:
+    #        if ball == self:
+    #            continue
+    #        self.handle_collision(ball)
+    #        self.cell.update(grid, ball.cell)
+    #        
+    #        cell_index: tuple[int, int] = grid.calculate_cell_index(self.current_position)
+    #        self.cell = grid.get(*cell_index)
     
     # Draw the object
     def draw(self, screen: pygame.Surface) -> None:
@@ -57,8 +70,7 @@ class VerletBall(VerletObject):
         self.draw(screen)
     
     # Update the ball using a grid
-    def update_grid(self, screen: pygame.Surface, grid: Grid, threads: int = -1):
+    def update_no_collisions(self, screen: pygame.Surface):
         self.accelerate(GRAVITY)
         self.update_position()
-        grid.find_collisions(threads)
         self.draw(screen)
