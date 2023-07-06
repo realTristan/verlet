@@ -4,6 +4,6 @@
 #define CONSTANTS_HPP
 
 // Physics constants
-#define GRAVITY Vector2D(0, 9.8)
+#define GRAVITY Vector2D(0, 9.81)
 
 #endif

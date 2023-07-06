@@ -3,10 +3,15 @@
 #include <objects/verlet/ball/ball.hpp>
 #include <objects/verlet/ball/colliders/circle_closed.hpp>
 #include <testing/events.hpp>
+#include <testing/config.hpp>
 #include <thread>
 
 #ifndef TESTING_VERLET_BALL_HPP
 #define TESTING_VERLET_BALL_HPP
+
+#define VERLET_BALL_VECTOR Vector2D(400, 100)
+#define VERLET_BALL_RADIUS 4
+#define VERLET_BALL_COLOR Colors().CYAN
 
 class VerletBallTesting
 {
@@ -14,14 +19,19 @@ class VerletBallTesting
     static int start()
     {
         // Initialize a new window
-        sf::RenderWindow window(sf::VideoMode(800, 600), "verlet");
+        sf::RenderWindow window(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), WINDOW_TITLE);
 
         // Create a new list of balls
         std::vector<VerletBall *> balls = std::vector<VerletBall *>{};
         std::thread t([&]() {
         for (int i = 0; i < 100; i++) {
             std::this_thread::sleep_for(std::chrono::milliseconds(500));
-            balls.push_back(new VerletBall(Vector2D(200 + i * 10, 200), 4, Colors().CYAN));
+            VerletBall *ball = new VerletBall(
+                VERLET_BALL_VECTOR, 
+                VERLET_BALL_RADIUS, 
+                VERLET_BALL_COLOR
+            );
+            balls.push_back(ball);
         } });
 
         // Window Loop
