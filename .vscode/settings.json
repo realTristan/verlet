@@ -1,4 +1,5 @@
 {
+<<<<<<< HEAD
     "files.associations": {
         "algorithm": "cpp",
         "atomic": "cpp",
@@ -65,4 +66,19 @@
         "thread": "cpp"
     },
     "dotnet.defaultSolution": "csharp\\verlet.sln"
+=======
+  "files.associations": {
+    "__hash_table": "cpp",
+    "__split_buffer": "cpp",
+    "__tree": "cpp",
+    "atomic": "cpp",
+    "ios": "cpp",
+    "map": "cpp",
+    "set": "cpp",
+    "string": "cpp",
+    "system_error": "cpp",
+    "unordered_map": "cpp",
+    "vector": "cpp"
+  }
+>>>>>>> 94fd9c69ebd7c2fcc3e37a7de20772cb25980fa0
 }
