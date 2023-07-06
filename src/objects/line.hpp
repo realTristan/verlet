@@ -9,7 +9,6 @@
 
 class Line
 {
-    // Line variables
 public:
     Vector2D start = Vector2D(0, 0);
     Vector2D end = Vector2D(0, 0);

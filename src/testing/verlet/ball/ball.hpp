@@ -9,6 +9,7 @@
 #ifndef TESTING_VERLET_BALL_HPP
 #define TESTING_VERLET_BALL_HPP
 
+#define VERLET_BALL_COUNT 100
 #define VERLET_BALL_VECTOR Vector2D(400, 100)
 #define VERLET_BALL_RADIUS 10
 #define VERLET_BALL_COLOR Colors().CYAN
@@ -24,7 +25,7 @@ class VerletBallTesting
         // Create a new list of balls
         std::vector<VerletBall *> balls = std::vector<VerletBall *>{};
         std::thread t([&]() {
-        for (int i = 0; i < 100; i++) {
+        for (int i = 0; i < VERLET_BALL_COUNT; i++) {
             std::this_thread::sleep_for(std::chrono::milliseconds(500));
             VerletBall *ball = new VerletBall(
                 VERLET_BALL_VECTOR, 

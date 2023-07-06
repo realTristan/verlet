@@ -15,6 +15,7 @@
 #define LINE_COLLIDER_COLOR Colors().WHITE
 #define LINE_COLLIDER_SLOPE_MULTIPLIER 0.1
 
+#define VERLET_BALL_COUNT 100
 #define VERLET_BALL_VECTOR Vector2D(200, 200)
 #define VERLET_BALL_RADIUS 4
 #define VERLET_BALL_COLOR Colors().CYAN
@@ -40,7 +41,7 @@ public:
         // Create a new list of balls
         std::vector<VerletBall *> balls = std::vector<VerletBall *>{};
         std::thread t([&]() {
-            for (int i = 0; i < 600; i++) {
+            for (int i = 0; i < VERLET_BALL_COUNT; i++) {
                 std::this_thread::sleep_for(std::chrono::milliseconds(10));
                 VerletBall *ball = new VerletBall(
                     VERLET_BALL_VECTOR,
