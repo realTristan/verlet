@@ -1,9 +1,12 @@
 #include <iostream>
 #include <SFML/Graphics.hpp>
-#include "../../../../physics/vector2d.cpp"
-#include "../../../../utils/colors.cpp"
-#include "circle_collider.cpp"
-#include "../ball.cpp"
+#include "../../../../physics/vector2d.hpp"
+#include "../../../../utils/colors.hpp"
+#include "circle_collider.hpp"
+#include "../ball.hpp"
+
+#ifndef CLOSED_CIRCLE_HPP
+#define CLOSED_CIRCLE_HPP
 
 class ClosedCircle : public CircleCollider
 {
@@ -29,7 +32,7 @@ public:
     }
 
     // Apply the collider
-    void apply(Ball *ball)
+    void apply(VerletBall *ball)
     {
         if (!this->outside_collision && !this->inside_collision)
         {
@@ -68,3 +71,5 @@ public:
         }
     }
 };
+
+#endif

@@ -1,17 +1,20 @@
 #include <iostream>
 #include <SFML/Graphics.hpp>
-#include "../../../physics/vector2d.cpp"
-#include "../../../physics/constants.cpp"
-#include "../../../utils/colors.cpp"
-#include "../object.cpp"
+#include "../../../physics/vector2d.hpp"
+#include "../../../physics/constants.hpp"
+#include "../../../utils/colors.hpp"
+#include "../object.hpp"
 
-class Ball : public VerletObject
+#ifndef VERLET_BALL_HPP
+#define VERLET_BALL_HPP
+
+class VerletBall : public VerletObject
 {
 public:
     float radius;
 
     // Initialize the verlet object
-    Ball(Vector2D position, float radius, Color color) : VerletObject(position, color) {
+    VerletBall(Vector2D position, float radius, Color color) : VerletObject(position, color) {
         this->radius = radius;
     }
 
@@ -24,7 +27,7 @@ public:
     }
 
     // Handle collisions with other objects
-    void handle_collision(Ball *other_ball) {
+    void handle_collision(VerletBall *other_ball) {
         // Calculate the distance between the balls
         Vector2D dist = this->current_position - other_ball->current_position;
 
@@ -44,8 +47,8 @@ public:
     }
 
     // Check if the ball is colliding with other balls
-    void collisions(std::vector<Ball*> balls) {
-        for (Ball *other_ball : balls) {
+    void collisions(std::vector<VerletBall*> balls) {
+        for (VerletBall *other_ball : balls) {
             if (this == other_ball) {
                 continue;
             }
@@ -56,7 +59,7 @@ public:
     }
 
     // Update the ball
-    void update(sf::RenderWindow *window, std::vector<Ball*> balls = {}) {
+    void update(sf::RenderWindow *window, std::vector<VerletBall*> balls = {}) {
         this->accelerate(GRAVITY);
         this->update_position();
         this->collisions(balls);
@@ -71,3 +74,5 @@ public:
         this->draw(window);
     }*/
 };
+
+#endif

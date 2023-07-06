@@ -1,6 +1,9 @@
 #include <iostream>
 #include <math.h>
 
+#ifndef VECTOR3D_HPP
+#define VECTOR3D_HPP
+
 class Vector3D
 {
     public:
@@ -131,3 +134,5 @@ class Vector3D
             return *this;
         }
 };
+
+#endif

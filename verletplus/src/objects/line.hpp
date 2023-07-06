@@ -1,8 +1,11 @@
 #include <iostream>
 #include <SFML/Graphics.hpp>
-#include "../physics/vector2d.cpp"
-#include "../utils/colors.cpp"
+#include "../physics/vector2d.hpp"
+#include "../utils/colors.hpp"
 #include <math.h>
+
+#ifndef LINE_HPP
+#define LINE_HPP
 
 class Line
 {
@@ -33,3 +36,5 @@ class Line
         window->draw(line, 2, sf::Lines);
     }
 };
+
+#endif

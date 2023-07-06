@@ -1,6 +1,9 @@
 #include <iostream>
 #include <math.h>
 
+#ifndef VECTOR2D_HPP
+#define VECTOR2D_HPP
+
 class Vector2D
 {
     public:
@@ -116,3 +119,5 @@ class Vector2D
             return *this;
         }
 };
+
+#endif

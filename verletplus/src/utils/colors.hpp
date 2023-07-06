@@ -1,5 +1,8 @@
 #include <iostream>
 
+#ifndef COLORS_HPP
+#define COLORS_HPP
+
 class Color
 {
 public:
@@ -44,3 +47,5 @@ public:
         return colors[rand() % 11];
     }
 };
+
+#endif

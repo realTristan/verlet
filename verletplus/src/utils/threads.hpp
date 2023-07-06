@@ -1,5 +1,8 @@
 #include <iostream>
 
+#ifndef THREAD_HPP
+#define THREAD_HPP
+
 class Thread
 {
 public:
@@ -14,3 +17,5 @@ public:
 
     virtual void run() = 0;
 };
+
+#endif

@@ -1,7 +1,10 @@
 #include <iostream>
-#include "../../physics/vector2d.cpp"
-#include "../../utils/colors.cpp"
-#include "../../utils/time.cpp"
+#include "../../physics/vector2d.hpp"
+#include "../../utils/colors.hpp"
+#include "../../utils/time.hpp"
+
+#ifndef VERLET_OBJECT_HPP
+#define VERLET_OBJECT_HPP
 
 class VerletObject
 {
@@ -19,7 +22,7 @@ public:
         this->acceleration = Vector2D();
         this->velocity = Vector2D();
         this->color = color;
-        this->start_time = Time().seconds();
+        this->start_time = Time().now();
     }
 
     // Set the object's color
@@ -45,8 +48,8 @@ public:
     // Update the object's position
     void update_position() {
         // Get the time difference (delta time)
-        float dt = Time().seconds() - this->start_time;
-
+        float dt = Time().now() - this->start_time;
+        
         // Update the object's position
         this->velocity = this->calculate_velocity();
         this->prev_position = this->current_position.copy();
@@ -54,6 +57,8 @@ public:
 
         // Reset the acceleration and start time
         this->acceleration.zero();
-        this->start_time = Time().seconds();
+        this->start_time = Time().now();
     }
 };
+
+#endif

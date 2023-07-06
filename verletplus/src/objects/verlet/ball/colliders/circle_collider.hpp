@@ -1,6 +1,9 @@
 #include <iostream>
-#include "../../../../physics/vector2d.cpp"
-#include "../../../../utils/colors.cpp"
+#include "../../../../physics/vector2d.hpp"
+#include "../../../../utils/colors.hpp"
+
+#ifndef CIRCLE_COLLIDER_HPP
+#define CIRCLE_COLLIDER_HPP
 
 class CircleCollider
 {
@@ -16,3 +19,5 @@ public:
         this->color = color;
     }
 };
+
+#endif
