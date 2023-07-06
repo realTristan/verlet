@@ -10,7 +10,7 @@ int main()
     //VerletBallTesting::start();
     //ClosedCircleColliderTesting::start();
     //OpenCircleColliderTesting::start();
-    //LineColliderTesting::start();
-    LineTesting::start();
+    LineColliderTesting::start();
+    //LineTesting::start();
     return 0;
 }

@@ -49,8 +49,8 @@ public:
         for (int i = 0; i < this->width; i++)
         {
             sf::Vertex line[] = {
-                sf::Vertex(sf::Vector2f(this->start.x, this->start.y + i)),
-                sf::Vertex(sf::Vector2f(this->end.x, this->end.y + i))};
+                sf::Vertex(sf::Vector2f(this->start.x, this->start.y - i)),
+                sf::Vertex(sf::Vector2f(this->end.x, this->end.y - i))};
             for (int i = 0; i < 2; i++)
             {
                 line[i].color = sf::Color(this->color.r, this->color.g, this->color.b);
