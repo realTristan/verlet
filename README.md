@@ -2,6 +2,11 @@
 
 Verlet is a physics engine built from scratch. It currently has Python (pygame) and C++ (SFML) implementations. The next implementation is expected to be C#. I'm doing this all for learning purposes.
 
+### SFML
+Verlet uses SFML v2.6.0
+- https://www.sfml-dev.org/files/SFML-2.6.0-windows-gcc-13.1.0-mingw-64-bit.zip
+- https://github.com/brechtsanders/winlibs_mingw/releases/download/13.1.0-16.0.5-11.0.0-msvcrt-r5/winlibs-x86_64-posix-seh-gcc-13.1.0-mingw-w64msvcrt-11.0.0-r5.7z
+
 <img width="350" height="300" alt="Screenshot 2023-07-02 at 6 16 56 PM" src="https://github.com/realTristan/pyverlet/assets/75189508/1b873a68-162c-46ef-967f-6f6d1c39c3c1">
 <img width="430" height="300" alt="Screenshot 2023-07-01 at 8 13 59 PM" src="https://github.com/realTristan/pyverlet/assets/75189508/692cd07b-5900-4296-ba5d-9f71fff5aeec">
 <img width="782" alt="Screenshot 2023-07-03 at 1 25 23 PM" src="https://github.com/realTristan/pyverlet/assets/75189508/ff8fefe5-b300-4802-8538-9e714525e38c">
