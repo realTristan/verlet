@@ -3,6 +3,7 @@
 #include <testing/verlet/ball/colliders/circle_closed.hpp>
 #include <testing/verlet/ball/colliders/circle_open.hpp>
 #include <testing/verlet/ball/colliders/line.hpp>
+#include <testing/verlet/fluid.hpp>
 #include <testing/line.hpp>
 
 int main()
@@ -10,7 +11,8 @@ int main()
     //VerletBallTesting::start();
     //ClosedCircleColliderTesting::start();
     //OpenCircleColliderTesting::start();
-    LineColliderTesting::start();
+    //LineColliderTesting::start();
     //LineTesting::start();
+    FluidTesting::start();
     return 0;
 }
