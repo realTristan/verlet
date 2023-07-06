@@ -10,16 +10,29 @@ class Cell():
 
     # Update the cell objects
     def update(self, grid, other_cell: 'Cell') -> None:
-        for obj_1 in self.objects:
-            i = np.where(self.objects == obj_1)
-            self.objects = np.delete(self.objects, i)
-            grid.put(obj_1)
-
-        for obj_2 in other_cell.objects:
-            i = np.where(other_cell.objects == obj_2)
-            other_cell.objects = np.delete(other_cell.objects, i)
-            grid.put(obj_2)
-
+        tot_popped: int = 0
+        for i in range(len(self.objects):
+            index: int = i + tot_popped
+            obj: Any = self.objects[index]
+            
+            prev_len: int = len(self.objects)
+            self.objects = np.delete(self.objects, index)
+            if len(self.objects) != prev_len:
+                tot_popped += 1
+                grid.put(obj)
+        
+        tot_popped = 0     
+        for i in range(len(other_cell.objects)):
+            index: int = i + tot_popped
+            obj: Any = other_cell.objects[index]
+            
+            prev_len: int = len(other_cell.objects)
+            other_cell.objects = np.delete(other_cell.objects, index)
+            if len(other_cell.objects) != prev_len:
+                tot_popped += 1
+                grid.put(obj)
+                
+    
     # Check for collisions
     def check_collisions(self, grid, other_cell: 'Cell') -> None:
         # Iterate over all the objects in the current cell and the other cell
