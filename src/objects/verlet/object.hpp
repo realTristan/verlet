@@ -37,7 +37,7 @@ public:
 
     // Perform the verlet integration to calculate the displacement
     Vector2D calculate_displacement(float dt) {
-        return this->current_position + this->velocity + this->acceleration * dt * dt;
+        return this->current_position + this->velocity + this->acceleration * dt;
     }
 
     // Accelerate the object

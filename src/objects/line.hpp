@@ -22,12 +22,12 @@ public:
     Line(Vector2D start, float length, float angle, Color color)
     {
         // PI Constant
-        const float M_PI = 3.14159265358979323846;
+        const float PI = 3.14159265358979323846;
 
         // Set the variables
         this->start = start;
         this->length = length;
-        this->angle = angle * M_PI / 180;
+        this->angle = angle * PI / 180;
         this->color = color;
         this->end = this->calculate_end();
     }
