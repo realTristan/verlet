@@ -1,5 +1,0 @@
-#include<iostream>
-
-class Screen
-{
-};

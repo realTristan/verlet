@@ -3,7 +3,7 @@ using System;
 
 namespace objects.verlet.ball.colliders
 {
-    class OpenRect
+    class OpenRectCollider
     {
 
     }
