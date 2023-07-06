@@ -1,6 +1,9 @@
 #include <iostream>
 #include<SFML/Graphics.hpp>
 
+#ifndef TESTING_EVENTS_HPP
+#define TESTING_EVENTS_HPP
+
 class Events
 {
 public:
@@ -14,3 +17,5 @@ public:
         }
     }
 };
+
+#endif

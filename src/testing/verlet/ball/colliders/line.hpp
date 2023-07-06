@@ -5,6 +5,9 @@
 #include <testing/events.hpp>
 #include <thread>
 
+#ifndef TESTING_VERLET_BALL_COLLIDERS_LINE_HPP
+#define TESTING_VERLET_BALL_COLLIDERS_LINE_HPP
+
 class LineColliderTesting
 {
 public:
@@ -51,3 +54,5 @@ public:
         return 0;
     }
 };
+
+#endif // TESTING_VERLET_BALL_COLLIDERS_LINE_HPP

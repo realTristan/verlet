@@ -5,6 +5,9 @@
 #include <testing/events.hpp>
 #include <thread>
 
+#ifndef TESTING_VERLET_BALL_COLLIDERS_CIRCLE_OPEN_HPP
+#define TESTING_VERLET_BALL_COLLIDERS_CIRCLE_OPEN_HPP
+
 class OpenCircleColliderTesting
 {
 public:
@@ -50,3 +53,5 @@ public:
         return 0;
     }
 };
+
+#endif // TESTING_VERLET_BALL_COLLIDERS_CIRCLE_OPEN_HPP

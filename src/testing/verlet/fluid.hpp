@@ -6,6 +6,9 @@
 #include <testing/events.hpp>
 #include <thread>
 
+#ifndef TESTING_VERLET_FLUID_HPP
+#define TESTING_VERLET_FLUID_HPP
+
 class Fluid
 {
 public:
@@ -60,3 +63,5 @@ public:
         return 0;
     }
 };
+
+#endif // TESTING_VERLET_FLUID_HPP

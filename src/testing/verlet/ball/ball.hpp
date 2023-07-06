@@ -5,6 +5,9 @@
 #include <testing/events.hpp>
 #include <thread>
 
+#ifndef TESTING_VERLET_BALL_HPP
+#define TESTING_VERLET_BALL_HPP
+
 class VerletBallTesting
 {
   public:
@@ -16,9 +19,9 @@ class VerletBallTesting
         // Create a new list of balls
         std::vector<VerletBall *> balls = std::vector<VerletBall *>{};
         std::thread t([&]() {
-        for (int i = 0; i < 600; i++) {
-            std::this_thread::sleep_for(std::chrono::milliseconds(10));
-            balls.push_back(new VerletBall(Vector2D(200, 200), 4, Colors().CYAN));
+        for (int i = 0; i < 100; i++) {
+            std::this_thread::sleep_for(std::chrono::milliseconds(500));
+            balls.push_back(new VerletBall(Vector2D(200 + i * 10, 200), 4, Colors().CYAN));
         } });
 
         // Window Loop
@@ -40,3 +43,5 @@ class VerletBallTesting
         return 0;
     }
 };
+
+#endif // TESTING_VERLET_BALL_HPP
