@@ -10,9 +10,9 @@ class CircleCollider
 public:
     Vector2D position;
     float radius;
-    Color color = Colors().WHITE;
+    Color color = WHITE;
 
-    CircleCollider(Vector2D position, float radius, Color color)
+    CircleCollider(Vector2D position, float radius, Color color = WHITE)
     {
         this->position = position;
         this->radius = radius;

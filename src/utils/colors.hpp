@@ -3,6 +3,18 @@
 #ifndef COLORS_HPP
 #define COLORS_HPP
 
+#define RED Color(255, 0, 0)
+#define GREEN Color(0, 255, 0)
+#define BLUE Color(0, 0, 255)
+#define WHITE Color(255, 255, 255)
+#define BLACK Color(0, 0, 0)
+#define YELLOW Color(255, 255, 0)
+#define PURPLE Color(255, 0, 255)
+#define CYAN Color(0, 255, 255)
+#define ORANGE Color(255, 165, 0)
+#define PINK Color(255, 192, 203)
+#define MAGENTA Color(255, 0, 255)
+
 class Color
 {
 public:
@@ -21,30 +33,17 @@ public:
 class Colors
 {
 public:
-    // Constant colors
-    Color RED = Color(255, 0, 0);
-    Color GREEN = Color(0, 255, 0);
-    Color BLUE = Color(0, 0, 255);
-    Color YELLOW = Color(255, 255, 0);
-    Color CYAN = Color(0, 255, 255);
-    Color MAGENTA = Color(255, 0, 255);
-    Color WHITE = Color(255, 255, 255);
-    Color BLACK = Color(0, 0, 0);
-    Color ORANGE = Color(255, 165, 0);
-    Color PURPLE = Color(128, 0, 128);
-    Color PINK = Color(255, 192, 203);
-
     // Generate a random rgb color
-    std::tuple<int, int, int> random_rgb()
+    static std::tuple<int, int, int> random_rgb()
     {
         return std::make_tuple(rand() % 255, rand() % 255, rand() % 255);
     }
 
     // Generate a random color from the constant colors
-    Color random_color()
+    static Color random_color()
     {
-        Color colors[11] = {RED, GREEN, BLUE, YELLOW, CYAN, MAGENTA, WHITE, BLACK, ORANGE, PURPLE, PINK};
-        return colors[rand() % 11];
+        Color colors[10] = {RED, GREEN, BLUE, YELLOW, CYAN, MAGENTA, WHITE, ORANGE, PURPLE, PINK};
+        return colors[rand() % 10];
     }
 };
 

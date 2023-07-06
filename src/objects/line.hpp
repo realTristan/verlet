@@ -15,10 +15,15 @@ public:
     float length = 0;
     float angle = 0;
     int width = 1;
-    Color color = Colors().WHITE;
+    Color color = WHITE;
 
     // Constructor
-    Line(Vector2D start, float length, float angle, Color color)
+    Line(
+        Vector2D start,
+        float length,
+        float angle,
+        int width = 1,
+        Color color = WHITE)
     {
         // PI Constant
         const float PI = 3.14159265358979323846;
@@ -27,6 +32,7 @@ public:
         this->start = start;
         this->length = length;
         this->angle = angle * PI / 180;
+        this->width = width;
         this->color = color;
         this->end = this->calculate_end();
     }
@@ -40,14 +46,17 @@ public:
     // Draw the line
     void draw(sf::RenderWindow *window)
     {
-        sf::Vertex line[] = {
-            sf::Vertex(sf::Vector2f(this->start.x, this->start.y)),
-            sf::Vertex(sf::Vector2f(this->end.x, this->end.y))};
-        for (int i = 0; i < 2; i++)
+        for (int i = 0; i < this->width; i++)
         {
-            line[i].color = sf::Color(this->color.r, this->color.g, this->color.b);
+            sf::Vertex line[] = {
+                sf::Vertex(sf::Vector2f(this->start.x, this->start.y + i)),
+                sf::Vertex(sf::Vector2f(this->end.x, this->end.y + i))};
+            for (int i = 0; i < 2; i++)
+            {
+                line[i].color = sf::Color(this->color.r, this->color.g, this->color.b);
+            }
+            window->draw(line, 2, sf::Lines);
         }
-        window->draw(line, 2, sf::Lines);
     }
 };
 

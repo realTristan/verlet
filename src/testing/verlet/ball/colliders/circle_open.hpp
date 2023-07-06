@@ -11,14 +11,14 @@
 #define CIRCLE_COLLIDER_VECTOR Vector2D(400, 300)
 #define CIRCLE_COLLIDER_RADIUS 300
 #define CIRCLE_COLLIDER_THICKNESS 2
-#define CIRCLE_COLLIDER_COLOR Colors().WHITE
+#define CIRCLE_COLLIDER_COLOR WHITE
 #define CIRCLE_COLLIDER_INSIDE_COLLISIONS false
 #define CIRCLE_COLLIDER_OUTSIDE_COLLISIONS true
 
 #define VERLET_BALL_COUNT 100
 #define VERLET_BALL_VECTOR Vector2D(200, 200)
 #define VERLET_BALL_RADIUS 4
-#define VERLET_BALL_COLOR Colors().CYAN
+#define VERLET_BALL_COLOR CYAN
 
 class OpenCircleColliderTesting
 {
@@ -44,7 +44,7 @@ public:
                 std::this_thread::sleep_for(std::chrono::milliseconds(10));
                 VerletBall *ball = new VerletBall(
                     VERLET_BALL_VECTOR, 
-                    VERLET_BALL_RADIUS, 
+                    VERLET_BALL_RADIUS,
                     VERLET_BALL_COLOR
                 );
                 balls.push_back(ball);

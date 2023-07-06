@@ -13,7 +13,13 @@ public:
     bool inside_collision;
     int width;
 
-    OpenCircleCollider(Vector2D position, float radius, int width, Color color, bool outside_collision, bool inside_collision) : CircleCollider(position, radius, color)
+    OpenCircleCollider(
+        Vector2D position,
+        float radius,
+        int width = 1,
+        Color color = WHITE,
+        bool outside_collision = true,
+        bool inside_collision = true) : CircleCollider(position, radius, color)
     {
         this->outside_collision = outside_collision;
         this->inside_collision = inside_collision;

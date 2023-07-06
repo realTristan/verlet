@@ -12,7 +12,7 @@
 #define VERLET_BALL_COUNT 100
 #define VERLET_BALL_VECTOR Vector2D(400, 100)
 #define VERLET_BALL_RADIUS 10
-#define VERLET_BALL_COLOR Colors().CYAN
+#define VERLET_BALL_COLOR CYAN
 
 class VerletBallTesting
 {

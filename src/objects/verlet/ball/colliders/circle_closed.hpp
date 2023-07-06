@@ -14,7 +14,12 @@ public:
     int width;
     bool outside_collision = true;
 
-    ClosedCircleCollider(Vector2D position, float radius, int width, Color color, bool outside_collision) : CircleCollider(position, radius, color)
+    ClosedCircleCollider(
+        Vector2D position,
+        float radius,
+        int width = 1,
+        Color color = WHITE,
+        bool outside_collision = true) : CircleCollider(position, radius, color)
     {
         this->width = width;
         this->outside_collision = outside_collision;

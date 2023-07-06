@@ -14,7 +14,7 @@ public:
     float radius;
 
     // Initialize the verlet object
-    VerletBall(Vector2D position, float radius, Color color) : VerletObject(position, color) {
+    VerletBall(Vector2D position, float radius, Color color = WHITE) : VerletObject(position, color) {
         this->radius = radius;
     }
 
@@ -65,14 +65,6 @@ public:
         this->collisions(balls);
         this->draw(window);
     }
-
-    /* Update the ball using a grid
-    void update_grid(sf::RenderWindow *window, Grid *grid, int threads = -1) {
-        this->accelerate(GRAVITY);
-        this->update_position();
-        grid->find_collisions(threads);
-        this->draw(window);
-    }*/
 };
 
 #endif

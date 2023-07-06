@@ -10,7 +10,13 @@ class LineCollider : public Line
 {
 public:
     float slope_multiplier;
-    LineCollider(Vector2D start, float length, float angle, Color color, float slope_multiplier) : Line(start, length, angle, color)
+    LineCollider(
+        Vector2D start,
+        float length,
+        float angle,
+        int width = 1,
+        Color color = WHITE,
+        float slope_multiplier = 1.0) : Line(start, length, angle, width, color)
     {
         this->slope_multiplier = slope_multiplier;
     }
