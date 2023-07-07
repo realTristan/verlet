@@ -33,15 +33,15 @@ public:
     }
 
     // Calculate the object's velocity
-    Vector2D calculate_velocity(float dt)
+    Vector2D calculate_velocity()
     {
-        return (this->current_position - this->prev_position) / dt; // previously: (this->current_position - this->prev_position)
+        return this->current_position - this->prev_position;
     }
 
     // Perform the verlet integration to calculate the displacement
     Vector2D calculate_displacement(float dt)
     {
-        return this->current_position + /*this->velocity +*/ this->acceleration * dt * dt;
+        return this->current_position + this->velocity + this->acceleration * dt * dt;
     }
 
     // Accelerate the object
@@ -57,7 +57,7 @@ public:
         float dt = Time().now() - this->start_time;
 
         // Update the object's position
-        this->velocity = this->calculate_velocity(dt);
+        this->velocity = this->calculate_velocity();
         this->prev_position = this->current_position.copy();
         this->current_position = this->calculate_displacement(dt);
 
