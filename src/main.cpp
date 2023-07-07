@@ -14,7 +14,7 @@ int main()
     //OpenCircleColliderTesting::start();
     //LineColliderTesting::start();
     //LineTesting::start();
-    FluidTesting::start();
-    //GridTesting::start();
+    //FluidTesting::start();
+    GridTesting::start();
     return 0;
 }

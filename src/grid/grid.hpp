@@ -1,8 +1,8 @@
 #include <iostream>
 #include <vector>
-#include <grid/cell.hpp>
 #include <physics/vector2d.hpp>
 #include <objects/verlet/ball/ball.hpp>
+#include "cell.hpp"
 
 #ifndef VERLET_GRID_HPP
 #define VERLET_GRID_HPP
@@ -13,15 +13,24 @@ public:
     int cell_size;
     int width;
     int height;
-    void reset();
 
-    std::vector<std::vector<Cell>> grid;
+    std::vector<std::vector<Cell*>> grid;
     Grid(int width, int height, int cell_size = 100)
     {
         this->cell_size = cell_size;
         this->width = width / this->cell_size;
         this->height = height / this->cell_size;
-        this->reset();
+        
+        // Fill the grid with empty cells
+        for (int i = 0; i < this->height; i++)
+        {
+            std::vector<Cell*> row;
+            for (int j = 0; j < this->width; j++)
+            {
+                row.push_back(new Cell());
+            }
+            this->grid.push_back(row);
+        }
     }
 
     // Reset the grid
@@ -29,12 +38,12 @@ public:
     {
         for (int i = 0; i < this->height; i++)
         {
-            std::vector<Cell> row;
+            std::vector<Cell*> row;
             for (int j = 0; j < this->width; j++)
             {
-                row.push_back(Cell());
+                row.push_back(new Cell());
             }
-            this->grid[i] = row;
+            this->grid.push_back(row);
         }
     }
 
@@ -55,13 +64,13 @@ public:
     }
 
     // Get a cell from the grid
-    Cell *get(int x, int y)
+    Cell* get(int x, int y)
     {
         if (x >= this->width || x < 0 || y >= this->height || y < 0)
         {
             return &Cell();
         }
-        return &this->grid[y][x];
+        return this->grid[y][x];
     }
 
     // Get the cell index from a position
@@ -104,19 +113,19 @@ public:
             for (int y = 0; y < this->height; y++)
             {
                 // Get the current cell
-                Cell *current_cell = this->get(x, y);
+                Cell* current_cell = this->get(x, y);
                 if (current_cell->objects.size() == 0)
                 {
                     continue;
                 }
 
                 // Check all the cells around the current cell
-                for (int dx = x - 1; dx < x + 2; dx++)
+                for (int dx = x - 1; dx <= x + 1; dx++)
                 {
-                    for (int dy = y - 1; dy < y + 2; dy++)
+                    for (int dy = y - 1; dy <= y + 1; dy++)
                     {
                         // Get the cell
-                        Cell *other_cell = this->get(dx, dy);
+                        Cell* other_cell = this->get(dx, dy);
                         if (other_cell->objects.size() == 0)
                         {
                             continue;

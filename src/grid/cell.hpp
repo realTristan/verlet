@@ -1,5 +1,6 @@
 #include <iostream>
 #include <objects/verlet/ball/ball.hpp>
+#include "grid.hpp"
 
 #ifndef VERLET_GRID_CELL_HPP
 #define VERLET_GRID_CELL_HPP
