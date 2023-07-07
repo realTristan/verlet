@@ -1,4 +1,4 @@
-#include<iostream>
+#include <iostream>
 #include <SFML/Graphics.hpp>
 #include <objects/verlet/ball/ball.hpp>
 #include <objects/verlet/ball/colliders/circle_closed.hpp>
@@ -16,7 +16,7 @@
 
 class VerletBallTesting
 {
-  public:
+public:
     static int start()
     {
         // Initialize a new window
@@ -25,15 +25,16 @@ class VerletBallTesting
         // Create a new list of balls
         std::vector<VerletBall *> balls = std::vector<VerletBall *>{};
         std::thread t([&]() {
-        for (int i = 0; i < VERLET_BALL_COUNT; i++) {
-            std::this_thread::sleep_for(std::chrono::milliseconds(500));
-            VerletBall *ball = new VerletBall(
-                VERLET_BALL_VECTOR, 
-                VERLET_BALL_RADIUS, 
-                VERLET_BALL_COLOR
-            );
-            balls.push_back(ball);
-        } });
+            for (int i = 0; i < VERLET_BALL_COUNT; i++) {
+                std::this_thread::sleep_for(std::chrono::milliseconds(500));
+                VerletBall *ball = new VerletBall(
+                    VERLET_BALL_VECTOR, 
+                    VERLET_BALL_RADIUS, 
+                    VERLET_BALL_COLOR
+                );
+                balls.push_back(ball);
+            } 
+        });
 
         // Window Loop
         while (window.isOpen())

@@ -14,12 +14,14 @@ public:
     float radius;
 
     // Initialize the verlet object
-    VerletBall(Vector2D position, float radius, Color color = WHITE) : VerletObject(position, color) {
+    VerletBall(Vector2D position, float radius, Color color = WHITE) : VerletObject(position, color)
+    {
         this->radius = radius;
     }
 
     // Draw the object
-    void draw(sf::RenderWindow *window) {
+    void draw(sf::RenderWindow *window)
+    {
         sf::CircleShape circle(this->radius);
         circle.setPosition(this->current_position.x, this->current_position.y);
         circle.setFillColor(sf::Color(this->color.r, this->color.g, this->color.b));
@@ -27,14 +29,16 @@ public:
     }
 
     // Handle collisions with other objects
-    void handle_collision(VerletBall *other_ball) {
+    void handle_collision(VerletBall *other_ball)
+    {
         // Calculate the distance between the balls
         Vector2D dist = this->current_position - other_ball->current_position;
 
         // the vector magnitude of the ball
         float magnitude = dist.magnitude() + 1.0e-9;
         float rad_sum = this->radius + other_ball->radius;
-        if (magnitude < rad_sum) {
+        if (magnitude < rad_sum)
+        {
             // Calculate the ball overlap (the amount the balls have overlapped)
             Vector2D overlap = dist / magnitude;
 
@@ -47,9 +51,12 @@ public:
     }
 
     // Check if the ball is colliding with other balls
-    void collisions(std::vector<VerletBall*> balls) {
-        for (VerletBall *other_ball : balls) {
-            if (this == other_ball) {
+    void collisions(std::vector<VerletBall *> balls)
+    {
+        for (VerletBall *other_ball : balls)
+        {
+            if (this == other_ball)
+            {
                 continue;
             }
 
@@ -59,7 +66,8 @@ public:
     }
 
     // Update the ball
-    void update(sf::RenderWindow *window, std::vector<VerletBall*> balls = {}) {
+    void update(sf::RenderWindow *window, std::vector<VerletBall *> balls = {})
+    {
         this->accelerate(GRAVITY);
         this->update_position();
         this->collisions(balls);
@@ -67,7 +75,8 @@ public:
     }
 
     // Update without checking for collisions
-    void update_no_collisions(sf::RenderWindow *window) {
+    void update_no_collisions(sf::RenderWindow *window)
+    {
         this->accelerate(GRAVITY);
         this->update_position();
         this->draw(window);

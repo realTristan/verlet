@@ -1,4 +1,4 @@
-#include<iostream>
+#include <iostream>
 #include <SFML/Graphics.hpp>
 #include <objects/verlet/ball/ball.hpp>
 #include <testing/config.hpp>

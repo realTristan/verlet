@@ -11,10 +11,10 @@ int main()
 {
     //VerletBallTesting::start();
     //ClosedCircleColliderTesting::start();
-    //OpenCircleColliderTesting::start();
+    OpenCircleColliderTesting::start();
     //LineColliderTesting::start();
     //LineTesting::start();
     //FluidTesting::start();
-    GridTesting::start();
+    //GridTesting::start();
     return 0;
 }
