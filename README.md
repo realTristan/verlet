@@ -1,4 +1,4 @@
-# verlet ![Stars](https://img.shields.io/github/stars/realTristan/pyverlet?color=brightgreen) ![Watchers](https://img.shields.io/github/watchers/realTristan/pyverlet?label=Watchers)
+# verlet ![Stars](https://img.shields.io/github/stars/realTristan/verlet?color=brightgreen) ![Watchers](https://img.shields.io/github/watchers/realTristan/verlet?label=Watchers)
 
 Verlet is a physics engine built from scratch. It currently has Python (pygame) and C++ (SFML) implementations. The Python implementation can be found on my research github account. (Simpson Computer Technologies Research)
 
