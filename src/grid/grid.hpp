@@ -6,14 +6,14 @@
 #ifndef VERLET_GRID_HPP
 #define VERLET_GRID_HPP
 
-// Cell type
-typedef std::vector<VerletBall *> Cell;
-
+// A grid for the verlet objects
+template <typename T>
 class Grid
 {
 public:
     int width;
     int height;
+    typedef std::vector<T *> Cell;
 
     std::vector<Cell *> grid;
     Grid(int width, int height)

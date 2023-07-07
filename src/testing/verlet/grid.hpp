@@ -69,7 +69,7 @@ public:
         });
 
         // Initialize a new grid
-        Grid* grid = new Grid(WINDOW_WIDTH, WINDOW_HEIGHT);
+        Grid<VerletBall>* grid = new Grid<VerletBall>(WINDOW_WIDTH, WINDOW_HEIGHT);
 
         // Window Loop
         while (window.isOpen())
