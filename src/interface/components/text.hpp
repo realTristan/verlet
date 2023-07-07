@@ -1,5 +1,10 @@
 #include <iostream>
 
+#ifndef INTERFACE_COMPONENTS_TEXT_HPP
+#define INTERFACE_COMPONENTS_TEXT_HPP
+
 class Text
 {
 };
+
+#endif // INTERFACE_COMPONENTS_TEXT_HPP

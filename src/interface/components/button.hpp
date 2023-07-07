@@ -1,5 +1,10 @@
 #include <iostream>
 
+#ifndef INTERFACE_COMPONENTS_BUTTON_HPP
+#define INTERFACE_COMPONENTS_BUTTON_HPP
+
 class Button
 {
 };
+
+#endif // INTERFACE_COMPONENTS_BUTTON_HPP

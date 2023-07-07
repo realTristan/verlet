@@ -65,6 +65,13 @@ public:
         this->collisions(balls);
         this->draw(window);
     }
+
+    // Update without checking for collisions
+    void update_no_collisions(sf::RenderWindow *window) {
+        this->accelerate(GRAVITY);
+        this->update_position();
+        this->draw(window);
+    }
 };
 
 #endif
