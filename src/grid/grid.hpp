@@ -2,100 +2,80 @@
 #include <vector>
 #include <physics/vector2d.hpp>
 #include <objects/verlet/ball/ball.hpp>
-#include "cell.hpp"
 
 #ifndef VERLET_GRID_HPP
 #define VERLET_GRID_HPP
 
+// Cell type
+typedef std::vector<VerletBall *> Cell;
+
 class Grid
 {
 public:
-    int cell_size;
     int width;
     int height;
 
-    std::vector<std::vector<Cell*>> grid;
-    Grid(int width, int height, int cell_size = 100)
+    std::vector<Cell *> grid;
+    Grid(int width, int height)
     {
-        this->cell_size = cell_size;
-        this->width = width / this->cell_size;
-        this->height = height / this->cell_size;
-        
-        // Fill the grid with empty cells
-        for (int i = 0; i < this->height; i++)
-        {
-            std::vector<Cell*> row;
-            for (int j = 0; j < this->width; j++)
-            {
-                row.push_back(new Cell());
-            }
-            this->grid.push_back(row);
-        }
+        this->width = width;
+        this->height = height;
+        this->grid.resize(this->height * this->width);
     }
 
     // Reset the grid
     void reset()
     {
-        for (int i = 0; i < this->height; i++)
-        {
-            std::vector<Cell*> row;
-            for (int j = 0; j < this->width; j++)
-            {
-                row.push_back(new Cell());
-            }
-            this->grid.push_back(row);
-        }
+        this->grid.clear();
+        this->grid.resize(this->height * this->width);
     }
 
     // Deprecate an object from the grid
-    void deprecate(VerletBall obj)
+    void deprecate(VerletBall *obj)
     {
-        // Getting the cell index
-        std::tuple<int, int> index = this->calculate_cell_index(obj.current_position);
-        int x = std::get<0>(index);
-        int y = std::get<1>(index);
-
         // Removing the object from the cell
+        int x = obj->current_position.x;
+        int y = obj->current_position.y;
         Cell *cell = this->get(x, y);
-        cell->objects.erase(
-            std::remove(
-                cell->objects.begin(), cell->objects.end(), obj),
-            cell->objects.end());
+        if (cell != nullptr)
+        {
+            for (int i = 0; i < cell->size(); i++)
+            {
+                if (cell->at(i) == obj)
+                {
+                    cell->erase(cell->begin() + i);
+                    break;
+                }
+            }
+        }
     }
 
     // Get a cell from the grid
-    Cell* get(int x, int y)
+    Cell *get(int x, int y)
     {
         if (x >= this->width || x < 0 || y >= this->height || y < 0)
         {
-            return &Cell();
+            return nullptr;
         }
-        return this->grid[y][x];
-    }
-
-    // Get the cell index from a position
-    std::tuple<int, int> calculate_cell_index(Vector2D position)
-    {
-        return std::make_tuple(int(position.x / this->cell_size), int(position.y / this->cell_size));
+        return this->grid[y * this->width - x];
     }
 
     // Put an object into the grid
-    void put(VerletBall obj)
+    void put(VerletBall *obj)
     {
         // Getting the cell index
-        std::tuple<int, int> index = this->calculate_cell_index(obj.current_position);
-        int x = std::get<0>(index);
-        int y = std::get<1>(index);
+        int x = obj->current_position.x;
+        int y = obj->current_position.y;
 
         // Get the cell and update it
         Cell *cell = this->get(x, y);
-        cell->objects.push_back(obj);
+        cell->push_back(obj);
     }
 
     // Fill the grid with objects
-    void fill(std::vector<VerletBall> objects)
+    void fill(std::vector<VerletBall *> objects)
     {
-        for (VerletBall obj : objects)
+        for (VerletBall *obj : objects)
         {
             this->put(obj);
         }
@@ -113,11 +93,7 @@ public:
             for (int y = 0; y < this->height; y++)
             {
                 // Get the current cell
-                Cell* current_cell = this->get(x, y);
-                if (current_cell->objects.size() == 0)
-                {
-                    continue;
-                }
+                Cell *current_cell = this->get(x, y);
 
                 // Check all the cells around the current cell
                 for (int dx = x - 1; dx <= x + 1; dx++)
@@ -125,21 +101,72 @@ public:
                     for (int dy = y - 1; dy <= y + 1; dy++)
                     {
                         // Get the cell
-                        Cell* other_cell = this->get(dx, dy);
-                        if (other_cell->objects.size() == 0)
-                        {
-                            continue;
-                        }
+                        Cell *other_cell = this->get(dx, dy);
 
                         // Check for collisions
-                        if (current_cell->objects.size() > 0 || other_cell->objects.size() > 0)
+                        if (current_cell->size() > 0 || other_cell->size() > 0)
                         {
-                            current_cell->check_collisions(this, other_cell);
+                            this->check_collisions(current_cell, other_cell);
                         }
                     }
                 }
             }
         }
+    }
+
+    // Update the cell objects
+    void update(Cell *current_cell, Cell *other_cell)
+    {
+        this->update_cell(current_cell);
+        this->update_cell(other_cell);
+    }
+
+    // Update a cell
+    void update_cell(Cell *cell)
+    {
+        // Iterate over all the objects in the other cell
+        int tot_popped = 0;
+        for (int i = 0; i < cell->size(); i++)
+        {
+            int index = i + tot_popped;
+            if (index >= cell->size())
+            {
+                return;
+            }
+
+            // Get the object
+            VerletBall *obj = cell->at(index);
+
+            // Update the cell and grid
+            int prev_len = cell->size();
+            cell->erase(cell->begin() + index);
+            if (cell->size() != prev_len)
+            {
+                tot_popped++;
+                this->put(obj);
+            }
+        }
+    }
+
+    // Check for collisions
+    void check_collisions(Cell *current_cell, Cell *other_cell)
+    {
+        // Iterate over all the objects in the current cell and the other cell
+        for (int i = 0; i < current_cell->size(); i++)
+        {
+            for (int j = 0; j < other_cell->size(); j++)
+            {
+                // Get the objects
+                VerletBall *obj_1 = current_cell->at(i);
+                VerletBall *obj_2 = other_cell->at(j);
+
+                // Check for collisions
+                obj_1->handle_collision(obj_2);
+            }
+        }
+
+        // Update the cells
+        this->update(current_cell, other_cell);
     }
 };
 
