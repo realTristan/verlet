@@ -88,9 +88,9 @@ public:
         // threads: Threads | None = Threads(threads) if threads != -1 else None (from python)
 
         // Iterate over all cells
-        for (int x = 0; x < this->width; x++)
+        for (int x = 1; x < this->width - 1; x++)
         {
-            for (int y = 0; y < this->height; y++)
+            for (int y = 1; y < this->height - 1; y++)
             {
                 // Get the current cell
                 Cell *current_cell = this->get(x, y);
