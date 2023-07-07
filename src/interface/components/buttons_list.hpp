@@ -1,5 +1,10 @@
 #include <iostream>
 
+#ifndef INTERFACE_COMPONENTS_BUTTONS_LIST_HPP
+#define INTERFACE_COMPONENTS_BUTTONS_LIST_HPP
+
 class ButtonList
 {
 };
+
+#endif // INTERFACE_COMPONENTS_BUTTONS_LIST_HPP

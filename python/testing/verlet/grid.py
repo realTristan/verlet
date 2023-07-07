@@ -1,5 +1,5 @@
 from objects.verlet.ball.colliders import OpenCircleCollider, LineCollider
-from testing.config import draw_background, CLOCK, SCREEN
+from testing.config import draw_background, CLOCK, SCREEN, WIDTH, HEIGHT
 from testing.events import on_click, close_event
 from objects.verlet.ball import VerletBall
 from utils import Colors
@@ -14,7 +14,7 @@ pygame.init()
 pygame.display.set_caption("verlet")
 
 # Create a new grid
-grid: Grid = Grid()
+grid: Grid = Grid(WIDTH, HEIGHT)
 
 # Colliders and Verlet Balls
 colliders: list[OpenCircleCollider | LineCollider] = [

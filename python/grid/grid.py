@@ -8,10 +8,10 @@ import numpy as np
 
 # Grid class
 class Grid():
-    def __init__(self, cell_size: int = 100):
+    def __init__(self, width: int, height: int, cell_size: int = 100):
         self.cell_size: int = cell_size
-        self.width: int = WIDTH // self.cell_size
-        self.height: int = HEIGHT // self.cell_size
+        self.width: int = width // self.cell_size
+        self.height: int = height // self.cell_size
         self.grid: np.ndarray = np.array(
             [np.array([Cell([]) for _ in range(0, self.width)]) for _ in range(0, self.height)])
 
