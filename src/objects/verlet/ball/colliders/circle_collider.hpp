@@ -9,6 +9,7 @@ class CircleCollider
 {
 public:
     Vector2D position;
+    Vector2D center;
     float radius;
     Color color = WHITE;
 
@@ -17,6 +18,7 @@ public:
         this->position = position;
         this->radius = radius;
         this->color = color;
+        this->center = Vector2D(position.x + radius, position.y + radius);
     }
 };
 
