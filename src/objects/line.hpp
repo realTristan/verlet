@@ -53,7 +53,7 @@ public:
                 sf::Vertex(sf::Vector2f(this->end.x, this->end.y - i))};
             for (int i = 0; i < 2; i++)
             {
-                line[i].color = sf::Color(this->color.r, this->color.g, this->color.b);
+                line[i].color = Colors::to_sf(this->color);
             }
             window->draw(line, 2, sf::Lines);
         }

@@ -24,7 +24,7 @@ public:
     {
         sf::CircleShape circle(this->radius);
         circle.setPosition(this->current_position.x, this->current_position.y);
-        circle.setFillColor(sf::Color(this->color.r, this->color.g, this->color.b));
+        circle.setFillColor(Colors::to_sf(this->color));
         window->draw(circle);
     }
 

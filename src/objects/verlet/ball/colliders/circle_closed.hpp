@@ -30,7 +30,7 @@ public:
     {
         sf::CircleShape circle(this->radius);
         circle.setPosition(this->position.x, this->position.y);
-        circle.setFillColor(sf::Color(this->color.r, this->color.g, this->color.b));
+        circle.setFillColor(Colors::to_sf(this->color));
         window->draw(circle);
     }
 
