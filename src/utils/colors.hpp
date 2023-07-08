@@ -45,6 +45,12 @@ public:
         Color colors[10] = {RED, GREEN, BLUE, YELLOW, CYAN, MAGENTA, WHITE, ORANGE, PURPLE, PINK};
         return colors[rand() % 10];
     }
+
+    // Convert a Color object to a sf::Color object
+    static sf::Color to_sf(Color color)
+    {
+        return sf::Color(color.r, color.g, color.b);
+    }
 };
 
 #endif
