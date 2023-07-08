@@ -30,9 +30,11 @@ public:
     void draw(sf::RenderWindow *window)
     {
         sf::CircleShape circle(this->radius);
+        circle.setOrigin(this->radius, this->radius);
         circle.setPosition(calculate_x(), calculate_y());
         circle.setOutlineThickness(this->width);
         circle.setFillColor(sf::Color::Transparent);
+        circle.setPointCount(128);
         window->draw(circle);
     }
 
