@@ -29,10 +29,10 @@ public:
     void draw(sf::RenderWindow *window)
     {
         sf::CircleShape circle(this->radius);
+        circle.setOrigin(this->radius, this->radius);
         circle.setPosition(this->position.x, this->position.y);
         circle.setFillColor(Colors::to_sf(this->color));
         circle.setPointCount(128);
-        circle.setOrigin(this->radius, this->radius);
         window->draw(circle);
     }
 
@@ -45,7 +45,7 @@ public:
         }
 
         // Calculate the distance between the ball and the circle
-        Vector2D dist = ball->current_position - this->position;
+        Vector2D dist = ball->current_position - this->center;
         float magnitude = dist.magnitude() + 1.0e-9;
 
         // Check if the ball is outside the collider
