@@ -5,8 +5,8 @@
 #include <objects/verlet/ball/colliders/circle_collider.hpp>
 #include <objects/verlet/ball/ball.hpp>
 
-#ifndef CLOSED_CIRCLE_HPP
-#define CLOSED_CIRCLE_HPP
+#ifndef CLOSED_CIRCLE_COLLIDER_HPP
+#define CLOSED_CIRCLE_COLLIDER_HPP
 
 class ClosedCircleCollider : public CircleCollider
 {
@@ -15,7 +15,7 @@ public:
     bool outside_collision = true;
 
     ClosedCircleCollider(
-        Vector2D position,
+        Vec2D position,
         float radius,
         int width = 1,
         Color color = WHITE,
@@ -45,7 +45,7 @@ public:
         }
 
         // Calculate the distance between the ball and the circle
-        Vector2D dist = ball->current_position - this->center;
+        Vec2D dist = ball->current_position - this->center;
         float magnitude = dist.magnitude() + 1.0e-9;
 
         // Check if the ball is outside the collider
@@ -53,7 +53,7 @@ public:
         if (magnitude < rad_sum && magnitude > this->radius)
         {
             // Calculate the ball overlap (the amount the balls have overlapped)
-            Vector2D overlap = dist / magnitude;
+            Vec2D overlap = dist / magnitude;
 
             // Update this balls position (move it to the side)
             ball->current_position += overlap * 0.5 * (rad_sum - magnitude);
@@ -61,4 +61,4 @@ public:
     }
 };
 
-#endif
+#endif // CLOSED_CIRCLE_COLLIDER_HPP

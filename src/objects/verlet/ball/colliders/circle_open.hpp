@@ -3,8 +3,8 @@
 #include <objects/verlet/ball/colliders/circle_collider.hpp>
 #include <objects/verlet/ball/ball.hpp>
 
-#ifndef OPEN_CIRCLE_HPP
-#define OPEN_CIRCLE_HPP
+#ifndef OPEN_CIRCLE_COLLIDER_HPP
+#define OPEN_CIRCLE_COLLIDER_HPP
 
 class OpenCircleCollider : public CircleCollider
 {
@@ -14,7 +14,7 @@ public:
     int width;
 
     OpenCircleCollider(
-        Vector2D position,
+        Vec2D position,
         float radius,
         int width = 1,
         Color color = WHITE,
@@ -31,7 +31,7 @@ public:
     {
         sf::CircleShape circle(this->radius);
         circle.setOrigin(this->radius, this->radius);
-        circle.setPosition(calculate_x(), calculate_y());
+        circle.setPosition(this->position.x, this->position.y);
         circle.setOutlineThickness(this->width);
         circle.setFillColor(sf::Color::Transparent);
         circle.setPointCount(128);
@@ -47,7 +47,7 @@ public:
         }
 
         // Calculate the distance between the ball and the circle
-        Vector2D dist = ball->current_position - this->center;
+        Vec2D dist = ball->current_position - this->center;
         float magnitude = dist.magnitude() + 1.0e-9;
 
         // Check if the ball is outside the collider
@@ -57,7 +57,7 @@ public:
             if (magnitude < rad_sum && (!this->inside_collision || magnitude > this->radius))
             {
                 // Calculate the ball overlap (the amount the balls have overlapped)
-                Vector2D overlap = dist / magnitude;
+                Vec2D overlap = dist / magnitude;
 
                 // Update this balls position (move it to the side)
                 ball->current_position += overlap * 0.5 * (rad_sum + magnitude);
@@ -79,4 +79,4 @@ public:
     }
 };
 
-#endif
+#endif // OPEN_CIRCLE_COLLIDER_HPP

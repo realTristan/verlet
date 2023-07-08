@@ -1,10 +1,10 @@
 #include <iostream>
 
-#ifndef SCREEN_HPP
-#define SCREEN_HPP
+#ifndef SCREEN_COLLIDER_HPP
+#define SCREEN_COLLIDER_HPP
 
 class ScreenCollider
 {
 };
 
-#endif
+#endif // SCREEN_COLLIDER_HPP

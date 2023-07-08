@@ -8,18 +8,18 @@
 class CircleCollider
 {
 public:
-    Vector2D position;
-    Vector2D center;
+    Vec2D position;
+    Vec2D center;
     float radius;
     Color color = WHITE;
 
-    CircleCollider(Vector2D position, float radius, Color color = WHITE)
+    CircleCollider(Vec2D position, float radius, Color color = WHITE)
     {
         this->position = position;
         this->radius = radius;
         this->color = color;
-        this->center = Vector2D(position.x + radius, position.y + radius);
+        this->center = Vec2D(position.x + radius, position.y + radius);
     }
 };
 
-#endif
+#endif // CIRCLE_COLLIDER_HPP

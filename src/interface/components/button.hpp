@@ -11,7 +11,7 @@ class Button
 {
 private:
     std::string text;
-    Vector2D position;
+    Vec2D position;
     int width;
     int height;
     Color color = WHITE;
@@ -19,7 +19,7 @@ private:
 public:
     Button(
         std::string text,
-        Vector2D position,
+        Vec2D position,
         int width,
         int height,
         Color color = WHITE)
@@ -40,7 +40,7 @@ public:
         button.setFillColor(Colors::to_sf(this->color));
 
         // Create the button text
-        Vector2D text_position = Vector2D(
+        Vec2D text_position = Vec2D(
             this->position.x + this->width / 2 - this->text.length() * 5,
             this->position.y + this->height / 2 - 10);
 

@@ -14,7 +14,7 @@ public:
     float radius;
 
     // Initialize the verlet object
-    VerletBall(Vector2D position, float radius, Color color = WHITE) : VerletObject(position, color)
+    VerletBall(Vec2D position, float radius, Color color = WHITE) : VerletObject(position, color)
     {
         this->radius = radius;
     }
@@ -32,7 +32,7 @@ public:
     void handle_collision(VerletBall *other_ball)
     {
         // Calculate the distance between the balls
-        Vector2D dist = this->current_position - other_ball->current_position;
+        Vec2D dist = this->current_position - other_ball->current_position;
 
         // the vector magnitude of the ball
         float magnitude = dist.magnitude() + 1.0e-9;
@@ -40,7 +40,7 @@ public:
         if (magnitude < rad_sum)
         {
             // Calculate the ball overlap (the amount the balls have overlapped)
-            Vector2D overlap = dist / magnitude;
+            Vec2D overlap = dist / magnitude;
 
             // Update this balls position (move it to the side)
             this->current_position += overlap * 0.5 * (rad_sum - magnitude);
@@ -83,4 +83,4 @@ public:
     }
 };
 
-#endif
+#endif // VERLET_BALL_HPP

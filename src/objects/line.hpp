@@ -10,8 +10,8 @@
 class Line
 {
 public:
-    Vector2D start = Vector2D(0, 0);
-    Vector2D end = Vector2D(0, 0);
+    Vec2D start = Vec2D(0, 0);
+    Vec2D end = Vec2D(0, 0);
     float length = 0;
     float angle = 0;
     int width = 1;
@@ -19,7 +19,7 @@ public:
 
     // Constructor
     Line(
-        Vector2D start,
+        Vec2D start,
         float length,
         float angle,
         int width = 1,
@@ -38,9 +38,9 @@ public:
     }
 
     // Calculate the end of the line
-    Vector2D calculate_end()
+    Vec2D calculate_end()
     {
-        return Vector2D(this->start.x + this->length, this->start.y + this->length * sin(this->angle));
+        return Vec2D(this->start.x + this->length, this->start.y + this->length * sin(this->angle));
     }
 
     // Draw the line
@@ -60,4 +60,4 @@ public:
     }
 };
 
-#endif
+#endif // LINE_HPP

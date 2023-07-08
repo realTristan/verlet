@@ -1,10 +1,10 @@
 #include <iostream>
 
-#ifndef OPEN_RECT_HPP
-#define OPEN_RECT_HPP
+#ifndef OPEN_RECT_COLLIDER_HPP
+#define OPEN_RECT_COLLIDER_HPP
 
 class OpenRectCollider
 {
 };
 
-#endif
+#endif // OPEN_RECT_COLLIDER_HPP

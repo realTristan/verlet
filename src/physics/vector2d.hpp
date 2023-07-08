@@ -1,78 +1,78 @@
 #include <iostream>
 #include <math.h>
 
-#ifndef VECTOR2D_HPP
-#define VECTOR2D_HPP
+#ifndef VEC2D_HPP
+#define VEC2D_HPP
 
-class Vector2D
+class Vec2D
 {
 public:
     float x;
     float y;
 
     // Constructors
-    Vector2D()
+    Vec2D()
     {
         this->x = 0.0f;
         this->y = 0.0f;
     }
-    Vector2D(float x, float y)
+    Vec2D(float x, float y)
     {
         this->x = x;
         this->y = y;
     }
-    Vector2D(const Vector2D &v)
+    Vec2D(const Vec2D &v)
     {
         this->x = v.x;
         this->y = v.y;
     }
 
     // Operations
-    Vector2D &operator=(const Vector2D &v)
+    Vec2D &operator=(const Vec2D &v)
     {
         this->x = v.x;
         this->y = v.y;
         return *this;
     }
-    Vector2D &operator+=(const Vector2D &v)
+    Vec2D &operator+=(const Vec2D &v)
     {
         this->x += v.x;
         this->y += v.y;
         return *this;
     }
-    Vector2D &operator-=(const Vector2D &v)
+    Vec2D &operator-=(const Vec2D &v)
     {
         this->x -= v.x;
         this->y -= v.y;
         return *this;
     }
-    Vector2D &operator*=(float f)
+    Vec2D &operator*=(float f)
     {
         this->x *= f;
         this->y *= f;
         return *this;
     }
-    Vector2D &operator/=(float f)
+    Vec2D &operator/=(float f)
     {
         this->x /= f;
         this->y /= f;
         return *this;
     }
-    Vector2D operator+(const Vector2D &v) const
+    Vec2D operator+(const Vec2D &v) const
     {
-        return Vector2D(*this) += v;
+        return Vec2D(*this) += v;
     }
-    Vector2D operator-(const Vector2D &v) const
+    Vec2D operator-(const Vec2D &v) const
     {
-        return Vector2D(*this) -= v;
+        return Vec2D(*this) -= v;
     }
-    Vector2D operator*(float f) const
+    Vec2D operator*(float f) const
     {
-        return Vector2D(*this) *= f;
+        return Vec2D(*this) *= f;
     }
-    Vector2D operator/(float f) const
+    Vec2D operator/(float f) const
     {
-        return Vector2D(*this) /= f;
+        return Vec2D(*this) /= f;
     }
 
     // Get the magnitude of the vector
@@ -95,13 +95,13 @@ public:
     }
 
     // Copy the vector
-    Vector2D copy()
+    Vec2D copy()
     {
-        return Vector2D(*this);
+        return Vec2D(*this);
     }
 
     // Set the vector
-    Vector2D set(float x, float y)
+    Vec2D set(float x, float y)
     {
         this->x = x;
         this->y = y;
@@ -109,7 +109,7 @@ public:
     }
 
     // Multiply by another vector
-    Vector2D multiply(const Vector2D &v)
+    Vec2D multiply(const Vec2D &v)
     {
         this->x *= v.x;
         this->y *= v.y;
@@ -117,7 +117,7 @@ public:
     }
 
     // Divide by another vector
-    Vector2D divide(const Vector2D &v)
+    Vec2D divide(const Vec2D &v)
     {
         this->x /= v.x;
         this->y /= v.y;
@@ -125,7 +125,7 @@ public:
     }
 
     // Add a scalar
-    Vector2D add(float f)
+    Vec2D add(float f)
     {
         this->x += f;
         this->y += f;
@@ -133,7 +133,7 @@ public:
     }
 
     // Subtract a scalar
-    Vector2D subtract(float f)
+    Vec2D subtract(float f)
     {
         this->x -= f;
         this->y -= f;
@@ -141,4 +141,4 @@ public:
     }
 };
 
-#endif
+#endif // VEC2D_HPP

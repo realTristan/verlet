@@ -12,7 +12,7 @@ template <typename T>
 class ButtonList
 {
 private:
-    Vector2D position;
+    Vec2D position;
     int button_width;
     int button_height;
     std::vector<Button *> buttons;
@@ -20,7 +20,7 @@ private:
 
 public:
     ButtonList(
-        Vector2D position,
+        Vec2D position,
         int button_width,
         int button_height,
         Color button_color = WHITE)
@@ -38,7 +38,7 @@ public:
         for (T item : items)
         {
             // Get the button position
-            Vector2D position = Vector2D(
+            Vec2D position = Vec2D(
                 this->position.x, this->position.y + i * this->button_height);
 
             // Create the button

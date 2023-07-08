@@ -1,10 +1,10 @@
 #include <iostream>
 #include <math.h>
 
-#ifndef VECTOR3D_HPP
-#define VECTOR3D_HPP
+#ifndef VEC3D_HPP
+#define VEC3D_HPP
 
-class Vector3D
+class Vec3D
 {
 public:
     float x;
@@ -12,19 +12,19 @@ public:
     float z;
 
     // Constructors
-    Vector3D()
+    Vec3D()
     {
         this->x = 0.0f;
         this->y = 0.0f;
         this->z = 0.0f;
     }
-    Vector3D(float x, float y, float z)
+    Vec3D(float x, float y, float z)
     {
         this->x = x;
         this->y = y;
         this->z = z;
     }
-    Vector3D(const Vector3D &v)
+    Vec3D(const Vec3D &v)
     {
         this->x = v.x;
         this->y = v.y;
@@ -32,66 +32,66 @@ public:
     }
 
     // Operations
-    Vector3D &operator=(const Vector3D &v)
+    Vec3D &operator=(const Vec3D &v)
     {
         this->x = v.x;
         this->y = v.y;
         this->z = v.z;
         return *this;
     }
-    Vector3D &operator+=(const Vector3D &v)
+    Vec3D &operator+=(const Vec3D &v)
     {
         this->x += v.x;
         this->y += v.y;
         this->z += v.z;
         return *this;
     }
-    Vector3D &operator-=(const Vector3D &v)
+    Vec3D &operator-=(const Vec3D &v)
     {
         this->x -= v.x;
         this->y -= v.y;
         this->z -= v.z;
         return *this;
     }
-    Vector3D &operator*=(float f)
+    Vec3D &operator*=(float f)
     {
         this->x *= f;
         this->y *= f;
         this->z *= f;
         return *this;
     }
-    Vector3D &operator/=(float f)
+    Vec3D &operator/=(float f)
     {
         this->x /= f;
         this->y /= f;
         this->z /= f;
         return *this;
     }
-    Vector3D operator+(const Vector3D &v) const
+    Vec3D operator+(const Vec3D &v) const
     {
-        return Vector3D(*this) += v;
+        return Vec3D(*this) += v;
     }
-    Vector3D operator-(const Vector3D &v) const
+    Vec3D operator-(const Vec3D &v) const
     {
-        return Vector3D(*this) -= v;
+        return Vec3D(*this) -= v;
     }
-    Vector3D operator*(float f) const
+    Vec3D operator*(float f) const
     {
-        return Vector3D(*this) *= f;
+        return Vec3D(*this) *= f;
     }
-    Vector3D operator/(float f) const
+    Vec3D operator/(float f) const
     {
-        return Vector3D(*this) /= f;
+        return Vec3D(*this) /= f;
     }
 
     // Copy the vector
-    Vector3D copy() const
+    Vec3D copy() const
     {
-        return Vector3D(*this);
+        return Vec3D(*this);
     }
 
     // Set the vector
-    Vector3D set(float x, float y, float z)
+    Vec3D set(float x, float y, float z)
     {
         this->x = x;
         this->y = y;
@@ -120,7 +120,7 @@ public:
     }
 
     // Multiply by another vector
-    Vector3D multiply(const Vector3D &v)
+    Vec3D multiply(const Vec3D &v)
     {
         this->x *= v.x;
         this->y *= v.y;
@@ -129,7 +129,7 @@ public:
     }
 
     // Divide by another vector
-    Vector3D divide(const Vector3D &v)
+    Vec3D divide(const Vec3D &v)
     {
         this->x /= v.x;
         this->y /= v.y;
@@ -138,7 +138,7 @@ public:
     }
 
     // Add a scalar
-    Vector3D add(float f)
+    Vec3D add(float f)
     {
         this->x += f;
         this->y += f;
@@ -147,7 +147,7 @@ public:
     }
 
     // Subtract a scalar
-    Vector3D subtract(float f)
+    Vec3D subtract(float f)
     {
         this->x -= f;
         this->y -= f;
@@ -156,4 +156,4 @@ public:
     }
 };
 
-#endif
+#endif // VEC3D_HPP

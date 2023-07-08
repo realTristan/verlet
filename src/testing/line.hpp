@@ -4,13 +4,14 @@
 #include <testing/config.hpp>
 #include <testing/events.hpp>
 #include <objects/line.hpp>
+#include <physics/vector2d.hpp>
 #include <thread>
 #include <chrono>
 
 #ifndef TESTING_LINE_HPP
 #define TESTING_LINE_HPP
 
-#define LINE_START_VECTOR Vector2D(200, 250)
+#define LINE_START_VECTOR Vec2D(200, 250)
 #define LINE_LENGTH 150.0f
 #define LINE_ANGLE 15.0f
 #define LINE_WIDTH 5

@@ -10,12 +10,12 @@ class Text
 {
 private:
     std::string text;
-    Vector2D position;
+    Vec2D position;
     int size;
     Color color = WHITE;
 
 public:
-    Text(std::string text, Vector2D position, int size, Color color = WHITE)
+    Text(std::string text, Vec2D position, int size, Color color = WHITE)
     {
         this->text = text;
         this->position = position;

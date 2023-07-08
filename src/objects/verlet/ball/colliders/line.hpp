@@ -3,15 +3,15 @@
 #include <objects/line.hpp>
 #include <objects/verlet/ball/ball.hpp>
 
-#ifndef LINECOLLIDER_HPP
-#define LINECOLLIDER_HPP
+#ifndef LINE_COLLIDER_HPP
+#define LINE_COLLIDER_HPP
 
 class LineCollider : public Line
 {
 public:
     float slope_multiplier;
     LineCollider(
-        Vector2D start,
+        Vec2D start,
         float length,
         float angle,
         int width = 1,
@@ -55,4 +55,4 @@ public:
     }
 };
 
-#endif
+#endif // LINE_COLLIDER_HPP

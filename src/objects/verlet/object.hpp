@@ -9,19 +9,19 @@
 class VerletObject
 {
 public:
-    Vector2D current_position;
-    Vector2D prev_position;
-    Vector2D acceleration;
-    Vector2D velocity;
+    Vec2D current_position;
+    Vec2D prev_position;
+    Vec2D acceleration;
+    Vec2D velocity;
     Color color = WHITE;
     float start_time;
 
-    VerletObject(Vector2D position, Color color)
+    VerletObject(Vec2D position, Color color)
     {
         this->current_position = position;
         this->prev_position = position;
-        this->acceleration = Vector2D();
-        this->velocity = Vector2D();
+        this->acceleration = Vec2D();
+        this->velocity = Vec2D();
         this->color = color;
         this->start_time = Time().now();
     }
@@ -33,19 +33,19 @@ public:
     }
 
     // Calculate the object's velocity
-    Vector2D calculate_velocity()
+    Vec2D calculate_velocity()
     {
         return this->current_position - this->prev_position;
     }
 
     // Perform the verlet integration to calculate the displacement
-    Vector2D calculate_displacement(float dt)
+    Vec2D calculate_displacement(float dt)
     {
         return this->current_position + this->velocity + this->acceleration * dt * dt;
     }
 
     // Accelerate the object
-    void accelerate(Vector2D acceleration)
+    void accelerate(Vec2D acceleration)
     {
         this->acceleration += acceleration;
     }
@@ -67,4 +67,4 @@ public:
     }
 };
 
-#endif
+#endif // VERLET_OBJECT_HPP

@@ -1,10 +1,10 @@
 #include <iostream>
 
-#ifndef CLOSED_RECT_HPP
-#define CLOSED_RECT_HPP
+#ifndef CLOSED_RECT_COLLIDER_HPP
+#define CLOSED_RECT_COLLIDER_HPP
 
 class ClosedRectCollider
 {
 };
 
-#endif
+#endif // CLOSED_RECT_COLLIDER_HPP
