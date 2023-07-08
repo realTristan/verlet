@@ -72,8 +72,8 @@ public:
             if (magnitude > delta && (!this->outside_collision || magnitude < this->radius))
             {
                 ball->current_position.set(
-                    this->position.x + dist.x / magnitude * delta,
-                    this->position.y + dist.y / magnitude * delta);
+                    this->center.x + dist.x / magnitude * delta,
+                    this->center.y + dist.y / magnitude * delta);
             }
         }
     }
