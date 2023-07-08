@@ -38,18 +38,6 @@ public:
         window->draw(circle);
     }
 
-    // Calculate circle position x
-    float calculate_x()
-    {
-        return this->position.x - this->radius + this->width;
-    }
-
-    // Calculate circle position y
-    float calculate_y()
-    {
-        return this->position.y - this->radius + this->width;
-    }
-
     // Apply the Collider
     void apply(VerletBall *ball)
     {
@@ -59,7 +47,7 @@ public:
         }
 
         // Calculate the distance between the ball and the circle
-        Vector2D dist = ball->current_position - this->position;
+        Vector2D dist = ball->current_position - this->center;
         float magnitude = dist.magnitude() + 1.0e-9;
 
         // Check if the ball is outside the collider
