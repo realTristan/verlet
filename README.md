@@ -5,7 +5,7 @@ Verlet is a physics engine built from scratch. It currently has Python (pygame) 
 # To-do
 1. Integrate from SFML to OpenGL
 2. Fix Grid Collisions
-3. Add Menu and Interface Components
+3. Add Menu
 
 ### SFML
 Verlet uses SFML v2.6.0
