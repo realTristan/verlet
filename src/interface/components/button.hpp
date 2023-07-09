@@ -53,9 +53,9 @@ public:
     }
 
     // Check if the button is clicked
-    bool is_clicked(sf::RenderWindow &window)
+    bool is_clicked(sf::RenderWindow *window)
     {
-        sf::Vector2i mouse_position = sf::Mouse::getPosition(window);
+        sf::Vector2i mouse_position = sf::Mouse::getPosition(*window);
         sf::Vector2f button_position = sf::Vector2f(this->position.x, this->position.y);
         sf::Vector2f button_size = sf::Vector2f(this->width, this->height);
         sf::FloatRect button_rect = sf::FloatRect(button_position, button_size);
