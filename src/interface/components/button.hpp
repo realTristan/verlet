@@ -32,7 +32,7 @@ public:
     }
 
     // Draw the button
-    void draw(sf::RenderWindow &window)
+    void draw(sf::RenderWindow *window)
     {
         // Create the button shape
         sf::RectangleShape button(sf::Vector2f(this->width, this->height));
@@ -49,7 +49,7 @@ public:
 
         // Draw the text and button shape
         text.draw(window);
-        window.draw(button);
+        window->draw(button);
     }
 
     // Check if the button is clicked

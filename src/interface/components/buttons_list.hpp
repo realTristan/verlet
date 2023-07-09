@@ -32,7 +32,7 @@ public:
     }
 
     // Draw the list of buttons
-    void draw(sf::RenderWindow &window, std::vector<T> items)
+    void draw(sf::RenderWindow *window, std::vector<T> items)
     {
         int i = 0;
         for (T item : items)

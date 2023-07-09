@@ -24,7 +24,7 @@ public:
     }
 
     // Draw the text
-    void draw(sf::RenderWindow &window)
+    void draw(sf::RenderWindow *window)
     {
         sf::Font font;
         font.loadFromFile("assets/fonts/arial.ttf");
@@ -32,7 +32,7 @@ public:
         text.setCharacterSize(this->size);
         text.setFillColor(Colors::to_sf(this->color));
         text.setPosition(sf::Vector2f(this->position.x, this->position.y));
-        window.draw(text);
+        window->draw(text);
     }
 };
 
