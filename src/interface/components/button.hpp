@@ -17,6 +17,12 @@ private:
     Color color = WHITE;
 
 public:
+    Button() {
+        this->text = "";
+        this->position = Vec2D(0, 0);
+        this->width = 0;
+        this->height = 0;
+    }
     Button(
         std::string text,
         Vec2D position,
