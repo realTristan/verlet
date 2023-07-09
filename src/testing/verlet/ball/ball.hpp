@@ -4,6 +4,7 @@
 #include <objects/verlet/ball/colliders/circle_closed.hpp>
 #include <testing/events.hpp>
 #include <testing/config.hpp>
+#include <testing/utils.hpp>
 #include <thread>
 
 #ifndef TESTING_VERLET_BALL_HPP
@@ -24,23 +25,19 @@ public:
 
         // Create a new list of balls
         std::vector<VerletBall *> balls = std::vector<VerletBall *>{};
-        std::thread t([&]() {
-            for (int i = 0; i < VERLET_BALL_COUNT; i++) {
-                std::this_thread::sleep_for(std::chrono::milliseconds(500));
-                VerletBall *ball = new VerletBall(
-                    VERLET_BALL_VECTOR, 
-                    VERLET_BALL_RADIUS, 
-                    VERLET_BALL_COLOR
-                );
-                balls.push_back(ball);
-            } 
-        });
+        Utils::auto_add_verlet_balls(
+            &balls,
+            VERLET_BALL_VECTOR,
+            VERLET_BALL_COUNT,
+            VERLET_BALL_RADIUS,
+            VERLET_BALL_COLOR
+        );
 
         // Window Loop
         while (window.isOpen())
         {
             Events::check_close(&window);
-            window.clear();
+            Utils::draw_background(&window);
 
             // Draw and update the balls
             for (auto &ball : balls)
@@ -52,6 +49,7 @@ public:
             // Update the window
             window.display();
         }
+        
         return 0;
     }
 };

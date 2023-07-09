@@ -5,6 +5,7 @@
 #include <testing/events.hpp>
 #include <objects/line.hpp>
 #include <physics/vector2d.hpp>
+#include <testing/utils.hpp>
 #include <thread>
 #include <chrono>
 
@@ -37,7 +38,7 @@ public:
         while (window.isOpen())
         {
             Events::check_close(&window);
-            window.clear();
+            Utils::draw_background(&window);
 
             // Draw the line collider
             line.draw(&window);

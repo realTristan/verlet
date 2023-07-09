@@ -75,7 +75,7 @@ public:
         while (window.isOpen())
         {
             Events::check_close(&window);
-            window.clear();
+            Utils::draw_background(&window);
 
             // Draw the menu
             menu.draw(&window);
@@ -116,6 +116,7 @@ public:
             // Update the window
             window.display();
         }
+        
         return 0;
     }
 };

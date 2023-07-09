@@ -72,7 +72,7 @@ public:
         while (window.isOpen())
         {
             Events::check_close(&window);
-            window.clear();
+            Utils::draw_background(&window);
 
             // Check for collisions
             grid->find_collisions(-1);
