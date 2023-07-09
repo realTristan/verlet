@@ -13,25 +13,24 @@ class Utils
 {
 public:
     static void auto_add_verlet_balls(
-        sf::RenderWindow *window, 
         std::vector<VerletBall *> *balls,
-        int VERLET_BALL_COUNT,
-        Vec2D VERLET_BALL_VECTOR,
-        float VERLET_BALL_RADIUS,
-        Color VERLET_BALL_COLOR,
+        Vec2D ball_vector,
+        int ball_count,
+        int ball_radius,
+        Color ball_color = WHITE
     ) {
         std::thread t([&]() {
-            for (int i = 0; i < VERLET_BALL_COUNT; i++) {
+            for (int i = 0; i < ball_count; i++) {
                 std::this_thread::sleep_for(std::chrono::milliseconds(10));
                 VerletBall *ball = new VerletBall(
-                    VERLET_BALL_VECTOR,
-                    VERLET_BALL_RADIUS,
-                    VERLET_BALL_COLOR
+                    ball_vector,
+                    ball_radius,
+                    ball_color
                 );
                 balls->push_back(ball);
             }
         });
     }
-}
+};
 
 #endif // TESTING_UTILS

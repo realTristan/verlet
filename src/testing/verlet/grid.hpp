@@ -7,6 +7,10 @@
 #include <testing/config.hpp>
 #include <grid/grid.hpp>
 #include <thread>
+#include <testing/utils.hpp>
+
+#ifndef TESTING_VERLET_GRID_HPP
+#define TESTING_VERLET_GRID_HPP
 
 #define CIRCLE_COLLIDER_VECTOR Vec2D(400, 300)
 #define CIRCLE_COLLIDER_RADIUS 300
@@ -26,9 +30,6 @@
 #define VERLET_BALL_VECTOR Vec2D(200, 200)
 #define VERLET_BALL_RADIUS 4
 #define VERLET_BALL_COLOR CYAN
-
-#ifndef TESTING_VERLET_GRID_HPP
-#define TESTING_VERLET_GRID_HPP
 
 class GridTesting
 {
@@ -56,17 +57,13 @@ public:
 
         // Create a new list of balls
         std::vector<VerletBall *> balls = std::vector<VerletBall *>{};
-        std::thread t([&]() {
-            for (int i = 0; i < VERLET_BALL_COUNT; i++) {
-                std::this_thread::sleep_for(std::chrono::milliseconds(10));
-                VerletBall *ball = new VerletBall(
-                    VERLET_BALL_VECTOR,
-                    VERLET_BALL_RADIUS,
-                    VERLET_BALL_COLOR
-                );
-                balls.push_back(ball);
-            }
-        });
+        Utils::auto_add_verlet_balls(
+            &balls,
+            VERLET_BALL_VECTOR,
+            VERLET_BALL_COUNT,
+            VERLET_BALL_RADIUS,
+            VERLET_BALL_COLOR
+        );
 
         // Initialize a new grid
         Grid<VerletBall>* grid = new Grid<VerletBall>(WINDOW_WIDTH, WINDOW_HEIGHT);
