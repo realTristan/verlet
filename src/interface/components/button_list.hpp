@@ -78,7 +78,7 @@ public:
             items.erase(items.begin() + index); // Remove the item from the list
         }
     */
-    std::vector<int> get_clicked_indices(sf::RenderWindow &window)
+    std::vector<int> get_clicked_indices(Window *window)
     {
         std::vector<int> clicked_indices;
         int i = 0;
