@@ -1,10 +1,10 @@
 #ifndef OPEN_CIRCLE_COLLIDER_HPP
 #define OPEN_CIRCLE_COLLIDER_HPP
 
-#include <SFML/Graphics.hpp>
-#include <utils/window.hpp>
 #include <objects/verlet/ball/colliders/circle_collider.hpp>
 #include <objects/verlet/ball/ball.hpp>
+#include <SFML/Graphics.hpp>
+#include <utils/window.hpp>
 
 class OpenCircleCollider : public CircleCollider
 {

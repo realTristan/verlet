@@ -1,9 +1,9 @@
 #ifndef TESTING_VERLET_FLUID_HPP
 #define TESTING_VERLET_FLUID_HPP
 
-#include <objects/verlet/ball/ball.hpp>
 #include <objects/verlet/ball/colliders/circle_open.hpp>
 #include <objects/verlet/ball/colliders/line.hpp>
+#include <objects/verlet/ball/ball.hpp>
 #include <testing/events.hpp>
 #include <testing/config.hpp>
 #include <testing/utils.hpp>

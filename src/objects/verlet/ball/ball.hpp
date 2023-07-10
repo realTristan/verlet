@@ -1,11 +1,11 @@
 #ifndef VERLET_BALL_HPP
 #define VERLET_BALL_HPP
 
-#include <SFML/Graphics.hpp>
-#include <physics/vector2d.hpp>
-#include <physics/constants.hpp>
-#include <utils/colors.hpp>
 #include <objects/verlet/object.hpp>
+#include <physics/constants.hpp>
+#include <physics/vector2d.hpp>
+#include <SFML/Graphics.hpp>
+#include <utils/colors.hpp>
 #include <utils/window.hpp>
 
 class VerletBall : public VerletObject

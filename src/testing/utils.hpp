@@ -1,14 +1,14 @@
 #ifndef TESTING_UTILS
 #define TESTING_UTILS
 
-#include <thread>
-#include <SFML/Graphics.hpp>
 #include <objects/verlet/ball/ball.hpp>
-#include <vector>
-#include <utils/colors.hpp>
 #include <physics/vector2d.hpp>
 #include <testing/config.hpp>
+#include <SFML/Graphics.hpp>
+#include <utils/colors.hpp>
 #include <utils/types.hpp>
+#include <thread>
+#include <vector>
 
 // Utils Class
 class Utils

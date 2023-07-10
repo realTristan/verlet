@@ -1,16 +1,16 @@
 #ifndef TESTING_VERLET_GRID_HPP
 #define TESTING_VERLET_GRID_HPP
 
-#include <objects/verlet/ball/ball.hpp>
 #include <objects/verlet/ball/colliders/circle_open.hpp>
 #include <objects/verlet/ball/colliders/line.hpp>
+#include <objects/verlet/ball/ball.hpp>
 #include <testing/events.hpp>
 #include <testing/config.hpp>
+#include <testing/utils.hpp>
+#include <utils/window.hpp>
+#include <utils/types.hpp>
 #include <grid/grid.hpp>
 #include <thread>
-#include <utils/window.hpp>
-#include <testing/utils.hpp>
-#include <utils/types.hpp>
 
 #define CIRCLE_COLLIDER_VECTOR Vec2D(400, 300)
 #define CIRCLE_COLLIDER_RADIUS 300

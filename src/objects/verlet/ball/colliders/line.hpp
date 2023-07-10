@@ -1,8 +1,8 @@
 #ifndef LINE_COLLIDER_HPP
 #define LINE_COLLIDER_HPP
 
-#include <objects/line.hpp>
 #include <objects/verlet/ball/ball.hpp>
+#include <objects/line.hpp>
 
 class LineCollider : public Line
 {

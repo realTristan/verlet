@@ -1,12 +1,12 @@
 #ifndef INTERFACE_COMPONENTS_BUTTONS_LIST_HPP
 #define INTERFACE_COMPONENTS_BUTTONS_LIST_HPP
 
-#include <SFML/Graphics.hpp>
-#include <utils/colors.hpp>
-#include <vector>
 #include <interface/components/button.hpp>
 #include <physics/vector2d.hpp>
+#include <SFML/Graphics.hpp>
 #include <utils/window.hpp>
+#include <utils/colors.hpp>
+#include <vector>
 
 template <typename T>
 class ButtonList

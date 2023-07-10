@@ -1,8 +1,8 @@
 #ifndef WINDOW_HPP
 #define WINDOW_HPP
 
-#include <SFML/Graphics.hpp>
 #include <testing/config.hpp>
+#include <SFML/Graphics.hpp>
 
 class Window : public sf::RenderWindow
 {

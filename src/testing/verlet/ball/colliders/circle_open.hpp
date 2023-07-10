@@ -1,8 +1,8 @@
 #ifndef TESTING_VERLET_BALL_COLLIDERS_CIRCLE_OPEN_HPP
 #define TESTING_VERLET_BALL_COLLIDERS_CIRCLE_OPEN_HPP
 
-#include <objects/verlet/ball/ball.hpp>
 #include <objects/verlet/ball/colliders/circle_open.hpp>
+#include <objects/verlet/ball/ball.hpp>
 #include <testing/events.hpp>
 #include <testing/utils.hpp>
 #include <utils/window.hpp>

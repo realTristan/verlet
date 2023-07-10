@@ -5,10 +5,10 @@
 #include <objects/verlet/ball/colliders/line.hpp>
 #include <objects/verlet/ball/ball.hpp>
 #include <physics/vector2d.hpp>
-#include <utils/colors.hpp>
-#include <interface/components/text.hpp>
 #include <testing/events.hpp>
+#include <utils/colors.hpp>
 #include <utils/window.hpp>
+#include <interface/components/text.hpp>
 
 class RotatingBall
 {

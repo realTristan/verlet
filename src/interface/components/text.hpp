@@ -2,9 +2,9 @@
 #define INTERFACE_COMPONENTS_TEXT_HPP
 
 #include <physics/vector2d.hpp>
-#include <utils/colors.hpp>
 #include <SFML/Graphics.hpp>
 #include <utils/window.hpp>
+#include <utils/colors.hpp>
 
 class Text
 {

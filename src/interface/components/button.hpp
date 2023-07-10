@@ -1,11 +1,11 @@
 #ifndef INTERFACE_COMPONENTS_BUTTON_HPP
 #define INTERFACE_COMPONENTS_BUTTON_HPP
 
-#include <SFML/Graphics.hpp>
-#include <utils/colors.hpp>
-#include <physics/vector2d.hpp>
 #include <interface/components/text.hpp>
+#include <physics/vector2d.hpp>
+#include <SFML/Graphics.hpp>
 #include <utils/window.hpp>
+#include <utils/colors.hpp>
 
 class Button
 {

@@ -1,8 +1,8 @@
 #ifndef INTERFACE_MENU_HPP
 #define INTERFACE_MENU_HPP
 
-#include <interface/components/button.hpp>
 #include <interface/components/button_list.hpp>
+#include <interface/components/button.hpp>
 #include <physics/vector2d.hpp>
 #include <utils/window.hpp>
 

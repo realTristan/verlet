@@ -1,13 +1,12 @@
 #ifndef TESTING_LINE_HPP
 #define TESTING_LINE_HPP
 
-#include <SFML/Graphics.hpp>
 #include <objects/verlet/ball/ball.hpp>
+#include <physics/vector2d.hpp>
 #include <testing/config.hpp>
 #include <testing/events.hpp>
-#include <objects/line.hpp>
-#include <physics/vector2d.hpp>
 #include <testing/utils.hpp>
+#include <objects/line.hpp>
 #include <utils/window.hpp>
 #include <thread>
 
