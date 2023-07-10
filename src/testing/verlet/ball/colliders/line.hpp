@@ -9,6 +9,7 @@
 #include <testing/utils.hpp>
 #include <utils/window.hpp>
 #include <thread>
+#include <vector>
 
 #define LINE_COLLIDER_VECTOR Vec2D(200, 250)
 #define LINE_COLLIDER_LENGTH 150
@@ -63,7 +64,7 @@ public:
             for (auto &ball : balls)
             {
                 ball->draw(&window);
-                ball->update(&window, balls);
+                ball->update(&window, &balls);
             }
 
             // Draw the line collider

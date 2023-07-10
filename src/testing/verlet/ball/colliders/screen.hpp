@@ -8,6 +8,7 @@
 #include <testing/utils.hpp>
 #include <utils/window.hpp>
 #include <thread>
+#include <vector>
 
 #define VERLET_BALL_COUNT 100
 #define VERLET_BALL_VECTOR Vec2D(200, 200)
@@ -27,7 +28,7 @@ public:
         Window window = Window();
 
         // Create a new list of balls
-        VerletBallVector balls = VerletBallVector{};
+        VerletBallVector balls = VerletBallVector();
         Utils::auto_add_verlet_balls(
             &balls,
             VERLET_BALL_VECTOR,
@@ -49,7 +50,7 @@ public:
             for (auto &ball : balls)
             {
                 ball->draw(&window);
-                ball->update(&window, balls);
+                ball->update(&window, &balls);
                 screen_collider.apply(ball);
             }
 

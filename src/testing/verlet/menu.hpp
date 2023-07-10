@@ -11,6 +11,7 @@
 #include <utils/window.hpp>
 #include <grid/grid.hpp>
 #include <thread>
+#include <vector>
 
 #define CIRCLE_COLLIDER_VECTOR Vec2D(400, 300)
 #define CIRCLE_COLLIDER_RADIUS 300
@@ -96,7 +97,7 @@ public:
             for (auto &ball : balls)
             {
                 ball->draw(&window);
-                ball->update(&window);
+                ball->update(&window, &balls);
             }
 
             // Draw the circle collider

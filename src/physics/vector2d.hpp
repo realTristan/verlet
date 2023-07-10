@@ -2,6 +2,7 @@
 #define PHYSICS_VEC2D_HPP
 
 #include <math.h>
+#include <tuple>
 
 class Vec2D
 {

@@ -1,6 +1,8 @@
 #ifndef COLORS_HPP
 #define COLORS_HPP
 
+#include <SFML/Graphics.hpp>
+
 #define RED Color(255, 0, 0)
 #define GREEN Color(0, 255, 0)
 #define BLUE Color(0, 0, 255)
@@ -39,9 +41,9 @@ class Colors
 {
 public:
     // Generate a random rgb color
-    static std::tuple<int, int, int> random_rgb()
+    static Color random_rgb()
     {
-        return std::make_tuple(rand() % 255, rand() % 255, rand() % 255);
+        return Color(rand() % 255, rand() % 255, rand() % 255);
     }
 
     // Generate a random color from the constant colors

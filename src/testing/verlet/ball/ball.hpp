@@ -8,6 +8,7 @@
 #include <testing/utils.hpp>
 #include <utils/window.hpp>
 #include <thread>
+#include <vector>
 
 #define VERLET_BALL_COUNT 100
 #define VERLET_BALL_VECTOR Vec2D(400, 100)
@@ -46,7 +47,7 @@ public:
             for (auto &ball : balls)
             {
                 ball->draw(&window);
-                ball->update(&window, balls);
+                ball->update(&window, &balls);
             }
 
             // Update the window

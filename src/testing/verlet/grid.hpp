@@ -10,6 +10,7 @@
 #include <utils/window.hpp>
 #include <grid/grid.hpp>
 #include <thread>
+#include <vector>
 
 #define CIRCLE_COLLIDER_VECTOR Vec2D(400, 300)
 #define CIRCLE_COLLIDER_RADIUS 300

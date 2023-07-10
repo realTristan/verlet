@@ -51,9 +51,9 @@ public:
     }
 
     // Check if the ball is colliding with other balls
-    void collisions(std::vector<VerletBall *> balls)
+    void collisions(std::vector<VerletBall *> *balls)
     {
-        for (VerletBall *other_ball : balls)
+        for (VerletBall *other_ball : *balls)
         {
             if (this == other_ball)
             {
@@ -66,7 +66,7 @@ public:
     }
 
     // Update the ball
-    void update(Window *window, std::vector<VerletBall *> balls = {})
+    void update(Window *window, std::vector<VerletBall *> *balls)
     {
         this->accelerate(GRAVITY);
         this->update_position();

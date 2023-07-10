@@ -7,7 +7,6 @@
 #include <testing/verlet/grid.hpp>
 #include <testing/verlet/menu.hpp>
 #include <testing/line.hpp>
-#include <SFML/Graphics.hpp>
 
 int main()
 {
