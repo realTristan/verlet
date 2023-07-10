@@ -49,8 +49,8 @@ public:
             for (auto &ball : balls)
             {
                 ball->draw(&window);
-                screen_collider.apply(ball);
                 ball->update(&window, balls);
+                screen_collider.apply(ball);
             }
 
             // Update the window

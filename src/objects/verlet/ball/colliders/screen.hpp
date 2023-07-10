@@ -16,28 +16,28 @@ private:
     void handle_right_collision(VerletBall *ball) {
         float dist = ball->current_position.x + ball->radius - this->width_max;
         if (dist < 0) {
-            ball->current_position.x = this->width_max + ball->radius - 1.0e-9;
+            ball->current_position.x = this->width_max + ball->radius;
         }
     }
 
     void handle_left_collision(VerletBall *ball) {
         float dist = ball->current_position.x - ball->radius + this->width_min;
         if (dist < 0) {
-            ball->current_position.x = this->width_min + ball->radius + 1.0e-9;
+            ball->current_position.x = this->width_min + ball->radius;
         }
     }
 
     void handle_top_collision(VerletBall *ball) {
         float dist = ball->current_position.y - ball->radius + this->height_min;
         if (dist < 0) {
-            ball->current_position.y = this->height_min + ball->radius + 1.0e-9;
+            ball->current_position.y = this->height_min + ball->radius;
         }
     }
 
     void handle_bottom_collision(VerletBall *ball) {
         float dist = ball->current_position.y + ball->radius - this->height_max;
         if (dist < 0) {
-            ball->current_position.y = this->height_max - ball->radius - 1.0e-9;
+            ball->current_position.y = this->height_max - ball->radius;
         }
     }
 
