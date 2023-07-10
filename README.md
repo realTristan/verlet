@@ -6,6 +6,11 @@ Verlet is a physics engine built from scratch. It currently has Python (pygame) 
 1. Convert from SFML to OpenGL
 2. Fix Grid Collisions
 
+# Line Count
+```
+1720
+```
+
 ### SFML
 Verlet uses SFML v2.6.0
 - https://www.sfml-dev.org/files/SFML-2.6.0-windows-gcc-13.1.0-mingw-64-bit.zip
