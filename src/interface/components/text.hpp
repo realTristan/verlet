@@ -34,6 +34,11 @@ public:
         text.setPosition(sf::Vector2f(this->position.x, this->position.y));
         window->draw(text);
     }
+
+    // Set the text
+    void set_text(std::string text) {
+        this->text = text;
+    }
 };
 
 #endif // INTERFACE_COMPONENTS_TEXT_HPP
