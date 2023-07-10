@@ -7,9 +7,7 @@ Verlet is a physics engine built from scratch. It currently has Python (pygame) 
 2. Fix Grid Collisions
 
 ### Line Count
-`
-1720
-`
+`1720`
 
 ### SFML
 Verlet uses SFML v2.6.0
