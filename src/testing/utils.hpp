@@ -1,5 +1,5 @@
-#ifndef TESTING_UTILS
-#define TESTING_UTILS
+#ifndef TESTING_UTILS_HPP
+#define TESTING_UTILS_HPP
 
 #include <objects/verlet/ball/ball.hpp>
 #include <physics/vector2d.hpp>
@@ -55,4 +55,4 @@ public:
     }
 };
 
-#endif // TESTING_UTILS
+#endif // TESTING_UTILS_HPP

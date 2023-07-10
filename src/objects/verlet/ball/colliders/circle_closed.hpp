@@ -1,5 +1,5 @@
-#ifndef CLOSED_CIRCLE_COLLIDER_HPP
-#define CLOSED_CIRCLE_COLLIDER_HPP
+#ifndef VERLET_BALL_COLLIDERS_CIRCLE_OPEN_HPP
+#define VERLET_BALL_COLLIDERS_CIRCLE_OPEN_HPP
 
 #include <objects/verlet/ball/colliders/circle_collider.hpp>
 #include <objects/verlet/ball/ball.hpp>
@@ -61,4 +61,4 @@ public:
     }
 };
 
-#endif // CLOSED_CIRCLE_COLLIDER_HPP
+#endif // VERLET_BALL_COLLIDERS_CIRCLE_CLOSDED_HPP

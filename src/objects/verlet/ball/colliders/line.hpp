@@ -1,5 +1,5 @@
-#ifndef LINE_COLLIDER_HPP
-#define LINE_COLLIDER_HPP
+#ifndef VERLET_BALL_COLLIDERS_LINE_HPP
+#define VERLET_BALL_COLLIDERS_LINE_HPP
 
 #include <objects/verlet/ball/ball.hpp>
 #include <objects/line.hpp>
@@ -53,4 +53,4 @@ public:
     }
 };
 
-#endif // LINE_COLLIDER_HPP
+#endif // VERLET_BALL_COLLIDERS_LINE_HPP

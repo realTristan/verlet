@@ -1,5 +1,5 @@
-#ifndef VEC2D_HPP
-#define VEC2D_HPP
+#ifndef PHYSICS_VEC2D_HPP
+#define PHYSICS_VEC2D_HPP
 
 #include <math.h>
 
@@ -140,4 +140,4 @@ public:
     }
 };
 
-#endif // VEC2D_HPP
+#endif // PHYSICS_VEC2D_HPP

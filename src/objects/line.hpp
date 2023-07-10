@@ -1,5 +1,5 @@
-#ifndef LINE_HPP
-#define LINE_HPP
+#ifndef OBJECT_LINE_HPP
+#define OBJECT_LINE_HPP
 
 #include <physics/vector2d.hpp>
 #include <SFML/Graphics.hpp>
@@ -60,4 +60,4 @@ public:
     }
 };
 
-#endif // LINE_HPP
+#endif // OBJECT_LINE_HPP

@@ -1,5 +1,5 @@
-#ifndef VEC3D_HPP
-#define VEC3D_HPP
+#ifndef PHYSICS_VEC3D_HPP
+#define PHYSICS_VEC3D_HPP
 
 #include <math.h>
 #include <tuple>
@@ -156,4 +156,4 @@ public:
     }
 };
 
-#endif // VEC3D_HPP
+#endif // PHYSICS_VEC3D_HPP

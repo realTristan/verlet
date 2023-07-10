@@ -1,5 +1,5 @@
-#ifndef CIRCLE_COLLIDER_HPP
-#define CIRCLE_COLLIDER_HPP
+#ifndef VERLET_BALL_COLLIDERS_CIRCLE_HPP
+#define VERLET_BALL_COLLIDERS_CIRCLE_HPP
 
 #include <physics/vector2d.hpp>
 #include <utils/colors.hpp>
