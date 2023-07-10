@@ -8,7 +8,6 @@
 #include <testing/config.hpp>
 #include <testing/utils.hpp>
 #include <utils/window.hpp>
-#include <utils/types.hpp>
 #include <thread>
 
 #define CIRCLE_COLLIDER_VECTOR Vec2D(400, 300)
@@ -30,6 +29,8 @@
 #define VERLET_BALL_RADIUS 4
 #define VERLET_BALL_ADD_INTERVAL 10 // 10ms
 #define VERLET_BALL_COLOR CYAN
+
+typedef std::vector<VerletBall *> VerletBallVector;
 
 class FluidTesting
 {

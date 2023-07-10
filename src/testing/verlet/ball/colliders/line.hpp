@@ -8,7 +8,6 @@
 #include <testing/config.hpp>
 #include <testing/utils.hpp>
 #include <utils/window.hpp>
-#include <utils/types.hpp>
 #include <thread>
 
 #define LINE_COLLIDER_VECTOR Vec2D(200, 250)
@@ -23,6 +22,8 @@
 #define VERLET_BALL_RADIUS 4
 #define VERLET_BALL_ADD_INTERVAL 10 // 10ms
 #define VERLET_BALL_COLOR CYAN
+
+typedef std::vector<VerletBall *> VerletBallVector;
 
 // Line Collider Testing Class
 class LineColliderTesting

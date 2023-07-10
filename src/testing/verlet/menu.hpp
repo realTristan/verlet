@@ -9,7 +9,6 @@
 #include <testing/config.hpp>
 #include <testing/utils.hpp>
 #include <utils/window.hpp>
-#include <utils/types.hpp>
 #include <grid/grid.hpp>
 #include <thread>
 
@@ -32,6 +31,8 @@
 #define VERLET_BALL_RADIUS 4
 #define VERLET_BALL_ADD_INTERVAL 10 // 10ms
 #define VERLET_BALL_COLOR CYAN
+
+typedef std::vector<VerletBall *> VerletBallVector;
 
 class MenuTesting
 {

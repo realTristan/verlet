@@ -6,7 +6,7 @@
 #include <testing/config.hpp>
 #include <SFML/Graphics.hpp>
 #include <utils/colors.hpp>
-#include <utils/types.hpp>
+#include <utils/window.hpp>
 #include <thread>
 #include <vector>
 
@@ -16,7 +16,7 @@ class Utils
 public:
     // Automatically add balls to the array
     static void auto_add_verlet_balls(
-        VerletBallVector *balls,
+        std::vector<VerletBall *> *balls,
         Vec2D ball_vector,
         int ball_count,
         int ball_radius,
@@ -37,7 +37,7 @@ public:
     }
 
     // Draw the background
-    static void draw_background(sf::RenderWindow *window)
+    static void draw_background(Window *window)
     {
         window->clear(Colors::to_sf(BACKGROUND_COLOR));
         for (int x = 0; x < WINDOW_WIDTH; x += 50)
