@@ -1,10 +1,10 @@
-#include <iostream>
+#ifndef INTERFACE_COMPONENTS_TEXT_HPP
+#define INTERFACE_COMPONENTS_TEXT_HPP
+
 #include <physics/vector2d.hpp>
 #include <utils/colors.hpp>
 #include <SFML/Graphics.hpp>
-
-#ifndef INTERFACE_COMPONENTS_TEXT_HPP
-#define INTERFACE_COMPONENTS_TEXT_HPP
+#include <utils/window.hpp>
 
 class Text
 {
@@ -24,7 +24,7 @@ public:
     }
 
     // Draw the text
-    void draw(sf::RenderWindow *window)
+    void draw(Window *window)
     {
         sf::Font font;
         font.loadFromFile("assets/fonts/arial.ttf");

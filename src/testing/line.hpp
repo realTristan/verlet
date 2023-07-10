@@ -1,4 +1,6 @@
-#include <iostream>
+#ifndef TESTING_LINE_HPP
+#define TESTING_LINE_HPP
+
 #include <SFML/Graphics.hpp>
 #include <objects/verlet/ball/ball.hpp>
 #include <testing/config.hpp>
@@ -6,11 +8,8 @@
 #include <objects/line.hpp>
 #include <physics/vector2d.hpp>
 #include <testing/utils.hpp>
+#include <utils/window.hpp>
 #include <thread>
-#include <chrono>
-
-#ifndef TESTING_LINE_HPP
-#define TESTING_LINE_HPP
 
 #define LINE_START_VECTOR Vec2D(200, 250)
 #define LINE_LENGTH 150.0f
@@ -24,7 +23,7 @@ public:
     static int start()
     {
         // Initialize a new window
-        sf::RenderWindow window(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), WINDOW_TITLE);
+        Window window = Window();
 
         // Create a new line
         Line line = Line(

@@ -1,17 +1,18 @@
-#include <iostream>
+#ifndef INTERFACE_COMPONENTS_BUTTONS_LIST_HPP
+#define INTERFACE_COMPONENTS_BUTTONS_LIST_HPP
+
 #include <SFML/Graphics.hpp>
 #include <utils/colors.hpp>
 #include <vector>
 #include <interface/components/button.hpp>
 #include <physics/vector2d.hpp>
-
-#ifndef INTERFACE_COMPONENTS_BUTTONS_LIST_HPP
-#define INTERFACE_COMPONENTS_BUTTONS_LIST_HPP
+#include <utils/window.hpp>
 
 template <typename T>
 class ButtonList
 {
 private:
+    typedef std::vector<T> Items;
     Vec2D position;
     int button_width;
     int button_height;
@@ -32,7 +33,7 @@ public:
     }
 
     // Draw the list of buttons
-    void draw(sf::RenderWindow *window, std::vector<T> items)
+    void draw(Window *window, Items items)
     {
         int i = 0;
         for (T item : items)

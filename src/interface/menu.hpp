@@ -1,10 +1,10 @@
-#include <iostream>
+#ifndef INTERFACE_MENU_HPP
+#define INTERFACE_MENU_HPP
+
 #include <interface/components/button.hpp>
 #include <interface/components/button_list.hpp>
 #include <physics/vector2d.hpp>
-
-#ifndef INTERFACE_MENU_HPP
-#define INTERFACE_MENU_HPP
+#include <utils/window.hpp>
 
 class Menu
 {
@@ -30,7 +30,7 @@ public:
     }
 
     // Draw the menu
-    void draw(sf::RenderWindow *window) {
+    void draw(Window *window) {
         this->circle_collider_button.draw(window);
         this->line_collider_button.draw(window);
     }

@@ -1,5 +1,6 @@
-#include <iostream>
-#include <SFML/Graphics.hpp>
+#ifndef CREATIONS_ROTATING_BALL_HPP
+#define CREATIONS_ROTATING_BALL_HPP
+
 #include <objects/verlet/ball/colliders/circle_open.hpp>
 #include <objects/verlet/ball/colliders/line.hpp>
 #include <objects/verlet/ball/ball.hpp>
@@ -7,9 +8,7 @@
 #include <utils/colors.hpp>
 #include <interface/components/text.hpp>
 #include <testing/events.hpp>
-
-#ifndef CREATIONS_ROTATING_BALL_HPP
-#define CREATIONS_ROTATING_BALL_HPP
+#include <utils/window.hpp>
 
 class RotatingBall
 {
@@ -17,7 +16,7 @@ public:
     static void start()
     {
         // Create the window
-        sf::RenderWindow window(sf::VideoMode(800, 600), "Rotating Ball");
+        Window window = Window();
 
         // Create the ball
         VerletBall ball(Vec2D(200.0f, 100.0f), 15.0f, CYAN);

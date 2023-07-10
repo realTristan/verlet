@@ -1,11 +1,11 @@
-#include <iostream>
+#ifndef INTERFACE_COMPONENTS_BUTTON_HPP
+#define INTERFACE_COMPONENTS_BUTTON_HPP
+
 #include <SFML/Graphics.hpp>
 #include <utils/colors.hpp>
 #include <physics/vector2d.hpp>
 #include <interface/components/text.hpp>
-
-#ifndef INTERFACE_COMPONENTS_BUTTON_HPP
-#define INTERFACE_COMPONENTS_BUTTON_HPP
+#include <utils/window.hpp>
 
 class Button
 {
@@ -38,7 +38,7 @@ public:
     }
 
     // Draw the button
-    void draw(sf::RenderWindow *window)
+    void draw(Window *window)
     {
         // Create the button shape
         sf::RectangleShape button(sf::Vector2f(this->width, this->height));
@@ -59,7 +59,7 @@ public:
     }
 
     // Check if the button is clicked
-    bool is_clicked(sf::RenderWindow *window)
+    bool is_clicked(Window *window)
     {
         sf::Vector2i mouse_position = sf::Mouse::getPosition(*window);
         sf::Vector2f button_position = sf::Vector2f(this->position.x, this->position.y);

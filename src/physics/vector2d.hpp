@@ -1,8 +1,7 @@
-#include <iostream>
-#include <math.h>
-
 #ifndef VEC2D_HPP
 #define VEC2D_HPP
+
+#include <math.h>
 
 class Vec2D
 {

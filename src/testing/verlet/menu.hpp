@@ -1,5 +1,6 @@
-#include <iostream>
-#include <SFML/Graphics.hpp>
+#ifndef TESTING_VERLET_MENU_HPP
+#define TESTING_VERLET_MENU_HPP
+
 #include <objects/verlet/ball/ball.hpp>
 #include <objects/verlet/ball/colliders/circle_open.hpp>
 #include <objects/verlet/ball/colliders/line.hpp>
@@ -9,9 +10,8 @@
 #include <thread>
 #include <testing/utils.hpp>
 #include <interface/menu.hpp>
-
-#ifndef TESTING_VERLET_MENU_HPP
-#define TESTING_VERLET_MENU_HPP
+#include <utils/window.hpp>
+#include <utils/types.hpp>
 
 #define CIRCLE_COLLIDER_VECTOR Vec2D(400, 300)
 #define CIRCLE_COLLIDER_RADIUS 300
@@ -30,6 +30,7 @@
 #define VERLET_BALL_COUNT 600
 #define VERLET_BALL_VECTOR Vec2D(200, 200)
 #define VERLET_BALL_RADIUS 4
+#define VERLET_BALL_ADD_INTERVAL 10 // 10ms
 #define VERLET_BALL_COLOR CYAN
 
 class MenuTesting
@@ -38,7 +39,7 @@ public:
     static int start()
     {
         // Initialize a new window
-        sf::RenderWindow window(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), WINDOW_TITLE);
+        Window window = Window();
 
         // Create a new list of colliders
         OpenCircleCollider circle_collider = OpenCircleCollider(
@@ -57,20 +58,20 @@ public:
             LINE_COLLIDER_SLOPE_MULTIPLIER);
 
         // Create a new list of balls
-        std::vector<VerletBall *> balls = std::vector<VerletBall *>{};
+        VerletBallVector balls = VerletBallVector{};
         Utils::auto_add_verlet_balls(
             &balls,
             VERLET_BALL_VECTOR,
             VERLET_BALL_COUNT,
             VERLET_BALL_RADIUS,
-            VERLET_BALL_COLOR
-        );
+            VERLET_BALL_ADD_INTERVAL,
+            VERLET_BALL_COLOR);
 
         // Menu variables
         Menu menu = Menu();
         bool show_circle_collider = false;
         bool show_line_collider = false;
-        
+
         // Window Loop
         while (window.isOpen())
         {
@@ -81,10 +82,12 @@ public:
             menu.draw(&window);
 
             // Check if the menu buttons have been clicked
-            if (menu.circle_collider_button.is_clicked(&window)) {
+            if (menu.circle_collider_button.is_clicked(&window))
+            {
                 show_circle_collider = !show_circle_collider;
             }
-            if (menu.line_collider_button.is_clicked(&window)) {
+            if (menu.line_collider_button.is_clicked(&window))
+            {
                 show_line_collider = !show_line_collider;
             }
 
@@ -96,7 +99,8 @@ public:
             }
 
             // Draw the circle collider
-            if (show_circle_collider) {
+            if (show_circle_collider)
+            {
                 circle_collider.draw(&window);
                 for (auto &ball : balls)
                 {
@@ -105,7 +109,8 @@ public:
             }
 
             // Draw the line collider
-            if (show_line_collider) {
+            if (show_line_collider)
+            {
                 line_collider.draw(&window);
                 for (auto &ball : balls)
                 {
@@ -116,7 +121,7 @@ public:
             // Update the window
             window.display();
         }
-        
+
         return 0;
     }
 };

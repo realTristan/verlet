@@ -1,9 +1,8 @@
-#include<iostream>
-
 #ifndef TESTING_THREADS_HPP
 #define TESTING_THREADS_HPP
 
-class Threads
+// Threads Testing class
+class ThreadsTesting
 {
 };
 

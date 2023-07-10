@@ -1,21 +1,22 @@
-#include <iostream>
+#ifndef VERLET_GRID_HPP
+#define VERLET_GRID_HPP
+
 #include <vector>
 #include <physics/vector2d.hpp>
 #include <objects/verlet/ball/ball.hpp>
-
-#ifndef VERLET_GRID_HPP
-#define VERLET_GRID_HPP
 
 // A grid for the verlet objects
 template <typename T>
 class Grid
 {
+private:
+    typedef std::vector<T *> Cell;
+
 public:
     int width;
     int height;
-    typedef std::vector<T *> Cell;
-
     std::vector<Cell *> grid;
+
     Grid(int width, int height)
     {
         this->width = width;
@@ -31,7 +32,7 @@ public:
     }
 
     // Deprecate an object from the grid
-    void deprecate(VerletBall *obj)
+    void deprecate(T *obj)
     {
         // Removing the object from the cell
         int x = obj->current_position.x;
@@ -61,7 +62,7 @@ public:
     }
 
     // Put an object into the grid
-    void put(VerletBall *obj)
+    void put(T *obj)
     {
         // Getting the cell index
         int x = obj->current_position.x;
@@ -73,9 +74,9 @@ public:
     }
 
     // Fill the grid with objects
-    void fill(std::vector<VerletBall *> objects)
+    void fill(std::vector<T *> objects)
     {
-        for (VerletBall *obj : objects)
+        for (T *obj : objects)
         {
             this->put(obj);
         }
@@ -135,7 +136,7 @@ public:
             }
 
             // Get the object
-            VerletBall *obj = cell->at(index);
+            T *obj = cell->at(index);
 
             // Update the cell and grid
             int prev_len = cell->size();
@@ -157,8 +158,8 @@ public:
             for (int j = 0; j < other_cell->size(); j++)
             {
                 // Get the objects
-                VerletBall *obj_1 = current_cell->at(i);
-                VerletBall *obj_2 = other_cell->at(j);
+                T *obj_1 = current_cell->at(i);
+                T *obj_2 = other_cell->at(j);
 
                 // Check for collisions
                 obj_1->handle_collision(obj_2);

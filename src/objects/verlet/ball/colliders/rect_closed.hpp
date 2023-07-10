@@ -1,5 +1,3 @@
-#include <iostream>
-
 #ifndef CLOSED_RECT_COLLIDER_HPP
 #define CLOSED_RECT_COLLIDER_HPP
 

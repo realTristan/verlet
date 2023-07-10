@@ -1,10 +1,10 @@
-#include <iostream>
-#include <SFML/Graphics.hpp>
-#include <objects/verlet/ball/colliders/circle_collider.hpp>
-#include <objects/verlet/ball/ball.hpp>
-
 #ifndef OPEN_CIRCLE_COLLIDER_HPP
 #define OPEN_CIRCLE_COLLIDER_HPP
+
+#include <SFML/Graphics.hpp>
+#include <utils/window.hpp>
+#include <objects/verlet/ball/colliders/circle_collider.hpp>
+#include <objects/verlet/ball/ball.hpp>
 
 class OpenCircleCollider : public CircleCollider
 {
@@ -27,7 +27,7 @@ public:
     }
 
     // Draw the Collider
-    void draw(sf::RenderWindow *window)
+    void draw(Window *window)
     {
         sf::CircleShape circle(this->radius);
         circle.setOrigin(this->radius, this->radius);

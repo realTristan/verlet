@@ -1,5 +1,6 @@
-#include <iostream>
-#include <SFML/Graphics.hpp>
+#ifndef TESTING_VERLET_GRID_HPP
+#define TESTING_VERLET_GRID_HPP
+
 #include <objects/verlet/ball/ball.hpp>
 #include <objects/verlet/ball/colliders/circle_open.hpp>
 #include <objects/verlet/ball/colliders/line.hpp>
@@ -7,10 +8,9 @@
 #include <testing/config.hpp>
 #include <grid/grid.hpp>
 #include <thread>
+#include <utils/window.hpp>
 #include <testing/utils.hpp>
-
-#ifndef TESTING_VERLET_GRID_HPP
-#define TESTING_VERLET_GRID_HPP
+#include <utils/types.hpp>
 
 #define CIRCLE_COLLIDER_VECTOR Vec2D(400, 300)
 #define CIRCLE_COLLIDER_RADIUS 300
@@ -29,6 +29,7 @@
 #define VERLET_BALL_COUNT 600
 #define VERLET_BALL_VECTOR Vec2D(200, 200)
 #define VERLET_BALL_RADIUS 4
+#define VERLET_BALL_ADD_INTERVAL 10 // 10ms
 #define VERLET_BALL_COLOR CYAN
 
 class GridTesting
@@ -37,7 +38,7 @@ public:
     static int start()
     {
         // Initialize a new window
-        sf::RenderWindow window(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), WINDOW_TITLE);
+        Window window = Window();
 
         // Create a new list of colliders
         OpenCircleCollider circle_collider = OpenCircleCollider(
@@ -56,17 +57,17 @@ public:
             LINE_COLLIDER_SLOPE_MULTIPLIER);
 
         // Create a new list of balls
-        std::vector<VerletBall *> balls = std::vector<VerletBall *>{};
+        VerletBallVector balls = VerletBallVector{};
         Utils::auto_add_verlet_balls(
             &balls,
             VERLET_BALL_VECTOR,
             VERLET_BALL_COUNT,
             VERLET_BALL_RADIUS,
-            VERLET_BALL_COLOR
-        );
+            VERLET_BALL_ADD_INTERVAL,
+            VERLET_BALL_COLOR);
 
         // Initialize a new grid
-        Grid<VerletBall>* grid = new Grid<VerletBall>(WINDOW_WIDTH, WINDOW_HEIGHT);
+        Grid<VerletBall> *grid = new Grid<VerletBall>(WINDOW_WIDTH, WINDOW_HEIGHT);
 
         // Window Loop
         while (window.isOpen())
@@ -148,7 +149,7 @@ while 1:
     draw_background()
     close_event()
     on_click(verlet_balls)
-    
+
     # Cap the amount of balls present
     while len(verlet_balls) > 300:
         ball: VerletBall = verlet_balls.pop(0)

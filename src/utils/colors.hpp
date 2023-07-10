@@ -1,5 +1,3 @@
-#include <iostream>
-
 #ifndef COLORS_HPP
 #define COLORS_HPP
 
@@ -15,6 +13,7 @@
 #define PINK Color(255, 192, 203)
 #define MAGENTA Color(255, 0, 255)
 
+// Color class
 class Color
 {
 public:
@@ -35,6 +34,7 @@ public:
     }
 };
 
+// Colors class
 class Colors
 {
 public:

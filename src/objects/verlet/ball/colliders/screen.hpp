@@ -1,5 +1,3 @@
-#include <iostream>
-
 #ifndef SCREEN_COLLIDER_HPP
 #define SCREEN_COLLIDER_HPP
 

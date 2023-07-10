@@ -1,8 +1,8 @@
-#include <iostream>
-#include <math.h>
-
 #ifndef VEC3D_HPP
 #define VEC3D_HPP
+
+#include <math.h>
+#include <tuple>
 
 class Vec3D
 {

@@ -1,4 +1,6 @@
-#include <iostream>
+#ifndef TESTING_UTILS
+#define TESTING_UTILS
+
 #include <thread>
 #include <SFML/Graphics.hpp>
 #include <objects/verlet/ball/ball.hpp>
@@ -6,24 +8,24 @@
 #include <utils/colors.hpp>
 #include <physics/vector2d.hpp>
 #include <testing/config.hpp>
+#include <utils/types.hpp>
 
-#ifndef TESTING_UTILS
-#define TESTING_UTILS
-
+// Utils Class
 class Utils
 {
 public:
     // Automatically add balls to the array
     static void auto_add_verlet_balls(
-        std::vector<VerletBall *> *balls,
+        VerletBallVector *balls,
         Vec2D ball_vector,
         int ball_count,
         int ball_radius,
+        int interval = 10,
         Color ball_color = WHITE
     ) {
         std::thread t([&]() {
             for (int i = 0; i < ball_count; i++) {
-                std::this_thread::sleep_for(std::chrono::milliseconds(10));
+                std::this_thread::sleep_for(std::chrono::milliseconds(interval));
                 VerletBall *ball = new VerletBall(
                     ball_vector,
                     ball_radius,

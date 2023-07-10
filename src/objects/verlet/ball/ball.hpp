@@ -1,12 +1,12 @@
-#include <iostream>
+#ifndef VERLET_BALL_HPP
+#define VERLET_BALL_HPP
+
 #include <SFML/Graphics.hpp>
 #include <physics/vector2d.hpp>
 #include <physics/constants.hpp>
 #include <utils/colors.hpp>
 #include <objects/verlet/object.hpp>
-
-#ifndef VERLET_BALL_HPP
-#define VERLET_BALL_HPP
+#include <utils/window.hpp>
 
 class VerletBall : public VerletObject
 {
@@ -20,7 +20,7 @@ public:
     }
 
     // Draw the object
-    void draw(sf::RenderWindow *window)
+    void draw(Window *window)
     {
         sf::CircleShape circle(this->radius);
         circle.setPosition(this->current_position.x, this->current_position.y);
@@ -66,7 +66,7 @@ public:
     }
 
     // Update the ball
-    void update(sf::RenderWindow *window, std::vector<VerletBall *> balls = {})
+    void update(Window *window, std::vector<VerletBall *> balls = {})
     {
         this->accelerate(GRAVITY);
         this->update_position();
@@ -75,7 +75,7 @@ public:
     }
 
     // Update without checking for collisions
-    void update_no_collisions(sf::RenderWindow *window)
+    void update_no_collisions(Window *window)
     {
         this->accelerate(GRAVITY);
         this->update_position();

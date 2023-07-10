@@ -1,10 +1,8 @@
-#include <iostream>
-#include <SFML/Graphics.hpp>
-#include <objects/line.hpp>
-#include <objects/verlet/ball/ball.hpp>
-
 #ifndef LINE_COLLIDER_HPP
 #define LINE_COLLIDER_HPP
+
+#include <objects/line.hpp>
+#include <objects/verlet/ball/ball.hpp>
 
 class LineCollider : public Line
 {

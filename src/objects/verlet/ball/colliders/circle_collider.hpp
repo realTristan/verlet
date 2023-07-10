@@ -1,9 +1,8 @@
-#include <iostream>
-#include <physics/vector2d.hpp>
-#include <utils/colors.hpp>
-
 #ifndef CIRCLE_COLLIDER_HPP
 #define CIRCLE_COLLIDER_HPP
+
+#include <physics/vector2d.hpp>
+#include <utils/colors.hpp>
 
 class CircleCollider
 {

@@ -1,8 +1,7 @@
-#include <iostream>
-#include <ctime>
-
 #ifndef TIME_HPP
 #define TIME_HPP
+
+#include <ctime>
 
 class Time
 {

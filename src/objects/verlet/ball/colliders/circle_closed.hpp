@@ -1,12 +1,12 @@
-#include <iostream>
+#ifndef CLOSED_CIRCLE_COLLIDER_HPP
+#define CLOSED_CIRCLE_COLLIDER_HPP
+
 #include <SFML/Graphics.hpp>
 #include <physics/vector2d.hpp>
 #include <utils/colors.hpp>
 #include <objects/verlet/ball/colliders/circle_collider.hpp>
 #include <objects/verlet/ball/ball.hpp>
-
-#ifndef CLOSED_CIRCLE_COLLIDER_HPP
-#define CLOSED_CIRCLE_COLLIDER_HPP
+#include <utils/window.hpp>
 
 class ClosedCircleCollider : public CircleCollider
 {
@@ -26,7 +26,7 @@ public:
     }
 
     // Draw the Collider
-    void draw(sf::RenderWindow *window)
+    void draw(Window *window)
     {
         sf::CircleShape circle(this->radius);
         circle.setOrigin(this->radius, this->radius);

@@ -1,8 +1,7 @@
-#include <iostream>
-
 #ifndef THREAD_HPP
 #define THREAD_HPP
 
+// Thread class
 class Thread
 {
 public:
@@ -11,7 +10,6 @@ public:
 
     void start()
     {
-        std::cout << "Thread::start()" << std::endl;
         run();
     }
 

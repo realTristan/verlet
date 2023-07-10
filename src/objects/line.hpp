@@ -1,11 +1,11 @@
-#include <iostream>
+#ifndef LINE_HPP
+#define LINE_HPP
+
 #include <SFML/Graphics.hpp>
 #include <physics/vector2d.hpp>
 #include <utils/colors.hpp>
+#include <utils/window.hpp>
 #include <math.h>
-
-#ifndef LINE_HPP
-#define LINE_HPP
 
 class Line
 {
@@ -44,7 +44,7 @@ public:
     }
 
     // Draw the line
-    void draw(sf::RenderWindow *window)
+    void draw(Window *window)
     {
         for (int i = 0; i < this->width; i++)
         {
