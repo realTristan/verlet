@@ -19,7 +19,7 @@
 class LineTesting
 {
 public:
-    static int start()
+    static void start()
     {
         // Initialize a new window
         Window window = Window();
@@ -44,8 +44,6 @@ public:
             // Update the window
             window.display();
         }
-
-        return 0;
     }
 };
 
