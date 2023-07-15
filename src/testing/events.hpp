@@ -2,12 +2,11 @@
 #define TESTING_EVENTS_HPP
 
 #include <SFML/Graphics.hpp>
-#include <utils/window.hpp>
 
 class Events
 {
 public:
-    static void check_close(Window *window)
+    static void check_close(sf::RenderWindow *window)
     {
         sf::Event event;
         while (window->pollEvent(event))

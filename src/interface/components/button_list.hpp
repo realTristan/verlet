@@ -4,7 +4,6 @@
 #include <interface/components/button.hpp>
 #include <physics/vector2d.hpp>
 #include <SFML/Graphics.hpp>
-#include <utils/window.hpp>
 #include <utils/colors.hpp>
 #include <vector>
 
@@ -33,7 +32,7 @@ public:
     }
 
     // Draw the list of buttons
-    void draw(Window *window, Items items)
+    void draw(sf::RenderWindow *window, Items items)
     {
         int i = 0;
         for (T item : items)
@@ -78,7 +77,7 @@ public:
             items.erase(items.begin() + index); // Remove the item from the list
         }
     */
-    std::vector<int> get_clicked_indices(Window *window)
+    std::vector<int> get_clicked_indices(sf::RenderWindow *window)
     {
         std::vector<int> clicked_indices;
         int i = 0;

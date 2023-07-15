@@ -6,8 +6,8 @@
 #include <objects/verlet/ball/ball.hpp>
 #include <physics/vector2d.hpp>
 #include <testing/events.hpp>
+#include <SFML/Graphics.hpp>
 #include <utils/colors.hpp>
-#include <utils/window.hpp>
 #include <interface/components/text.hpp>
 
 class RotatingBall
@@ -16,7 +16,9 @@ public:
     static void start()
     {
         // Create the window
-        Window window = Window();
+        sf::RenderWindow window(
+            sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), WINDOW_TITLE);
+        window.setFramerateLimit(60);
 
         // Create the ball
         VerletBall ball(Vec2D(200.0f, 100.0f), 15.0f, CYAN);

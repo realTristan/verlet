@@ -4,7 +4,6 @@
 #include <physics/vector2d.hpp>
 #include <SFML/Graphics.hpp>
 #include <utils/colors.hpp>
-#include <utils/window.hpp>
 #include <math.h>
 
 class Line
@@ -44,7 +43,7 @@ public:
     }
 
     // Draw the line
-    void draw(Window *window)
+    void draw(sf::RenderWindow *window)
     {
         for (int i = 0; i < this->width; i++)
         {

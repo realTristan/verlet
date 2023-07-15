@@ -5,7 +5,7 @@
 #include <objects/verlet/ball/ball.hpp>
 #include <testing/events.hpp>
 #include <testing/utils.hpp>
-#include <utils/window.hpp>
+#include <SFML/Graphics.hpp>
 #include <thread>
 #include <vector>
 
@@ -31,7 +31,9 @@ public:
     static void start()
     {
         // Initialize a new window
-        Window window = Window();
+        sf::RenderWindow window(
+            sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), WINDOW_TITLE);
+        window.setFramerateLimit(60);
 
         // Create a new list of colliders
         OpenCircleCollider circle_collider = OpenCircleCollider(
@@ -43,7 +45,7 @@ public:
             CIRCLE_COLLIDER_OUTSIDE_COLLISIONS);
 
         // Create a new list of balls
-        VerletBallVector balls = VerletBallVector{};
+        VerletBallVector balls = VerletBallVector();
         Utils::auto_add_verlet_balls(
             &balls,
             VERLET_BALL_VECTOR,

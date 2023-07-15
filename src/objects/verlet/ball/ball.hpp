@@ -6,7 +6,6 @@
 #include <physics/vector2d.hpp>
 #include <SFML/Graphics.hpp>
 #include <utils/colors.hpp>
-#include <utils/window.hpp>
 
 class VerletBall : public VerletObject
 {
@@ -20,7 +19,7 @@ public:
     }
 
     // Draw the object
-    void draw(Window *window)
+    void draw(sf::RenderWindow *window)
     {
         sf::CircleShape circle(this->radius);
         circle.setPosition(this->current_position.x, this->current_position.y);
@@ -66,7 +65,7 @@ public:
     }
 
     // Update the ball
-    void update(Window *window, std::vector<VerletBall *> *balls)
+    void update(sf::RenderWindow *window, std::vector<VerletBall *> *balls)
     {
         this->accelerate(GRAVITY);
         this->update_position();
@@ -75,7 +74,7 @@ public:
     }
 
     // Update without checking for collisions
-    void update_no_collisions(Window *window)
+    void update_no_collisions(sf::RenderWindow *window)
     {
         this->accelerate(GRAVITY);
         this->update_position();

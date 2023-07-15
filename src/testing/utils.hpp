@@ -6,7 +6,6 @@
 #include <testing/config.hpp>
 #include <SFML/Graphics.hpp>
 #include <utils/colors.hpp>
-#include <utils/window.hpp>
 #include <thread>
 #include <vector>
 
@@ -37,7 +36,7 @@ public:
     }
 
     // Draw the background
-    static void draw_background(Window *window)
+    static void draw_background(sf::RenderWindow *window)
     {
         window->clear(Colors::to_sf(BACKGROUND_COLOR));
         for (int x = 0; x < WINDOW_WIDTH; x += 50)

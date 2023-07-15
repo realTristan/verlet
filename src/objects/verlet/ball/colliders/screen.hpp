@@ -1,17 +1,16 @@
 #ifndef VERLET_BALL_SCREEN_COLLIDER_HPP
 #define VERLET_BALL_SCREEN_COLLIDER_HPP
 
-#include <physics/vector2d.hpp>
 #include <objects/verlet/ball/ball.hpp>
-#include <testing/config.hpp>
+#include <physics/vector2d.hpp>
 
 class ScreenCollider
 {
 private:
     int width_min = 0;
-    int width_max = WINDOW_WIDTH;
+    int width_max = 0;
     int height_min = 0;
-    int height_max = WINDOW_HEIGHT;
+    int height_max = 0;
 
     void handle_right_collision(VerletBall *ball) {
         float dist = ball->current_position.x + ball->radius - this->width_max;
@@ -42,6 +41,11 @@ private:
     }
 
 public:
+    ScreenCollider(int width, int height) {
+        this->width_max = width;
+        this->height_max = height;
+    }
+
     void apply(VerletBall *ball) {
         this->handle_right_collision(ball);
         this->handle_left_collision(ball);

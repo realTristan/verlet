@@ -6,8 +6,8 @@
 #include <testing/config.hpp>
 #include <testing/events.hpp>
 #include <testing/utils.hpp>
+#include <SFML/Graphics.hpp>
 #include <objects/line.hpp>
-#include <utils/window.hpp>
 #include <thread>
 
 #define LINE_START_VECTOR Vec2D(200, 250)
@@ -22,7 +22,9 @@ public:
     static void start()
     {
         // Initialize a new window
-        Window window = Window();
+        sf::RenderWindow window(
+            sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), WINDOW_TITLE);
+        window.setFramerateLimit(60);
 
         // Create a new line
         Line line = Line(

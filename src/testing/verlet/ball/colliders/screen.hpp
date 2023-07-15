@@ -6,7 +6,7 @@
 #include <testing/events.hpp>
 #include <testing/config.hpp>
 #include <testing/utils.hpp>
-#include <utils/window.hpp>
+#include <SFML/Graphics.hpp>
 #include <thread>
 #include <vector>
 
@@ -25,7 +25,9 @@ public:
     static void start()
     {
         // Initialize a new window
-        Window window = Window();
+        sf::RenderWindow window(
+            sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), WINDOW_TITLE);
+        window.setFramerateLimit(60);
 
         // Create a new list of balls
         VerletBallVector balls = VerletBallVector();
@@ -38,7 +40,7 @@ public:
             VERLET_BALL_COLOR);
 
         // Create a screen collider
-        ScreenCollider screen_collider = ScreenCollider();
+        ScreenCollider screen_collider = ScreenCollider(WINDOW_WIDTH, WINDOW_HEIGHT);
 
         // Window Loop
         while (window.isOpen())

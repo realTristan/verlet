@@ -5,7 +5,6 @@
 #include <objects/verlet/ball/ball.hpp>
 #include <physics/vector2d.hpp>
 #include <SFML/Graphics.hpp>
-#include <utils/window.hpp>
 #include <utils/colors.hpp>
 
 class ClosedCircleCollider : public CircleCollider
@@ -26,7 +25,7 @@ public:
     }
 
     // Draw the Collider
-    void draw(Window *window)
+    void draw(sf::RenderWindow *window)
     {
         sf::CircleShape circle(this->radius);
         circle.setOrigin(this->radius, this->radius);

@@ -3,7 +3,6 @@
 
 #include <physics/vector2d.hpp>
 #include <SFML/Graphics.hpp>
-#include <utils/window.hpp>
 #include <utils/colors.hpp>
 
 class Text
@@ -24,7 +23,7 @@ public:
     }
 
     // Draw the text
-    void draw(Window *window)
+    void draw(sf::RenderWindow *window)
     {
         sf::Font font;
         font.loadFromFile("assets/fonts/arial.ttf");
