@@ -22,7 +22,7 @@ public:
         int interval = 10,
         Color ball_color = WHITE
     ) {
-        std::thread t([&]() {
+        std::thread t([balls, ball_vector, ball_count, ball_radius, interval, ball_color]() {
             for (int i = 0; i < ball_count; i++) {
                 std::this_thread::sleep_for(std::chrono::milliseconds(interval));
                 VerletBall *ball = new VerletBall(
