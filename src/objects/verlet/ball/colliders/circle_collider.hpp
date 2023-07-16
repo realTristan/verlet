@@ -17,7 +17,6 @@ public:
         this->position = position;
         this->radius = radius;
         this->color = color;
-        this->center = Vec2D(position.x + radius, position.y + radius);
     }
 };
 

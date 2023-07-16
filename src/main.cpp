@@ -9,15 +9,26 @@
 #include <testing/line.hpp>
 
 int main()
-{
-    //VerletBallTesting::start();
-    //ClosedCircleColliderTesting::start();
-    //OpenCircleColliderTesting::start();
-    //MenuTesting::start();
-    //LineColliderTesting::start();
-    //LineTesting::start();
-    //FluidTesting::start();
-    //GridTesting::start();
-    ScreenColliderTesting::start();
+{   
+    ///////////////////
+    //    WORKING    //
+    ///////////////////
+
+    // LineTesting::start();
+    // VerletBallTesting::start();
+    // OpenCircleColliderTesting::start();
+    MenuTesting::start(); // (fix button sensitivity)
+    // LineColliderTesting::start();
+    // FluidTesting::start();
+
+    ////////////////////
+    //    NEED FIX    //
+    ////////////////////
+
+    // 1. Fix the balls disappearing when they hit the open circle collider (sub steps maybe?)
+
+    // ClosedCircleColliderTesting::start(); (fix the balls passing through the collider)
+    // GridTesting::start(); (doesn't even start lol)
+    // ScreenColliderTesting::start(); (fix the physics)
     return 0;
 }

@@ -40,7 +40,7 @@ public:
     // Perform the verlet integration to calculate the displacement
     Vec2D calculate_displacement(float dt)
     {
-        return this->current_position + this->velocity + this->acceleration * dt * dt;
+        return this->current_position + this->velocity + this->acceleration * dt;
     }
 
     // Accelerate the object
@@ -53,7 +53,7 @@ public:
     void update_position()
     {
         // Get the time difference (delta time)
-        float dt = Time().now() - this->start_time;
+        float dt = Time::now() - this->start_time;
 
         // Update the object's position
         this->velocity = this->calculate_velocity();

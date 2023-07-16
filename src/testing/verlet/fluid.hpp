@@ -15,8 +15,8 @@
 #define CIRCLE_COLLIDER_RADIUS 300
 #define CIRCLE_COLLIDER_THICKNESS 2
 #define CIRCLE_COLLIDER_COLOR WHITE
-#define CIRCLE_COLLIDER_INSIDE_COLLISIONS false
-#define CIRCLE_COLLIDER_OUTSIDE_COLLISIONS true
+#define CIRCLE_COLLIDER_INSIDE_COLLISIONS true
+#define CIRCLE_COLLIDER_OUTSIDE_COLLISIONS false
 
 #define LINE_COLLIDER_VECTOR Vec2D(200, 250)
 #define LINE_COLLIDER_LENGTH 150
@@ -28,7 +28,7 @@
 #define VERLET_BALL_COUNT 600
 #define VERLET_BALL_VECTOR Vec2D(200, 200)
 #define VERLET_BALL_RADIUS 4
-#define VERLET_BALL_ADD_INTERVAL 10 // 10ms
+#define VERLET_BALL_ADD_INTERVAL 100 // 100ms
 #define VERLET_BALL_COLOR CYAN
 
 typedef std::vector<VerletBall *> VerletBallVector;
@@ -75,25 +75,17 @@ public:
             Events::check_close(&window);
             Utils::draw_background(&window);
 
+            // Draw the colliders
+            circle_collider.draw(&window);
+            line_collider.draw(&window);
+            
             // Draw and update the balls
             for (auto &ball : balls)
             {
                 ball->draw(&window);
                 ball->update(&window, &balls);
-            }
-
-            // Draw the circle collider
-            circle_collider.draw(&window);
-            for (auto &ball : balls)
-            {
-                circle_collider.apply(ball);
-            }
-
-            // Draw the line collider
-            line_collider.draw(&window);
-            for (auto &ball : balls)
-            {
                 line_collider.apply(ball);
+                circle_collider.apply(ball);
             }
 
             // Update the window

@@ -46,15 +46,15 @@ public:
 
         // Create the button text
         Vec2D text_position = Vec2D(
-            this->position.x + this->width / 2 - this->text.length() * 5,
-            this->position.y + this->height / 2 - 10);
+            this->position.x + this->width / 2 - text.length() - 15,
+            this->position.y + this->height / 2 - 5);
 
         // Draw the text
-        Text text(this->text, text_position, 20, BLACK);
+        Text text(this->text, text_position, 10, BLACK);
 
         // Draw the text and button shape
-        text.draw(window);
         window->draw(button);
+        text.draw(window);
     }
 
     // Check if the button is clicked
@@ -64,7 +64,7 @@ public:
         sf::Vector2f button_position = sf::Vector2f(this->position.x, this->position.y);
         sf::Vector2f button_size = sf::Vector2f(this->width, this->height);
         sf::FloatRect button_rect = sf::FloatRect(button_position, button_size);
-        return button_rect.contains(mouse_position.x, mouse_position.y);
+        return button_rect.contains(mouse_position.x, mouse_position.y) && sf::Mouse::isButtonPressed(sf::Mouse::Left);
     }
 };
 

@@ -19,7 +19,7 @@ public:
         Vec2D ball_vector,
         int ball_count,
         int ball_radius,
-        int interval = 10,
+        int interval = 100,
         Color ball_color = WHITE
     ) {
         std::thread t([balls, ball_vector, ball_count, ball_radius, interval, ball_color]() {
@@ -33,19 +33,20 @@ public:
                 balls->push_back(ball);
             }
         });
+        t.detach();
     }
 
     // Draw the background
     static void draw_background(sf::RenderWindow *window)
     {
-        window->clear(Colors::to_sf(BACKGROUND_COLOR));
+        window->clear();
         for (int x = 0; x < WINDOW_WIDTH; x += 50)
         {
             for (int y = 0; y < WINDOW_HEIGHT; y += 50)
             {
                 sf::RectangleShape rectangle(sf::Vector2f(50, 50));
                 rectangle.setPosition(sf::Vector2f(x, y));
-                rectangle.setFillColor(sf::Color(50, 50, 50));
+                rectangle.setFillColor(Colors::to_sf(BACKGROUND_COLOR));
                 rectangle.setOutlineThickness(1);
                 rectangle.setOutlineColor(sf::Color(50, 50, 50));
                 window->draw(rectangle);

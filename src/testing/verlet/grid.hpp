@@ -12,7 +12,7 @@
 #include <thread>
 #include <vector>
 
-#define CIRCLE_COLLIDER_VECTOR Vec2D(400, 300)
+#define CIRCLE_COLLIDER_POSITION Vec2D(400, 300)
 #define CIRCLE_COLLIDER_RADIUS 300
 #define CIRCLE_COLLIDER_THICKNESS 2
 #define CIRCLE_COLLIDER_COLOR WHITE
@@ -29,7 +29,7 @@
 #define VERLET_BALL_COUNT 600
 #define VERLET_BALL_VECTOR Vec2D(200, 200)
 #define VERLET_BALL_RADIUS 4
-#define VERLET_BALL_ADD_INTERVAL 10 // 10ms
+#define VERLET_BALL_ADD_INTERVAL 100 // 100ms
 #define VERLET_BALL_COLOR CYAN
 
 typedef std::vector<VerletBall *> VerletBallVector;
@@ -46,7 +46,7 @@ public:
 
         // Create a new list of colliders
         OpenCircleCollider circle_collider = OpenCircleCollider(
-            CIRCLE_COLLIDER_VECTOR,
+            CIRCLE_COLLIDER_POSITION,
             CIRCLE_COLLIDER_RADIUS,
             CIRCLE_COLLIDER_THICKNESS,
             CIRCLE_COLLIDER_COLOR,
@@ -82,24 +82,16 @@ public:
             // Check for collisions
             grid->find_collisions(-1);
 
+            // Draw the colliders
+            circle_collider.draw(&window);
+            line_collider.draw(&window);
+
             // Draw and update the balls
             for (auto &ball : balls)
             {
                 ball->draw(&window);
                 ball->update_no_collisions(&window);
-            }
-
-            // Draw the circle collider
-            circle_collider.draw(&window);
-            for (auto &ball : balls)
-            {
                 circle_collider.apply(ball);
-            }
-
-            // Draw the line collider
-            line_collider.draw(&window);
-            for (auto &ball : balls)
-            {
                 line_collider.apply(ball);
             }
 

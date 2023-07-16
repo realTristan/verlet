@@ -13,7 +13,7 @@
 #define VERLET_BALL_COUNT 100
 #define VERLET_BALL_VECTOR Vec2D(400, 100)
 #define VERLET_BALL_RADIUS 10
-#define VERLET_BALL_ADD_INTERVAL 10 // 10ms
+#define VERLET_BALL_ADD_INTERVAL 100 // 100ms
 #define VERLET_BALL_COLOR CYAN
 
 typedef std::vector<VerletBall *> VerletBallVector;
