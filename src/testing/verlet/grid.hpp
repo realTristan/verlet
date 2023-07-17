@@ -31,7 +31,7 @@
 #define VERLET_BALL_RADIUS 4
 #define VERLET_BALL_ADD_INTERVAL 100 // 100ms
 #define VERLET_BALL_OFFSET Vec2D(0, 0)
-#define VERLET_BALL_COLOR CYAN
+#define VERLET_BALL_RANDOM_COLOR true
 
 typedef std::vector<VerletBall *> VerletBallVector;
 
@@ -70,7 +70,7 @@ public:
             VERLET_BALL_RADIUS,
             VERLET_BALL_ADD_INTERVAL,
             VERLET_BALL_OFFSET,
-            VERLET_BALL_COLOR);
+            VERLET_BALL_RANDOM_COLOR);
 
         // Initialize a new grid
         Grid<VerletBall> *grid = new Grid<VerletBall>(WINDOW_WIDTH, WINDOW_HEIGHT);

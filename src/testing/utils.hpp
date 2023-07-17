@@ -21,19 +21,26 @@ public:
         int ball_radius,
         int interval = 100,
         Vec2D offset = Vec2D(0, 0),
-        Color ball_color = WHITE)
+        bool random_color = false,
+        Color ball_color = CYAN)
     {
-        std::thread t([balls, ball_vector, ball_count, ball_radius, interval, offset, ball_color]()
-                      {
-            for (int i = 0; i < ball_count; i++) {
+        std::thread t([balls, ball_vector, ball_count, ball_radius, interval, offset, random_color, ball_color]() {
+            for (int i = 0; i < ball_count; i++) 
+            {
                 std::this_thread::sleep_for(std::chrono::milliseconds(interval));
+                Color color = ball_color;
+                if (random_color) 
+                {
+                    color = Colors::random_color();
+                }
                 VerletBall *ball = new VerletBall(
                     ball_vector + Vec2D(i * offset.x, i * offset.y),
                     ball_radius,
-                    ball_color
+                    color
                 );
                 balls->push_back(ball);
-            } });
+            }
+        });
         t.detach();
     }
 
