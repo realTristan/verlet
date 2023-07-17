@@ -3,7 +3,7 @@
 
 #include <interface/components/button_list.hpp>
 #include <interface/components/button.hpp>
-#include <physics/vector2d.hpp>
+#include <physics/vector2d.h>
 #include <SFML/Graphics.hpp>
 
 class Menu
@@ -15,14 +15,14 @@ public:
     Menu() {
         this->line_collider_button = Button(
             "Line Collider",
-            Vec2D(10, 10),
+            Vec2D<float>(10, 10),
             105,
             35,
             WHITE
         );
         this->circle_collider_button = Button(
             "Circle Collider",
-            Vec2D(10, 60),
+            Vec2D<float>(10, 60),
             105,
             35,
             WHITE

@@ -1,0 +1,6 @@
+#ifndef PHYSICS_CONSTANTS_H
+#define PHYSICS_CONSTANTS_H
+
+#define GRAVITY Vec2D<float>(0.0f, 9.81f)
+
+#endif // PHYSICS_CONSTANTS_H

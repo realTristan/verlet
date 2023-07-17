@@ -1,7 +1,7 @@
 #ifndef OBJECT_LINE_HPP
 #define OBJECT_LINE_HPP
 
-#include <physics/vector2d.hpp>
+#include <physics/vector2d.h>
 #include <SFML/Graphics.hpp>
 #include <utils/colors.hpp>
 #include <math.h>
@@ -11,16 +11,16 @@
 class Line
 {
 public:
-    Vec2D start = Vec2D(0, 0);
-    Vec2D end = Vec2D(0, 0);
-    float length = 0;
-    float angle = 0;
+    Vec2D<float> start = Vec2D<float>(0.0f, 0.0f);
+    Vec2D<float> end = Vec2D<float>(0.0f, 0.0f);
+    float length = 0.0f;
+    float angle = 0.0f;
     int width = 1;
     Color color = WHITE;
 
     // Constructor
     Line(
-        Vec2D start,
+        Vec2D<float> start,
         float length,
         float angle,
         int width = 1,
@@ -36,9 +36,9 @@ public:
     }
 
     // Calculate the end of the line
-    Vec2D calculate_end()
+    Vec2D<float> calculate_end()
     {
-        return Vec2D(this->start.x + this->length, this->start.y + this->length * sin(this->angle));
+        return Vec2D<float>(this->start.x + this->length, this->start.y + this->length * sin(this->angle));
     }
 
     // Draw the line

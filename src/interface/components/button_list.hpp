@@ -2,7 +2,7 @@
 #define INTERFACE_COMPONENTS_BUTTONS_LIST_HPP
 
 #include <interface/components/button.hpp>
-#include <physics/vector2d.hpp>
+#include <physics/vector2d.h>
 #include <SFML/Graphics.hpp>
 #include <utils/colors.hpp>
 #include <vector>
@@ -12,7 +12,7 @@ class ButtonList
 {
 private:
     typedef std::vector<T> Items;
-    Vec2D position;
+    Vec2D<float> position;
     int button_width;
     int button_height;
     std::vector<Button *> buttons;
@@ -20,7 +20,7 @@ private:
 
 public:
     ButtonList(
-        Vec2D position,
+        Vec2D<float> position,
         int button_width,
         int button_height,
         Color button_color = WHITE)
@@ -38,7 +38,7 @@ public:
         for (T item : items)
         {
             // Get the button position
-            Vec2D position = Vec2D(
+            Vec2D<float> position = Vec2D<float>(
                 this->position.x, this->position.y + i * this->button_height);
 
             // Create the button

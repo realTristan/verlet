@@ -2,14 +2,14 @@
 #define TESTING_LINE_HPP
 
 #include <objects/verlet/ball/ball.hpp>
-#include <physics/vector2d.hpp>
+#include <physics/vector2d.h>
 #include <testing/config.hpp>
 #include <testing/events.hpp>
 #include <testing/utils.hpp>
 #include <SFML/Graphics.hpp>
 #include <objects/line.hpp>
 
-#define LINE_START_VECTOR Vec2D(200, 250)
+#define LINE_START_VECTOR Vec2D<float>(200, 250)
 #define LINE_LENGTH 150.0f
 #define LINE_ANGLE 15.0f
 #define LINE_WIDTH 5

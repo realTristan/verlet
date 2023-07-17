@@ -8,7 +8,7 @@
 #include <SFML/Graphics.hpp>
 #include <vector>
 
-#define CIRCLE_COLLIDER_POSITION Vec2D(400, 300)
+#define CIRCLE_COLLIDER_POSITION Vec2D<float>(400, 300)
 #define CIRCLE_COLLIDER_RADIUS 300
 #define CIRCLE_COLLIDER_THICKNESS 2
 #define CIRCLE_COLLIDER_COLOR WHITE
@@ -16,10 +16,10 @@
 #define CIRCLE_COLLIDER_OUTSIDE_COLLISIONS false
 
 #define VERLET_BALL_COUNT 300
-#define VERLET_BALL_VECTOR Vec2D(200, 200)
+#define VERLET_BALL_VECTOR Vec2D<float>(200, 200)
 #define VERLET_BALL_RADIUS 4
 #define VERLET_BALL_ADD_INTERVAL 100 // 100ms
-#define VERLET_BALL_OFFSET Vec2D(0, 0)
+#define VERLET_BALL_OFFSET Vec2D<float>(0, 0)
 #define VERLET_BALL_RANDOM_COLOR true
 
 typedef std::vector<VerletBall *> VerletBallVector;

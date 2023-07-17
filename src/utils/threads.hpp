@@ -16,4 +16,4 @@ public:
     virtual void run() = 0;
 };
 
-#endif
+#endif // THREAD_HPP

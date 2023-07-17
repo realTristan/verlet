@@ -2,9 +2,8 @@
 #define VERLET_GRID_HPP
 
 #include <objects/verlet/ball/ball.hpp>
-#include <physics/vector2d.hpp>
+#include <physics/vector2d.h>
 #include <vector>
-#include <iostream>
 
 // A grid for the verlet objects
 template <typename T>

@@ -2,7 +2,7 @@
 #define TESTING_UTILS_HPP
 
 #include <objects/verlet/ball/ball.hpp>
-#include <physics/vector2d.hpp>
+#include <physics/vector2d.h>
 #include <testing/config.hpp>
 #include <SFML/Graphics.hpp>
 #include <utils/colors.hpp>
@@ -16,11 +16,11 @@ public:
     // Automatically add balls to the array
     static void auto_add_verlet_balls(
         std::vector<VerletBall *> *balls,
-        Vec2D ball_vector,
+        Vec2D<float> ball_vector,
         int ball_count,
         int ball_radius,
         int interval = 100,
-        Vec2D offset = Vec2D(0, 0),
+        Vec2D<float> offset = Vec2D<float>(0, 0),
         bool random_color = false,
         Color ball_color = CYAN)
     {
@@ -34,7 +34,7 @@ public:
                     color = Colors::random_color();
                 }
                 VerletBall *ball = new VerletBall(
-                    ball_vector + Vec2D(i * offset.x, i * offset.y),
+                    ball_vector + Vec2D<float>(i * offset.x, i * offset.y),
                     ball_radius,
                     color
                 );

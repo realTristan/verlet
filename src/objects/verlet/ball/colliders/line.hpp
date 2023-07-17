@@ -3,18 +3,19 @@
 
 #include <objects/verlet/ball/ball.hpp>
 #include <objects/line.hpp>
+#include <physics/vector2d.h>
 
 class LineCollider : public Line
 {
 public:
     float slope_multiplier;
     LineCollider(
-        Vec2D start,
+        Vec2D<float> start,
         float length,
         float angle,
         int width = 1,
         Color color = WHITE,
-        float slope_multiplier = 1.0) : Line(start, length, angle, width, color)
+        float slope_multiplier = 1.0f) : Line(start, length, angle, width, color)
     {
         this->slope_multiplier = slope_multiplier;
     }

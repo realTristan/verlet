@@ -1,28 +1,28 @@
 #ifndef VERLET_OBJECT_HPP
 #define VERLET_OBJECT_HPP
 
-#include <physics/vector2d.hpp>
+#include <physics/vector2d.h>
 #include <utils/colors.hpp>
-#include <utils/time.hpp>
+#include <utils/time.h>
 
 class VerletObject
 {
 public:
-    Vec2D current_position;
-    Vec2D prev_position;
-    Vec2D acceleration;
-    Vec2D velocity;
+    Vec2D<float> current_position;
+    Vec2D<float> prev_position;
+    Vec2D<float> acceleration;
+    Vec2D<float> velocity;
     Color color = WHITE;
     float start_time;
 
-    VerletObject(Vec2D position, Color color)
+    VerletObject(Vec2D<float> position, Color color)
     {
         this->current_position = position;
         this->prev_position = position;
-        this->acceleration = Vec2D();
-        this->velocity = Vec2D();
+        this->acceleration = Vec2D<float>();
+        this->velocity = Vec2D<float>();
         this->color = color;
-        this->start_time = Time().now();
+        this->start_time = Time::now();
     }
 
     // Set the object's color
@@ -32,19 +32,19 @@ public:
     }
 
     // Calculate the object's velocity
-    Vec2D calculate_velocity()
+    Vec2D<float> calculate_velocity()
     {
         return this->current_position - this->prev_position;
     }
 
     // Perform the verlet integration to calculate the displacement
-    Vec2D calculate_displacement(float dt)
+    Vec2D<float> calculate_displacement(float dt)
     {
         return this->current_position + this->velocity + this->acceleration * dt;
     }
 
     // Accelerate the object
-    void accelerate(Vec2D acceleration)
+    void accelerate(Vec2D<float> acceleration)
     {
         this->acceleration += acceleration;
     }
@@ -62,7 +62,7 @@ public:
 
         // Reset the acceleration and start time
         this->acceleration.zero();
-        this->start_time = Time().now();
+        this->start_time = Time::now();
     }
 };
 

@@ -1,5 +1,5 @@
-#ifndef TIME_HPP
-#define TIME_HPP
+#ifndef TIME_H
+#define TIME_H
 
 #include <ctime>
 
@@ -13,4 +13,4 @@ public:
     }
 };
 
-#endif
+#endif // TIME_H

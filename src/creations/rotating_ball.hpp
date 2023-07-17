@@ -4,11 +4,15 @@
 #include <objects/verlet/ball/colliders/circle_open.hpp>
 #include <objects/verlet/ball/colliders/line.hpp>
 #include <objects/verlet/ball/ball.hpp>
-#include <physics/vector2d.hpp>
+#include <physics/vector2d.h>
 #include <testing/events.hpp>
+#include <testing/config.hpp>
 #include <SFML/Graphics.hpp>
 #include <utils/colors.hpp>
 #include <interface/components/text.hpp>
+#include <vector>
+
+typedef std::vector<VerletBall *> VerletBallVector;
 
 class RotatingBall
 {
@@ -21,7 +25,9 @@ public:
         window.setFramerateLimit(60);
 
         // Create the ball
-        VerletBall ball(Vec2D(200.0f, 100.0f), 15.0f, CYAN);
+        VerletBallVector balls = VerletBallVector {
+            new VerletBall(Vec2D(200.0f, 100.0f), 15.0f, CYAN)
+        };
 
         // Create the line collider
         LineCollider line(Vec2D(200.0f, 100.0f), 0.001f, 35.0f, 2);
@@ -45,11 +51,16 @@ public:
             text.draw(&window);
 
             // Update the ball
-            ball.update(&window);
-            line.apply(&ball);
-            line.draw(&window);
-            circle.apply(&ball);
-            circle.draw(&window);
+            for (int i = 0; i < SUBSTEPS; i++)
+            {
+                for (int j = 0; j < balls.size(); j++)
+                {
+                    line.apply(balls[j]);
+                    line.draw(&window);
+                    circle.apply(balls[j]);
+                    circle.draw(&window);
+                }
+            }
 
             // Update the display
             window.display();

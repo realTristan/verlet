@@ -1,112 +1,89 @@
-#ifndef PHYSICS_VEC3D_HPP
-#define PHYSICS_VEC3D_HPP
+#ifndef PHYSICS_VEC2D_H
+#define PHYSICS_VEC2D_H
 
 #include <math.h>
 #include <tuple>
 
-class Vec3D
+template <typename T>
+class Vec2D
 {
 public:
-    float x;
-    float y;
-    float z;
+    T x;
+    T y;
 
     // Constructors
-    Vec3D()
+    Vec2D()
     {
         this->x = 0.0f;
         this->y = 0.0f;
-        this->z = 0.0f;
     }
-    Vec3D(float x, float y, float z)
+    Vec2D(T x, T y)
     {
         this->x = x;
         this->y = y;
-        this->z = z;
     }
-    Vec3D(const Vec3D &v)
+    Vec2D(const Vec2D<T> &v)
     {
         this->x = v.x;
         this->y = v.y;
-        this->z = v.z;
     }
 
     // Operations
-    Vec3D &operator=(const Vec3D &v)
+    Vec2D<T> &operator=(const Vec2D<T> &v)
     {
         this->x = v.x;
         this->y = v.y;
-        this->z = v.z;
         return *this;
     }
-    Vec3D &operator+=(const Vec3D &v)
+    Vec2D<T> &operator+=(const Vec2D<T> &v)
     {
         this->x += v.x;
         this->y += v.y;
-        this->z += v.z;
         return *this;
     }
-    Vec3D &operator-=(const Vec3D &v)
+    Vec2D<T> &operator-=(const Vec2D<T> &v)
     {
         this->x -= v.x;
         this->y -= v.y;
-        this->z -= v.z;
         return *this;
     }
-    Vec3D &operator*=(float f)
+    Vec2D<T> &operator*=(T f)
     {
         this->x *= f;
         this->y *= f;
-        this->z *= f;
         return *this;
     }
-    Vec3D &operator/=(float f)
+    Vec2D<T> &operator/=(T f)
     {
         this->x /= f;
         this->y /= f;
-        this->z /= f;
         return *this;
     }
-    Vec3D operator+(const Vec3D &v) const
+    Vec2D<T> operator+(const Vec2D<T> &v) const
     {
-        return Vec3D(*this) += v;
+        return Vec2D<T>(*this) += v;
     }
-    Vec3D operator-(const Vec3D &v) const
+    Vec2D<T> operator-(const Vec2D<T> &v) const
     {
-        return Vec3D(*this) -= v;
+        return Vec2D<T>(*this) -= v;
     }
-    Vec3D operator*(float f) const
+    Vec2D<T> operator*(T f) const
     {
-        return Vec3D(*this) *= f;
+        return Vec2D<T>(*this) *= f;
     }
-    Vec3D operator/(float f) const
+    Vec2D<T> operator/(T f) const
     {
-        return Vec3D(*this) /= f;
-    }
-
-    // Copy the vector
-    Vec3D copy() const
-    {
-        return Vec3D(*this);
-    }
-
-    // Set the vector
-    Vec3D set(float x, float y, float z)
-    {
-        this->x = x;
-        this->y = y;
-        this->z = z;
-        return *this;
+        return Vec2D<T>(*this) /= f;
     }
 
     // Get the magnitude of the vector
-    float magnitude() const
+    T magnitude() const
     {
         return sqrt(this->x * this->x + this->y * this->y);
     }
 
     // Get the vector and return the x and y as a tuple
-    std::tuple<float, float> get() const
+    std::tuple<T, T> get() const
     {
         return std::make_tuple(this->x, this->y);
     }
@@ -116,44 +93,53 @@ public:
     {
         this->x = 0.0f;
         this->y = 0.0f;
-        this->z = 0.0f;
+    }
+
+    // Copy the vector
+    Vec2D<T> copy()
+    {
+        return Vec2D<T>(*this);
+    }
+
+    // Set the vector
+    Vec2D<T> set(T x, T y)
+    {
+        this->x = x;
+        this->y = y;
+        return *this;
     }
 
     // Multiply by another vector
-    Vec3D multiply(const Vec3D &v)
+    Vec2D<T> multiply(const Vec2D<T> &v)
     {
         this->x *= v.x;
         this->y *= v.y;
-        this->z *= v.z;
         return *this;
     }
 
     // Divide by another vector
-    Vec3D divide(const Vec3D &v)
+    Vec2D<T> divide(const Vec2D<T> &v)
     {
         this->x /= v.x;
         this->y /= v.y;
-        this->z /= v.z;
         return *this;
     }
 
     // Add a scalar
-    Vec3D add(float f)
+    Vec2D<T> add(T f)
     {
         this->x += f;
         this->y += f;
-        this->z += f;
         return *this;
     }
 
     // Subtract a scalar
-    Vec3D subtract(float f)
+    Vec2D<T> subtract(T f)
     {
         this->x -= f;
         this->y -= f;
-        this->z -= f;
         return *this;
     }
 };
 
-#endif // PHYSICS_VEC3D_HPP
+#endif // PHYSICS_VEC2D_H

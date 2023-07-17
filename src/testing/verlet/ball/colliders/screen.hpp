@@ -10,10 +10,10 @@
 #include <vector>
 
 #define VERLET_BALL_COUNT 1
-#define VERLET_BALL_VECTOR Vec2D(200, 200)
+#define VERLET_BALL_VECTOR Vec2D<float>(200, 200)
 #define VERLET_BALL_RADIUS 10
 #define VERLET_BALL_ADD_INTERVAL 100 // 100ms
-#define VERLET_BALL_OFFSET Vec2D(0, 0)
+#define VERLET_BALL_OFFSET Vec2D<float>(0, 0)
 #define VERLET_BALL_RANDOM_COLOR true
 
 typedef std::vector<VerletBall *> VerletBallVector;

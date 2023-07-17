@@ -60,4 +60,4 @@ public:
     }
 };
 
-#endif
+#endif // COLORS_HPP

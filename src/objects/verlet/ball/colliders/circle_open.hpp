@@ -13,7 +13,7 @@ public:
     int width;
 
     OpenCircleCollider(
-        Vec2D position,
+        Vec2D<float> position,
         float radius,
         int width = 1,
         Color color = WHITE,
@@ -32,7 +32,7 @@ public:
         circle.setScale(1.0f, 1.0f);
         circle.setOutlineColor(Colors::to_sf(this->color));
         circle.setOrigin(this->radius, this->radius);
-        circle.setPosition(this->position.x + 4, this->position.y + 2);
+        circle.setPosition(this->position.x + 4.0f, this->position.y + 2.0f);
         circle.setOutlineThickness(this->width);
         circle.setFillColor(sf::Color::Transparent);
         circle.setPointCount(128);
@@ -48,8 +48,8 @@ public:
         }
 
         // Calculate the distance between the ball and the circle
-        Vec2D dist = ball->current_position - this->position;
-        float magnitude = dist.magnitude() + 1.0e-9;
+        Vec2D<float> dist = ball->current_position - this->position;
+        float magnitude = dist.magnitude() + 1.0e-9f;
 
         // Check if the ball is inside the collider
         if (this->inside_collision)
@@ -72,10 +72,10 @@ public:
             if (ball_colliding_with_circle && (!this->inside_collision || ball_outside_circle))
             {
                 // Calculate the ball overlap (the amount the balls have overlapped)
-                Vec2D overlap = dist / magnitude;
+                Vec2D<float> overlap = dist / magnitude;
 
                 // Update this balls position (move it to the side)
-                ball->current_position += overlap * 0.5 * (rad_sum - magnitude);
+                ball->current_position += overlap * 0.5f * (rad_sum - magnitude);
             }
         }
     }

@@ -2,7 +2,7 @@
 #define INTERFACE_COMPONENTS_BUTTON_HPP
 
 #include <interface/components/text.hpp>
-#include <physics/vector2d.hpp>
+#include <physics/vector2d.h>
 #include <SFML/Graphics.hpp>
 #include <utils/colors.hpp>
 
@@ -10,7 +10,7 @@ class Button
 {
 private:
     std::string text;
-    Vec2D position;
+    Vec2D<float> position;
     int width;
     int height;
     Color color = WHITE;
@@ -18,13 +18,13 @@ private:
 public:
     Button() {
         this->text = "";
-        this->position = Vec2D(0, 0);
+        this->position = Vec2D<float>(0.0f, 0.0f);
         this->width = 0;
         this->height = 0;
     }
     Button(
         std::string text,
-        Vec2D position,
+        Vec2D<float> position,
         int width,
         int height,
         Color color = WHITE)
@@ -45,9 +45,9 @@ public:
         button.setFillColor(Colors::to_sf(this->color));
 
         // Create the button text
-        Vec2D text_position = Vec2D(
-            this->position.x + this->width / 2 - text.length() - 15,
-            this->position.y + this->height / 2 - 5);
+        Vec2D<float> text_position = Vec2D<float>(
+            this->position.x + this->width / 2.0f - text.length() - 15.0f,
+            this->position.y + this->height / 2.0f - 5.0f);
 
         // Draw the text
         Text text(this->text, text_position, 10, BLACK);

@@ -1,7 +1,7 @@
 #ifndef INTERFACE_COMPONENTS_TEXT_HPP
 #define INTERFACE_COMPONENTS_TEXT_HPP
 
-#include <physics/vector2d.hpp>
+#include <physics/vector2d.h>
 #include <SFML/Graphics.hpp>
 #include <utils/colors.hpp>
 
@@ -9,12 +9,12 @@ class Text
 {
 private:
     std::string text;
-    Vec2D position;
+    Vec2D<float> position;
     int size;
     Color color = WHITE;
 
 public:
-    Text(std::string text, Vec2D position, int size, Color color = WHITE)
+    Text(std::string text, Vec2D<float> position, int size, Color color = WHITE)
     {
         this->text = text;
         this->position = position;

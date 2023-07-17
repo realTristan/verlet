@@ -10,7 +10,7 @@
 #include <SFML/Graphics.hpp>
 #include <vector>
 
-#define LINE_COLLIDER_VECTOR Vec2D(200, 250)
+#define LINE_COLLIDER_VECTOR Vec2D<float>(200, 250)
 #define LINE_COLLIDER_LENGTH 150
 #define LINE_COLLIDER_ANGLE 15
 #define LINE_COLLIDER_WIDTH 5
@@ -18,10 +18,10 @@
 #define LINE_COLLIDER_SLOPE_MULTIPLIER 0.1
 
 #define VERLET_BALL_COUNT 100
-#define VERLET_BALL_VECTOR Vec2D(200, 200)
+#define VERLET_BALL_VECTOR Vec2D<float>(200, 200)
 #define VERLET_BALL_RADIUS 4
 #define VERLET_BALL_ADD_INTERVAL 100 // 100ms
-#define VERLET_BALL_OFFSET Vec2D(0, 0)
+#define VERLET_BALL_OFFSET Vec2D<float>(0, 0)
 #define VERLET_BALL_RANDOM_COLOR true
 
 typedef std::vector<VerletBall *> VerletBallVector;
