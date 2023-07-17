@@ -71,7 +71,9 @@ public:
 
         // Get the cell and update it
         Cell *cell = this->get(x, y);
-        cell->push_back(obj);
+        if (cell != nullptr) {
+            cell->push_back(obj);
+        }
     }
 
     // Fill the grid with objects
