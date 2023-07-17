@@ -9,7 +9,6 @@
 #include <testing/utils.hpp>
 #include <SFML/Graphics.hpp>
 #include <grid/grid.hpp>
-#include <thread>
 #include <vector>
 
 #define CIRCLE_COLLIDER_POSITION Vec2D(400, 300)
@@ -53,6 +52,7 @@ public:
             CIRCLE_COLLIDER_COLOR,
             CIRCLE_COLLIDER_INSIDE_COLLISIONS,
             CIRCLE_COLLIDER_OUTSIDE_COLLISIONS);
+
         LineCollider line_collider = LineCollider(
             LINE_COLLIDER_VECTOR,
             LINE_COLLIDER_LENGTH,

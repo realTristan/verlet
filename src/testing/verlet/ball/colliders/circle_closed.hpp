@@ -6,7 +6,6 @@
 #include <testing/events.hpp>
 #include <testing/utils.hpp>
 #include <SFML/Graphics.hpp>
-#include <thread>
 #include <vector>
 
 #define CIRCLE_COLLIDER_POSITION Vec2D(200, 400)

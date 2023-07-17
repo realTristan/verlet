@@ -6,7 +6,6 @@
 #include <physics/vector2d.hpp>
 #include <SFML/Graphics.hpp>
 #include <utils/colors.hpp>
-#include <iostream>
 
 class ClosedCircleCollider : public CircleCollider
 {
@@ -27,7 +26,7 @@ public:
     {
         sf::CircleShape circle(this->radius);
         circle.setOrigin(this->radius, this->radius);
-        circle.setPosition(this->position.x, this->position.y);
+        circle.setPosition(this->position.x + 4, this->position.y + 3);
         circle.setFillColor(Colors::to_sf(this->color));
         circle.setPointCount(128);
         window->draw(circle);
@@ -43,7 +42,7 @@ public:
 
         // Calculate the distance between the ball and the circle
         Vec2D dist = ball->current_position - this->position;
-        float magnitude = dist.magnitude() + 1.0e-9 - 4.0f;
+        float magnitude = dist.magnitude() + 1.0e-9;
 
         // Check if the ball is outside the collider
         float rad_sum = ball->radius + this->radius;

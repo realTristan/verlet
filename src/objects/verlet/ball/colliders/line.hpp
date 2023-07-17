@@ -41,13 +41,13 @@ public:
         float y = slope * ball->current_position.x + y_int;
 
         // If the ball is above/below the line
-        float y_above = ball->current_position.y + ball->radius + this->width + 3.0;
+        float y_above = ball->current_position.y + ball->radius + this->width + 3.0f;
         float y_below = y + this->width + ball->radius;
 
         // Check to make sure the ball is within the y_above and y_below bounds
         if (y_above > y && ball->current_position.y < y_below)
         {
-            ball->current_position.y = y - ball->radius - this->width - 3.0;
+            ball->current_position.y = y - ball->radius - this->width - 3.0f;
             ball->current_position.x += slope * this->slope_multiplier;
         }
     }

@@ -3,7 +3,6 @@
 
 #include <objects/verlet/ball/ball.hpp>
 #include <physics/vector2d.hpp>
-#include <iostream>
 
 class ScreenCollider
 {

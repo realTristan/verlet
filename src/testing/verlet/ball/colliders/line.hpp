@@ -8,7 +8,6 @@
 #include <testing/config.hpp>
 #include <testing/utils.hpp>
 #include <SFML/Graphics.hpp>
-#include <thread>
 #include <vector>
 
 #define LINE_COLLIDER_VECTOR Vec2D(200, 250)

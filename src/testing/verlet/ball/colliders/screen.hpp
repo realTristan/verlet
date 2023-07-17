@@ -7,7 +7,6 @@
 #include <testing/config.hpp>
 #include <testing/utils.hpp>
 #include <SFML/Graphics.hpp>
-#include <thread>
 #include <vector>
 
 #define VERLET_BALL_COUNT 1

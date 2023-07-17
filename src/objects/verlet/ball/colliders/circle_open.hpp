@@ -32,7 +32,7 @@ public:
         circle.setScale(1.0f, 1.0f);
         circle.setOutlineColor(Colors::to_sf(this->color));
         circle.setOrigin(this->radius, this->radius);
-        circle.setPosition(this->position.x, this->position.y);
+        circle.setPosition(this->position.x + 4, this->position.y + 2);
         circle.setOutlineThickness(this->width);
         circle.setFillColor(sf::Color::Transparent);
         circle.setPointCount(128);
@@ -49,16 +49,16 @@ public:
 
         // Calculate the distance between the ball and the circle
         Vec2D dist = ball->current_position - this->position;
-        float magnitude = dist.magnitude() + 1.0e-9 + 2.0f;
+        float magnitude = dist.magnitude() + 1.0e-9;
 
         // Check if the ball is inside the collider
         if (this->inside_collision)
         {
             float delta = this->radius - ball->radius - this->width;
-            if (magnitude > delta && (!this->outside_collision || magnitude < this->radius))
+            bool ball_inside_circle = magnitude < this->radius;
+            if (magnitude > delta && (!this->outside_collision || ball_inside_circle))
             {
-                ball->current_position.x = this->position.x + dist.x / magnitude * delta;
-                ball->current_position.y = this->position.y + dist.y / magnitude * delta;
+                ball->current_position += dist / magnitude * (delta - magnitude);
                 return;
             }
         }
@@ -67,7 +67,9 @@ public:
         if (this->outside_collision)
         {
             float rad_sum = ball->radius + this->radius;
-            if (magnitude < rad_sum && (!this->inside_collision || magnitude > this->radius))
+            bool ball_colliding_with_circle = magnitude < rad_sum;
+            bool ball_outside_circle = magnitude > this->radius;
+            if (ball_colliding_with_circle && (!this->inside_collision || ball_outside_circle))
             {
                 // Calculate the ball overlap (the amount the balls have overlapped)
                 Vec2D overlap = dist / magnitude;

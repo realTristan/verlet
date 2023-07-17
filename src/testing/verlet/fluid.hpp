@@ -8,7 +8,6 @@
 #include <testing/config.hpp>
 #include <testing/utils.hpp>
 #include <SFML/Graphics.hpp>
-#include <thread>
 #include <vector>
 
 #define CIRCLE_COLLIDER_VECTOR Vec2D(400, 300)
@@ -53,6 +52,7 @@ public:
             CIRCLE_COLLIDER_COLOR,
             CIRCLE_COLLIDER_INSIDE_COLLISIONS,
             CIRCLE_COLLIDER_OUTSIDE_COLLISIONS);
+
         LineCollider line_collider = LineCollider(
             LINE_COLLIDER_VECTOR,
             LINE_COLLIDER_LENGTH,
@@ -82,7 +82,7 @@ public:
             // Draw the colliders
             circle_collider.draw(&window);
             line_collider.draw(&window);
-            
+
             // Draw and update the balls
             for (int i = 0; i < SUBSTEPS; i++)
             {

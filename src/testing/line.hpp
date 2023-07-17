@@ -8,7 +8,6 @@
 #include <testing/utils.hpp>
 #include <SFML/Graphics.hpp>
 #include <objects/line.hpp>
-#include <thread>
 
 #define LINE_START_VECTOR Vec2D(200, 250)
 #define LINE_LENGTH 150.0f
