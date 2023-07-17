@@ -2,6 +2,7 @@
 #define COLORS_HPP
 
 #include <SFML/Graphics.hpp>
+#include <cstdlib>
 
 #define RED Color(255, 0, 0)
 #define GREEN Color(0, 255, 0)
