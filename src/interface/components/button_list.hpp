@@ -42,7 +42,7 @@ public:
                 this->position.x, this->position.y + i * this->button_height);
 
             // Create the button
-            Button button(
+            Button *button = new Button(
                 std::to_string(item),
                 position,
                 this->button_width,
@@ -50,10 +50,10 @@ public:
                 this->button_color);
 
             // Draw the button
-            button.draw(window);
+            button->draw(window);
 
             // Add the button to the list of buttons
-            buttons.push_back(&button);
+            buttons.push_back(button);
 
             // Increment the index
             i++;

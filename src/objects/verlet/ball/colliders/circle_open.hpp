@@ -32,7 +32,7 @@ public:
         circle.setScale(1.0f, 1.0f);
         circle.setOutlineColor(Colors::to_sf(this->color));
         circle.setOrigin(this->radius, this->radius);
-        circle.setPosition(this->position.x + 4.0f, this->position.y + 2.0f);
+        circle.setPosition(this->position.x + 4.0f, this->position.y + 4.0f);
         circle.setOutlineThickness(this->width);
         circle.setFillColor(sf::Color::Transparent);
         circle.setPointCount(128);

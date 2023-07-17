@@ -50,11 +50,11 @@ public:
             this->position.y + this->height / 2.0f - 5.0f);
 
         // Draw the text
-        Text text(this->text, text_position, 10, BLACK);
+        Text *text = new Text(this->text, text_position, 10, BLACK);
 
         // Draw the text and button shape
         window->draw(button);
-        text.draw(window);
+        text->draw(window);
     }
 
     // Check if the button is clicked

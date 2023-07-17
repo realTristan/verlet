@@ -24,10 +24,10 @@
 #define LINE_COLLIDER_COLOR WHITE
 #define LINE_COLLIDER_SLOPE_MULTIPLIER 0.1
 
-#define VERLET_BALL_COUNT 600
+#define VERLET_BALL_COUNT 400
 #define VERLET_BALL_VECTOR Vec2D<float>(200, 200)
 #define VERLET_BALL_RADIUS 4
-#define VERLET_BALL_ADD_INTERVAL 100 // 100ms
+#define VERLET_BALL_ADD_INTERVAL 10 // 10ms
 #define VERLET_BALL_OFFSET Vec2D<float>(0, 0)
 #define VERLET_BALL_RANDOM_COLOR false
 #define VERLET_BALL_COLOR CYAN
@@ -40,12 +40,12 @@ public:
     static void start()
     {
         // Initialize a new window
-        sf::RenderWindow window(
+        sf::RenderWindow *window = new sf::RenderWindow(
             sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), WINDOW_TITLE);
-        window.setFramerateLimit(60);
+        window->setFramerateLimit(60);
 
         // Create a new list of colliders
-        OpenCircleCollider circle_collider = OpenCircleCollider(
+        OpenCircleCollider *circle_collider = new OpenCircleCollider(
             CIRCLE_COLLIDER_VECTOR,
             CIRCLE_COLLIDER_RADIUS,
             CIRCLE_COLLIDER_THICKNESS,
@@ -53,7 +53,7 @@ public:
             CIRCLE_COLLIDER_INSIDE_COLLISIONS,
             CIRCLE_COLLIDER_OUTSIDE_COLLISIONS);
 
-        LineCollider line_collider = LineCollider(
+        LineCollider *line_collider = new LineCollider(
             LINE_COLLIDER_VECTOR,
             LINE_COLLIDER_LENGTH,
             LINE_COLLIDER_ANGLE,
@@ -74,29 +74,29 @@ public:
             VERLET_BALL_COLOR);
 
         // Window Loop
-        while (window.isOpen())
+        while (window->isOpen())
         {
-            Events::check_close(&window);
-            Utils::draw_background(&window);
+            Events::check_close(window);
+            Utils::draw_background(window);
 
             // Draw the colliders
-            circle_collider.draw(&window);
-            line_collider.draw(&window);
+            circle_collider->draw(window);
+            line_collider->draw(window);
 
             // Draw and update the balls
             for (int i = 0; i < SUBSTEPS; i++)
             {
                 for (int j = 0; j < balls.size(); j++)
                 {
-                    balls[j]->draw(&window);
-                    balls[j]->update(&window, &balls);
-                    line_collider.apply(balls[j]);
-                    circle_collider.apply(balls[j]);
+                    balls[j]->draw(window);
+                    balls[j]->update(window, &balls);
+                    line_collider->apply(balls[j]);
+                    circle_collider->apply(balls[j]);
                 }
             }
 
             // Update the window
-            window.display();
+            window->display();
         }
     }
 };

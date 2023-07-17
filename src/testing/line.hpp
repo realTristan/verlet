@@ -21,12 +21,12 @@ public:
     static void start()
     {
         // Initialize a new window
-        sf::RenderWindow window(
+        sf::RenderWindow *window = new sf::RenderWindow(
             sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), WINDOW_TITLE);
-        window.setFramerateLimit(60);
+        window->setFramerateLimit(60);
 
         // Create a new line
-        Line line = Line(
+        Line *line = new Line(
             LINE_START_VECTOR,
             LINE_LENGTH,
             LINE_ANGLE,
@@ -34,16 +34,16 @@ public:
             LINE_COLOR);
 
         // Window Loop
-        while (window.isOpen())
+        while (window->isOpen())
         {
-            Events::check_close(&window);
-            Utils::draw_background(&window);
+            Events::check_close(window);
+            Utils::draw_background(window);
 
             // Draw the line collider
-            line.draw(&window);
+            line->draw(window);
 
             // Update the window
-            window.display();
+            window->display();
         }
     }
 };

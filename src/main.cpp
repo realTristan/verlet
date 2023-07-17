@@ -9,12 +9,7 @@
 #include <testing/line.hpp>
 
 int main()
-{   
-    // Note: a lot of the physics is off because SFML sucks and 
-    // somehow causes the physics equations (very basic) to not work properly? Like? wtf?
-    // And their circles are messed up so getting a ball to collide with the exact edge of a circle is
-    // just not possible. I'm not sure if it's just my code or if it's SFML but I'm pretty sure it's SFML.
-
+{
     ///////////////////
     //    WORKING    //
     ///////////////////

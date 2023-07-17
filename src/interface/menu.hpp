@@ -9,18 +9,18 @@
 class Menu
 {
 public:
-    Button line_collider_button;
-    Button circle_collider_button;
+    Button *line_collider_button;
+    Button *circle_collider_button;
 
     Menu() {
-        this->line_collider_button = Button(
+        this->line_collider_button = new Button(
             "Line Collider",
             Vec2D<float>(10, 10),
             105,
             35,
             WHITE
         );
-        this->circle_collider_button = Button(
+        this->circle_collider_button = new Button(
             "Circle Collider",
             Vec2D<float>(10, 60),
             105,
@@ -31,8 +31,8 @@ public:
 
     // Draw the menu
     void draw(sf::RenderWindow *window) {
-        this->circle_collider_button.draw(window);
-        this->line_collider_button.draw(window);
+        this->circle_collider_button->draw(window);
+        this->line_collider_button->draw(window);
     }
 };
 

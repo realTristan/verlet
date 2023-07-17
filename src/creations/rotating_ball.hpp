@@ -20,9 +20,9 @@ public:
     static void start()
     {
         // Create the window
-        sf::RenderWindow window(
+        sf::RenderWindow *window = new sf::RenderWindow(
             sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), WINDOW_TITLE);
-        window.setFramerateLimit(60);
+        window->setFramerateLimit(60);
 
         // Create the ball
         VerletBallVector balls = VerletBallVector {
@@ -30,40 +30,39 @@ public:
         };
 
         // Create the line collider
-        LineCollider line(Vec2D(200.0f, 100.0f), 0.001f, 35.0f, 2);
+        LineCollider *line = new LineCollider(Vec2D(200.0f, 100.0f), 0.001f, 35.0f, 2);
 
         // Create the open circle collider
-        OpenCircleCollider circle(Vec2D(400.0f, 300.0f), 300.0f, 5, WHITE, false);
+        OpenCircleCollider *circle = new OpenCircleCollider(Vec2D(400.0f, 300.0f), 300.0f, 5, WHITE, false);
 
         // Create the text
-        Text text("Rotating Ball", Vec2D(250.0f, 265.0f), 50, WHITE);
+        Text *text = new Text("Rotating Ball", Vec2D(250.0f, 265.0f), 50, WHITE);
 
         // Game Loop
-        while (window.isOpen())
+        while (window->isOpen())
         {
-            // Draw the background
-            window.clear(Colors::to_sf(BLACK));
-
-            // Check for a close event
-            Events::check_close(&window);
+            window->clear(Colors::to_sf(BLACK));
+            Events::check_close(window);
 
             // Draw the text
-            text.draw(&window);
+            text->draw(window);
+            
+            // Draw the colliders
+            line->draw(window);
+            circle->draw(window);
 
             // Update the ball
             for (int i = 0; i < SUBSTEPS; i++)
             {
                 for (int j = 0; j < balls.size(); j++)
                 {
-                    line.apply(balls[j]);
-                    line.draw(&window);
-                    circle.apply(balls[j]);
-                    circle.draw(&window);
+                    line->apply(balls[j]);
+                    circle->apply(balls[j]);
                 }
             }
 
             // Update the display
-            window.display();
+            window->display();
         }
     }
 };

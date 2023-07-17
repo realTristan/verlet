@@ -41,12 +41,12 @@ public:
     static void start()
     {
         // Initialize a new window
-        sf::RenderWindow window(
+        sf::RenderWindow *window = new sf::RenderWindow(
             sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), WINDOW_TITLE);
-        window.setFramerateLimit(60);
+        window->setFramerateLimit(60);
 
         // Create a new list of colliders
-        OpenCircleCollider circle_collider = OpenCircleCollider(
+        OpenCircleCollider *circle_collider = new OpenCircleCollider(
             CIRCLE_COLLIDER_POSITION,
             CIRCLE_COLLIDER_RADIUS,
             CIRCLE_COLLIDER_THICKNESS,
@@ -54,7 +54,7 @@ public:
             CIRCLE_COLLIDER_INSIDE_COLLISIONS,
             CIRCLE_COLLIDER_OUTSIDE_COLLISIONS);
 
-        LineCollider line_collider = LineCollider(
+        LineCollider *line_collider = new LineCollider(
             LINE_COLLIDER_VECTOR,
             LINE_COLLIDER_LENGTH,
             LINE_COLLIDER_ANGLE,
@@ -74,27 +74,39 @@ public:
             VERLET_BALL_RANDOM_COLOR);
 
         // Menu variables
-        Menu menu = Menu();
+        Menu *menu = new Menu();
         bool show_circle_collider = false;
         bool show_line_collider = false;
 
         // Window Loop
-        while (window.isOpen())
+        while (window->isOpen())
         {
-            Events::check_close(&window);
-            Utils::draw_background(&window);
+            Events::check_close(window);
+            Utils::draw_background(window);
 
             // Draw the menu
-            menu.draw(&window);
+            menu->draw(window);
 
             // Check if the menu buttons have been clicked
-            if (menu.circle_collider_button.is_clicked(&window))
+            if (menu->circle_collider_button->is_clicked(window))
             {
                 show_circle_collider = !show_circle_collider;
             }
-            if (menu.line_collider_button.is_clicked(&window))
+            if (menu->line_collider_button->is_clicked(window))
             {
                 show_line_collider = !show_line_collider;
+            }
+
+            // Draw the circle collider
+            if (show_circle_collider)
+            {
+                circle_collider->draw(window);
+            }
+
+            // Draw the line collider
+            if (show_line_collider)
+            {
+                line_collider->draw(window);
             }
 
             // Draw and update the balls
@@ -102,27 +114,25 @@ public:
             {
                 for (int j = 0; j < balls.size(); j++)
                 {
-                    balls[j]->draw(&window);
-                    balls[j]->update(&window, &balls);
+                    balls[j]->draw(window);
+                    balls[j]->update(window, &balls);
 
                     // Draw the circle collider
                     if (show_circle_collider)
                     {
-                        circle_collider.draw(&window);
-                        circle_collider.apply(balls[j]);
+                        circle_collider->apply(balls[j]);
                     }
 
                     // Draw the line collider
                     if (show_line_collider)
                     {
-                        line_collider.draw(&window);
-                        line_collider.apply(balls[j]);
+                        line_collider->apply(balls[j]);
                     }
                 }
             }
 
             // Update the window
-            window.display();
+            window->display();
         }
     }
 };

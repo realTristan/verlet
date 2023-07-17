@@ -31,12 +31,12 @@ public:
     static void start()
     {
         // Initialize a new window
-        sf::RenderWindow window(
+        sf::RenderWindow *window = new sf::RenderWindow(
             sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), WINDOW_TITLE);
-        window.setFramerateLimit(60);
+        window->setFramerateLimit(60);
 
         // Create a new list of colliders
-        OpenCircleCollider circle_collider = OpenCircleCollider(
+        OpenCircleCollider *circle_collider = new OpenCircleCollider(
             CIRCLE_COLLIDER_POSITION,
             CIRCLE_COLLIDER_RADIUS,
             CIRCLE_COLLIDER_THICKNESS,
@@ -56,27 +56,27 @@ public:
             VERLET_BALL_RANDOM_COLOR);
 
         // Window Loop
-        while (window.isOpen())
+        while (window->isOpen())
         {
-            Events::check_close(&window);
-            Utils::draw_background(&window);
+            Events::check_close(window);
+            Utils::draw_background(window);
 
             // Draw the circle collider
-            circle_collider.draw(&window);
+            circle_collider->draw(window);
             
             // Draw and update the balls
             for (int i = 0; i < SUBSTEPS; i++)
             {
                 for (int j = 0; j < balls.size(); j++)
                 {
-                    balls[j]->draw(&window);
-                    balls[j]->update(&window, &balls);
-                    circle_collider.apply(balls[j]);
+                    balls[j]->draw(window);
+                    balls[j]->update(window, &balls);
+                    circle_collider->apply(balls[j]);
                 }
             }
 
             // Update the window
-            window.display();
+            window->display();
         }
     }
 };

@@ -26,9 +26,9 @@ public:
     static void start()
     {
         // Initialize a new window
-        sf::RenderWindow window(
+        sf::RenderWindow *window = new sf::RenderWindow(
             sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), WINDOW_TITLE);
-        window.setFramerateLimit(60);
+        window->setFramerateLimit(60);
 
         // Create a new list of balls
         VerletBallVector balls = VerletBallVector();
@@ -42,23 +42,23 @@ public:
             VERLET_BALL_RANDOM_COLOR);
 
         // Window Loop
-        while (window.isOpen())
+        while (window->isOpen())
         {
-            Events::check_close(&window);
-            Utils::draw_background(&window);
+            Events::check_close(window);
+            Utils::draw_background(window);
 
             // Draw and update the balls
             for (int i = 0; i < SUBSTEPS; i++)
             {
                 for (int j = 0; j < balls.size(); j++)
                 {
-                    balls[j]->draw(&window);
-                    balls[j]->update(&window, &balls);
+                    balls[j]->draw(window);
+                    balls[j]->update(window, &balls);
                 }
             }
 
             // Update the window
-            window.display();
+            window->display();
         }
     }
 };

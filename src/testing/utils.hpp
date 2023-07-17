@@ -52,12 +52,12 @@ public:
         {
             for (int y = 0; y < WINDOW_HEIGHT; y += 50)
             {
-                sf::RectangleShape rectangle(sf::Vector2f(50, 50));
-                rectangle.setPosition(sf::Vector2f(x, y));
-                rectangle.setFillColor(Colors::to_sf(BACKGROUND_COLOR));
-                rectangle.setOutlineThickness(1);
-                rectangle.setOutlineColor(sf::Color(50, 50, 50));
-                window->draw(rectangle);
+                sf::RectangleShape *rectangle = new sf::RectangleShape(sf::Vector2f(50, 50));
+                rectangle->setPosition(sf::Vector2f(x, y));
+                rectangle->setFillColor(Colors::to_sf(BACKGROUND_COLOR));
+                rectangle->setOutlineThickness(1);
+                rectangle->setOutlineColor(sf::Color(50, 50, 50));
+                window->draw(*rectangle);
             }
         }
     }
