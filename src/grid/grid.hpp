@@ -4,6 +4,7 @@
 #include <objects/verlet/ball/ball.hpp>
 #include <physics/vector2d.hpp>
 #include <vector>
+#include <iostream>
 
 // A grid for the verlet objects
 template <typename T>
@@ -54,11 +55,11 @@ public:
     // Get a cell from the grid
     Cell *get(int x, int y)
     {
-        if (x >= this->width || x < 0 || y >= this->height || y < 0)
+        if (x > this->width || x < 0 || y > this->height || y < 0)
         {
             return nullptr;
         }
-        return this->grid[y * this->width - x];
+        return this->grid[x * y];
     }
 
     // Put an object into the grid
@@ -115,13 +116,6 @@ public:
         }
     }
 
-    // Update the cell objects
-    void update(Cell *current_cell, Cell *other_cell)
-    {
-        this->update_cell(current_cell);
-        this->update_cell(other_cell);
-    }
-
     // Update a cell
     void update_cell(Cell *cell)
     {
@@ -147,6 +141,13 @@ public:
                 this->put(obj);
             }
         }
+    }
+
+    // Update the cell objects
+    void update(Cell *current_cell, Cell *other_cell)
+    {
+        this->update_cell(current_cell);
+        this->update_cell(other_cell);
     }
 
     // Check for collisions
