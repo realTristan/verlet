@@ -8,14 +8,18 @@
 class LineCollider : public Line
 {
 public:
-    float slope_multiplier;
+    float slope_multiplier = 1.0f;
     LineCollider(
         Vec2D<float> start,
         float length,
         float angle,
         int width = 1,
-        Color color = WHITE,
-        float slope_multiplier = 1.0f) : Line(start, length, angle, width, color)
+        Color color = WHITE) : Line(start, length, angle, width, color)
+    {
+    }
+
+    // Set the slope multiplier
+    void set_slope_multiplier(float slope_multiplier)
     {
         this->slope_multiplier = slope_multiplier;
     }

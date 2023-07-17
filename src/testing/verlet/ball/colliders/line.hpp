@@ -15,7 +15,6 @@
 #define LINE_COLLIDER_ANGLE 15
 #define LINE_COLLIDER_WIDTH 5
 #define LINE_COLLIDER_COLOR WHITE
-#define LINE_COLLIDER_SLOPE_MULTIPLIER 0.1
 
 #define VERLET_BALL_COUNT 100
 #define VERLET_BALL_VECTOR Vec2D<float>(200, 200)
@@ -43,8 +42,7 @@ public:
             LINE_COLLIDER_LENGTH,
             LINE_COLLIDER_ANGLE,
             LINE_COLLIDER_WIDTH,
-            LINE_COLLIDER_COLOR,
-            LINE_COLLIDER_SLOPE_MULTIPLIER);
+            LINE_COLLIDER_COLOR);
 
         // Create a new list of balls
         VerletBallVector balls = VerletBallVector();

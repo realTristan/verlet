@@ -8,21 +8,56 @@
 class OpenCircleCollider : public CircleCollider
 {
 public:
-    bool outside_collision;
-    bool inside_collision;
+    sf::Color fill_color = sf::Color::Transparent;
+    bool outside_collision = false;
+    bool inside_collision = true;
     int width;
 
     OpenCircleCollider(
         Vec2D<float> position,
         float radius,
         int width = 1,
-        Color color = WHITE,
-        bool inside_collision = true,
-        bool outside_collision = true) : CircleCollider(position, radius, color)
+        Color color = WHITE) : CircleCollider(position, radius, color)
     {
         this->outside_collision = outside_collision;
         this->inside_collision = inside_collision;
         this->width = width;
+    }
+
+    // Set the width
+    void set_width(int width)
+    {
+        this->width = width;
+    }
+
+    // Set the fill color
+    void set_fill_color(Color color)
+    {
+        this->fill_color = Colors::to_sf(color);
+    }
+
+    // Enable inside collision
+    void enable_inside_collision()
+    {
+        this->inside_collision = true;
+    }
+
+    // Disable inside collision
+    void disable_inside_collision()
+    {
+        this->inside_collision = false;
+    }
+
+    // Enable outside collision
+    void enable_outside_collision()
+    {
+        this->outside_collision = true;
+    }
+
+    // Disable outside collision
+    void disable_outside_collision()
+    {
+        this->outside_collision = false;
     }
 
     // Draw the Collider
@@ -32,9 +67,9 @@ public:
         circle.setScale(1.0f, 1.0f);
         circle.setOutlineColor(Colors::to_sf(this->color));
         circle.setOrigin(this->radius, this->radius);
-        circle.setPosition(this->position.x + 4.0f, this->position.y + 4.0f);
+        circle.setPosition(this->position.x + 4.0f, this->position.y + 3.0f);
         circle.setOutlineThickness(this->width);
-        circle.setFillColor(sf::Color::Transparent);
+        circle.setFillColor(this->fill_color);
         circle.setPointCount(128);
         window->draw(circle);
     }
@@ -66,16 +101,17 @@ public:
         // Check if the ball is outside the collider
         if (this->outside_collision)
         {
-            float rad_sum = ball->radius + this->radius;
+            float rad_sum = ball->radius + this->radius + this->width;
             bool ball_colliding_with_circle = magnitude < rad_sum;
             bool ball_outside_circle = magnitude > this->radius;
             if (ball_colliding_with_circle && (!this->inside_collision || ball_outside_circle))
             {
                 // Calculate the ball overlap (the amount the balls have overlapped)
                 Vec2D<float> overlap = dist / magnitude;
+                float offset = ((ball->radius * 2.0f) + this->radius);
 
                 // Update this balls position (move it to the side)
-                ball->current_position += overlap * 0.5f * (rad_sum - magnitude);
+                ball->current_position += (overlap * 0.5f * (offset - magnitude));
             }
         }
     }

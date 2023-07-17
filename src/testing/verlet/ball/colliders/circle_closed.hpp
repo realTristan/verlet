@@ -11,7 +11,6 @@
 #define CIRCLE_COLLIDER_POSITION Vec2D<float>(200, 400)
 #define CIRCLE_COLLIDER_RADIUS 100
 #define CIRCLE_COLLIDER_COLOR WHITE
-#define CIRCLE_COLLIDER_OUTSIDE_COLLISIONS true
 
 #define VERLET_BALL_COUNT 50
 #define VERLET_BALL_VECTOR Vec2D<float>(150, 200)
@@ -36,8 +35,7 @@ public:
         ClosedCircleCollider *circle_collider = new ClosedCircleCollider(
             CIRCLE_COLLIDER_POSITION,
             CIRCLE_COLLIDER_RADIUS,
-            CIRCLE_COLLIDER_COLOR,
-            CIRCLE_COLLIDER_OUTSIDE_COLLISIONS);
+            CIRCLE_COLLIDER_COLOR);
 
         // Create a new list of balls
         VerletBallVector balls = VerletBallVector();

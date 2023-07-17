@@ -15,10 +15,20 @@ public:
     ClosedCircleCollider(
         Vec2D<float> position,
         float radius,
-        Color color = WHITE,
-        bool outside_collision = true) : CircleCollider(position, radius, color)
+        Color color = WHITE) : CircleCollider(position, radius, color)
     {
-        this->outside_collision = outside_collision;
+    }
+
+    // Enable outside collision
+    void enable_outside_collision()
+    {
+        this->outside_collision = true;
+    }
+
+    // Disable outside collision
+    void disable_outside_collision()
+    {
+        this->outside_collision = false;
     }
 
     // Draw the Collider
