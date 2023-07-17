@@ -26,11 +26,6 @@ https://github.com/realTristan/pyverlet/assets/75189508/09cd6759-2277-45d8-8948-
 https://github.com/realTristan/pyverlet/assets/75189508/d467f252-49c7-4505-a21b-5e276d26c687
 
 
-# To-do
-1. Convert from SFML to OpenGL
-2. Fix Grid Collisions
-
-
 # License
 MIT License
 
