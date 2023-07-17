@@ -31,6 +31,7 @@
 #define VERLET_BALL_VECTOR Vec2D(200, 200)
 #define VERLET_BALL_RADIUS 4
 #define VERLET_BALL_ADD_INTERVAL 100 // 100ms
+#define VERLET_BALL_OFFSET Vec2D(0, 0)
 #define VERLET_BALL_COLOR CYAN
 
 typedef std::vector<VerletBall *> VerletBallVector;
@@ -69,6 +70,7 @@ public:
             VERLET_BALL_COUNT,
             VERLET_BALL_RADIUS,
             VERLET_BALL_ADD_INTERVAL,
+            VERLET_BALL_OFFSET,
             VERLET_BALL_COLOR);
 
         // Menu variables
@@ -96,23 +98,26 @@ public:
             }
 
             // Draw and update the balls
-            for (auto &ball : balls)
+            for (int i = 0; i < SUBSTEPS; i++)
             {
-                ball->draw(&window);
-                ball->update(&window, &balls);
-                
-                // Draw the circle collider
-                if (show_circle_collider)
+                for (int j = 0; j < balls.size(); j++)
                 {
-                    circle_collider.draw(&window);
-                    circle_collider.apply(ball);
-                }
+                    balls[j]->draw(&window);
+                    balls[j]->update(&window, &balls);
 
-                // Draw the line collider
-                if (show_line_collider)
-                {
-                    line_collider.draw(&window);
-                    line_collider.apply(ball);
+                    // Draw the circle collider
+                    if (show_circle_collider)
+                    {
+                        circle_collider.draw(&window);
+                        circle_collider.apply(balls[j]);
+                    }
+
+                    // Draw the line collider
+                    if (show_line_collider)
+                    {
+                        line_collider.draw(&window);
+                        line_collider.apply(balls[j]);
+                    }
                 }
             }
 

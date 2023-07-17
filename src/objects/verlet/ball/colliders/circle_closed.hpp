@@ -43,17 +43,18 @@ public:
 
         // Calculate the distance between the ball and the circle
         Vec2D dist = ball->current_position - this->position;
-        float magnitude = dist.magnitude() + 1.0e-9;
+        float magnitude = dist.magnitude() + 1.0e-9 - 4.0f;
 
         // Check if the ball is outside the collider
         float rad_sum = ball->radius + this->radius;
-        if (magnitude < rad_sum && magnitude > this->radius)
+        if (magnitude < rad_sum)
         {
             // Calculate the ball overlap (the amount the balls have overlapped)
             Vec2D overlap = dist / magnitude;
+            float offset = ((ball->radius * 2) + this->radius);
 
             // Update this balls position (move it to the side)
-            ball->current_position += overlap * 0.5 * (rad_sum - magnitude);
+            ball->current_position += overlap * 0.5 * (offset - magnitude);
         }
     }
 };

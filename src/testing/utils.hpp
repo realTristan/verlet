@@ -20,19 +20,20 @@ public:
         int ball_count,
         int ball_radius,
         int interval = 100,
-        Color ball_color = WHITE
-    ) {
-        std::thread t([balls, ball_vector, ball_count, ball_radius, interval, ball_color]() {
+        Vec2D offset = Vec2D(0, 0),
+        Color ball_color = WHITE)
+    {
+        std::thread t([balls, ball_vector, ball_count, ball_radius, interval, offset, ball_color]()
+                      {
             for (int i = 0; i < ball_count; i++) {
                 std::this_thread::sleep_for(std::chrono::milliseconds(interval));
                 VerletBall *ball = new VerletBall(
-                    ball_vector,
+                    ball_vector + Vec2D(i * offset.x, i * offset.y),
                     ball_radius,
                     ball_color
                 );
                 balls->push_back(ball);
-            }
-        });
+            } });
         t.detach();
     }
 

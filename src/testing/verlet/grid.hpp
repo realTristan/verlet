@@ -30,6 +30,7 @@
 #define VERLET_BALL_VECTOR Vec2D(200, 200)
 #define VERLET_BALL_RADIUS 4
 #define VERLET_BALL_ADD_INTERVAL 100 // 100ms
+#define VERLET_BALL_OFFSET Vec2D(0, 0)
 #define VERLET_BALL_COLOR CYAN
 
 typedef std::vector<VerletBall *> VerletBallVector;
@@ -68,6 +69,7 @@ public:
             VERLET_BALL_COUNT,
             VERLET_BALL_RADIUS,
             VERLET_BALL_ADD_INTERVAL,
+            VERLET_BALL_OFFSET,
             VERLET_BALL_COLOR);
 
         // Initialize a new grid
@@ -87,12 +89,15 @@ public:
             line_collider.draw(&window);
 
             // Draw and update the balls
-            for (auto &ball : balls)
+            for (int i = 0; i < SUBSTEPS; i++)
             {
-                ball->draw(&window);
-                ball->update_no_collisions(&window);
-                circle_collider.apply(ball);
-                line_collider.apply(ball);
+                for (int j = 0; j < balls.size(); j++)
+                {
+                    balls[j]->draw(&window);
+                    balls[j]->update_no_collisions(&window);
+                    circle_collider.apply(balls[j]);
+                    line_collider.apply(balls[j]);
+                }
             }
 
             // Update the window

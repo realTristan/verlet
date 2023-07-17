@@ -32,7 +32,7 @@ public:
         circle.setScale(1.0f, 1.0f);
         circle.setOutlineColor(Colors::to_sf(this->color));
         circle.setOrigin(this->radius, this->radius);
-        circle.setPosition(this->position.x + 2, this->position.y + 2);
+        circle.setPosition(this->position.x, this->position.y);
         circle.setOutlineThickness(this->width);
         circle.setFillColor(sf::Color::Transparent);
         circle.setPointCount(128);
@@ -49,7 +49,7 @@ public:
 
         // Calculate the distance between the ball and the circle
         Vec2D dist = ball->current_position - this->position;
-        float magnitude = dist.magnitude() + 1.0e-9;
+        float magnitude = dist.magnitude() + 1.0e-9 + 2.0f;
 
         // Check if the ball is inside the collider
         if (this->inside_collision)
