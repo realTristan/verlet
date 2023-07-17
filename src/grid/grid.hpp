@@ -98,6 +98,10 @@ public:
             {
                 // Get the current cell
                 Cell *current_cell = this->get(x, y);
+                if (current_cell == nullptr)
+                {
+                    continue;
+                }
 
                 // Check all the cells around the current cell
                 for (int dx = x - 1; dx <= x + 1; dx++)
@@ -106,6 +110,10 @@ public:
                     {
                         // Get the cell
                         Cell *other_cell = this->get(dx, dy);
+                        if (other_cell == nullptr)
+                        {
+                            continue;
+                        }
 
                         // Check for collisions
                         if (current_cell->size() > 0 || other_cell->size() > 0)
