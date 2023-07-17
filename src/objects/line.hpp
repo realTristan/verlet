@@ -6,6 +6,8 @@
 #include <utils/colors.hpp>
 #include <math.h>
 
+#define M_PI 3.14159265358979323846
+
 class Line
 {
 public:
@@ -24,13 +26,10 @@ public:
         int width = 1,
         Color color = WHITE)
     {
-        // PI Constant
-        const float PI = 3.14159265358979323846;
-
         // Set the variables
         this->start = start;
         this->length = length;
-        this->angle = angle * PI / 180;
+        this->angle = angle * M_PI / 180;
         this->width = width;
         this->color = color;
         this->end = this->calculate_end();
