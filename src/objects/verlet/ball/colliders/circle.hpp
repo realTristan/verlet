@@ -1,39 +1,76 @@
-#ifndef VERLET_BALL_COLLIDERS_CIRCLE_CLOSED_HPP
-#define VERLET_BALL_COLLIDERS_CIRCLE_CLOSED_HPP
+#ifndef VERLET_BALL_COLLIDERS_CIRCLE_HPP
+#define VERLET_BALL_COLLIDERS_CIRCLE_HPP
 
-#include <objects/verlet/ball/colliders/circle_collider.hpp>
 #include <objects/verlet/ball/ball.hpp>
 #include <SFML/Graphics.hpp>
+#include <utils/colors.hpp>
 
-class OpenCircleCollider : public CircleCollider
+class CircleCollider
 {
 public:
-    sf::Color fill_color = sf::Color::Transparent;
-    bool outside_collision = false;
-    bool inside_collision = true;
-    int width;
+    Vec2D<float> position;
+    float outline_width;
+    int point_count;
+    float radius;
 
-    OpenCircleCollider(
+    Color fill_color;
+    Color outline_color;
+
+    bool outside_collision;
+    bool inside_collision;
+
+    CircleCollider(
         Vec2D<float> position,
         float radius,
-        int width = 1,
-        Color color = WHITE) : CircleCollider(position, radius, color)
+        float outline_width = 1.0f,
+        Color fill_color = TRANSPARENT,
+        Color outline_color = WHITE,
+        bool outside_collision = true,
+        bool inside_collision = true,
+        int point_count = 128)
     {
+        this->position = position;
+
+        this->radius = radius;
+        this->outline_width = outline_width;
+        this->point_count = point_count;
+
+        this->fill_color = fill_color;
+        this->outline_color = outline_color;
+
         this->outside_collision = outside_collision;
         this->inside_collision = inside_collision;
-        this->width = width;
+        this->outline_width = outline_width;
     }
 
-    // Set the width
-    void set_width(int width)
+    // Set the radius
+    void set_radius(float radius)
     {
-        this->width = width;
+        this->radius = radius;
+    }
+
+    // Set the position
+    void set_position(Vec2D<float> position)
+    {
+        this->position = position;
+    }
+
+    // Set the color
+    void set_outline_color(Color color)
+    {
+        this->outline_color = color;
     }
 
     // Set the fill color
     void set_fill_color(Color color)
     {
-        this->fill_color = Colors::to_sf(color);
+        this->fill_color = color;
+    }
+
+    // Set the width
+    void set_outline_width(float outline_width)
+    {
+        this->outline_width = outline_width;
     }
 
     // Enable inside collision
@@ -64,13 +101,12 @@ public:
     void draw(sf::RenderWindow *window)
     {
         sf::CircleShape circle(this->radius);
-        circle.setScale(1.0f, 1.0f);
-        circle.setOutlineColor(Colors::to_sf(this->color));
         circle.setOrigin(this->radius, this->radius);
         circle.setPosition(this->position.x + 4.0f, this->position.y + 3.0f);
-        circle.setOutlineThickness(this->width);
-        circle.setFillColor(this->fill_color);
-        circle.setPointCount(128);
+        circle.setFillColor(Colors::to_sf(this->fill_color));
+        circle.setOutlineColor(Colors::to_sf(this->outline_color));
+        circle.setOutlineThickness(this->outline_width);
+        circle.setPointCount(this->point_count);
         window->draw(circle);
     }
 
@@ -89,9 +125,11 @@ public:
         // Check if the ball is inside the collider
         if (this->inside_collision)
         {
-            float delta = this->radius - ball->radius - this->width;
+            float delta = this->radius - ball->radius - this->outline_width;
+            bool ball_colliding_with_circle = magnitude >= delta;
             bool ball_inside_circle = magnitude < this->radius;
-            if (magnitude > delta && (!this->outside_collision || ball_inside_circle))
+
+            if (ball_colliding_with_circle && (!this->outside_collision || ball_inside_circle))
             {
                 ball->current_position += dist / magnitude * (delta - magnitude);
                 return;
@@ -101,14 +139,15 @@ public:
         // Check if the ball is outside the collider
         if (this->outside_collision)
         {
-            float rad_sum = ball->radius + this->radius + this->width;
-            bool ball_colliding_with_circle = magnitude < rad_sum;
+            float rad_sum = ball->radius + this->radius + this->outline_width;
+            bool ball_colliding_with_circle = magnitude <= rad_sum;
             bool ball_outside_circle = magnitude > this->radius;
+
             if (ball_colliding_with_circle && (!this->inside_collision || ball_outside_circle))
             {
                 // Calculate the ball overlap (the amount the balls have overlapped)
                 Vec2D<float> overlap = dist / magnitude;
-                float offset = ((ball->radius * 2.0f) + this->radius);
+                float offset = ((ball->radius * 2.0f) + this->radius + this->outline_width);
 
                 // Update this balls position (move it to the side)
                 ball->current_position += (overlap * 0.5f * (offset - magnitude));
@@ -117,4 +156,4 @@ public:
     }
 };
 
-#endif // VERLET_BALL_COLLIDERS_CIRCLE_OPEN_HPP
+#endif // VERLET_BALL_COLLIDERS_CIRCLE_HPP

@@ -12,23 +12,47 @@ public:
     Vec2D<float> prev_position;
     Vec2D<float> acceleration;
     Vec2D<float> velocity;
-    Color color = WHITE;
-    float start_time;
 
-    VerletObject(Vec2D<float> position, Color color)
+    Color fill_color = WHITE;
+    Color outline_color = WHITE;
+
+    float start_time;
+    float outline_width;
+
+    VerletObject(Vec2D<float> position, float outline_width = 1.0f, Color fill_color = WHITE, Color outline_color = WHITE)
     {
         this->current_position = position;
         this->prev_position = position;
         this->acceleration = Vec2D<float>();
         this->velocity = Vec2D<float>();
-        this->color = color;
+        this->fill_color = fill_color;
         this->start_time = Time::now();
+        this->outline_width = outline_width;
     }
 
-    // Set the object's color
-    void set_color(Color color)
+    // Set the object's position
+    void set_position(Vec2D<float> position)
     {
-        this->color = color;
+        this->current_position = position;
+        this->prev_position = position;
+    }
+
+    // Set the object's width
+    void set_outline_width(float outline_width)
+    {
+        this->outline_width = outline_width;
+    }
+
+    // Set the object's fill color
+    void set_fill_color(Color color)
+    {
+        this->fill_color = color;
+    }
+
+    // Set the object's outline color
+    void set_outline_color(Color color)
+    {
+        this->outline_color = color;
     }
 
     // Calculate the object's velocity

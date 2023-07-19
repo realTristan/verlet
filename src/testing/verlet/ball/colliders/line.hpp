@@ -1,7 +1,6 @@
 #ifndef TESTING_VERLET_BALL_COLLIDERS_LINE_HPP
 #define TESTING_VERLET_BALL_COLLIDERS_LINE_HPP
 
-#include <objects/verlet/ball/colliders/circle_open.hpp>
 #include <objects/verlet/ball/colliders/line.hpp>
 #include <objects/verlet/ball/ball.hpp>
 #include <testing/events.hpp>

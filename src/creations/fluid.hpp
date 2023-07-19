@@ -1,7 +1,7 @@
 #ifndef TESTING_VERLET_FLUID_HPP
 #define TESTING_VERLET_FLUID_HPP
 
-#include <objects/verlet/ball/colliders/circle_open.hpp>
+#include <objects/verlet/ball/colliders/circle.hpp>
 #include <objects/verlet/ball/colliders/line.hpp>
 #include <objects/verlet/ball/ball.hpp>
 #include <testing/events.hpp>
@@ -42,11 +42,13 @@ public:
         window->setFramerateLimit(60);
 
         // Create a new list of colliders
-        OpenCircleCollider *circle_collider = new OpenCircleCollider(
+        CircleCollider *circle_collider = new CircleCollider(
             CIRCLE_COLLIDER_VECTOR,
             CIRCLE_COLLIDER_RADIUS,
-            CIRCLE_COLLIDER_THICKNESS,
-            CIRCLE_COLLIDER_COLOR);
+            CIRCLE_COLLIDER_THICKNESS);
+        
+        circle_collider->set_outline_color(CIRCLE_COLLIDER_COLOR);
+        circle_collider->disable_outside_collision();
 
         LineCollider *line_collider = new LineCollider(
             LINE_COLLIDER_VECTOR,

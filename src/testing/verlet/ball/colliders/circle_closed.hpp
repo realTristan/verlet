@@ -1,7 +1,7 @@
 #ifndef TESTING_VERLET_BALL_COLLIDERS_CIRCLE_CLOSED_HPP
 #define TESTING_VERLET_BALL_COLLIDERS_CIRCLE_CLOSED_HPP
 
-#include <objects/verlet/ball/colliders/circle_closed.hpp>
+#include <objects/verlet/ball/colliders/circle.hpp>
 #include <objects/verlet/ball/ball.hpp>
 #include <testing/events.hpp>
 #include <testing/utils.hpp>
@@ -32,10 +32,14 @@ public:
         window->setFramerateLimit(60);
 
         // Create a new list of colliders
-        ClosedCircleCollider *circle_collider = new ClosedCircleCollider(
+        CircleCollider *circle_collider = new CircleCollider(
             CIRCLE_COLLIDER_POSITION,
-            CIRCLE_COLLIDER_RADIUS,
-            CIRCLE_COLLIDER_COLOR);
+            CIRCLE_COLLIDER_RADIUS);
+        
+        circle_collider->set_outline_width(0.0f);
+        circle_collider->set_fill_color(CIRCLE_COLLIDER_COLOR);
+        circle_collider->enable_outside_collision();
+        circle_collider->disable_inside_collision();
 
         // Create a new list of balls
         VerletBallVector balls = VerletBallVector();

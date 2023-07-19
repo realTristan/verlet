@@ -3,7 +3,6 @@
 #include <testing/verlet/ball/colliders/screen.hpp>
 #include <testing/verlet/ball/colliders/line.hpp>
 #include <testing/verlet/ball/ball.hpp>
-#include <testing/verlet/fluid.hpp>
 #include <testing/verlet/grid.hpp>
 #include <testing/verlet/menu.hpp>
 #include <testing/line.hpp>
@@ -17,10 +16,9 @@ int main()
     // LineTesting::start();
     // VerletBallTesting::start();
     // OpenCircleColliderTesting::start();
-    ClosedCircleColliderTesting::start();
+    // ClosedCircleColliderTesting::start();
     // MenuTesting::start(); // fix button sensitivity
-    // LineColliderTesting::start();
-    // FluidTesting::start(); // fix balls falling through circle
+    LineColliderTesting::start();
 
     ////////////////////
     //    NEED FIX    //

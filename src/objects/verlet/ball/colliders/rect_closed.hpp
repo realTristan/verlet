@@ -1,8 +1,0 @@
-#ifndef VERLET_BALL_CLOSED_RECT_COLLIDER_HPP
-#define VERLET_BALL_CLOSED_RECT_COLLIDER_HPP
-
-class ClosedRectCollider
-{
-};
-
-#endif // CLOSED_RECT_COLLIDER_HPP

@@ -1,0 +1,8 @@
+#ifndef VERLET_BALL_RECT_COLLIDER_HPP
+#define VERLET_BALL_RECT_COLLIDER_HPP
+
+class RectCollider
+{
+};
+
+#endif // RECT_COLLIDER_HPP

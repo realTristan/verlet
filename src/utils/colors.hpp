@@ -15,6 +15,7 @@
 #define ORANGE Color(255, 165, 0)
 #define PINK Color(255, 192, 203)
 #define MAGENTA Color(255, 0, 255)
+#define TRANSPARENT Color(0, 0, 0, 0)
 
 // Color class
 class Color
@@ -23,17 +24,20 @@ public:
     int r;
     int g;
     int b;
+    int a;
 
     Color() {
         this->r = 0;
         this->g = 0;
         this->b = 0;
+        this->a = 255;
     }
-    Color(int r, int g, int b)
+    Color(int r, int g, int b, int a = 255)
     {
         this->r = r;
         this->g = g;
         this->b = b;
+        this->a = a;
     }
 };
 

@@ -11,11 +11,19 @@ class VerletBall : public VerletObject
 {
 public:
     float radius;
+    int point_count;
 
     // Initialize the verlet object
-    VerletBall(Vec2D<float> position, float radius, Color color = WHITE) : VerletObject(position, color)
+    VerletBall(
+        Vec2D<float> position,
+        float radius,
+        float outline_width = 1.0f,
+        Color fill_color = WHITE,
+        Color outline_color = WHITE,
+        int point_count = 128) : VerletObject(position, outline_width, fill_color, outline_color)
     {
         this->radius = radius;
+        this->point_count = point_count;
     }
 
     // Draw the object
@@ -23,7 +31,10 @@ public:
     {
         sf::CircleShape circle(this->radius);
         circle.setPosition(this->current_position.x, this->current_position.y);
-        circle.setFillColor(Colors::to_sf(this->color));
+        circle.setFillColor(Colors::to_sf(this->fill_color));
+        circle.setOutlineColor(Colors::to_sf(this->outline_color));
+        circle.setOutlineThickness(this->outline_width);
+        circle.setPointCount(this->point_count);
         window->draw(circle);
     }
 

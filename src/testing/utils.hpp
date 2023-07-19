@@ -35,9 +35,8 @@ public:
                 }
                 VerletBall *ball = new VerletBall(
                     ball_vector + Vec2D<float>(i * offset.x, i * offset.y),
-                    ball_radius,
-                    color
-                );
+                    ball_radius);
+                ball->set_fill_color(color);
                 balls->push_back(ball);
             }
         });

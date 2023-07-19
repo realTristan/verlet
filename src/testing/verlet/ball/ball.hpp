@@ -1,7 +1,6 @@
 #ifndef TESTING_VERLET_BALL_HPP
 #define TESTING_VERLET_BALL_HPP
 
-#include <objects/verlet/ball/colliders/circle_closed.hpp>
 #include <objects/verlet/ball/ball.hpp>
 #include <testing/events.hpp>
 #include <testing/config.hpp>
