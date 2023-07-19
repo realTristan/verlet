@@ -16,10 +16,10 @@ int main()
     // LineTesting::start();
     // VerletBallTesting::start();
     // OpenCircleColliderTesting::start();
-    //ClosedCircleColliderTesting::start();
+    ClosedCircleColliderTesting::start();
     // MenuTesting::start(); // fix button sensitivity
     // LineColliderTesting::start();
-    ScreenColliderTesting::start();
+    // ScreenColliderTesting::start();
 
     ////////////////////
     //    NEED FIX    //
