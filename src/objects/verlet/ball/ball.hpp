@@ -2,6 +2,7 @@
 #define VERLET_BALL_HPP
 
 #include <objects/verlet/object.hpp>
+#include <objects/verlet/grid.hpp>
 #include <physics/constants.h>
 #include <physics/vector2d.h>
 #include <SFML/Graphics.hpp>
@@ -12,6 +13,8 @@ class VerletBall : public VerletObject
 public:
     float radius;
     int point_count;
+
+    Cell<VerletBall> *grid_cell;
 
     // Initialize the verlet object
     VerletBall(
@@ -24,6 +27,12 @@ public:
     {
         this->radius = radius;
         this->point_count = point_count;
+    }
+
+    // Set the grid cell
+    void set_grid_cell(Cell<VerletBall> *grid_cell)
+    {
+        this->grid_cell = grid_cell;
     }
 
     // Draw the object
@@ -85,11 +94,15 @@ public:
     }
 
     // Update without checking for collisions
-    void update_no_collisions(sf::RenderWindow *window)
+    void update_with_grid(sf::RenderWindow *window, Grid<VerletBall> *grid)
     {
         this->accelerate(GRAVITY);
         this->update_position();
         this->draw(window);
+        if (this->grid_cell != nullptr)
+        {
+            grid->find_collisions(this->grid_cell);
+        }
     }
 };
 

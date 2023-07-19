@@ -59,14 +59,14 @@ public:
 
         // Add a ball
         sf::Vector2i mouse_position = sf::Mouse::getPosition(*window);
-        Vec2D<float> ball_vector = Vec2D<float>(mouse_position.x, mouse_position.y);
+        Vec2D<float> ball_pos = Vec2D<float>(mouse_position.x, mouse_position.y);
         Color color = ball_color;
         if (random_color)
         {
             color = Colors::random_color();
         }
         VerletBall *ball = new VerletBall(
-            ball_vector,
+            ball_pos,
             ball_radius);
         ball->set_fill_color(color);
         balls->push_back(ball);

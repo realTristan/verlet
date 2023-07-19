@@ -17,14 +17,14 @@
 #define CIRCLE_COLLIDER_THICKNESS 2
 #define CIRCLE_COLLIDER_COLOR WHITE
 
-#define LINE_COLLIDER_VECTOR Vec2D<float>(200, 250)
+#define LINE_COLLIDER_POSITION Vec2D<float>(200, 250)
 #define LINE_COLLIDER_LENGTH 150
 #define LINE_COLLIDER_ANGLE 60
 #define LINE_COLLIDER_WIDTH 2
 #define LINE_COLLIDER_COLOR WHITE
 
 #define VERLET_BALL_COUNT 100
-#define VERLET_BALL_VECTOR Vec2D<float>(200, 200)
+#define VERLET_BALL_POSITION Vec2D<float>(200, 200)
 #define VERLET_BALL_RADIUS 4
 #define VERLET_BALL_ADD_INTERVAL 100 // 100ms
 #define VERLET_BALL_OFFSET Vec2D<float>(0, 0)
@@ -52,7 +52,7 @@ public:
         circle_collider->disable_outside_collision();
 
         LineCollider *line_collider = new LineCollider(
-            LINE_COLLIDER_VECTOR,
+            LINE_COLLIDER_POSITION,
             LINE_COLLIDER_LENGTH,
             LINE_COLLIDER_ANGLE,
             LINE_COLLIDER_WIDTH,
@@ -62,7 +62,7 @@ public:
         VerletBallVector balls = VerletBallVector();
         Utils::auto_add_verlet_balls(
             &balls,
-            VERLET_BALL_VECTOR,
+            VERLET_BALL_POSITION,
             VERLET_BALL_COUNT,
             VERLET_BALL_RADIUS,
             VERLET_BALL_ADD_INTERVAL,

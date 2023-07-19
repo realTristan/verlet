@@ -4,42 +4,86 @@
 #include <objects/verlet/ball/ball.hpp>
 #include <physics/vector2d.h>
 #include <vector>
-#include <iostream>
+
+// A cell for the grid
+template <typename T>
+class Cell
+{
+public:
+    int index;
+    std::vector<T *> objects;
+
+    Cell(int index)
+    {
+        this->index = index;
+    }
+
+    // Get the size of the cell
+    int size()
+    {
+        return this->objects.size();
+    }
+
+    // Get an object from the cell
+    T *at(int index)
+    {
+        if (index < 0 || index >= this->objects.size())
+        {
+            return nullptr;
+        }
+        return this->objects[index];
+    }
+
+    // Push an object into the cell
+    void push_back(T *obj)
+    {
+        this->objects.push_back(obj);
+    }
+
+    // Erase an object from the cell
+    void erase(int index)
+    {
+        if (index < 0 || index >= this->objects.size())
+        {
+            return;
+        }
+        this->objects.erase(this->objects.begin() + index);
+    }
+
+    // Set the objects
+    void set(std::vector<T *> objects)
+    {
+        this->objects = objects;
+    }
+};
 
 // A grid for the verlet objects
 template <typename T>
 class Grid
 {
-private:
-    typedef std::vector<T *> Cell;
-
 public:
     int width;
     int height;
     int cell_size;
-    
-    std::vector<Cell *> grid;
+
+    std::vector<Cell<T> *> grid = std::vector<Cell<T> *>();
 
     Grid(int width, int height, int cell_size = 100)
     {
         this->width = width;
         this->height = height;
         this->cell_size = cell_size;
-        this->grid = std::vector<Cell *>(width * height / cell_size);
-        for (int i = 0; i < this->grid.size(); i++)
-        {
-            this->grid[i] = new Cell();
-        }
+        this->reset();
     }
 
     // Reset the grid
     void reset()
     {
         this->grid.clear();
-        this->grid = std::vector<Cell *>(this->width * this->height / this->cell_size);
+        this->grid = std::vector<Cell<T> *>(this->width * this->height / this->cell_size / this->cell_size);
         for (int i = 0; i < this->grid.size(); i++)
         {
-            this->grid[i] = new Cell();
+            this->grid[i] = new Cell<T>(i);
         }
     }
 
@@ -49,42 +93,48 @@ public:
         // Removing the object from the cell
         int x = obj->current_position.x;
         int y = obj->current_position.y;
-        Cell *cell = this->get(x, y);
+        Cell<T> *cell = this->get(x, y);
         if (cell != nullptr)
         {
             for (int i = 0; i < cell->size(); i++)
             {
                 if (cell->at(i) == obj)
                 {
-                    cell->erase(cell->begin() + i);
+                    cell->erase(i);
                     break;
                 }
             }
         }
+
+        // Set the object's grid cell to null
+        obj->set_grid_cell(nullptr);
     }
 
     // Get a cell from the grid
-    Cell *get(int x, int y)
+    Cell<T> *get(int x, int y)
     {
-        if (x > this->width || x < 0 || y > this->height || y < 0)
+        if (x > this->width || y > this->height || x < 0 || y < 0)
         {
             return nullptr;
         }
-        return this->grid[x * y / this->cell_size];
+        return this->grid[x * y / this->cell_size / this->cell_size];
     }
 
     // Put an object into the grid
-    void put(T *obj)
+    Cell<T> *put(T *obj)
     {
         // Getting the cell index
         int x = obj->current_position.x;
         int y = obj->current_position.y;
 
         // Get the cell and update it
-        Cell *cell = this->get(x, y);
-        if (cell != nullptr) {
+        Cell<T> *cell = this->get(x, y);
+        if (cell != nullptr)
+        {
             cell->push_back(obj);
+            obj->set_grid_cell(cell);
         }
+        return cell;
     }
 
     // Fill the grid with objects
@@ -97,48 +147,40 @@ public:
     }
 
     // Find all the collisions for each cell in the grid
-    void find_collisions(int threads = -1)
+    void find_collisions(Cell<T> *current_cell)
     {
-        // Initialize the threads
-        // threads: Threads | None = Threads(threads) if threads != -1 else None (from python)
-        
-        // Iterate over all cells
-        for (int x = 1; x < this->width - 1; x++)
+        // Check collisions in the current cell
+        check_collisions(current_cell, current_cell);
+
+        // FIX THIS
+        /* Check all the cells around the current cell
+        int x = current_cell->index % (this->width * this->height / this->cell_size);
+        int y = current_cell->index / (this->width * this->height / this->cell_size);
+        for (int i = -1; i <= 1; i++)
         {
-            for (int y = 1; y < this->height - 1; y++)
+            int new_x = x + i * this->cell_size;
+            if (new_x < 0 || new_x >= this->width / this->cell_size)
             {
-                // Get the current cell
-                Cell *current_cell = this->get(x, y);
-                if (current_cell == nullptr)
+                continue;
+            }
+            for (int j = -1; j <= 1; j++)
+            {
+                int new_y = y + j * this->cell_size;
+                if (new_y < 0 || new_y >= this->height / this->cell_size)
                 {
                     continue;
                 }
-
-                // Check all the cells around the current cell
-                for (int dx = x - 1; dx <= x + 1; dx++)
+                Cell<T> *other_cell = this->get(new_x, new_y);
+                if (other_cell != nullptr)
                 {
-                    for (int dy = y - 1; dy <= y + 1; dy++)
-                    {
-                        // Get the cell
-                        Cell *other_cell = this->get(dx, dy);
-                        if (other_cell == nullptr)
-                        {
-                            continue;
-                        }
-
-                        // Check for collisions
-                        if (current_cell->size() > 0 || other_cell->size() > 0)
-                        {
-                            this->check_collisions(current_cell, other_cell);
-                        }
-                    }
+                    check_collisions(current_cell, other_cell);
                 }
             }
-        }
+        }*/
     }
 
     // Update a cell
-    void update_cell(Cell *cell)
+    void update_cell(Cell<T> *cell)
     {
         // Iterate over all the objects in the other cell
         int tot_popped = 0;
@@ -155,7 +197,7 @@ public:
 
             // Update the cell and grid
             int prev_len = cell->size();
-            cell->erase(cell->begin() + index);
+            cell->erase(index);
             if (cell->size() != prev_len)
             {
                 tot_popped++;
@@ -165,14 +207,14 @@ public:
     }
 
     // Update the cell objects
-    void update(Cell *current_cell, Cell *other_cell)
+    void update(Cell<T> *current_cell, Cell<T> *other_cell)
     {
         this->update_cell(current_cell);
         this->update_cell(other_cell);
     }
 
     // Check for collisions
-    void check_collisions(Cell *current_cell, Cell *other_cell)
+    void check_collisions(Cell<T> *current_cell, Cell<T> *other_cell)
     {
         // Iterate over all the objects in the current cell and the other cell
         for (int i = 0; i < current_cell->size(); i++)

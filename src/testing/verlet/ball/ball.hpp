@@ -11,7 +11,7 @@
 #include <vector>
 
 #define VERLET_BALL_COUNT 20
-#define VERLET_BALL_VECTOR Vec2D<float>(400, 100)
+#define VERLET_BALL_POSITION Vec2D<float>(400, 100)
 #define VERLET_BALL_RADIUS 10
 #define VERLET_BALL_ADD_INTERVAL 100 // 100ms
 #define VERLET_BALL_OFFSET Vec2D<float>(0, 0)
@@ -34,7 +34,7 @@ public:
         VerletBallVector balls = VerletBallVector();
         Utils::auto_add_verlet_balls(
             &balls,
-            VERLET_BALL_VECTOR,
+            VERLET_BALL_POSITION,
             VERLET_BALL_COUNT,
             VERLET_BALL_RADIUS,
             VERLET_BALL_ADD_INTERVAL,

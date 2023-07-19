@@ -9,8 +9,10 @@ class CircleCollider
 {
 public:
     Vec2D<float> position;
-    float outline_width;
+    Vec2D<float> scale;
+
     int point_count;
+    float outline_width;
     float radius;
 
     Color fill_color;
@@ -41,6 +43,8 @@ public:
         this->outside_collision = outside_collision;
         this->inside_collision = inside_collision;
         this->outline_width = outline_width;
+
+        this->scale = Vec2D<float>(1.0f, 1.0f);
     }
 
     // Set the radius
@@ -102,6 +106,7 @@ public:
     {
         sf::CircleShape circle(this->radius);
         circle.setOrigin(this->radius, this->radius);
+        circle.setScale(this->scale.x, this->scale.y);
         circle.setPosition(this->position.x + 4.0f, this->position.y + 3.0f);
         circle.setFillColor(Colors::to_sf(this->fill_color));
         circle.setOutlineColor(Colors::to_sf(this->outline_color));
@@ -130,7 +135,7 @@ public:
             bool ball_inside_circle = magnitude < this->radius;
 
             if (ball_colliding_with_circle && (!this->outside_collision || ball_inside_circle))
-            {
+            {   
                 ball->current_position += dist / magnitude * (delta - magnitude);
                 return;
             }

@@ -25,8 +25,7 @@ int main()
     //    NEED FIX    //
     ////////////////////
 
-    // 1. Fix the balls disappearing when they hit the open circle collider (sub steps maybe?)
-
-    // GridTesting::start(); // fix all of it
+    // GridTesting::start(); // Fix checking for the collisions around a cell
+    
     return 0;
 }
