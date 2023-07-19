@@ -3,6 +3,7 @@
 
 #include <objects/verlet/ball/colliders/circle.hpp>
 #include <objects/verlet/ball/ball.hpp>
+#include <objects/limiter.hpp>
 #include <testing/events.hpp>
 #include <testing/utils.hpp>
 #include <SFML/Graphics.hpp>
@@ -13,7 +14,7 @@
 #define CIRCLE_COLLIDER_THICKNESS 2
 #define CIRCLE_COLLIDER_COLOR WHITE
 
-#define VERLET_BALL_COUNT 300
+#define VERLET_BALL_COUNT 100
 #define VERLET_BALL_VECTOR Vec2D<float>(200, 200)
 #define VERLET_BALL_RADIUS 4
 #define VERLET_BALL_ADD_INTERVAL 100 // 100ms
@@ -31,7 +32,7 @@ public:
         // Initialize a new window
         sf::RenderWindow *window = new sf::RenderWindow(
             sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), WINDOW_TITLE);
-        window->setFramerateLimit(60);
+        window->setFramerateLimit(FPS);
 
         // Create a new list of colliders
         CircleCollider *circle_collider = new CircleCollider(
@@ -41,6 +42,9 @@ public:
 
         circle_collider->set_outline_color(CIRCLE_COLLIDER_COLOR);
         circle_collider->disable_outside_collision();
+
+        // Create a new limiter
+        ObjectLimiter *limiter = new ObjectLimiter(VERLET_BALL_COUNT);
 
         // Create a new list of balls
         VerletBallVector balls = VerletBallVector();
@@ -58,6 +62,16 @@ public:
         {
             Events::check_close(window);
             Utils::draw_background(window);
+
+            // Add a ball on button click
+            Utils::add_verlet_ball_on_click(
+                window,
+                &balls,
+                VERLET_BALL_RADIUS,
+                VERLET_BALL_RANDOM_COLOR);
+
+            // Update the limiter
+            limiter->update(&balls);
 
             // Draw the circle collider
             circle_collider->draw(window);

@@ -4,12 +4,12 @@
 #include <objects/verlet/ball/colliders/circle.hpp>
 #include <objects/verlet/ball/colliders/line.hpp>
 #include <objects/verlet/ball/ball.hpp>
+#include <objects/limiter.hpp>
 #include <interface/menu.hpp>
 #include <testing/events.hpp>
 #include <testing/config.hpp>
 #include <testing/utils.hpp>
 #include <SFML/Graphics.hpp>
-#include <grid/grid.hpp>
 #include <vector>
 
 #define CIRCLE_COLLIDER_POSITION Vec2D<float>(400, 300)
@@ -23,7 +23,7 @@
 #define LINE_COLLIDER_WIDTH 2
 #define LINE_COLLIDER_COLOR WHITE
 
-#define VERLET_BALL_COUNT 600
+#define VERLET_BALL_COUNT 100
 #define VERLET_BALL_VECTOR Vec2D<float>(200, 200)
 #define VERLET_BALL_RADIUS 4
 #define VERLET_BALL_ADD_INTERVAL 100 // 100ms
@@ -40,7 +40,7 @@ public:
         // Initialize a new window
         sf::RenderWindow *window = new sf::RenderWindow(
             sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), WINDOW_TITLE);
-        window->setFramerateLimit(60);
+        window->setFramerateLimit(FPS);
 
         // Create a new list of colliders
         CircleCollider *circle_collider = new CircleCollider(
@@ -68,6 +68,9 @@ public:
             VERLET_BALL_ADD_INTERVAL,
             VERLET_BALL_OFFSET,
             VERLET_BALL_RANDOM_COLOR);
+        
+        // Create a new limiter
+        ObjectLimiter *limiter = new ObjectLimiter(VERLET_BALL_COUNT);
 
         // Menu variables
         Menu *menu = new Menu();
@@ -82,6 +85,16 @@ public:
 
             // Draw the menu
             menu->draw(window);
+
+            // Add a ball on button click
+            Utils::add_verlet_ball_on_click(
+                window,
+                &balls,
+                VERLET_BALL_RADIUS,
+                VERLET_BALL_RANDOM_COLOR);
+            
+            // Update the limiter
+            limiter->update(&balls);
 
             // Check if the menu buttons have been clicked
             if (menu->circle_collider_button->is_clicked(window))

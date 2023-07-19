@@ -3,13 +3,14 @@
 
 #include <objects/verlet/ball/colliders/screen.hpp>
 #include <objects/verlet/ball/ball.hpp>
+#include <objects/limiter.hpp>
 #include <testing/events.hpp>
 #include <testing/config.hpp>
 #include <testing/utils.hpp>
 #include <SFML/Graphics.hpp>
 #include <vector>
 
-#define VERLET_BALL_COUNT 1
+#define VERLET_BALL_COUNT 50
 #define VERLET_BALL_VECTOR Vec2D<float>(200, 200)
 #define VERLET_BALL_RADIUS 10
 #define VERLET_BALL_ADD_INTERVAL 100 // 100ms
@@ -27,7 +28,7 @@ public:
         // Initialize a new window
         sf::RenderWindow *window = new sf::RenderWindow(
             sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), WINDOW_TITLE);
-        window->setFramerateLimit(60);
+        window->setFramerateLimit(FPS);
 
         // Create a new list of balls
         VerletBallVector balls = VerletBallVector();
@@ -43,11 +44,24 @@ public:
         // Create a screen collider
         ScreenCollider screen_collider = ScreenCollider(WINDOW_WIDTH, WINDOW_HEIGHT);
 
+        // Create a new limiter
+        ObjectLimiter *limiter = new ObjectLimiter(VERLET_BALL_COUNT);
+
         // Window Loop
         while (window->isOpen())
         {
             Events::check_close(window);
             Utils::draw_background(window);
+
+            // Add a ball on button click
+            Utils::add_verlet_ball_on_click(
+                window,
+                &balls,
+                VERLET_BALL_RADIUS,
+                VERLET_BALL_RANDOM_COLOR);
+            
+            // Update the limiter
+            limiter->update(&balls);
 
             // Draw and update the balls
             for (int i = 0; i < SUBSTEPS; i++)

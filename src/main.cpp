@@ -16,9 +16,10 @@ int main()
     // LineTesting::start();
     // VerletBallTesting::start();
     // OpenCircleColliderTesting::start();
-    // ClosedCircleColliderTesting::start();
+    //ClosedCircleColliderTesting::start();
     // MenuTesting::start(); // fix button sensitivity
-    LineColliderTesting::start();
+    // LineColliderTesting::start();
+    ScreenColliderTesting::start();
 
     ////////////////////
     //    NEED FIX    //
@@ -26,7 +27,6 @@ int main()
 
     // 1. Fix the balls disappearing when they hit the open circle collider (sub steps maybe?)
 
-    // GridTesting::start(); // doesn't even start lol
-    // ScreenColliderTesting::start(); // fix the physics
+    // GridTesting::start(); // fix all of it
     return 0;
 }

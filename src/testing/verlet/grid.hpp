@@ -4,11 +4,11 @@
 #include <objects/verlet/ball/colliders/circle.hpp>
 #include <objects/verlet/ball/colliders/line.hpp>
 #include <objects/verlet/ball/ball.hpp>
+#include <objects/verlet/grid.hpp>
 #include <testing/events.hpp>
 #include <testing/config.hpp>
 #include <testing/utils.hpp>
 #include <SFML/Graphics.hpp>
-#include <grid/grid.hpp>
 #include <vector>
 
 #define CIRCLE_COLLIDER_POSITION Vec2D<float>(400, 300)
@@ -22,7 +22,7 @@
 #define LINE_COLLIDER_WIDTH 2
 #define LINE_COLLIDER_COLOR WHITE
 
-#define VERLET_BALL_COUNT 600
+#define VERLET_BALL_COUNT 300
 #define VERLET_BALL_VECTOR Vec2D<float>(200, 200)
 #define VERLET_BALL_RADIUS 4
 #define VERLET_BALL_ADD_INTERVAL 100 // 100ms
@@ -39,15 +39,15 @@ public:
         // Initialize a new window
         sf::RenderWindow *window = new sf::RenderWindow(
             sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), WINDOW_TITLE);
-        window->setFramerateLimit(60);
+        window->setFramerateLimit(FPS);
 
         // Create a new list of colliders
         CircleCollider *circle_collider = new CircleCollider(
             CIRCLE_COLLIDER_POSITION,
             CIRCLE_COLLIDER_RADIUS,
-            CIRCLE_COLLIDER_THICKNESS,
-            CIRCLE_COLLIDER_COLOR);
+            CIRCLE_COLLIDER_THICKNESS);
         
+        circle_collider->set_outline_color(CIRCLE_COLLIDER_COLOR);
         circle_collider->disable_outside_collision();
 
         LineCollider *line_collider = new LineCollider(
@@ -70,6 +70,7 @@ public:
 
         // Initialize a new grid
         Grid<VerletBall> *grid = new Grid<VerletBall>(WINDOW_WIDTH, WINDOW_HEIGHT);
+        grid->fill(balls);
 
         // Window Loop
         while (window->isOpen())

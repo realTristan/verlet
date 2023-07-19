@@ -23,7 +23,7 @@ public:
         // Initialize a new window
         sf::RenderWindow *window = new sf::RenderWindow(
             sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), WINDOW_TITLE);
-        window->setFramerateLimit(60);
+        window->setFramerateLimit(FPS);
 
         // Create a new line
         Line *line = new Line(

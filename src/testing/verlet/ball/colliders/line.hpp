@@ -3,6 +3,7 @@
 
 #include <objects/verlet/ball/colliders/line.hpp>
 #include <objects/verlet/ball/ball.hpp>
+#include <objects/limiter.hpp>
 #include <testing/events.hpp>
 #include <testing/config.hpp>
 #include <testing/utils.hpp>
@@ -33,7 +34,7 @@ public:
         // Initialize a new window
         sf::RenderWindow *window = new sf::RenderWindow(
             sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), WINDOW_TITLE);
-        window->setFramerateLimit(60);
+        window->setFramerateLimit(FPS);
 
         // Create a new list of colliders
         LineCollider *line_collider = new LineCollider(
@@ -54,11 +55,24 @@ public:
             VERLET_BALL_OFFSET,
             VERLET_BALL_RANDOM_COLOR);
 
+        // Create a new limiter
+        ObjectLimiter *limiter = new ObjectLimiter(VERLET_BALL_COUNT);
+
         // Window Loop
         while (window->isOpen())
         {
             Events::check_close(window);
             Utils::draw_background(window);
+
+            // Add a ball on button click
+            Utils::add_verlet_ball_on_click(
+                window,
+                &balls,
+                VERLET_BALL_RADIUS,
+                VERLET_BALL_RANDOM_COLOR);
+
+            // Update the limiter
+            limiter->update(&balls);
 
             // Draw the line collider
             line_collider->draw(window);

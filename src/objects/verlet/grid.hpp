@@ -4,6 +4,7 @@
 #include <objects/verlet/ball/ball.hpp>
 #include <physics/vector2d.h>
 #include <vector>
+#include <iostream>
 
 // A grid for the verlet objects
 template <typename T>
@@ -15,20 +16,31 @@ private:
 public:
     int width;
     int height;
+    int cell_size;
+    
     std::vector<Cell *> grid;
 
-    Grid(int width, int height)
+    Grid(int width, int height, int cell_size = 100)
     {
         this->width = width;
         this->height = height;
-        this->grid.resize(this->height * this->width);
+        this->cell_size = cell_size;
+        this->grid = std::vector<Cell *>(width * height / cell_size);
+        for (int i = 0; i < this->grid.size(); i++)
+        {
+            this->grid[i] = new Cell();
+        }
     }
 
     // Reset the grid
     void reset()
     {
         this->grid.clear();
-        this->grid.resize(this->height * this->width);
+        this->grid = std::vector<Cell *>(this->width * this->height / this->cell_size);
+        for (int i = 0; i < this->grid.size(); i++)
+        {
+            this->grid[i] = new Cell();
+        }
     }
 
     // Deprecate an object from the grid
@@ -58,7 +70,7 @@ public:
         {
             return nullptr;
         }
-        return this->grid[x * y];
+        return this->grid[x * y / this->cell_size];
     }
 
     // Put an object into the grid
@@ -89,7 +101,7 @@ public:
     {
         // Initialize the threads
         // threads: Threads | None = Threads(threads) if threads != -1 else None (from python)
-
+        
         // Iterate over all cells
         for (int x = 1; x < this->width - 1; x++)
         {

@@ -43,6 +43,35 @@ public:
         t.detach();
     }
 
+    // Add a ball on click
+    static void add_verlet_ball_on_click(
+        sf::RenderWindow *window,
+        std::vector<VerletBall *> *balls,
+        int ball_radius,
+        bool random_color = false,
+        Color ball_color = CYAN)
+    {
+        // Check if mouse button clicked
+        if (!sf::Mouse::isButtonPressed(sf::Mouse::Left))
+        {
+            return;
+        }
+
+        // Add a ball
+        sf::Vector2i mouse_position = sf::Mouse::getPosition(*window);
+        Vec2D<float> ball_vector = Vec2D<float>(mouse_position.x, mouse_position.y);
+        Color color = ball_color;
+        if (random_color)
+        {
+            color = Colors::random_color();
+        }
+        VerletBall *ball = new VerletBall(
+            ball_vector,
+            ball_radius);
+        ball->set_fill_color(color);
+        balls->push_back(ball);
+    }
+
     // Draw the background
     static void draw_background(sf::RenderWindow *window)
     {
