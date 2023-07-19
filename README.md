@@ -2,8 +2,8 @@
 
 Verlet is a physics engine built from scratch. It currently has Python (pygame) and C++ (SFML) implementations. The Python implementation can be found on my research GitHub account. (Simpson Computer Technologies Research)
 
-### Line Count
-`1839`
+### Lines of Code
+`1944`
 
 ### SFML
 Verlet uses SFML v2.6.0
