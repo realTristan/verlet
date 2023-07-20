@@ -5,8 +5,8 @@ Verlet is a physics engine built from scratch. It currently has Python (pygame) 
 ### Lines of Code
 `2095`
 
-### SFML
-Verlet uses SFML v2.6.0
+### SFML Graphics Library
+Verlet uses SFML v2.6.0 for graphics. Eventually, it will transition to [CGL](https://github.com/realTristan/CGL), my custom OpenGL graphics library.
 - https://www.sfml-dev.org/files/SFML-2.6.0-windows-gcc-13.1.0-mingw-64-bit.zip
 - https://github.com/brechtsanders/winlibs_mingw/releases/download/13.1.0-16.0.5-11.0.0-msvcrt-r5/winlibs-x86_64-posix-seh-gcc-13.1.0-mingw-w64msvcrt-11.0.0-r5.7z
 
