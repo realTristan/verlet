@@ -9,15 +9,15 @@
 #include <SFML/Graphics.hpp>
 #include <vector>
 
-#define CIRCLE_COLLIDER_POSITION Vec2D<float>(200, 400)
-#define CIRCLE_COLLIDER_RADIUS 100
+#define CIRCLE_COLLIDER_POSITION Vec2D<float>(200.0f, 400.0f)
+#define CIRCLE_COLLIDER_RADIUS 100.0f
 #define CIRCLE_COLLIDER_COLOR WHITE
 
 #define VERLET_BALL_COUNT 50
-#define VERLET_BALL_POSITION Vec2D<float>(150, 200)
-#define VERLET_BALL_RADIUS 5
+#define VERLET_BALL_POSITION Vec2D<float>(150.0f, 200.0f)
+#define VERLET_BALL_RADIUS 5.0f
 #define VERLET_BALL_ADD_INTERVAL 100 // 100ms
-#define VERLET_BALL_OFFSET Vec2D<float>(2, 0)
+#define VERLET_BALL_OFFSET Vec2D<float>(2.0f, 0.0f)
 #define VERLET_BALL_RANDOM_COLOR true
 
 typedef std::vector<VerletBall *> VerletBallVector;
@@ -36,7 +36,7 @@ public:
         CircleCollider *circle_collider = new CircleCollider(
             CIRCLE_COLLIDER_POSITION,
             CIRCLE_COLLIDER_RADIUS);
-        
+
         circle_collider->set_outline_width(0.0f);
         circle_collider->set_fill_color(CIRCLE_COLLIDER_COLOR);
         circle_collider->enable_outside_collision();

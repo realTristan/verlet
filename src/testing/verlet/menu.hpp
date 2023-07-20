@@ -12,22 +12,22 @@
 #include <SFML/Graphics.hpp>
 #include <vector>
 
-#define CIRCLE_COLLIDER_POSITION Vec2D<float>(400, 300)
-#define CIRCLE_COLLIDER_RADIUS 300
+#define CIRCLE_COLLIDER_POSITION Vec2D<float>(400.0f, 300.0f)
+#define CIRCLE_COLLIDER_RADIUS 300.0f
 #define CIRCLE_COLLIDER_THICKNESS 2
 #define CIRCLE_COLLIDER_COLOR WHITE
 
-#define LINE_COLLIDER_POSITION Vec2D<float>(200, 250)
-#define LINE_COLLIDER_LENGTH 150
-#define LINE_COLLIDER_ANGLE 60
+#define LINE_COLLIDER_POSITION Vec2D<float>(200.0f, 250.0f)
+#define LINE_COLLIDER_LENGTH 150.0f
+#define LINE_COLLIDER_ANGLE 60.0f
 #define LINE_COLLIDER_WIDTH 2
 #define LINE_COLLIDER_COLOR WHITE
 
 #define VERLET_BALL_COUNT 100
-#define VERLET_BALL_POSITION Vec2D<float>(200, 200)
-#define VERLET_BALL_RADIUS 4
+#define VERLET_BALL_POSITION Vec2D<float>(200.0f, 200.0f)
+#define VERLET_BALL_RADIUS 4.0f
 #define VERLET_BALL_ADD_INTERVAL 100 // 100ms
-#define VERLET_BALL_OFFSET Vec2D<float>(0, 0)
+#define VERLET_BALL_OFFSET Vec2D<float>(0.0f, 0.0f)
 #define VERLET_BALL_RANDOM_COLOR true
 
 typedef std::vector<VerletBall *> VerletBallVector;
@@ -47,7 +47,7 @@ public:
             CIRCLE_COLLIDER_POSITION,
             CIRCLE_COLLIDER_RADIUS,
             CIRCLE_COLLIDER_THICKNESS);
-        
+
         circle_collider->set_outline_color(CIRCLE_COLLIDER_COLOR);
         circle_collider->disable_outside_collision();
 
@@ -68,7 +68,7 @@ public:
             VERLET_BALL_ADD_INTERVAL,
             VERLET_BALL_OFFSET,
             VERLET_BALL_RANDOM_COLOR);
-        
+
         // Create a new limiter
         ObjectLimiter *limiter = new ObjectLimiter(VERLET_BALL_COUNT);
 
@@ -92,7 +92,7 @@ public:
                 &balls,
                 VERLET_BALL_RADIUS,
                 VERLET_BALL_RANDOM_COLOR);
-            
+
             // Update the limiter
             limiter->update(&balls);
 

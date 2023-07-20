@@ -9,7 +9,7 @@
 #include <SFML/Graphics.hpp>
 #include <objects/line.hpp>
 
-#define LINE_START_VECTOR Vec2D<float>(200, 250)
+#define LINE_START_VECTOR Vec2D<float>(200.0f, 250.0f)
 #define LINE_LENGTH 150.0f
 #define LINE_ANGLE 15.0f
 #define LINE_WIDTH 5

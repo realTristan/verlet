@@ -11,10 +11,10 @@
 #include <vector>
 
 #define VERLET_BALL_COUNT 20
-#define VERLET_BALL_POSITION Vec2D<float>(400, 100)
-#define VERLET_BALL_RADIUS 10
+#define VERLET_BALL_POSITION Vec2D<float>(400.0f, 100.0f)
+#define VERLET_BALL_RADIUS 10.0f
 #define VERLET_BALL_ADD_INTERVAL 100 // 100ms
-#define VERLET_BALL_OFFSET Vec2D<float>(0, 0)
+#define VERLET_BALL_OFFSET Vec2D<float>(0.0f, 0.0f)
 #define VERLET_BALL_RANDOM_COLOR true
 
 typedef std::vector<VerletBall *> VerletBallVector;
@@ -40,7 +40,7 @@ public:
             VERLET_BALL_ADD_INTERVAL,
             VERLET_BALL_OFFSET,
             VERLET_BALL_RANDOM_COLOR);
-        
+
         // Create a new limiter
         ObjectLimiter *limiter = new ObjectLimiter(VERLET_BALL_COUNT);
 
@@ -56,7 +56,7 @@ public:
                 &balls,
                 VERLET_BALL_RADIUS,
                 VERLET_BALL_RANDOM_COLOR);
-            
+
             // Update the limiter
             limiter->update(&balls);
 

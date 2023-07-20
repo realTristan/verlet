@@ -11,10 +11,10 @@
 #include <vector>
 
 #define VERLET_BALL_COUNT 50
-#define VERLET_BALL_POSITION Vec2D<float>(200, 200)
-#define VERLET_BALL_RADIUS 10
+#define VERLET_BALL_POSITION Vec2D<float>(200.0f, 200.0f)
+#define VERLET_BALL_RADIUS 10.0f
 #define VERLET_BALL_ADD_INTERVAL 100 // 100ms
-#define VERLET_BALL_OFFSET Vec2D<float>(10, 0)
+#define VERLET_BALL_OFFSET Vec2D<float>(10.0f, 0.0f)
 #define VERLET_BALL_RANDOM_COLOR true
 
 typedef std::vector<VerletBall *> VerletBallVector;
@@ -40,7 +40,7 @@ public:
             VERLET_BALL_ADD_INTERVAL,
             VERLET_BALL_OFFSET,
             VERLET_BALL_RANDOM_COLOR);
-            
+
         // Create a screen collider
         ScreenCollider screen_collider = ScreenCollider(WINDOW_WIDTH, WINDOW_HEIGHT);
 
@@ -59,7 +59,7 @@ public:
                 &balls,
                 VERLET_BALL_RADIUS,
                 VERLET_BALL_RANDOM_COLOR);
-            
+
             // Update the limiter
             limiter->update(&balls);
 

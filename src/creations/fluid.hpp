@@ -1,5 +1,5 @@
-#ifndef TESTING_VERLET_FLUID_HPP
-#define TESTING_VERLET_FLUID_HPP
+#ifndef CREATIONS_VERLET_FLUID_HPP
+#define CREATIONS_VERLET_FLUID_HPP
 
 #include <objects/verlet/ball/colliders/circle.hpp>
 #include <objects/verlet/ball/colliders/line.hpp>
@@ -10,28 +10,28 @@
 #include <SFML/Graphics.hpp>
 #include <vector>
 
-#define CIRCLE_COLLIDER_VECTOR Vec2D<float>(400, 300)
-#define CIRCLE_COLLIDER_RADIUS 300
-#define CIRCLE_COLLIDER_THICKNESS 2
+#define CIRCLE_COLLIDER_VECTOR Vec2D<float>(400.0f, 300.0f)
+#define CIRCLE_COLLIDER_RADIUS 300.0f
+#define CIRCLE_COLLIDER_THICKNESS 2.0f
 #define CIRCLE_COLLIDER_COLOR WHITE
 
-#define LINE_COLLIDER_VECTOR Vec2D<float>(200, 250)
-#define LINE_COLLIDER_LENGTH 150
-#define LINE_COLLIDER_ANGLE 60
+#define LINE_COLLIDER_VECTOR Vec2D<float>(200.0f, 250.0f)
+#define LINE_COLLIDER_LENGTH 150.0f
+#define LINE_COLLIDER_ANGLE 60.0f
 #define LINE_COLLIDER_WIDTH 2
 #define LINE_COLLIDER_COLOR WHITE
 
 #define VERLET_BALL_COUNT 400
-#define VERLET_BALL_VECTOR Vec2D<float>(200, 200)
-#define VERLET_BALL_RADIUS 4
+#define VERLET_BALL_VECTOR Vec2D<float>(200.0f, 200.0f)
+#define VERLET_BALL_RADIUS 4.0f
 #define VERLET_BALL_ADD_INTERVAL 10 // 10ms
-#define VERLET_BALL_OFFSET Vec2D<float>(0, 0)
+#define VERLET_BALL_OFFSET Vec2D<float>(0.0f, 0.0f)
 #define VERLET_BALL_RANDOM_COLOR false
 #define VERLET_BALL_COLOR CYAN
 
 typedef std::vector<VerletBall *> VerletBallVector;
 
-class FluidTesting
+class FluidCreation
 {
 public:
     static void start()
@@ -46,7 +46,7 @@ public:
             CIRCLE_COLLIDER_VECTOR,
             CIRCLE_COLLIDER_RADIUS,
             CIRCLE_COLLIDER_THICKNESS);
-        
+
         circle_collider->set_outline_color(CIRCLE_COLLIDER_COLOR);
         circle_collider->disable_outside_collision();
 
@@ -97,4 +97,4 @@ public:
     }
 };
 
-#endif // TESTING_VERLET_FLUID_HPP
+#endif // CREATIONS_VERLET_FLUID_HPP

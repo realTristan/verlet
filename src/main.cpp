@@ -7,19 +7,30 @@
 #include <testing/verlet/menu.hpp>
 #include <testing/line.hpp>
 
+#include <creations/field_of_circles.hpp>
+#include <creations/rotating_ball.hpp>
+#include <creations/fluid.hpp>
+
 int main()
 {
     ///////////////////
-    //    WORKING    //
+    //    TESTING    //
     ///////////////////
 
     // LineTesting::start();
     // VerletBallTesting::start();
     // OpenCircleColliderTesting::start();
-    ClosedCircleColliderTesting::start();
+    // ClosedCircleColliderTesting::start();
     // MenuTesting::start(); // fix button sensitivity
     // LineColliderTesting::start();
     // ScreenColliderTesting::start();
+
+    //////////////////////
+    //    CREATIONS    //
+    /////////////////////
+    // RotatingBallCreation::start(); // fix
+    FieldOfCirclesCreation::start();
+    // FluidCreation::start();
 
     ////////////////////
     //    NEED FIX    //
